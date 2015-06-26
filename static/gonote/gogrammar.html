@@ -1,0 +1,2642 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style type="text/css">
+/* 
+Name: Github ReadMe style for LiteIde
+Author: slene(vslene@gmail.com)
+*/
+
+/*
+GitHub Style Author: hzlzh(hzlzh.dev@gmail.com)
+URL: https://github.com/hzlzh/Mou-Theme
+*/
+
+@charset "UTF-8";
+body, input, select, textarea, button{ font:13px/1.4 Helvetica, arial, freesans, clean, sans-serif; color:#333333; }
+body{ background-color:#FFFFFF; color:#333333; background-color:#FFFFFF; padding:0 30px 30px; font-size:15px; line-height:1.7; margin:20px auto; max-width:880px;margin-left: auto; border-radius:3px 3px 3px 3px; }
+a{ color:#4183C4; text-decoration:none; }
+a:hover{ text-decoration:underline; }
+a:focus, a:active{ text-decoration:underline; }
+.action{ color:#DD0000; text-decoration:underline; }
+.clearfix:before, .clearfix:after{ content:" "; display:table; }
+.clearfix:after{ clear:both; }
+.danger{ color:#CC0000; }
+.mute{ color:#000000; }
+.sparkline{ display:none; }
+.right{ float:right; }
+.left{ float:left; }
+.text-right{ text-align:right; }
+.text-left{ text-align:left; }
+.hidden{ display:none; }
+.warning{ background-color:#FFFCCC; font-weight:bold; margin-bottom:0.8em; padding:0.5em; }
+.error_box{ background-color:#FFEBE8; border:1px solid #DD3C10; font-weight:bold; padding:1em; }
+hr, .rule{ -moz-border-bottom-colors:none; -moz-border-left-colors:none; -moz-border-right-colors:none; -moz-border-top-colors:none; background:none repeat scroll 0% 0% transparent; border-color:-moz-use-text-color -moz-use-text-color #DDDDDD; border-image:none; border-style:none none solid; border-width:medium medium 1px; clear:both; height:0px; margin:15px 0px; overflow:hidden; }
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary{ display:block; }
+audio, canvas, video{ display:inline-block; }
+audio:not([controls]){ display:none; height:0px; }
+html{ font-family:sans-serif; }
+a:focus{ outline:thin dotted; }
+a:active, a:hover{ outline:0px none; }
+h1{ font-size:2em; margin:0.67em 0px; }
+abbr[title]{ border-bottom:1px dotted; }
+b, strong{ font-weight:bold; }
+dfn{ font-style:italic; }
+hr{ -moz-box-sizing:content-box; height:0px; }
+mark{ background:none repeat scroll 0% 0% #FFFF00; color:#000000; }
+code, kbd, pre, samp{ font-family:monospace, serif; font-size:1em; }
+q{ quotes:"“" "”" "‘" "’"; }
+small{ font-size:80%; }
+sub, sup{ font-size:75%; line-height:0; position:relative; vertical-align:baseline; }
+sup{ top:-0.5em; }
+sub{ bottom:-0.25em; }
+img{ border:0px none; }
+figure{ margin:0px; }
+fieldset{ border:1px solid #C0C0C0; margin:0px 2px; padding:0.35em 0.625em 0.75em; }
+legend{ border:0px none; padding:0px; }
+button, input, select, textarea{ font-family:inherit; font-size:100%; margin:0px; }
+button, input{ line-height:normal; }
+button, select{ text-transform:none; }
+button, html input[type="button"], input[type="reset"], input[type="submit"]{ cursor:pointer; }
+button[disabled], html input[disabled]{ cursor:default; }
+input[type="checkbox"], input[type="radio"]{ padding:0px; }
+input[type="search"]{ -moz-box-sizing:content-box; }
+button::-moz-focus-inner, input::-moz-focus-inner{ border:0px none; padding:0px; }
+textarea{ overflow:auto; vertical-align:top; }
+table{ border-collapse:collapse; border-spacing:0px; }
+h1, h2, h3, h4, h5, h6{ line-height:1.1; margin-bottom:15px; margin-top:15px; }
+h1{ font-size:30px; }
+h2{ font-size:21px; }
+h3{ font-size:16px; }
+h4{ font-size:14px; }
+h5{ font-size:12px; }
+h6{ font-size:11px; }
+small{ font-size:90%; }
+blockquote{ margin:0px; }
+.lead{ color:#555555; font-size:20px; font-weight:300; margin-bottom:30px; }
+ul, ol{ margin-bottom:0px; margin-top:0px; padding:0px; }
+dd{ margin-left:0px; }
+code, pre{ font-family:Consolas, "Liberation Mono", Courier, monospace; font-size:12px; }
+pre{ margin-bottom:0px; margin-top:0px; }
+a.absent{ color:#CC0000; }
+a.anchor{ bottom:0px; cursor:pointer; display:block; left:0px; margin-left:-30px; padding-left:30px; position:absolute; top:0px; }
+h1, h2, h3, h4, h5, h6{ cursor:text; font-weight:bold; line-height:1.7; margin:1em 0px 15px; padding:0px; position:relative; }
+h1 .octicon-link, h2 .octicon-link, h3 .octicon-link, h4 .octicon-link, h5 .octicon-link, h6 .octicon-link{ color:#000000; display:none; }
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor{ line-height:1; margin-left:-22px; padding-left:0px; text-decoration:none; top:15%; }
+h1:hover a.anchor .octicon-link, h2:hover a.anchor .octicon-link, h3:hover a.anchor .octicon-link, h4:hover a.anchor .octicon-link, h5:hover a.anchor .octicon-link, h6:hover a.anchor .octicon-link{ display:inline-block; }
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code{ font-size:inherit; }
+h1, h2, h3, h4, h5, h6{ cursor:text; font-weight:bold; line-height:1.7; }
+h1{ border-bottom:1px solid #DDDDDD; font-size:2.5em; }
+h2{ border-bottom:1px solid #EEEEEE; font-size:2em; }
+h3{ font-size:1.5em; }
+h4{ font-size:1.2em; }
+h5{ font-size:1em; }
+h6{ color:#777777; font-size:1em; }
+p, blockquote, ul, ol, dl, table, pre{ margin:15px 0px; }
+hr{ background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC") repeat-x scroll 0px 0px transparent; border:0px none; color:#CCCCCC; height:4px; margin:15px 0px; padding:0px; }
+li p.first{ display:inline-block; }
+ul, ol{ padding-left:30px; }
+ul.no-list, ol.no-list{ list-style-type:none; padding:0px; }
+ul ul, ul ol, ol ol, ol ul{ margin-bottom:0px; margin-top:0px; }
+dl{ padding:0px; }
+dl dt{ font-size:14px; font-style:italic; font-weight:bold; margin-top:15px; padding:0px; }
+dl dd{ margin-bottom:15px; padding:0px 15px; }
+blockquote{ border-left:4px solid #DDDDDD; color:#777777; padding:0px 15px; }
+blockquote > :first-child{ margin-top:0px; }
+blockquote > :last-child{ margin-bottom:0px; }
+table{ display:block; overflow:auto; width:100%; }
+table th{ font-weight:bold; }
+table th, table td{ border:1px solid #DDDDDD; padding:6px 13px; }
+table tr{ background-color:#FFFFFF; border-top:1px solid #CCCCCC; }
+table tr:nth-child(2n){ background-color:#F8F8F8; }
+img{ -moz-box-sizing:border-box; max-width:100%; }
+span.frame{ display:block; overflow:hidden; }
+span.frame > span{ border:1px solid #DDDDDD; display:block; float:left; margin:13px 0px 0px; overflow:hidden; padding:7px; width:auto; }
+span.frame span img{ display:block; float:left; }
+span.frame span span{ clear:both; color:#333333; display:block; padding:5px 0px 0px; }
+span.align-center{ clear:both; display:block; overflow:hidden; }
+span.align-center > span{ display:block; margin:13px auto 0px; overflow:hidden; text-align:center; }
+span.align-center span img{ margin:0px auto; text-align:center; }
+span.align-right{ clear:both; display:block; overflow:hidden; }
+span.align-right > span{ display:block; margin:13px 0px 0px; overflow:hidden; text-align:right; }
+span.align-right span img{ margin:0px; text-align:right; }
+span.float-left{ display:block; float:left; margin-right:13px; overflow:hidden; }
+span.float-left span{ margin:13px 0px 0px; }
+span.float-right{ display:block; float:right; margin-left:13px; overflow:hidden; }
+span.float-right > span{ display:block; margin:13px auto 0px; overflow:hidden; text-align:right; }
+code, tt{ background-color:#F8F8F8; border-radius:3px 3px 3px 3px; border:1px solid #DDDDDD; margin:0px 2px; padding:0px 5px; }
+code{ white-space:nowrap; }
+pre > code{ background:none repeat scroll 0% 0% transparent; border:medium none; margin:0px; padding:0px; white-space:pre; }
+pre{ max-width:860px;background-color:#F8F8F8; border-radius:3px 3px 3px 3px; border:1px solid #DDDDDD; font-size:13px; line-height:19px; overflow:auto; padding:6px 10px; }
+pre code, pre tt{ background-color:transparent; border:medium none; margin:0px; padding:0px; }
+code, pre{ font-family:monospace, Consolas, "Liberation Mono", Courier; font-size:15px; }
+</style>
+<script>
+/*
+highlight.js
+
+Copyright (c) 2006, Ivan Sagalaev
+All rights reserved.
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+    * Neither the name of highlight.js nor the names of its contributors 
+      may be used to endorse or promote products derived from this software 
+      without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND ANY
+EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE REGENTS AND CONTRIBUTORS BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+var hljs=new function(){function l(o){return o.replace(/&/gm,"&amp;").replace(/</gm,"&lt;").replace(/>/gm,"&gt;")}function b(p){for(var o=p.firstChild;o;o=o.nextSibling){if(o.nodeName=="CODE"){return o}if(!(o.nodeType==3&&o.nodeValue.match(/\s+/))){break}}}function h(p,o){return Array.prototype.map.call(p.childNodes,function(q){if(q.nodeType==3){return o?q.nodeValue.replace(/\n/g,""):q.nodeValue}if(q.nodeName=="BR"){return"\n"}return h(q,o)}).join("")}function a(q){var p=(q.className+" "+q.parentNode.className).split(/\s+/);p=p.map(function(r){return r.replace(/^language-/,"")});for(var o=0;o<p.length;o++){if(e[p[o]]||p[o]=="no-highlight"){return p[o]}}}function c(q){var o=[];(function p(r,s){for(var t=r.firstChild;t;t=t.nextSibling){if(t.nodeType==3){s+=t.nodeValue.length}else{if(t.nodeName=="BR"){s+=1}else{if(t.nodeType==1){o.push({event:"start",offset:s,node:t});s=p(t,s);o.push({event:"stop",offset:s,node:t})}}}}return s})(q,0);return o}function j(x,v,w){var p=0;var y="";var r=[];function t(){if(x.length&&v.length){if(x[0].offset!=v[0].offset){return(x[0].offset<v[0].offset)?x:v}else{return v[0].event=="start"?x:v}}else{return x.length?x:v}}function s(A){function z(B){return" "+B.nodeName+'="'+l(B.value)+'"'}return"<"+A.nodeName+Array.prototype.map.call(A.attributes,z).join("")+">"}while(x.length||v.length){var u=t().splice(0,1)[0];y+=l(w.substr(p,u.offset-p));p=u.offset;if(u.event=="start"){y+=s(u.node);r.push(u.node)}else{if(u.event=="stop"){var o,q=r.length;do{q--;o=r[q];y+=("</"+o.nodeName.toLowerCase()+">")}while(o!=u.node);r.splice(q,1);while(q<r.length){y+=s(r[q]);q++}}}}return y+l(w.substr(p))}function f(q){function o(s,r){return RegExp(s,"m"+(q.cI?"i":"")+(r?"g":""))}function p(y,w){if(y.compiled){return}y.compiled=true;var s=[];if(y.k){var r={};function z(A,t){t.split(" ").forEach(function(B){var C=B.split("|");r[C[0]]=[A,C[1]?Number(C[1]):1];s.push(C[0])})}y.lR=o(y.l||hljs.IR,true);if(typeof y.k=="string"){z("keyword",y.k)}else{for(var x in y.k){if(!y.k.hasOwnProperty(x)){continue}z(x,y.k[x])}}y.k=r}if(w){if(y.bWK){y.b="\\b("+s.join("|")+")\\s"}y.bR=o(y.b?y.b:"\\B|\\b");if(!y.e&&!y.eW){y.e="\\B|\\b"}if(y.e){y.eR=o(y.e)}y.tE=y.e||"";if(y.eW&&w.tE){y.tE+=(y.e?"|":"")+w.tE}}if(y.i){y.iR=o(y.i)}if(y.r===undefined){y.r=1}if(!y.c){y.c=[]}for(var v=0;v<y.c.length;v++){if(y.c[v]=="self"){y.c[v]=y}p(y.c[v],y)}if(y.starts){p(y.starts,w)}var u=[];for(var v=0;v<y.c.length;v++){u.push(y.c[v].b)}if(y.tE){u.push(y.tE)}if(y.i){u.push(y.i)}y.t=u.length?o(u.join("|"),true):{exec:function(t){return null}}}p(q)}function d(D,E){function o(r,M){for(var L=0;L<M.c.length;L++){var K=M.c[L].bR.exec(r);if(K&&K.index==0){return M.c[L]}}}function s(K,r){if(K.e&&K.eR.test(r)){return K}if(K.eW){return s(K.parent,r)}}function t(r,K){return K.i&&K.iR.test(r)}function y(L,r){var K=F.cI?r[0].toLowerCase():r[0];return L.k.hasOwnProperty(K)&&L.k[K]}function G(){var K=l(w);if(!A.k){return K}var r="";var N=0;A.lR.lastIndex=0;var L=A.lR.exec(K);while(L){r+=K.substr(N,L.index-N);var M=y(A,L);if(M){v+=M[1];r+='<span class="'+M[0]+'">'+L[0]+"</span>"}else{r+=L[0]}N=A.lR.lastIndex;L=A.lR.exec(K)}return r+K.substr(N)}function z(){if(A.sL&&!e[A.sL]){return l(w)}var r=A.sL?d(A.sL,w):g(w);if(A.r>0){v+=r.keyword_count;B+=r.r}return'<span class="'+r.language+'">'+r.value+"</span>"}function J(){return A.sL!==undefined?z():G()}function I(L,r){var K=L.cN?'<span class="'+L.cN+'">':"";if(L.rB){x+=K;w=""}else{if(L.eB){x+=l(r)+K;w=""}else{x+=K;w=r}}A=Object.create(L,{parent:{value:A}});B+=L.r}function C(K,r){w+=K;if(r===undefined){x+=J();return 0}var L=o(r,A);if(L){x+=J();I(L,r);return L.rB?0:r.length}var M=s(A,r);if(M){if(!(M.rE||M.eE)){w+=r}x+=J();do{if(A.cN){x+="</span>"}A=A.parent}while(A!=M.parent);if(M.eE){x+=l(r)}w="";if(M.starts){I(M.starts,"")}return M.rE?0:r.length}if(t(r,A)){throw"Illegal"}w+=r;return r.length||1}var F=e[D];f(F);var A=F;var w="";var B=0;var v=0;var x="";try{var u,q,p=0;while(true){A.t.lastIndex=p;u=A.t.exec(E);if(!u){break}q=C(E.substr(p,u.index-p),u[0]);p=u.index+q}C(E.substr(p));return{r:B,keyword_count:v,value:x,language:D}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:l(E)}}else{throw H}}}function g(s){var o={keyword_count:0,r:0,value:l(s)};var q=o;for(var p in e){if(!e.hasOwnProperty(p)){continue}var r=d(p,s);r.language=p;if(r.keyword_count+r.r>q.keyword_count+q.r){q=r}if(r.keyword_count+r.r>o.keyword_count+o.r){q=o;o=r}}if(q.language){o.second_best=q}return o}function i(q,p,o){if(p){q=q.replace(/^((<[^>]+>|\t)+)/gm,function(r,v,u,t){return v.replace(/\t/g,p)})}if(o){q=q.replace(/\n/g,"<br>")}return q}function m(r,u,p){var v=h(r,p);var t=a(r);if(t=="no-highlight"){return}var w=t?d(t,v):g(v);t=w.language;var o=c(r);if(o.length){var q=document.createElement("pre");q.innerHTML=w.value;w.value=j(o,c(q),v)}w.value=i(w.value,u,p);var s=r.className;if(!s.match("(\\s|^)(language-)?"+t+"(\\s|$)")){s=s?(s+" "+t):t}r.innerHTML=w.value;r.className=s;r.result={language:t,kw:w.keyword_count,re:w.r};if(w.second_best){r.second_best={language:w.second_best.language,kw:w.second_best.keyword_count,re:w.second_best.r}}}function n(){if(n.called){return}n.called=true;Array.prototype.map.call(document.getElementsByTagName("pre"),b).filter(Boolean).forEach(function(o){m(o,hljs.tabReplace)})}function k(){window.addEventListener("DOMContentLoaded",n,false);window.addEventListener("load",n,false)}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=m;this.initHighlighting=n;this.initHighlightingOnLoad=k;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.BE={b:"\\\\[\\s\\S]",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(q,r){var o={};for(var p in q){o[p]=q[p]}if(r){for(var p in r){o[p]=r[p]}}return o}}();hljs.LANGUAGES.bash=function(a){var g="true false";var e="if then else elif fi for break continue while in do done echo exit return set declare";var c={cN:"variable",b:"\\$[a-zA-Z0-9_#]+"};var b={cN:"variable",b:"\\${([^}]|\\\\})+}"};var h={cN:"string",b:'"',e:'"',i:"\\n",c:[a.BE,c,b],r:0};var d={cN:"string",b:"'",e:"'",c:[{b:"''"}],r:0};var f={cN:"test_condition",b:"",e:"",c:[h,d,c,b],k:{literal:g},r:0};return{k:{keyword:e,literal:g},c:[{cN:"shebang",b:"(#!\\/bin\\/bash)|(#!\\/bin\\/sh)",r:10},c,b,a.HCM,h,d,a.inherit(f,{b:"\\[ ",e:" \\]",r:0}),a.inherit(f,{b:"\\[\\[ ",e:" \\]\\]"})]}}(hljs);hljs.LANGUAGES.cs=function(a){return{k:"abstract as base bool break byte case catch char checked class const continue decimal default delegate do double else enum event explicit extern false finally fixed float for foreach goto if implicit in int interface internal is lock long namespace new null object operator out override params private protected public readonly ref return sbyte sealed short sizeof stackalloc static string struct switch this throw true try typeof uint ulong unchecked unsafe ushort using virtual volatile void while ascending descending from get group into join let orderby partial select set value var where yield",c:[{cN:"comment",b:"///",e:"$",rB:true,c:[{cN:"xmlDocTag",b:"///|<!--|-->"},{cN:"xmlDocTag",b:"</?",e:">"}]},a.CLCM,a.CBLCLM,{cN:"preprocessor",b:"#",e:"$",k:"if else elif endif define undef warning error line region endregion pragma checksum"},{cN:"string",b:'@"',e:'"',c:[{b:'""'}]},a.ASM,a.QSM,a.CNM]}}(hljs);hljs.LANGUAGES.ruby=function(e){var a="[a-zA-Z_][a-zA-Z0-9_]*(\\!|\\?)?";var j="[a-zA-Z_]\\w*[!?=]?|[-+~]\\@|<<|>>|=~|===?|<=>|[<>]=?|\\*\\*|[-/+%^&*~`|]|\\[\\]=?";var g={keyword:"and false then defined module in return redo if BEGIN retry end for true self when next until do begin unless END rescue nil else break undef not super class case require yield alias while ensure elsif or include"};var c={cN:"yardoctag",b:"@[A-Za-z]+"};var k=[{cN:"comment",b:"#",e:"$",c:[c]},{cN:"comment",b:"^\\=begin",e:"^\\=end",c:[c],r:10},{cN:"comment",b:"^__END__",e:"\\n$"}];var d={cN:"subst",b:"#\\{",e:"}",l:a,k:g};var i=[e.BE,d];var b=[{cN:"string",b:"'",e:"'",c:i,r:0},{cN:"string",b:'"',e:'"',c:i,r:0},{cN:"string",b:"%[qw]?\\(",e:"\\)",c:i},{cN:"string",b:"%[qw]?\\[",e:"\\]",c:i},{cN:"string",b:"%[qw]?{",e:"}",c:i},{cN:"string",b:"%[qw]?<",e:">",c:i,r:10},{cN:"string",b:"%[qw]?/",e:"/",c:i,r:10},{cN:"string",b:"%[qw]?%",e:"%",c:i,r:10},{cN:"string",b:"%[qw]?-",e:"-",c:i,r:10},{cN:"string",b:"%[qw]?\\|",e:"\\|",c:i,r:10}];var h={cN:"function",bWK:true,e:" |$|;",k:"def",c:[{cN:"title",b:j,l:a,k:g},{cN:"params",b:"\\(",e:"\\)",l:a,k:g}].concat(k)};var f=k.concat(b.concat([{cN:"class",bWK:true,e:"$|;",k:"class module",c:[{cN:"title",b:"[A-Za-z_]\\w*(::\\w+)*(\\?|\\!)?",r:0},{cN:"inheritance",b:"<\\s*",c:[{cN:"parent",b:"("+e.IR+"::)?"+e.IR}]}].concat(k)},h,{cN:"constant",b:"(::)?(\\b[A-Z]\\w*(::)?)+",r:0},{cN:"symbol",b:":",c:b.concat([{b:j}]),r:0},{cN:"symbol",b:a+":",r:0},{cN:"number",b:"(\\b0[0-7_]+)|(\\b0x[0-9a-fA-F_]+)|(\\b[1-9][0-9_]*(\\.[0-9_]+)?)|[0_]\\b",r:0},{cN:"number",b:"\\?\\w"},{cN:"variable",b:"(\\$\\W)|((\\$|\\@\\@?)(\\w+))"},{b:"("+e.RSR+")\\s*",c:k.concat([{cN:"regexp",b:"/",e:"/[a-z]*",i:"\\n",c:[e.BE,d]}]),r:0}]));d.c=f;h.c[1].c=f;return{l:a,k:g,c:f}}(hljs);hljs.LANGUAGES.diff=function(a){return{c:[{cN:"chunk",b:"^\\@\\@ +\\-\\d+,\\d+ +\\+\\d+,\\d+ +\\@\\@$",r:10},{cN:"chunk",b:"^\\*\\*\\* +\\d+,\\d+ +\\*\\*\\*\\*$",r:10},{cN:"chunk",b:"^\\-\\-\\- +\\d+,\\d+ +\\-\\-\\-\\-$",r:10},{cN:"header",b:"Index: ",e:"$"},{cN:"header",b:"=====",e:"=====$"},{cN:"header",b:"^\\-\\-\\-",e:"$"},{cN:"header",b:"^\\*{3} ",e:"$"},{cN:"header",b:"^\\+\\+\\+",e:"$"},{cN:"header",b:"\\*{5}",e:"\\*{5}$"},{cN:"addition",b:"^\\+",e:"$"},{cN:"deletion",b:"^\\-",e:"$"},{cN:"change",b:"^\\!",e:"$"}]}}(hljs);hljs.LANGUAGES.javascript=function(a){return{k:{keyword:"in if for while finally var new function do return void else break catch instanceof with throw case default try this switch continue typeof delete let yield const",literal:"true false null undefined NaN Infinity"},c:[a.ASM,a.QSM,a.CLCM,a.CBLCLM,a.CNM,{b:"("+a.RSR+"|\\b(case|return|throw)\\b)\\s*",k:"return throw case",c:[a.CLCM,a.CBLCLM,{cN:"regexp",b:"/",e:"/[gim]*",i:"\\n",c:[{b:"\\\\/"}]},{b:"<",e:">;",sL:"xml"}],r:0},{cN:"function",bWK:true,e:"{",k:"function",c:[{cN:"title",b:"[A-Za-z$_][0-9A-Za-z$_]*"},{cN:"params",b:"\\(",e:"\\)",c:[a.CLCM,a.CBLCLM],i:"[\"'\\(]"}],i:"\\[|%"}]}}(hljs);hljs.LANGUAGES.lua=function(b){var a="\\[=*\\[";var e="\\]=*\\]";var c={b:a,e:e,c:["self"]};var d=[{cN:"comment",b:"--(?!"+a+")",e:"$"},{cN:"comment",b:"--"+a,e:e,c:[c],r:10}];return{l:b.UIR,k:{keyword:"and break do else elseif end false for if in local nil not or repeat return then true until while",built_in:"_G _VERSION assert collectgarbage dofile error getfenv getmetatable ipairs load loadfile loadstring module next pairs pcall print rawequal rawget rawset require select setfenv setmetatable tonumber tostring type unpack xpcall coroutine debug io math os package string table"},c:d.concat([{cN:"function",bWK:true,e:"\\)",k:"function",c:[{cN:"title",b:"([_a-zA-Z]\\w*\\.)*([_a-zA-Z]\\w*:)?[_a-zA-Z]\\w*"},{cN:"params",b:"\\(",eW:true,c:d}].concat(d)},b.CNM,b.ASM,b.QSM,{cN:"string",b:a,e:e,c:[c],r:10}])}}(hljs);hljs.LANGUAGES.css=function(a){var b={cN:"function",b:a.IR+"\\(",e:"\\)",c:[a.NM,a.ASM,a.QSM]};return{cI:true,i:"[=/|']",c:[a.CBLCLM,{cN:"id",b:"\\#[A-Za-z0-9_-]+"},{cN:"class",b:"\\.[A-Za-z0-9_-]+",r:0},{cN:"attr_selector",b:"\\[",e:"\\]",i:"$"},{cN:"pseudo",b:":(:)?[a-zA-Z0-9\\_\\-\\+\\(\\)\\\"\\']+"},{cN:"at_rule",b:"@(font-face|page)",l:"[a-z-]+",k:"font-face page"},{cN:"at_rule",b:"@",e:"[{;]",eE:true,k:"import page media charset",c:[b,a.ASM,a.QSM,a.NM]},{cN:"tag",b:a.IR,r:0},{cN:"rules",b:"{",e:"}",i:"[^\\s]",r:0,c:[a.CBLCLM,{cN:"rule",b:"[^\\s]",rB:true,e:";",eW:true,c:[{cN:"attribute",b:"[A-Z\\_\\.\\-]+",e:":",eE:true,i:"[^\\s]",starts:{cN:"value",eW:true,eE:true,c:[b,a.NM,a.QSM,a.ASM,a.CBLCLM,{cN:"hexcolor",b:"\\#[0-9A-F]+"},{cN:"important",b:"!important"}]}}]}]}]}}(hljs);hljs.LANGUAGES.xml=function(a){var c="[A-Za-z0-9\\._:-]+";var b={eW:true,c:[{cN:"attribute",b:c,r:0},{b:'="',rB:true,e:'"',c:[{cN:"value",b:'"',eW:true}]},{b:"='",rB:true,e:"'",c:[{cN:"value",b:"'",eW:true}]},{b:"=",c:[{cN:"value",b:"[^\\s/>]+"}]}]};return{cI:true,c:[{cN:"pi",b:"<\\?",e:"\\?>",r:10},{cN:"doctype",b:"<!DOCTYPE",e:">",r:10,c:[{b:"\\[",e:"\\]"}]},{cN:"comment",b:"<!--",e:"-->",r:10},{cN:"cdata",b:"<\\!\\[CDATA\\[",e:"\\]\\]>",r:10},{cN:"tag",b:"<style(?=\\s|>|$)",e:">",k:{title:"style"},c:[b],starts:{e:"</style>",rE:true,sL:"css"}},{cN:"tag",b:"<script(?=\\s|>|$)",e:">",k:{title:"script"},c:[b],starts:{e:"<\/script>",rE:true,sL:"javascript"}},{b:"<%",e:"%>",sL:"vbscript"},{cN:"tag",b:"</?",e:"/?>",c:[{cN:"title",b:"[^ />]+"},b]}]}}(hljs);hljs.LANGUAGES.http=function(a){return{i:"\\S",c:[{cN:"status",b:"^HTTP/[0-9\\.]+",e:"$",c:[{cN:"number",b:"\\b\\d{3}\\b"}]},{cN:"request",b:"^[A-Z]+ (.*?) HTTP/[0-9\\.]+$",rB:true,e:"$",c:[{cN:"string",b:" ",e:" ",eB:true,eE:true}]},{cN:"attribute",b:"^\\w",e:": ",eE:true,i:"\\n|\\s|=",starts:{cN:"string",e:"$"}},{b:"\\n\\n",starts:{sL:"",eW:true}}]}}(hljs);hljs.LANGUAGES.java=function(a){return{k:"false synchronized int abstract float private char boolean static null if const for true while long throw strictfp finally protected import native final return void enum else break transient new catch instanceof byte super volatile case assert short package default double public try this switch continue throws",c:[{cN:"javadoc",b:"/\\*\\*",e:"\\*/",c:[{cN:"javadoctag",b:"@[A-Za-z]+"}],r:10},a.CLCM,a.CBLCLM,a.ASM,a.QSM,{cN:"class",bWK:true,e:"{",k:"class interface",i:":",c:[{bWK:true,k:"extends implements",r:10},{cN:"title",b:a.UIR}]},a.CNM,{cN:"annotation",b:"@[A-Za-z]+"}]}}(hljs);hljs.LANGUAGES.php=function(a){var e={cN:"variable",b:"\\$+[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*"};var b=[a.inherit(a.ASM,{i:null}),a.inherit(a.QSM,{i:null}),{cN:"string",b:'b"',e:'"',c:[a.BE]},{cN:"string",b:"b'",e:"'",c:[a.BE]}];var c=[a.BNM,a.CNM];var d={cN:"title",b:a.UIR};return{cI:true,k:"and include_once list abstract global private echo interface as static endswitch array null if endwhile or const for endforeach self var while isset public protected exit foreach throw elseif include __FILE__ empty require_once do xor return implements parent clone use __CLASS__ __LINE__ else break print eval new catch __METHOD__ case exception php_user_filter default die require __FUNCTION__ enddeclare final try this switch continue endfor endif declare unset true false namespace trait goto instanceof insteadof __DIR__ __NAMESPACE__ __halt_compiler",c:[a.CLCM,a.HCM,{cN:"comment",b:"/\\*",e:"\\*/",c:[{cN:"phpdoc",b:"\\s@[A-Za-z]+"}]},{cN:"comment",eB:true,b:"__halt_compiler.+?;",eW:true},{cN:"string",b:"<<<['\"]?\\w+['\"]?$",e:"^\\w+;",c:[a.BE]},{cN:"preprocessor",b:"<\\?php",r:10},{cN:"preprocessor",b:"\\?>"},e,{cN:"function",bWK:true,e:"{",k:"function",i:"\\$|\\[|%",c:[d,{cN:"params",b:"\\(",e:"\\)",c:["self",e,a.CBLCLM].concat(b).concat(c)}]},{cN:"class",bWK:true,e:"{",k:"class",i:"[:\\(\\$]",c:[{bWK:true,eW:true,k:"extends",c:[d]},d]},{b:"=>"}].concat(b).concat(c)}}(hljs);hljs.LANGUAGES.python=function(a){var f={cN:"prompt",b:"^(>>>|\\.\\.\\.) "};var c=[{cN:"string",b:"(u|b)?r?'''",e:"'''",c:[f],r:10},{cN:"string",b:'(u|b)?r?"""',e:'"""',c:[f],r:10},{cN:"string",b:"(u|r|ur)'",e:"'",c:[a.BE],r:10},{cN:"string",b:'(u|r|ur)"',e:'"',c:[a.BE],r:10},{cN:"string",b:"(b|br)'",e:"'",c:[a.BE]},{cN:"string",b:'(b|br)"',e:'"',c:[a.BE]}].concat([a.ASM,a.QSM]);var e={cN:"title",b:a.UIR};var d={cN:"params",b:"\\(",e:"\\)",c:["self",a.CNM,f].concat(c)};var b={bWK:true,e:":",i:"[${=;\\n]",c:[e,d],r:10};return{k:{keyword:"and elif is global as in if from raise for except finally print import pass return exec else break not with class assert yield try while continue del or def lambda nonlocal|10",built_in:"None True False Ellipsis NotImplemented"},i:"(</|->|\\?)",c:c.concat([f,a.HCM,a.inherit(b,{cN:"function",k:"def"}),a.inherit(b,{cN:"class",k:"class"}),a.CNM,{cN:"decorator",b:"@",e:"$"},{b:"\\b(print|exec)\\("}])}}(hljs);hljs.LANGUAGES.sql=function(a){return{cI:true,c:[{cN:"operator",b:"(begin|start|commit|rollback|savepoint|lock|alter|create|drop|rename|call|delete|do|handler|insert|load|replace|select|truncate|update|set|show|pragma|grant)\\b(?!:)",e:";",eW:true,k:{keyword:"all partial global month current_timestamp using go revoke smallint indicator end-exec disconnect zone with character assertion to add current_user usage input local alter match collate real then rollback get read timestamp session_user not integer bit unique day minute desc insert execute like ilike|2 level decimal drop continue isolation found where constraints domain right national some module transaction relative second connect escape close system_user for deferred section cast current sqlstate allocate intersect deallocate numeric public preserve full goto initially asc no key output collation group by union session both last language constraint column of space foreign deferrable prior connection unknown action commit view or first into float year primary cascaded except restrict set references names table outer open select size are rows from prepare distinct leading create only next inner authorization schema corresponding option declare precision immediate else timezone_minute external varying translation true case exception join hour default double scroll value cursor descriptor values dec fetch procedure delete and false int is describe char as at in varchar null trailing any absolute current_time end grant privileges when cross check write current_date pad begin temporary exec time update catalog user sql date on identity timezone_hour natural whenever interval work order cascade diagnostics nchar having left call do handler load replace truncate start lock show pragma exists number",aggregate:"count sum min max avg"},c:[{cN:"string",b:"'",e:"'",c:[a.BE,{b:"''"}],r:0},{cN:"string",b:'"',e:'"',c:[a.BE,{b:'""'}],r:0},{cN:"string",b:"`",e:"`",c:[a.BE]},a.CNM]},a.CBLCLM,{cN:"comment",b:"--",e:"$"}]}}(hljs);hljs.LANGUAGES.ini=function(a){return{cI:true,i:"[^\\s]",c:[{cN:"comment",b:";",e:"$"},{cN:"title",b:"^\\[",e:"\\]"},{cN:"setting",b:"^[a-z0-9\\[\\]_-]+[ \\t]*=[ \\t]*",e:"$",c:[{cN:"value",eW:true,k:"on off true false yes no",c:[a.QSM,a.NM]}]}]}}(hljs);hljs.LANGUAGES.perl=function(e){var a="getpwent getservent quotemeta msgrcv scalar kill dbmclose undef lc ma syswrite tr send umask sysopen shmwrite vec qx utime local oct semctl localtime readpipe do return format read sprintf dbmopen pop getpgrp not getpwnam rewinddir qqfileno qw endprotoent wait sethostent bless s|0 opendir continue each sleep endgrent shutdown dump chomp connect getsockname die socketpair close flock exists index shmgetsub for endpwent redo lstat msgctl setpgrp abs exit select print ref gethostbyaddr unshift fcntl syscall goto getnetbyaddr join gmtime symlink semget splice x|0 getpeername recv log setsockopt cos last reverse gethostbyname getgrnam study formline endhostent times chop length gethostent getnetent pack getprotoent getservbyname rand mkdir pos chmod y|0 substr endnetent printf next open msgsnd readdir use unlink getsockopt getpriority rindex wantarray hex system getservbyport endservent int chr untie rmdir prototype tell listen fork shmread ucfirst setprotoent else sysseek link getgrgid shmctl waitpid unpack getnetbyname reset chdir grep split require caller lcfirst until warn while values shift telldir getpwuid my getprotobynumber delete and sort uc defined srand accept package seekdir getprotobyname semop our rename seek if q|0 chroot sysread setpwent no crypt getc chown sqrt write setnetent setpriority foreach tie sin msgget map stat getlogin unless elsif truncate exec keys glob tied closedirioctl socket readlink eval xor readline binmode setservent eof ord bind alarm pipe atan2 getgrent exp time push setgrent gt lt or ne m|0 break given say state when";var d={cN:"subst",b:"[$@]\\{",e:"\\}",k:a,r:10};var b={cN:"variable",b:"\\$\\d"};var i={cN:"variable",b:"[\\$\\%\\@\\*](\\^\\w\\b|#\\w+(\\:\\:\\w+)*|[^\\s\\w{]|{\\w+}|\\w+(\\:\\:\\w*)*)"};var f=[e.BE,d,b,i];var h={b:"->",c:[{b:e.IR},{b:"{",e:"}"}]};var g={cN:"comment",b:"^(__END__|__DATA__)",e:"\\n$",r:5};var c=[b,i,e.HCM,g,{cN:"comment",b:"^\\=\\w",e:"\\=cut",eW:true},h,{cN:"string",b:"q[qwxr]?\\s*\\(",e:"\\)",c:f,r:5},{cN:"string",b:"q[qwxr]?\\s*\\[",e:"\\]",c:f,r:5},{cN:"string",b:"q[qwxr]?\\s*\\{",e:"\\}",c:f,r:5},{cN:"string",b:"q[qwxr]?\\s*\\|",e:"\\|",c:f,r:5},{cN:"string",b:"q[qwxr]?\\s*\\<",e:"\\>",c:f,r:5},{cN:"string",b:"qw\\s+q",e:"q",c:f,r:5},{cN:"string",b:"'",e:"'",c:[e.BE],r:0},{cN:"string",b:'"',e:'"',c:f,r:0},{cN:"string",b:"`",e:"`",c:[e.BE]},{cN:"string",b:"{\\w+}",r:0},{cN:"string",b:"-?\\w+\\s*\\=\\>",r:0},{cN:"number",b:"(\\b0[0-7_]+)|(\\b0x[0-9a-fA-F_]+)|(\\b[1-9][0-9_]*(\\.[0-9_]+)?)|[0_]\\b",r:0},{b:"("+e.RSR+"|\\b(split|return|print|reverse|grep)\\b)\\s*",k:"split return print reverse grep",r:0,c:[e.HCM,g,{cN:"regexp",b:"(s|tr|y)/(\\\\.|[^/])*/(\\\\.|[^/])*/[a-z]*",r:10},{cN:"regexp",b:"(m|qr)?/",e:"/[a-z]*",c:[e.BE],r:0}]},{cN:"sub",bWK:true,e:"(\\s*\\(.*?\\))?[;{]",k:"sub",r:5},{cN:"operator",b:"-\\w\\b",r:0}];d.c=c;h.c[1].c=c;return{k:a,c:c}}(hljs);hljs.LANGUAGES.nginx=function(b){var c=[{cN:"variable",b:"\\$\\d+"},{cN:"variable",b:"\\${",e:"}"},{cN:"variable",b:"[\\$\\@]"+b.UIR}];var a={eW:true,l:"[a-z/_]+",k:{built_in:"on off yes no true false none blocked debug info notice warn error crit select break last permanent redirect kqueue rtsig epoll poll /dev/poll"},r:0,i:"=>",c:[b.HCM,{cN:"string",b:'"',e:'"',c:[b.BE].concat(c),r:0},{cN:"string",b:"'",e:"'",c:[b.BE].concat(c),r:0},{cN:"url",b:"([a-z]+):/",e:"\\s",eW:true,eE:true},{cN:"regexp",b:"\\s\\^",e:"\\s|{|;",rE:true,c:[b.BE].concat(c)},{cN:"regexp",b:"~\\*?\\s+",e:"\\s|{|;",rE:true,c:[b.BE].concat(c)},{cN:"regexp",b:"\\*(\\.[a-z\\-]+)+",c:[b.BE].concat(c)},{cN:"regexp",b:"([a-z\\-]+\\.)+\\*",c:[b.BE].concat(c)},{cN:"number",b:"\\b\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}(:\\d{1,5})?\\b"},{cN:"number",b:"\\b\\d+[kKmMgGdshdwy]*\\b",r:0}].concat(c)};return{c:[b.HCM,{b:b.UIR+"\\s",e:";|{",rB:true,c:[{cN:"title",b:b.UIR,starts:a}]}],i:"[^\\s\\}]"}}(hljs);hljs.LANGUAGES.json=function(a){var e={literal:"true false null"};var d=[a.QSM,a.CNM];var c={cN:"value",e:",",eW:true,eE:true,c:d,k:e};var b={b:"{",e:"}",c:[{cN:"attribute",b:'\\s*"',e:'"\\s*:\\s*',eB:true,eE:true,c:[a.BE],i:"\\n",starts:c}],i:"\\S"};var f={b:"\\[",e:"\\]",c:[a.inherit(c,{cN:null})],i:"\\S"};d.splice(d.length,0,b,f);return{c:d,k:e,i:"\\S"}}(hljs);hljs.LANGUAGES.cpp=function(a){var b={keyword:"false int float while private char catch export virtual operator sizeof dynamic_cast|10 typedef const_cast|10 const struct for static_cast|10 union namespace unsigned long throw volatile static protected bool template mutable if public friend do return goto auto void enum else break new extern using true class asm case typeid short reinterpret_cast|10 default double register explicit signed typename try this switch continue wchar_t inline delete alignof char16_t char32_t constexpr decltype noexcept nullptr static_assert thread_local restrict _Bool complex",built_in:"std string cin cout cerr clog stringstream istringstream ostringstream auto_ptr deque list queue stack vector map set bitset multiset multimap unordered_set unordered_map unordered_multiset unordered_multimap array shared_ptr"};return{k:b,i:"</",c:[a.CLCM,a.CBLCLM,a.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},a.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:b,r:10,c:["self"]}]}}(hljs);hljs.LANGUAGES.go=function(a){var b={keyword:"break default func interface select case map struct chan else goto package switch const fallthrough if range type continue for import return var go defer",constant:"true false iota nil",typename:"bool byte complex64 complex128 float32 float64 int8 int16 int32 int64 string uint8 uint16 uint32 uint64 int uint uintptr rune",built_in:"append cap close complex copy imag len make new panic print println real recover delete"};return{k:b,i:"</",c:[a.CLCM,a.CBLCLM,a.QSM,{cN:"string",b:"'",e:"[^\\\\]'",r:0},{cN:"string",b:"`",e:"`"},{cN:"number",b:"[^a-zA-Z_0-9](\\-|\\+)?\\d+(\\.\\d+|\\/\\d+)?((d|e|f|l|s)(\\+|\\-)?\\d+)?",r:0},a.CNM]}}(hljs);
+hljs.initHighlightingOnLoad();
+</script>
+<style>
+/*
+highlight.js / github.css
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+pre code {
+  color: #333;
+}
+
+pre .comment,
+pre .template_comment,
+pre .diff .header,
+pre .javadoc {
+  color: #998;
+  font-style: italic
+}
+
+pre .keyword,
+pre .css .rule .keyword,
+pre .winutils,
+pre .javascript .title,
+pre .nginx .title,
+pre .subst,
+pre .request,
+pre .status {
+  color: #333;
+  font-weight: bold
+}
+
+pre .number,
+pre .hexcolor,
+pre .ruby .constant {
+  color: #099;
+}
+
+pre .string,
+pre .tag .value,
+pre .phpdoc,
+pre .tex .formula {
+  color: #d14
+}
+
+pre .title,
+pre .id,
+pre .coffeescript .params,
+pre .scss .preprocessor {
+  color: #900;
+  font-weight: bold
+}
+
+pre .javascript .title,
+pre .lisp .title,
+pre .clojure .title,
+pre .subst {
+  font-weight: normal
+}
+
+pre .class .title,
+pre .haskell .type,
+pre .vhdl .literal,
+pre .tex .command {
+  color: #458;
+  font-weight: bold
+}
+
+pre .tag,
+pre .tag .title,
+pre .rules .property,
+pre .django .tag .keyword {
+  color: #000080;
+  font-weight: normal
+}
+
+pre .attribute,
+pre .variable,
+pre .lisp .body {
+  color: #008080
+}
+
+pre .regexp {
+  color: #009926
+}
+
+pre .class {
+  color: #458;
+  font-weight: bold
+}
+
+pre .symbol,
+pre .ruby .symbol .string,
+pre .lisp .keyword,
+pre .tex .special,
+pre .prompt {
+  color: #990073
+}
+
+pre .built_in,
+pre .lisp .title,
+pre .clojure .built_in {
+  color: #0086b3
+}
+
+pre .preprocessor,
+pre .pi,
+pre .doctype,
+pre .shebang,
+pre .cdata {
+  color: #999;
+  font-weight: bold
+}
+
+pre .deletion {
+  background: #fdd
+}
+
+pre .addition {
+  background: #dfd
+}
+
+pre .diff .change {
+  background: #0086b3
+}
+
+pre .chunk {
+  color: #aaa
+}
+
+pre .typename {
+  color: #445588;
+  font-weight: bold;
+}
+
+</style>
+<title>gogrammar.md</title>
+</head>
+<body>
+<h2>Google Go语言 golang 语法笔记</h2>
+
+<p><em>Author</em>：cxy<br>
+<em>Date</em>：2015-06-26<br>
+<em>Version</em>：1.0<br>
+<em>URL</em>：<a href="https://github.com/yougg/gonote/blob/master/gogrammar.md">https://github.com/yougg/gonote/blob/master/gogrammar.md</a><br>
+<em>Description</em>：学习Go语言过程中记录下来的语法详解笔记，可以帮助新接触的朋友快速熟悉理解Golang，也可以作为查询手册翻阅。其中若有错误的地方还请指正，或者在Github直接fork修改。  </p>
+
+<h1></h1>
+
+<ul>
+<li><p><a href="#package">包 Package</a>  </p>
+
+<ul>
+<li><a href="#pkgdeclare">包的声明 Declare</a><br></li>
+<li><a href="#pkgimport">包的导入 Import</a><br></li>
+<li><a href="#pkgaccess">包内元素的可见性 Accessability</a><br></li>
+</ul></li>
+<li><p><a href="#datatype">数据类型 Data Type</a>  </p>
+
+<ul>
+<li><a href="#basicdatatype">基础数据类型 Basic data type</a><br></li>
+<li><a href="#variable">变量 Variable</a><br></li>
+<li><a href="#constant">常量 Constant</a><br></li>
+<li><a href="#array">数组 Array</a><br></li>
+<li><a href="#slice">切片 Slice</a><br></li>
+<li><a href="#map">字典/映射 Map</a><br></li>
+<li><a href="#struct">结构体 Struct</a><br></li>
+<li><a href="#pointer">指针 Pointer</a><br></li>
+<li><a href="#channel">通道 Channel</a><br></li>
+<li><a href="#interface">接口 Interface</a><br></li>
+<li><a href="#customtype">自定义类型</a><br></li>
+</ul></li>
+<li><p><a href="#statement">语句 Statement</a>  </p>
+
+<ul>
+<li><a href="#semicolon">分号/括号 ; {</a><br></li>
+<li><a href="#if">条件语句 if</a><br></li>
+<li><a href="#switch">分支选择 switch</a><br></li>
+<li><a href="#for">循环语句 for</a><br></li>
+<li><a href="#select">通道选择 select</a><br></li>
+<li><a href="#defer">延迟执行 defer</a><br></li>
+<li><a href="#goto">跳转语句 goto</a><br></li>
+</ul></li>
+<li><p><a href="#function">函数 Function</a>  </p>
+
+<ul>
+<li><a href="#funcdeclare">函数声明 Declare</a><br></li>
+<li><a href="#closure">函数闭包 Closure</a><br></li>
+<li><a href="#builtin">内建函数 Builtin</a><br></li>
+<li><a href="#init">初始化函数 init</a><br></li>
+<li><a href="#method">方法 Method</a><br></li>
+</ul></li>
+<li><p><a href="#concurrency">并发 Concurrency</a>  </p></li>
+<li><p><a href="#testing">测试 Testing</a>  </p>
+
+<ul>
+<li><a href="#unit">单元测试 Unit</a><br></li>
+<li><a href="#benchmark">基准测试 Benchmark</a></li>
+</ul></li>
+</ul>
+
+<h1></h1>
+
+<h2><span id="package"><strong>包 Package</strong></span></h2>
+
+<h3><span id="pkgdeclare"><strong>包的声明 Declare</strong></span></h3>
+
+<ul>
+<li><p>使用<code>package</code>关键字声明当前源文件所在的包<br>
+包声明语句是所有源文件的第一行非注释语句<br>
+包名称中不能包含空白字符<br>
+包名必须与源文件所在的目录名称保持一致<br>
+每个目录中只能定义一个package</p>
+
+<pre><code class="go">package cxy     // 声明一个名为“cxy”的包
+
+package 我的包   // 声明一个名为“我的包”的包
+
+package main    // main包, 程序启动执行的入口包
+</code></pre>
+
+<p>错误的包声明</p>
+
+<pre><code class="go">package &quot;mypkg&quot; // 错误
+
+package a/b/c   // 错误
+
+pakcage a.b.c   // 错误
+</code></pre></li>
+</ul>
+
+<h3><span id="pkgimport"><strong>包的导入 Import</strong></span></h3>
+
+<ul>
+<li><p>导入路径是对应包在<code>$GOROOT/pkg/$GOOS_$GOARCH/</code>、<code>$GOPATH/pkg/$GOOS_$GOARCH/</code>或<code>当前路径</code>中的相对路径</p>
+
+<pre><code class="go">// 导入$GOROOT/$GOOS_$GOARCH/中的相对路径包(官方标准库)
+import &quot;fmt&quot;
+import &quot;math/rand&quot;
+
+// 导入$GOPATH/$GOOS_$GOARCH/中的相对路径包
+import &quot;github.com/user/project/pkg&quot;
+import &quot;code.google.com/p/project/pkg&quot;
+</code></pre>
+
+<p>导入当前包的相对路径包<br>
+例如有Go目录如下：<br>
+$GOPATH/src<br>
+　├─x0<br>
+　│　├─y0<br>
+　│　│　└─z0<br>
+　│　└─y1<br>
+　│　　└─z1<br>
+　└─x1<br>
+　　└─y2</p>
+
+<pre><code class="go">import &quot;./y0/z0&quot;    // x0包中导入子包 z0包
+import &quot;../y0/z0&quot;   // y1包中导入子包 z0包
+import &quot;x0/y1/z1&quot;   // y2包中导入 z1包
+</code></pre>
+
+<p>错误的导入路径</p>
+
+<pre><code class="go">import a/b/c        // 错误
+import &quot;a.b.c&quot;      // 错误
+import a.b.c        // 错误
+</code></pre></li>
+<li><p>用圆括号组合导入包</p>
+
+<pre><code class="go">import (&quot;fmt&quot;; &quot;math&quot;)
+
+import (
+    &quot;fmt&quot;
+    &quot;math&quot;
+)
+</code></pre></li>
+<li><p>导入包可以定义别名，防止同名称的包冲突</p>
+
+<pre><code class="go">import (
+    &quot;a/b/c&quot;
+
+    c1 &quot;x/y/c&quot;     // 将导入的包c定义别名为 c1
+
+    格式化 &quot;fmt&quot;    // 将导入的包fmt定义别名为 格式化
+
+    m &quot;math&quot;       // 将导入的包math定义别名为 m
+)
+</code></pre>
+
+<p>引用包名与导入路径的最后一个包目录名称一致</p>
+
+<pre><code class="go">// 引用普通名称的导入包
+c.hello()
+
+// 引用定义别名的包
+格式化.Println(m.Pi)
+</code></pre></li>
+<li><p>静态导入，在导入的包名之前增加一个小数点<code>.</code></p>
+
+<pre><code class="go">// 类似C中的include 或Java中的import static
+import . &quot;fmt&quot;
+
+// 然后像使用本包元素一样使用fmt包中可见的元素，不需要通过包名引用
+Println(&quot;no need package name&quot;)
+</code></pre></li>
+<li><p>导入包但不直接使用该包，在导入的包名之前增加一个下划线<code>_</code></p>
+
+<pre><code class="go">// 如果当前go源文件中未引用过log包，将会导致编译错误
+import &quot;log&quot;    // 错误
+import . &quot;log&quot;  // 静态导入未使用同样报错
+
+// 在包名前面增加下划线表示导入包但是不直接使用它，被导入的包中的init函数会在导入的时候执行
+import _ &quot;github.com/go-sql-driver/mysql&quot;
+</code></pre></li>
+</ul>
+
+<h3><span id="pkgaccess"><strong>包内元素的可见性 Accessability</strong></span></h3>
+
+<ul>
+<li><p>名称首字符为<a href="http://www.fileformat.info/info/unicode/category/Lu/list.htm">Unicode包含的大写字母</a>的元素是被导出的，对外部包是可见的<br>
+首字为非大写字母的元素只对本包可见(同包跨源文件可以访问，子包不能访问)</p>
+
+<pre><code class="go">var In int                                      // In is exported
+var in byte                                     // in is unexported
+var ȸȹ string                                   // ȸȹ is unexported
+const Ȼom bool = false                          // Ȼom is exported
+const ѧѩ uint8 = 1                             // ѧѩ is unexported
+type Ĩnteger int                                // Ĩnteger is exported
+type ブーリアン *bool                             // ブーリアン is unexported
+func Ӭxport() {...}                              // Ӭxport is exported
+func įnner() {...}                               // įnner is unexported
+func (me *Integer) ⱱalueOf(s string) int {...}   // ⱱalueOf is unexported
+func (i ブーリアン) Ȿtring() string {...}         // Ȿtring is exported
+</code></pre></li>
+<li><p>internal包（内部包）<code>Go 1.4</code><br>
+internal包及其子包中的导出元素只能被与internal同父包的其他包访问  </p>
+
+<p>例如有Go目录如下：<br>
+$GOPATH/src<br>
+　├─x0<br>
+　│　├─<code>internal</code><br>
+　│　│　└─z0<br>
+　│　└─y0<br>
+　│　　└─z1<br>
+　└─x1<br>
+　　└─y1</p>
+
+<p>x0，y0，z1包中可以访问internal，z0包中的可见元素<br>
+x1，y1包中不能导入internal，z0包</p></li>
+<li><p>规范导入路径Canonical import paths<code>Go 1.4</code><br>
+包声明语句后面添加标记注释，用于标识这个包的规范导入路径。</p>
+
+<pre><code class="go">package pdf // import &quot;rsc.io/pdf&quot;
+</code></pre>
+
+<p>如果使用此包的代码的导入的路径不是规范路径，go命令会拒绝编译。<br>
+例如有 <a href="">rsc.io/pdf</a> 的一个fork路径 <a href="">github.com/rsc/pdf</a><br>
+如下程序代码导入路径时使用了非规范的路径则会被go拒绝编译</p>
+
+<pre><code class="go">import &quot;github.com/rsc/pdf&quot;
+</code></pre></li>
+</ul>
+
+<h2><span id="datatype"><strong>数据类型 Data Type</strong></span></h2>
+
+<h3><span id="basicdatatype"><strong>基础数据类型 Basic data type</strong></span></h3>
+
+<ul>
+<li><p>基本类型包含：数值类型，布尔类型，字符串</p>
+
+<table><thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">取值范围</th>
+<th align="center">默认零值</th>
+<th align="center">类型</th>
+<th align="center">取值范围</th>
+<th align="center">默认零值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center"><code>int</code></td>
+<td align="center"><strong>int32,int64</strong></td>
+<td align="center">0</td>
+<td align="center"><code>uint</code></td>
+<td align="center"><strong>uint32,uint64</strong></td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center"><code>int8</code></td>
+<td align="center"><strong>-2<sup>7</sup> ~ 2<sup>7</sup>-1</strong></td>
+<td align="center">0</td>
+<td align="center"><code>uint8</code>,<code>byte</code></td>
+<td align="center">0 ~ <strong>2<sup>8</sup>-1</strong></td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center"><code>int16</code></td>
+<td align="center"><strong>-2<sup>15</sup> ~ 2<sup>15</sup>-1</strong></td>
+<td align="center">0</td>
+<td align="center"><code>uint16</code></td>
+<td align="center">0 ~ <strong>2<sup>16</sup>-1</strong></td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center"><code>int32</code>,<code>rune</code></td>
+<td align="center"><strong>-2<sup>31</sup> ~ 2<sup>31</sup>-1</strong></td>
+<td align="center">0</td>
+<td align="center"><code>uint32</code></td>
+<td align="center">0 ~ <strong>2<sup>32</sup>-1</strong></td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center"><code>int64</code></td>
+<td align="center"><strong>-2<sup>63</sup> ~ 2<sup>63</sup>-1</strong></td>
+<td align="center">0</td>
+<td align="center"><code>uint64</code></td>
+<td align="center">0 ~ <strong>2<sup>64</sup>-1</strong></td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center"><code>float32</code></td>
+<td align="center">IEEE-754 32-bit</td>
+<td align="center">0.0</td>
+<td align="center"><code>float64</code></td>
+<td align="center">IEEE-754 64-bit</td>
+<td align="center">0.0</td>
+</tr>
+<tr>
+<td align="center"><code>complex64</code></td>
+<td align="center"><strong>float32+float32</strong>i</td>
+<td align="center">0 + 0i</td>
+<td align="center"><code>complex128</code></td>
+<td align="center"><strong>float64+float64</strong>i</td>
+<td align="center">0 + 0i</td>
+</tr>
+<tr>
+<td align="center"><code>bool</code></td>
+<td align="center"><strong>true,false</strong></td>
+<td align="center">false</td>
+<td align="center"><code>string</code></td>
+<td align="center">&quot;&quot; ~ &quot;∞&quot;</td>
+<td align="center">&quot;&quot;,``</td>
+</tr>
+<tr>
+<td align="center"><code>uintptr</code></td>
+<td align="center"><strong>int32,int64</strong></td>
+<td align="center">0</td>
+<td align="center"><code>error</code></td>
+<td align="center">-</td>
+<td align="center">nil</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p><code>byte</code> 是 <code>uint8</code> 的别名<br>
+  <code>rune</code> 是 <code>int32</code> 的别名，代表一个Unicode码点<br>
+  <code>int</code>与<code>int32</code>或<code>int64</code>是不同的类型，只是根据架构对应32/64位值<br>
+  <code>uint</code>与<code>uint32</code>或<code>uint64</code>是不同的类型，只是根据架构对应32/64位值</p>
+</blockquote></li>
+</ul>
+
+<h3><span id="variable"><strong>变量 Variable</strong></span></h3>
+
+<ul>
+<li><p>变量声明, 使用<code>var</code>关键字<br>
+Go中只能使用<code>var</code> <strong>声明</strong>变量，无需显式初始化值</p>
+
+<pre><code class="go">var i int       // i = 0
+
+var s string    // s = &quot;&quot;    (Go中的string是值类型，默认零值是空串 &quot;&quot; 或 ``，不存在nil(null)值)
+
+var e error     // e = nil, error是Go的内建接口类型。
+</code></pre>
+
+<p>关键字的顺序错误或缺少都是编译错误的</p>
+
+<pre><code class="go">var int a       // 编译错误
+a int           // 编译错误
+int a           // 编译错误
+</code></pre></li>
+<li><p><code>var</code> 语句可以声明一个变量列表，类型在变量名之后</p>
+
+<pre><code class="go">var a,b,c int   // a = 0, b = 0, c = 0
+var (
+    a int       // a = 0
+    b string    // b = &quot;&quot;
+    c uint      // c = 0
+)
+var (
+    a,b,c int
+    d string
+)
+</code></pre></li>
+<li><p>变量定义时初始化赋值，每个变量对应一个值</p>
+
+<pre><code class="go">var a int = 0
+var a, b int = 0, 1
+</code></pre></li>
+<li><p>变量定义并初始化时可以省略类型，Go自动根据初始值推导变量的类型</p>
+
+<pre><code class="go">var a = &#39;A&#39;         // a int32
+var a,b = 0, &quot;B&quot;    // a int, b string
+</code></pre></li>
+<li><p>使用组合符号<code>:=</code>定义并初始化变量，根据符号右边表达式的值的类型声明变量并初始化它的值<br>
+<code>:=</code> 不能在函数外使用，函数外的每个语法块都必须以关键字开始</p>
+
+<pre><code class="go">a := 3                     // a int
+a, b, c := 8, &#39;呴&#39;, true   // a int, b int32, c bool
+c := `formatted
+ string`                   // c string
+c := 1 + 2i                // c complex128
+</code></pre></li>
+</ul>
+
+<h3><span id="constant"><strong>常量 Constant</strong></span></h3>
+
+<ul>
+<li><p>常量可以是字符、字符串、布尔或数值类型的值，数值常量是高精度的值</p>
+
+<pre><code class="go">const x int = 3
+const y,z int = 1,2
+const (
+    a byte = &#39;A&#39;
+    b string = &quot;B&quot;
+    c bool = true
+    d int = 4
+    e float32 = 5.1
+    f complex64 = 6 + 6i
+)
+</code></pre></li>
+<li><p>根据常量值自动推导类型</p>
+
+<pre><code class="go">const a = 0        // a int
+const (
+    b = 2.3        // b float64
+    c = true       // c bool
+)
+</code></pre></li>
+<li><p>常量组内定义时复用表达式<br>
+常量组内定义的常量只有名称时，其值会根据上一次最后出现的常量表达式计算相同的类型与值</p>
+
+<pre><code class="go">const (
+    a = 3               // a = 3
+    b                   // b = 3
+    c                   // c = 3
+    d = len(&quot;asdf&quot;)     // d = 4
+    e                   // e = 4
+    f                   // f = 4
+    g,h,i = 7,8,9       // 复用表达式要一一对应
+    x,y,z               // x = 7, y = 8, z = 9
+)
+</code></pre></li>
+<li><p>自动递增枚举常量 <code>iota</code><br>
+iota的枚举值可以赋值给数值兼容类型<br>
+每个常量单独声明时，<code>iota</code>不会自动递增</p>
+
+<pre><code class="go">const a int = iota        // a = 0
+const b int = iota        // b = 0
+const c byte = iota       // c = 0
+const d uint64 = iota     // d = 0
+</code></pre></li>
+<li><p>常量组合声明时，<code>iota</code>每次引用会逐步自增，初始值为0，步进值为1</p>
+
+<pre><code class="go">const (
+    a uint8 = iota        // a = 0
+    b int16 = iota        // b = 1
+    c rune = iota         // c = 2
+    d float64 = iota      // d = 3
+    e uintptr = iota      // e = 4
+)
+</code></pre></li>
+<li><p>即使<code>iota</code>不是在常量组内第一个开始引用，也会按组内常量数量递增</p>
+
+<pre><code class="go">const (
+    a = &quot;A&quot;
+    b = &#39;B&#39;
+    c = iota    // c = 2
+    d = &quot;D&quot;
+    e = iota    // e = 4
+)
+</code></pre></li>
+<li><p>枚举的常量都为同一类型时，可以使用简单序列格式(组内复用表达式).</p>
+
+<pre><code class="go">const (
+    a = iota     // a int32 = 0
+    b            // b int32 = 1
+    c            // c int32 = 2
+)
+</code></pre></li>
+<li><p>枚举序列中的未指定类型的常量会跟随序列前面最后一次出现类型定义的类型</p>
+
+<pre><code class="go">const (
+    a byte = iota    // a uint8 = 0
+    b                // b uint8 = 1
+    c                // c uint8 = 2
+    d rune = iota    // d int32 = 3
+    e                // e int32 = 4
+    f                // f int32 = 5
+)
+</code></pre></li>
+<li><p><code>iota</code>自增值只在一个常量定义组合中有效，跳出常量组合定义后<code>iota</code>初始值归0</p>
+
+<pre><code class="go">const (
+    a = iota     // a int32 = 0
+    b            // b int32 = 1
+    c            // c int32 = 2
+)
+const (
+    e = iota     // e int32 = 0    (iota重新初始化并自增)
+    f            // f int32 = 1
+)
+</code></pre></li>
+<li><p>定制<code>iota</code>序列初始值与步进值 (通过组合内复用表达式实现)</p>
+
+<pre><code class="go">const (
+    a = (iota + 2) * 3    // a int32 = 6    (a=(0+2)*3) 初始值为6,步进值为3
+    b                     // b int32 = 9    (b=(1+2)*3)
+    c                     // c int32 = 12    (c=(2+2)*3)
+    d                     // d int32 = 15    (d=(3+2)*3)
+)
+</code></pre></li>
+</ul>
+
+<h3><span id="array"><strong>数组 Array</strong></span></h3>
+
+<ul>
+<li><p>数组声明带有长度信息且长度固定，数组是值类型默认零值不是<code>nil</code>，传递参数时会进行复制。<br>
+声明定义数组时中括号<code>[ ]</code>在类型名称之前，赋值引用元素时中括号<code>[ ]</code>在数组变量名之后。</p>
+
+<pre><code class="go">var a [3]int = [3]int{0, 1, 2}                         // a = [0 1 2]
+var b [3]int = [3]int{}                                // b = [0 0 0]
+var c [3]int
+c = [3]int{}
+c = [3]int{0,0,0}                                      // c = [0 0 0]
+d := [3]int{}                                          // d = [0 0 0]
+fmt.Printf(&quot;%T\t%#v\t%d\t%d\n&quot;, d, d, len(d), cap(d))  // [3]int    [3]int{0, 0, 0}    3    3
+</code></pre>
+
+<p>使用<code>...</code>自动计算数组的长度</p>
+
+<pre><code class="go">var a = [...]int{0, 1, 2}
+
+// 多维数组只能自动计算最外围数组长度
+x := [...][3]int{{0, 1, 2}, {3, 4, 5}}
+y := [...][2][2]int{{{0,1},{2,3}},{{4,5},{6,7}}}
+
+// 通过下标访问数组元素
+println(y[1][1][0])                                    // 6
+</code></pre>
+
+<p>初始化指定索引的数组元素，未指定初始化的元素保持默认零值</p>
+
+<pre><code class="go">var a = [3]int{2:3}
+var b = [...]string{2:&quot;c&quot;, 3:&quot;d&quot;}
+</code></pre></li>
+</ul>
+
+<h3><span id="slice"><strong>切片 Slice</strong></span></h3>
+
+<ul>
+<li><p>slice 切片是对一个数组上的连续一段的引用，并且同时包含了长度和容量信息<br>
+因为是引用类型，所以未初始化时的默认零值是<code>nil</code>，长度与容量都是0</p>
+
+<pre><code class="go">var a []int
+fmt.Printf(&quot;%T\t%#v\t%d\t%d\n&quot;, a, a, len(a), cap(a))    // []int    []int(nil)    0    0
+
+// 可用类似数组的方式初始化slice
+var d []int = []int{0, 1, 2}
+fmt.Printf(&quot;%T\t%#v\t%d\t%d\n&quot;, d, d, len(d), cap(d))    // []int    []int{0, 1, 2}    3    3
+
+var e = []string{2:&quot;c&quot;, 3:&quot;d&quot;}
+</code></pre>
+
+<p>使用内置函数make初始化slice，第一参数是slice类型，第二参数是长度，第三参数是容量(省略时与长度相同)</p>
+
+<pre><code class="go">var b = make([]int, 0)
+fmt.Printf(&quot;%T\t%#v\t%d\t%d\n&quot;, b, b, len(b), cap(b))    // []int    []int{}    0    0
+
+var c = make([]int, 3, 10)
+fmt.Printf(&quot;%T\t%#v\t%d\t%d\n&quot;, c, c, len(c), cap(c))    // []int    []int{}    3    10
+
+var a = new([]int)
+fmt.Printf(&quot;%T\t%#v\t%d\t%d\n&quot;, a, a, len(*a), cap(*a))  // *[]int    &amp;[]int(nil)    0    0
+</code></pre></li>
+<li><p>基于slice或数组重新切片，创建一个新的 slice 值指向相同的数组</p>
+
+<pre><code class="go">s := []int{0, 1, 2, 3, 4}
+a := s[1:3]            // [1 2]    (截取从开始索引到结束索引-1 之间的片段)
+b := s[:4]             // [0 1 2 3]
+c := s[1:]             // [1 2 3 4]
+d := s[1:1]            // []
+e := s[1:2:3]          // 新切片包含原slice第1个元素，容量为3
+</code></pre></li>
+<li><p>向slice中增加/修改元素</p>
+
+<pre><code class="go">s := []string{}
+s = append(s, &quot;a&quot;)              // 添加一个元素
+s = append(s, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;)    // 添加一列元素
+t = []string{&quot;e&quot;, &quot;f&quot;, &quot;g&quot;}
+s = append(s, t...}             // 添加另一个切片t的所有元素
+s = append(s, t[:2]...}         // 添加另一个切片t的部分元素
+
+s[0] = &quot;A&quot;                      // 修改切片s的第一个元素
+s[len(s)-1] = &quot;G&quot;               // 修改切片s的最后一个元素
+</code></pre></li>
+<li><p>删除slice中指定的元素<br>
+因为slice引用指向底层数组，数组的长度不变元素是不能删除的，所以删除的原理就是排除待删除元素后用其他元素重新构造一个数组</p>
+
+<pre><code class="go">func deleteByAppend() {
+    i := 3
+    s := []int{1, 2, 3, 4, 5, 6, 7}
+    //delete the fourth element(index is 3), using append
+    s = append(s[:i], s[i+1:]...)
+}
+
+func deleteByCopy() {
+    i := 3
+    s := []int{1, 2, 3, 4, 5, 6, 7}
+    //delete the fourth element(index is 3), using copy
+    copy(s[i:], s[i+1:])
+    s = s[:len(s)-1]
+}
+</code></pre></li>
+</ul>
+
+<h3><span id="map"><strong>字典/映射 Map</strong></span></h3>
+
+<ul>
+<li><p>map是引用类型，使用内置函数 <code>make</code>进行初始化，未初始化的map零值为 <code>nil</code>长度为0，并且不能赋值元素</p>
+
+<pre><code class="go">var m map[int]int
+m[0] = 0                              // × runtime error: assignment to entry in nil map
+fmt.Printf(&quot;type: %T\n&quot;, m)           // map[int]int
+fmt.Printf(&quot;value: %#v\n&quot;, m)         // map[int]int(nil)
+fmt.Printf(&quot;value: %v\n&quot;, m)          // map[]
+fmt.Println(&quot;is nil: &quot;, nil == m)     // true
+fmt.Println(&quot;length: &quot;, len(m))       // 0，if m is nil, len(m) is zero.
+</code></pre>
+
+<p>使用内置函数make初始化map</p>
+
+<pre><code class="go">var m map[int]int = make(map[int]int)
+m[0] = 0                              // 插入或修改元素
+fmt.Printf(&quot;type: %T\n&quot;, m)           // map[int]int
+fmt.Printf(&quot;value: %#v\n&quot;, m)         // map[int]int(0:0)
+fmt.Printf(&quot;value: %v\n&quot;, m)          // map[0:0]
+fmt.Println(&quot;is nil: &quot;, nil == m)     // false
+fmt.Println(&quot;length: &quot;, len(m))       // 1
+</code></pre>
+
+<p>直接赋值初始化map</p>
+
+<pre><code class="go">m := map[int]int{
+0:0,
+1:1,                                  // 最后的逗号是必须的
+}
+n := map[string]S{
+&quot;a&quot;:S{0,1},
+&quot;b&quot;:{2,3},                            // 类型名称可省略
+}
+</code></pre>
+
+<p>map的使用：读取、添加、修改、删除元素</p>
+
+<pre><code class="go">m[0] = 3                              // 修改m中key为0的值为3
+m[4] = 8                              // 添加到m中key为4值为8
+
+a := n[&quot;a&quot;]                           // 获取n中key为“a“的值
+b, ok := n[&quot;c&quot;]                       // 取值, 并通过ok(bool)判断key对应的元素是否存在.
+
+delete(n, &quot;a&quot;)                        // 使用内置函数delete删除key为”a“对应的元素.
+</code></pre></li>
+</ul>
+
+<h3><span id="struct"><strong>结构体 Struct</strong></span></h3>
+
+<ul>
+<li><p>结构体类型<code>struct</code>是一个字段的集合</p>
+
+<pre><code class="go">type S struct {
+    A int
+    B, c string
+}
+</code></pre></li>
+<li><p>结构体初始化通过结构体字段的值作为列表来新分配一个结构体。</p>
+
+<pre><code class="go">var s S = S{0, &quot;1&quot;, &quot;2&quot;}
+</code></pre></li>
+<li><p>使用 Name: 语法可以仅列出部分字段(字段名的顺序无关)</p>
+
+<pre><code class="go">var s S = S{B: &quot;1&quot;, A: 0}
+</code></pre></li>
+<li><p>结构体是值类型，传递时会复制值，其默认零值不是<code>nil</code></p>
+
+<pre><code class="go">var a S
+var b = S{}
+fmt.Println(a == b)    // true
+</code></pre></li>
+<li><p>结构体组合<br>
+将一个<code>命名类型</code>作为匿名字段嵌入一个结构体<br>
+嵌入匿名字段支持命名类型、命名类型的指针和接口类型</p>
+
+<pre><code class="go">package main
+
+type (
+    A struct {
+        v int
+    }
+
+    // 定义结构体B，嵌入结构体A作为匿名字段
+    B struct {
+        A
+    }
+
+    // 定义结构体C，嵌入结构体A的指针作为匿名字段
+    C struct {
+        *A
+    }
+)
+
+func (a *A) setV(v int) {
+    a.v = v
+}
+
+func (a A) getV() int {
+    return a.v
+}
+
+func (b B) getV() string {
+    return &quot;B&quot;
+}
+
+func (c *C) getV() bool {
+    return true
+}
+
+func main() {
+    a := A{}
+    b := B{}    // 初始化结构体B，其内匿名字段A默认零值是A{}
+    c := C{&amp;A{}}    // 初始化结构体C，其内匿名指针字段*A默认零值是nil，需要初始化赋值
+
+    println(a.v)
+
+    // 结构体A嵌入B，A内字段自动提升到B
+    println(b.v)
+
+    // 结构体指针*A嵌入C，*A对应结构体内字段自动提升到C
+    println(c.v)
+
+    a.setV(3)
+    b.setV(5)
+    c.setV(7)
+    println(a.getV(), b.A.getV(), c.A.getV())
+    println(a.getV(), b.getV(), c.getV())
+}
+</code></pre></li>
+</ul>
+
+<h3><span id="pointer"><strong>指针 Pointer</strong></span></h3>
+
+<ul>
+<li><p>通过取地址操作符<code>&amp;</code>获取指向值/引用对象的指针。</p>
+
+<pre><code class="go">var i int = 1
+pi := &amp;i    // 指向数值的指针
+
+a := []int{0, 1, 2}
+pa := &amp;a    // 指向引用对象的指针
+
+var s *S = &amp;S{0, &quot;1&quot;, &quot;2&quot;}    // 指向值对象的指针
+</code></pre></li>
+<li><p>内置函数<code>new(T)</code>分配了一个零初始化的 T 值，并返回指向它的指针</p>
+
+<pre><code class="go">var i = new(int)
+var s *S = new(S)
+</code></pre></li>
+<li><p>使用<code>*</code>读取/修改指针指向的值</p>
+
+<pre><code class="go">func main() {
+    i := new(int)
+    *i = 3
+    println(i, *i)    // 0xc208031f80    3
+
+    i = new(int)
+    println(i, *i)    // 0xc208031f78    0
+}
+</code></pre></li>
+<li><p>指针使用点号来访问结构体字段<br>
+结构体字段/方法可以通过结构体指针来访问，通过指针间接的访问是透明的。</p>
+
+<pre><code class="go">fmt.Println(s.A)
+fmt.Println((*s).A)
+</code></pre></li>
+<li><p>指针的指针</p>
+
+<pre><code class="go">func main() {
+    var i int
+    var p *int
+    var pp **int
+    var ppp ***int
+    var pppp ****int
+    println(i, p, pp, ppp, pppp)    // 0 0x0 0x0 0x0 0x0
+
+    i, p, pp, ppp, pppp = 123, &amp;i, &amp;p, &amp;pp, &amp;ppp
+    println(i, p, pp, ppp, pppp)    // 123 0xc208031f68 0xc208031f88 0xc208031f80 0xc208031f78
+    println(i, *p, **pp, ***ppp, ****pppp)    // 123 123 123 123 123
+}
+</code></pre></li>
+<li><p>跨层指针元素的使用<br>
+在指针引用多层对象时，指针是针对引用表达式的最后一位元素。</p>
+
+<pre><code class="go">package a
+
+type X struct {
+    A Y
+}
+type Y struct {
+    B Z
+}
+type Z struct {
+    C int
+}
+</code></pre>
+
+<pre><code class="go">package main
+import (
+    &quot;a&quot;
+    &quot;fmt&quot;
+)
+
+func main() {
+    var x = a.X{}
+    var p = &amp;x
+    fmt.Println(&quot;x: &quot;, x)    // x:  {{{0}}}
+    println(&quot;p: &quot;, p)    // p:  0xc208055f20
+    fmt.Println(&quot;*p: &quot;, *p)    // *p:  {{{0}}}
+    println(&quot;x.A.B.C: &quot;, x.A.B.C)    // x.A.B.C:  0
+    //  println(&quot;*p.A.B.C: &quot;, *p.A.B.C)    // invalid indirect of p.A.B.C (type int)
+    println(&quot;(*p).A.B.C: &quot;, (*p).A.B.C)    // (*p).A.B.C:  0
+}
+</code></pre></li>
+<li><p>Go的指针没有指针运算，但是 <strong>道高一尺，魔高一丈</strong><br>
+<a href="http://1234n.com/?post/rseosp">Go语言中的指针运算</a><br>
+<a href="http://my.oschina.net/goal/blog/193698">利用unsafe操作未导出变量</a></p></li>
+</ul>
+
+<h3><span id="channel"><strong>通道 Channel</strong></span></h3>
+
+<ul>
+<li><p>channel用于两个goroutine之间传递指定类型的值来同步运行和通讯。<br>
+操作符<code>&lt;-</code>用于指定channel的方向，发送或接收。<br>
+如果未指定方向，则为双向channel。</p>
+
+<pre><code class="go">var c0 chan int      // 可用来发送和接收int类型的值
+var c1 chan&lt;- int    // 可用来发送int类型的值
+var c2 &lt;-chan int    // 可用来接收int类型的值
+</code></pre></li>
+<li><p>channel是引用类型，使用<code>make</code>函数来初始化。<br>
+未初始化的channel零值是<code>nil</code>，且不能用于发送和接收值。</p>
+
+<pre><code class="go">c0 := make(chan int)        // 不带缓冲的int类型channel
+c1 := make(chan *int, 10)    // 带缓冲的*int类型指针channel
+</code></pre>
+
+<p>无缓冲的channe中有值时发送方会阻塞，直到接收方从channel中取出值。<br>
+带缓冲的channel在缓冲区已满时发送方会阻塞，直到接收方从channel中取出值。<br>
+接收方在channel中无值会一直阻塞。</p></li>
+<li><p>通过channel发送一个值时，<code>&lt;-</code>作为二元操作符使用，  </p>
+
+<pre><code class="go">c0 &lt;- 3
+</code></pre>
+
+<p>通过channel接收一个值时，<code>&lt;-</code>作为一元操作符使用。</p>
+
+<pre><code class="go">i := &lt;-c1
+</code></pre></li>
+<li><p>关闭channel，只能用于双向或只发送类型的channel<br>
+只能由 <strong>发送方</strong>调用<code>close</code>函数来关闭channel<br>
+接收方取出已关闭的channel中发送的值后，后续再从channel中取值时会以非阻塞的方式立即返回channel传递类型的零值。</p>
+
+<pre><code class="go">ch := make(chan string, 1)
+
+// 发送方，发送值后关闭channel
+ch &lt;- &quot;hello&quot;
+close(ch)
+
+// 接收方，取出发送的值
+fmt.Println(&lt;-ch)    // 输出： “hello”
+
+// 再次从已关闭的channel中取值，返回channel传递类型的零值
+fmt.Println(&lt;-ch)    // 输出： 零值，空字符串“”
+
+// 接收方判断接收到的零值是由发送方发送的还是关闭channel返回的默认值
+s, ok := &lt;-ch
+if ok {
+    fmt.Println(&quot;Receive value from sender:&quot;, s)
+} else {
+    fmt.Println(&quot;Get zero value from closed channel&quot;)
+}
+
+// 向已关闭的通道发送值会产生运行时恐慌panic
+ch &lt;- &quot;hi&quot;
+// 再次关闭已经关闭的通道也会产生运行时恐慌panic
+close(ch)
+</code></pre></li>
+<li><p>使用<code>for range</code>语句依次读取发送到channel的值，直到channel关闭。</p>
+
+<pre><code class="go">package main
+
+import &quot;fmt&quot;
+
+func main() {
+    // 无缓冲和有缓冲的channel的range用法相同
+    var ch = make(chan int)    // make(chan int, 2) 或 make(chan int , 100)
+    go func() {
+        for i := 0; i &lt; 5; i++ {
+            ch &lt;- i
+        }
+        close(ch)
+    }()
+
+    // channel中无发送值且未关闭时会阻塞
+    for x := range ch {
+        fmt.Println(x)
+    }
+}
+</code></pre>
+
+<p>下面方式与for range用法效果相同</p>
+
+<pre><code class="go">loop:
+    for {
+        select {
+        case x, ok := &lt;-c:
+            if !ok {
+                break loop
+            }
+            fmt.Println(x)
+        }
+    }
+</code></pre></li>
+</ul>
+
+<h3><span id="interface"><strong>接口 Interface</strong></span></h3>
+
+<ul>
+<li><p>接口类型是由一组方法定义的集合。<br>
+接口类型的值可以存放实现这些方法的任何值。</p>
+
+<pre><code class="go">type Abser interface {
+    Abs() float64
+}
+</code></pre></li>
+<li><p>类型通过实现定义的方法来实现接口， 不需要显式声明实现某接口。</p>
+
+<pre><code class="go">type MyFloat float64
+
+func (f MyFloat) Abs() float64 {
+    if f &lt; 0 {
+        return float64(-f)
+    }
+    return float64(f)
+}
+</code></pre></li>
+<li><p>接口组合</p>
+
+<pre><code class="go">type Reader interface {
+    Read(b []byte) (n int)
+}
+
+type Writer interface {
+    Write(b []byte) (n int)
+}
+
+// 接口ReadWriter组合了Reader和Writer两个接口
+type ReadWriter interface {
+    Reader
+    Writer
+}
+
+type File struct {
+    // ...
+}
+
+func (f *File) Read(b []byte) (n int) {
+    println(&quot;Read&quot;, len(b),&quot;bytes data.&quot;)
+    return len(b)
+}
+
+func (f *File) Write(b []byte) (n int) {
+    println(&quot;Write&quot;, len(b),&quot;bytes data.&quot;)
+    return len(b)
+}
+
+func main() {
+    // *File 实现了Read方法和Write方法，所以实现了Reader接口和Writer接口以及组合接口ReadWriter
+    var f *File = &amp;File{}
+    var r Reader = f
+    var w Writer = f
+    var rw ReadWriter = f
+    bs := []byte(&quot;asdf&quot;)
+    r.Read(bs)
+    rw.Read(bs)
+    w.Write(bs)
+    rw.Write(bs)
+}
+</code></pre></li>
+<li><p>内置接口类型<code>error</code>是一个用于表示错误情况的常规接口，其零值<code>nil</code>表示没有错误<br>
+所有实现了<code>Error</code>方法的类型都能表示为一个错误</p>
+
+<pre><code class="go">type error interface {
+    Error() string
+}
+</code></pre></li>
+</ul>
+
+<h3><span id="customtype"><strong>自定义类型</strong></span></h3>
+
+<ul>
+<li><p>Go中支持自定义的类型可基于： 基本类型、数组类型、切片类型、字典类型、函数类型、结构体类型、通道类型、接口类型以及自定义类型的类型</p>
+
+<pre><code class="go">type (
+    A int
+    B int8
+    C int16
+    D rune
+    E int32
+    F int64
+    G uint
+    H byte
+    I uint16
+    J uint32
+    K uint64
+    L float32
+    M float64
+    N complex64
+    O complex128
+    P uintptr
+    Q bool
+    R string
+    S [3]uint8
+    T []complex128
+    U map[string]uintptr
+    V func(i int) (b bool)
+    W struct {a, b int}
+    X chan int
+    Y interface {}
+    Z A
+)
+</code></pre></li>
+<li><p>以及支持以上所有支持类型的指针类型</p>
+
+<pre><code class="go">type (
+    A *int
+    B *int8
+    C *int16
+    D *rune
+    E *int32
+    F *int64
+    G *uint
+    H *byte
+    I *uint16
+    J *uint32
+    K *uint64
+    L *float32
+    M *float64
+    N *complex64
+    O *complex128
+    P *uintptr
+    Q *bool
+    R *string
+    S *[3]uint8
+    T *[]complex128
+    U *map[string]uintptr
+    V *func(i int) (b bool)
+    W *struct {a, b int}
+    X *chan int
+    Y *interface {}
+    Z *A
+)
+</code></pre></li>
+</ul>
+
+<h2><span id="statement"><strong>语句 Statement</strong></span></h2>
+
+<h3><span id="semicolon"><strong>分号/括号 ; {</strong></span></h3>
+
+<ul>
+<li><p>Go是采用语法解析器自动在每行末尾增加分号，所以在写代码的时候可以省略分号。</p></li>
+<li><p>Go编程中只有几个地方需要手工增加分号：<br>
+for循环使用分号把初始化、条件和遍历元素分开。<br>
+if/switch的条件判断带有初始化语句时使用分号分开初始化语句与判断语句。<br>
+在一行中有多条语句时，需要增加分号。</p></li>
+<li><p>控制语句(if，for，switch，select)、函数、方法 的左大括号不能单独放在一行， 语法解析器会在大括号之前自动插入一个分号，导致编译错误。 </p></li>
+</ul>
+
+<h3><span id="if"><strong>条件语句 if</strong></span></h3>
+
+<ul>
+<li><p><code>if</code>语句 小括号 ( )是可选的，而大括号 { } 是必须的。</p>
+
+<pre><code class="go">if (i &lt; 0)        // 编译错误.
+    println(i)
+
+if i &lt; 0          // 编译错误.
+    println(i)
+
+if (i &lt; 0) {      // 编译通过.
+    println(i)
+}
+
+if (i &lt; 0 || i &gt; 10) {
+    println(i)
+}
+
+if i &lt; 0 {
+    println(i)
+} else if i &gt; 5 &amp;&amp; i &lt;= 10 {
+    println(i)
+} else {
+    println(i)
+}
+</code></pre></li>
+<li><p>可以在条件之前执行一个简单的语句，由这个语句定义的变量的作用域仅在 if / else if / else 范围之内</p>
+
+<pre><code class="go">if (i := 0; i &lt; 1) {    // 编译错误.
+    println(i)
+}
+
+if i := 0; (i &lt; 1) {    // 编译通过.
+    println(i)
+}
+
+if i := 0; i &lt; 0 {      // 使用gofmt格式化代码会自动移除代码中不必要的小括号( )
+    println(i)
+} else if i == 0 {
+    println(i)
+} else {
+    println(i)
+}
+</code></pre></li>
+<li><p><code>if</code>语句作用域范围内定义的变量会覆盖外部同名变量，与方法函数内局部变量覆盖全局变量同理</p>
+
+<pre><code class="go">a, b := 0, 1
+if a, b := 3, 4; a &gt; 1 &amp;&amp; b &gt; 2 {
+    println(a, b)    // 3 4
+}
+println(a, b)        // 0 1
+</code></pre></li>
+<li><p><code>if</code>判断语句类型断言</p>
+
+<pre><code class="go">package main
+
+func f0() int {return 333}
+
+func main() {
+    x := 9
+    checkType(x)
+    checkType(f0)
+}
+
+func checkType(x interface{}) {
+    // 断言传入的x为int类型，并获取值
+    if i, ok := x.(int); ok {
+        println(&quot;int: &quot;, i)    // int:  0
+    }
+
+    if f, ok := x.(func() int); ok {
+        println(&quot;func: &quot;, f())    // func:  333
+    }
+
+    // 如果传入x类型为int，则可以直接获取其值
+    a := x.(int)
+    println(a)
+
+    // 如果传入x类型不是byte，则会产生恐慌panic
+    b := x.(byte)
+    println(b)
+}
+</code></pre></li>
+</ul>
+
+<h3><span id="switch"><strong>分支选择 switch</strong></span></h3>
+
+<ul>
+<li><p><code>switch</code>存在分支选择对象时，<code>case</code>分支支持单个常量、常量列表</p>
+
+<pre><code class="go">switch x {
+case 0:
+    println(&quot;single const&quot;)
+case 1, 2, 3:
+    println(&quot;const list&quot;)
+default:
+    println(&quot;default&quot;)
+}
+</code></pre></li>
+<li><p>分支选择对象之前可以有一个简单语句，case语句的大括号可以省略</p>
+
+<pre><code class="go">switch x *= 2; x {
+case 4: {
+    println(&quot;single const&quot;)
+}
+case 5, 6, 7: {
+    println(&quot;const list&quot;)
+}
+default: {
+    println(&quot;default&quot;)
+}
+}
+</code></pre></li>
+<li><p><code>switch</code>只有一个简单语句，没有分支选择对象时，case分支支持逻辑表达式语句</p>
+
+<pre><code class="go">switch x /= 3; {
+case x == 8:
+    println(&quot;expression&quot;)
+case x &gt;= 9:
+    println(&quot;expression&quot;)
+default:
+    println(&quot;default&quot;)
+}
+</code></pre></li>
+<li><p><code>switch</code>没有简单语句，没有分支选择对象时，case分支支持逻辑表达式语句</p>
+
+<pre><code class="go">switch {
+case x == 10:
+    println(&quot;expression&quot;)
+case x &gt;= 11:
+    println(&quot;expression&quot;)
+default:
+    println(&quot;default&quot;)
+}
+</code></pre></li>
+<li><p><code>switch</code>类型分支，只能在switch语句中使用的<code>.(type)</code>获取对象的类型。</p>
+
+<pre><code class="go">package main
+
+import (
+    &quot;fmt&quot;
+    &quot;code.google.com/p/go.crypto/openpgp/errors&quot;
+)
+
+func main() {
+    var (
+        a = 0.1
+        b = 2+3i
+        c = &quot;asdf&quot;
+        d = [...]byte{1, 2, 3}
+        e = []complex128{1+2i}
+        f = map[string]uintptr{&quot;a&quot;: 0}
+        g = func(int) bool {return true}
+        h = struct { a, b int }{}
+        i = &amp;struct {}{}
+        j chan int
+        k chan &lt;- bool
+        l &lt;-chan string
+        m errors.SignatureError
+    )
+    values := []interface{}{nil, a, b, &amp;c, d, e, f, g, &amp;g, h, &amp;h, i, j, k, l, m}
+    for _, v := range values {
+        typeswitch(v)
+    }
+}
+
+func typeswitch(x interface{}) {
+    // switch x.(type) {    // 不使用类型值时
+    switch i := x.(type) {
+    case nil:
+        fmt.Println(&quot;x is nil&quot;)
+    case int, int8, int16, rune, int64, uint, byte, uint16, uint32, uint64, float32, float64, complex64, complex128, uintptr, bool, string:
+        fmt.Printf(&quot;basic type : %T\n&quot;, i)
+    case *int, *int8, *int16, *rune, *int64, *uint, *byte, *uint16, *uint32, *uint64, *float32, *float64, *complex64, *complex128, *uintptr, *bool, *string:
+        fmt.Printf(&quot;basic pointer type : %T\n&quot;, i)
+    case [3]byte, []complex128, map[string]uintptr:
+        fmt.Printf(&quot;collection type : %T\n&quot;, i)
+    case func(i int) (b bool), *func():
+        fmt.Printf(&quot;function type : %T\n&quot;, i)
+    case struct {a, b int}, *struct {}:
+        fmt.Printf(&quot;struct type : %T\n&quot;, i)
+    case chan int, chan &lt;- bool, &lt;-chan string:
+        fmt.Printf(&quot;channel type : %T\n&quot;, i)
+    case error, interface{a(); b()}:
+        fmt.Printf(&quot;interface type : %T\n&quot;, i)
+    default:
+        fmt.Printf(&quot;other type : %T\n&quot;, i)
+    }
+}
+
+// output: 
+
+// x is nil
+// basic type : float64
+// basic type : complex128
+// basic pointer type : *string
+// collection type : [3]uint8
+// collection type : []complex128
+// collection type : map[string]uintptr
+// function type : func(int) bool
+// other type : *func(int) bool
+// struct type : struct { a int; b int }
+// other type : *struct { a int; b int }
+// struct type : *struct {}
+// channel type : chan int
+// channel type : chan&lt;- bool
+// channel type : &lt;-chan string
+// interface type : errors.SignatureError
+</code></pre></li>
+<li><p><code>switch</code>中每个case分支默认带有break效果，一个分支执行后就跳出switch，不会自动向下执行其他case。<br>
+使用<code>fallthrough</code>强制向下继续执行后面的case代码。<br>
+在类型分支中不允许使用<code>fallthrough</code>语句</p>
+
+<pre><code class="go">switch {
+case false:
+    println(&quot;case 1&quot;)
+    fallthrough
+case true:
+    println(&quot;case 2&quot;)
+    fallthrough
+case false:
+    println(&quot;case 3&quot;)
+    fallthrough
+case true:
+    println(&quot;case 4&quot;)
+case false:
+    println(&quot;case 5&quot;)
+    fallthrough
+default:
+    println(&quot;default case&quot;)
+}
+// 输出：case 2 case 3 case 4
+</code></pre></li>
+</ul>
+
+<h3><span id="for"><strong>循环语句 for</strong></span></h3>
+
+<ul>
+<li><p>Go只有一种循环结构：<code>for</code> 循环。<br>
+可以让前置(初始化)、中间(条件)、后置(迭代)语句为空，或者全为空。</p>
+
+<pre><code class="go">for i := 0; i &lt; 10; i++ {...}
+for i := 0; i &lt; 10; {...}      // 省略迭代语句
+for i := 0; ; i++; {...}       // 省略条件语句
+for ; i &lt; 10; i++ {...}        // 省略初始化语句
+for i := 0; ; {...}            // 省略条件和迭代语句, 分号不能省略
+for ; i &lt; 10; {...}            // 省略初始化和迭代语句, 分号可省略
+for ; ; i++ {...}              // 省略初始化和条件语句, 分号不能省略
+for i &lt; 10 {...}
+for ; ; {...}                  // 分号可省略
+for {...}
+</code></pre></li>
+<li><p><code>for</code>语句中小括号 ( )是可选的，而大括号 { } 是必须的。</p>
+
+<pre><code class="go">for (i := 0; i &lt; 10; i++) {...}     // 编译错误.
+for i := 0; (i &lt; 10); i++ {...}     // 编译通过.
+for (i &lt; 10) {...}                  // 编译通过.
+</code></pre></li>
+<li><p>Go的for each循环<code>for range</code></p>
+
+<pre><code class="go">a := [5]int{2, 3, 4, 5, 6}
+
+for k, v := range a {
+    fmt.Println(k, v)    // 输出：0 2, 1 3, 2 4, 3 5, 4 6
+}
+
+for k := range a {
+    fmt.Println(k)    // 输出：0 1 2 3 4
+}
+
+for _ = range a {
+    fmt.Println(&quot;print without care about the key and value&quot;)
+}
+
+for range a {
+    fmt.Println(&quot;new syntax – print without care about the key and value&quot;)
+}
+</code></pre></li>
+<li><p>循环的继续、中断、跳转</p>
+
+<pre><code class="go">for k, v := range s {
+    if v == 3 {
+        continue    // 结束本次循环，进入下一次循环中
+    } else if v == 5 {
+        break    // 结束整个for循环
+    } else {
+        goto SOMEWHERE    // 跳转到标签指定的代码处
+    }
+}
+</code></pre></li>
+<li><p><code>for range</code>只支持遍历<code>数组</code>、<code>数组指针</code>、<code>slice</code>、<code>string</code>、<code>map</code>、<code>channel</code>类型</p>
+
+<pre><code class="go">package main
+import &quot;fmt&quot;
+
+func main() {
+    var arr = [...]int{33, 22, 11, 0}
+    // 遍历数组，取一位值时为索引值
+    for k := range arr {
+        fmt.Printf(&quot;%d, &quot;, k)   // 0, 1, 2, 3,
+    }
+    fmt.Println()
+    // 遍历数组，取两位值时，第一位为索引值，第二位为元素值
+    for k, v := range arr {
+        fmt.Printf(&quot;%d %d, &quot;, k, v) // 0 33, 1 22, 2 11, 3 0,
+    }
+    fmt.Println()
+
+    // 遍历数组指针，取一位值时为索引值
+    for k := range &amp;arr {
+        fmt.Printf(&quot;%d, &quot;, k)   // 0, 1, 2, 3,
+    }
+    fmt.Println()
+    // 遍历数组指针，取两位值时，第一位为索引值，第二位为元素值
+    for k, v := range &amp;arr {
+        fmt.Printf(&quot;%d %d, &quot;, k, v) // 0 33, 1 22, 2 11, 3 0,
+    }
+    fmt.Println()
+
+    var slc = []byte{44, 55, 66, 77}
+    // 遍历切片，取一位值时为索引值
+    for k := range slc {
+        fmt.Printf(&quot;%d, &quot;, k)   // 0, 1, 2, 3,
+    }
+    fmt.Println()
+    // 遍历切片，取两位值时，第一位为索引值，第二位为元素值
+    for k, v := range slc {
+        fmt.Printf(&quot;%d %d, &quot;, k, v) // 0 44, 1 55, 2 66, 3 77,
+    }
+    fmt.Println()
+
+    var str = &quot;abc一二3&quot;
+    // 遍历字符串，取一位值时为字节索引值
+    for k := range str {
+        fmt.Printf(&quot;%d, &quot;, k)   // 0, 1, 2, 3, 6, 9,
+    }
+    fmt.Println()
+    // 遍历字符串，取两位值时，第一位为字节索引值，第二位为Unicode字符
+    for k, v := range str {
+        fmt.Printf(&quot;%d %d %s, &quot;, k, v, string(v))   // 0 97 a, 1 98 b, 2 99 c, 3 19968 一, 6 20108 二, 9 51 3,
+    }
+    fmt.Println()
+
+    var mp = map[int]string{5:&quot;A&quot;, 9:&quot;B&quot;}
+    // 遍历map，取一位值时为键key
+    for k := range mp {
+        fmt.Printf(&quot;%d, &quot;, k)   // 9, 5,
+    }
+    fmt.Println()
+    // 遍历map，取两位值时，第一位为键key，第二位为元素值value
+    for k, v := range mp {
+        fmt.Printf(&quot;%d %s, &quot;, k, v) // 5 A, 9 B,
+    }
+    fmt.Println()
+
+    var ch = make(chan int)
+    go func() {
+        for i := 0; i &lt; 5; i++ {
+            ch &lt;- i
+        }
+        close(ch)
+    }()
+    // 遍历channel时，只能取一位值，为发送方发送到channel中的值
+    for x := range ch {
+        fmt.Printf(&quot;%d &quot;, x)    // 0 1 2 3 4
+    }
+}
+</code></pre></li>
+</ul>
+
+<h3><span id="select"><strong>通道选择 select</strong></span></h3>
+
+<ul>
+<li><p><code>select</code>用于当前goroutine从一组可能的通讯中选择一个进一步处理。<br>
+如果任意一个通讯都可以进一步处理，则从中随机选择一个，执行对应的语句。否则在没有默认分支(default case)时，select语句则会阻塞，直到其中一个通讯完成。<br>
+select 的 case 里的操作语句只能是IO操作</p>
+
+<pre><code class="go">ch1, ch2 := make(chan int), make(chan int)
+
+// 因为没有值发送到select中的任一case的channel中，此select将会阻塞
+select {
+case &lt;-ch1:
+    println(&quot;channel 1&quot;)
+case &lt;-ch2:
+    println(&quot;channel 2&quot;)
+}
+</code></pre>
+
+<pre><code class="go">ch1, ch2 := make(chan int), make(chan int)
+
+// 因为没有值发送到select中的任一case的channel中，此select将会执行default分支
+select {
+case &lt;-ch1:
+    println(&quot;channel 1&quot;)
+case &lt;-ch2:
+    println(&quot;channel 2&quot;)
+default:
+    println(&quot;default&quot;)
+}
+</code></pre></li>
+<li><p>select只会执行一次case分支的逻辑，与<code>for</code>组合使用实现多次遍历分支</p>
+
+<pre><code class="go">func main() {
+    for {
+        select {
+        case &lt;-time.Tick(time.Second):
+            println(&quot;Tick&quot;)
+        case &lt;-time.After(5 * time.Second):
+            println(&quot;Finish&quot;)
+        default:
+            println(&quot;default&quot;)
+            time.Sleep(5e8)
+        }
+    }
+}
+</code></pre></li>
+</ul>
+
+<h3><span id="defer"><strong>延迟执行 defer</strong></span></h3>
+
+<ul>
+<li><p><code>defer</code>语句调用函数，将调用的函数加入defer栈，栈中函数在defer所在的主函数返回时执行，执行顺序是先进后出/后进先出。</p>
+
+<pre><code class="go">package main
+
+func main() {
+    defer print(0)
+    defer print(1)
+    defer print(2)
+    defer print(3)
+    defer print(4)
+
+    for i := 5; i &lt;= 9; i++ {
+        defer print(i)
+    }
+    // 输出：9876543210
+}
+</code></pre></li>
+<li><p>defer在函数返回后执行，可以修改函数返回值</p>
+
+<pre><code class="go">package main
+
+func main() {
+    println(f())    // 返回： 15
+}
+
+func f() (i int) {
+    defer func() {
+        i *= 5
+    }()
+    return 3
+}
+</code></pre></li>
+<li><p>defer用于释放资源  </p>
+
+<p>释放锁</p>
+
+<pre><code class="go">mu.Lock()
+defer mu.Unlock()
+</code></pre>
+
+<p>关闭channel</p>
+
+<pre><code class="go">ch &lt;- &quot;hello&quot;
+defer close(ch)
+</code></pre>
+
+<p>关闭IO流</p>
+
+<pre><code class="go">f, err := os.Open(&quot;file.xxx&quot;)
+defer f.Close()
+</code></pre>
+
+<p>关闭数据库连接</p>
+
+<pre><code class="go">db, err := sql.Open(&quot;mysql&quot;,&quot;user:password@tcp(127.0.0.1:3306)/hello&quot;)
+if err != nil {
+    log.Fatal(err)
+}
+defer db.Close()
+</code></pre></li>
+<li><p>defer用于恐慌的截获<br>
+<code>panic</code>用于产生恐慌，<code>recover</code>用于截获恐慌，recover只能在defer语句中使用, 直接调用recover是无效的。</p>
+
+<pre><code class="go">func main() {
+    f()
+    fmt.Println(&quot;main normal...&quot;)
+}
+
+func f() {
+    defer func() {
+        if r := recover(); r != nil {
+            fmt.Println(&quot;catch:&quot;, r)
+        }
+    }()
+    p()
+    fmt.Println(&quot;normal...&quot;)
+}
+
+func p() {
+    panic(&quot;exception...&quot;)
+}
+</code></pre></li>
+</ul>
+
+<h3><span id="goto"><strong>跳转语句 goto</strong></span></h3>
+
+<ul>
+<li><p><code>goto</code>用于在一个函数内部运行跳转到指定标签的代码处，不能跳转到其他函数中定义的标签。</p></li>
+<li><p><code>goto</code>模拟循环</p>
+
+<pre><code class="go">package main
+
+func main() {
+    i := 0
+loop:
+    i++
+    if i &lt; 5 {
+        goto loop
+    }
+    println(i)
+}
+</code></pre></li>
+<li><p><code>goto</code>模拟<code>continue</code>，<code>break</code></p>
+
+<pre><code class="go">func main() {
+    i, sum := 0, 0
+head:
+    for ; i &lt;= 10; i++ {
+        if i &lt; 5 {
+            i++    // 此处必须单独调用一次，因为goto跳转时不会执行for循环的自增语句
+            goto head    // continue
+        }
+        if i &gt; 9 {
+            goto tail    // break
+        }
+        sum += i
+    }
+tail:
+    println(sum)    // 输出：35
+}
+</code></pre></li>
+<li><p><strong>注意</strong>：任何时候都不建议使用<code>goto</code>  </p></li>
+</ul>
+
+<h2><span id="function"><strong>函数 Function</strong></span></h2>
+
+<h3><span id="funcdeclare"><strong>函数声明 Declare</strong></span></h3>
+
+<ul>
+<li><p>使用关键字<code>func</code>声明函数，函数可以没有参数或接受多个参数</p>
+
+<pre><code class="go">func f0() {/*...*/}
+
+func f1(a int) {/*...*/}
+
+func f2(a int, b byte) {/*...*/}
+</code></pre></li>
+<li><p>在函数参数类型之前使用<code>...</code>声明该参数为可变数量的参数<br>
+可变参数只能声明为函数的最后一个参数。</p>
+
+<pre><code class="go">func f3(a ...int) {/*...*/}
+
+func f4(a int, b bool, c ...string) {/*...*/}
+</code></pre></li>
+<li><p>函数可以返回任意数量的返回值</p>
+
+<pre><code class="go">func f0() {
+    return
+}
+
+func f1() int {
+    return 0
+}
+
+func f2() (int, string) {
+    return 0, &quot;A&quot;
+}
+</code></pre></li>
+<li><p>函数返回结果参数，可以像变量那样命名和使用</p>
+
+<pre><code class="go">func f() (a int, b string) {
+    a = 1
+    b = &quot;B&quot;
+    return    // 即使return后面没有跟变量，关键字在函数结尾也是必须的
+    // 或者 return a, b
+}
+</code></pre></li>
+<li><p>当两个或多个连续的函数命名参数是同一类型，则除了最后一个类型之外，其他都可以省略</p>
+
+<pre><code class="go">func f0(a,b,c int) {/*...*/}
+
+func f1() (a,b,c int) {/*...*/}
+
+func f2(a,b int, c,d byte) (x,y int, z,s bool) {/*...*/}
+</code></pre></li>
+</ul>
+
+<h3><span id="closure"><strong>函数闭包 Closure</strong></span></h3>
+
+<ul>
+<li><p>匿名函数、闭包、函数值<br>
+Go中函数作为第一类对象，可以作为值对象赋值给变量<br>
+可以在函数体外/内定义匿名函数，命名函数不能嵌套定义到函数体内，只能定义在函数体外</p>
+
+<pre><code class="go">package main
+
+type Myfunc func(i int) int
+
+func f0(name string){
+    println(name)
+}
+
+func main() {
+    var a = f0
+    a(&quot;hello&quot;)    // hello
+
+    var f1 Myfunc = func(i int) int {
+        return i
+    }
+    fmt.Println(f1(3))    // 3
+
+    var f2 func() int = func() int {
+        return 0
+    }
+    fmt.Println(f2())     // 0
+
+    // 省略部分关键字
+    var f3 func() = func() {/*...*/}
+    var f4 = func() {/*...*/}
+    f5 := func() {/*...*/}
+}
+</code></pre></li>
+</ul>
+
+<h3><span id="builtin"><strong>内建函数 Builtin</strong></span></h3>
+
+<ul>
+<li><p><code>func append</code></p>
+
+<pre><code class="go">func append(slice []Type, elems ...Type) []Type
+</code></pre>
+
+<blockquote>
+<p>内建函数append将元素追加到切片的末尾。若它有足够的容量，其目标就会重新切片以容纳新的元素。否则，就会分配一个新的基本数组。append返回更新后的切片，因此必须存储追加后的结果。</p>
+</blockquote>
+
+<pre><code class="go">slice = append(slice, elem1, elem2)
+slice = append(slice, anotherSlice...)
+</code></pre>
+
+<blockquote>
+<p>作为特例，可以向一个字节切片append字符串，如下：</p>
+</blockquote>
+
+<pre><code class="go">slice = append([]byte(&quot;hello &quot;), &quot;world&quot;...)
+</code></pre></li>
+</ul>
+
+<p><br></p>
+
+<ul>
+<li><p><code>func cap</code></p>
+
+<pre><code class="go">func cap(v Type) int
+</code></pre>
+
+<blockquote>
+<p>内建函数cap返回 v 的容量，这取决于具体类型：<br>
+数组：v中元素的数量，与 len(v) 相同<br>
+数组指针：*v中元素的数量，与len(v) 相同<br>
+切片：切片的容量（底层数组的长度）；若 v为nil，cap(v) 即为零<br>
+信道：按照元素的单元，相应信道缓存的容量；若v为nil，cap(v)即为零  </p>
+</blockquote></li>
+</ul>
+
+<p><br></p>
+
+<ul>
+<li><p><code>func close</code></p>
+
+<pre><code class="go">func close(c chan&lt;- Type)
+</code></pre>
+
+<blockquote>
+<p>内建函数close关闭信道，该通道必须为双向的或只发送的。它应当只由发送者执行，而不应由接收者执行，其效果是在最后发送的值被接收后停止该通道。在最后的值从已关闭的信道中被接收后，任何对其的接收操作都会无阻塞的成功。对于已关闭的信道，语句：</p>
+</blockquote>
+
+<pre><code class="go">x, ok := &lt;-c    // ok值为false
+</code></pre></li>
+</ul>
+
+<p><br></p>
+
+<ul>
+<li><p><code>func complex</code></p>
+
+<pre><code class="go">func complex(r, i FloatType) ComplexType
+</code></pre>
+
+<blockquote>
+<p>使用实部r和虚部i生成一个复数。</p>
+</blockquote>
+
+<pre><code class="go">c := complex(1, 2)
+fmt.Println(c)    // (1+2i)
+</code></pre></li>
+</ul>
+
+<p><br></p>
+
+<ul>
+<li><p><code>func copy</code></p>
+
+<pre><code class="go">func copy(dst, src []Type) int
+</code></pre>
+
+<blockquote>
+<p>内建函数copy将元素从来源切片复制到目标切片中，也能将字节从字符串复制到字节切片中。copy返回被复制的元素数量，它会是 len(src) 和 len(dst) 中较小的那个。来源和目标的底层内存可以重叠。</p>
+</blockquote>
+
+<pre><code class="go">a, b, c := []byte{1, 2, 3}, make([]byte, 2), 0
+fmt.Println(&quot;a:&quot;, a, &quot; b:&quot;, b, &quot; c: &quot;, c)    // a: [1 2 3]  b: [0 0]  c:  0
+
+c = copy(b, a)
+fmt.Println(&quot;a:&quot;, a, &quot; b:&quot;, b, &quot; c: &quot;, c)    // a: [1 2 3]  b: [1 2]  c:  2
+
+b = make([]byte, 5)
+c = copy(b, a)
+fmt.Println(&quot;a:&quot;, a, &quot; b:&quot;, b, &quot; c: &quot;, c)    // a: [1 2 3]  b: [1 2 3 0 0]  c:  3
+
+s := &quot;ABCD&quot;
+c = copy(b, s)
+fmt.Println(&quot;s:&quot;, s, &quot; b:&quot;, b, &quot; c: &quot;, c)    // s: ABCD  b: [65 66 67 68 0]  c:  4
+</code></pre></li>
+</ul>
+
+<p><br></p>
+
+<ul>
+<li><p><code>func delete</code></p>
+
+<pre><code class="go">func delete(m map[Type]Type1, key Type)
+</code></pre>
+
+<blockquote>
+<p>内建函数delete按照指定的键将元素从映射中删除。若m为nil或无此元素，delete不进行操作。</p>
+</blockquote>
+
+<pre><code class="go">m := map[int]string{
+    0: &quot;A&quot;,
+    1: &quot;B&quot;,
+    2: &quot;C&quot;,
+}
+delete(m, 1)
+fmt.Println(m)    // map[2:C 0:A]
+
+delete(m, 3)    // 此行代码执行没有任何操作，也不会报错。
+</code></pre></li>
+</ul>
+
+<p><br></p>
+
+<ul>
+<li><p><code>func imag</code></p>
+
+<pre><code class="go">func imag(c ComplexType) FloatType
+</code></pre>
+
+<blockquote>
+<p>返回复数c的虚部。</p>
+</blockquote>
+
+<pre><code class="go">c := 2+5i
+fmt.Println(imag(c))    // 5
+</code></pre></li>
+</ul>
+
+<p><br></p>
+
+<ul>
+<li><p><code>func len</code></p>
+
+<pre><code class="go">func len(v Type) int
+</code></pre>
+
+<blockquote>
+<p>内建函数len返回 v 的长度，这取决于具体类型：<br>
+数组：v中元素的数量<br>
+数组指针：*v中元素的数量（v为nil时panic）<br>
+切片、映射：v中元素的数量；若v为nil，len(v)即为零<br>
+字符串：v中字节的数量，计算字符数量使用<code>utf8.RuneCountInString()</code><br>
+通道：通道缓存中队列（未读取）元素的数量；若v为 nil，len(v)即为零</p>
+</blockquote></li>
+</ul>
+
+<p><br></p>
+
+<ul>
+<li><p><code>func make</code></p>
+
+<pre><code class="go">func make(Type, size IntegerType) Type
+</code></pre>
+
+<blockquote>
+<p>内建函数make分配并初始化一个类型为切片、映射、或通道的对象。其第一个实参为类型，而非值。make的返回类型与其参数相同，而非指向它的指针。其具体结果取决于具体的类型：<br>
+切片：size指定了其长度。该切片的容量等于其长度。切片支持第二个整数实参可用来指定不同的容量；它必须不小于其长度，因此 make([]int, 0, 10) 会分配一个长度为0，容量为10的切片。<br>
+映射：初始分配的创建取决于size，但产生的映射长度为0。size可以省略，这种情况下就会分配一个小的起始大小。<br>
+通道：通道的缓存根据指定的缓存容量初始化。若 size为零或被省略，该信道即为无缓存的。</p>
+</blockquote></li>
+</ul>
+
+<p><br></p>
+
+<ul>
+<li><p><code>func new</code></p>
+
+<pre><code class="go">func new(Type) *Type
+</code></pre>
+
+<blockquote>
+<p>内建函数new分配内存。其第一个实参为类型，而非值。其返回值为指向该类型的新分配的零值的指针。</p>
+</blockquote></li>
+</ul>
+
+<p><br></p>
+
+<ul>
+<li><p><code>func panic</code></p>
+
+<pre><code class="go">func panic(v interface{})
+</code></pre>
+
+<blockquote>
+<p>内建函数panic停止当前Go程的正常执行。当函数F调用panic时，F的正常执行就会立刻停止。F中defer的所有函数先入后出执行后，F返回给其调用者G。G如同F一样行动，层层返回，直到该Go程中所有函数都按相反的顺序停止执行。之后，程序被终止，而错误情况会被报告，包括引发该恐慌的实参值，此终止序列称为恐慌过程。</p>
+</blockquote></li>
+</ul>
+
+<p><br></p>
+
+<ul>
+<li><p><code>func print</code></p>
+
+<pre><code class="go">func print(args ...Type)
+</code></pre>
+
+<blockquote>
+<p>内建函数print以特有的方法格式化参数并将结果写入标准错误，用于自举和调试。</p>
+</blockquote></li>
+</ul>
+
+<p><br></p>
+
+<ul>
+<li><p><code>func println</code></p>
+
+<pre><code class="go">func println(args ...Type)
+</code></pre>
+
+<blockquote>
+<p>println类似print，但会在参数输出之间添加空格，输出结束后换行。</p>
+</blockquote></li>
+</ul>
+
+<p><br></p>
+
+<ul>
+<li><p><code>func real</code></p>
+
+<pre><code class="go">func real(c ComplexType) FloatType
+</code></pre>
+
+<blockquote>
+<p>返回复数c的实部。</p>
+</blockquote>
+
+<pre><code class="go">c := 2+5i
+fmt.Println(real(c))    // 2
+</code></pre></li>
+</ul>
+
+<p><br></p>
+
+<ul>
+<li><p><code>func recover</code></p>
+
+<pre><code class="go">func recover() interface{}
+</code></pre>
+
+<blockquote>
+<p>内建函数recover允许程序管理恐慌过程中的Go程。在defer的函数中，执行recover调用会取回传至panic调用的错误值，恢复正常执行，停止恐慌过程。若recover在defer的函数之外被调用，它将不会停止恐慌过程序列。在此情况下，或当该Go程不在恐慌过程中时，或提供给panic的实参为nil时，recover就会返回nil。</p>
+</blockquote></li>
+</ul>
+
+<h3><span id="init"><strong>初始化函数 init</strong></span></h3>
+
+<ul>
+<li><p><code>init</code>函数是用于程序执行前做包的初始化工作的函数<br>
+<code>init</code>函数的声明没有参数和返回值</p>
+
+<pre><code class="go">func init() {
+    // ...
+}
+</code></pre></li>
+<li><p>一个package或go源文件可以包含零个或多个init函数</p>
+
+<pre><code class="go">package main
+
+func main() {
+}
+
+func init() {
+    println(&quot;init1...&quot;)
+}
+func init() {
+    println(&quot;init2...&quot;)
+}
+func init() {
+    println(&quot;init3...&quot;)
+}
+</code></pre></li>
+<li><p>init函数被自动调用，在main函数之前执行，不能在其他函数中调用，显式调用会报错该函数未定义。</p>
+
+<pre><code class="go">func init() {
+    println(&quot;init...&quot;)
+}
+
+func main() {
+    init()    // undefined: init
+}
+</code></pre></li>
+<li><p>所有<code>init</code>函数都会被自动调用，调用顺序如下：</p>
+
+<ol>
+<li>同一个go文件的init函数调用顺序是 <strong>从上到下</strong>的</li>
+<li>同一个package中按go源文件名字符串比较 <strong>从小到大</strong>顺序调用各文件中的init函数</li>
+<li>不同的package，如果不相互依赖的，按照main包中 <strong>先import的后调用</strong>的顺序调用其包中的init函数</li>
+<li>如果package存在依赖，则先调用最早被依赖的package中的init函数</li>
+</ol></li>
+</ul>
+
+<h3><span id="method"><strong>方法 Method</strong></span></h3>
+
+<ul>
+<li><p>通过指定函数的接收者receiver,将函数绑定到一个类型或类型的指针上,使这个函数成为该类型的方法。<br>
+只能对命名类型和命名类型的指针编写方法。<br>
+只能在定义命名类型的那个包编写其方法。<br>
+不能对接口类型和接口类型的指针编写方法。<br>
+方法的接收者receiver是类型的值时，编译器会隐式的生成一个同名方法，其接收者receiver为该类型的指针，反过来却不会。</p>
+
+<pre><code class="go">package main
+
+type A struct {
+    x, y int
+}
+
+// 定义结构体的方法，&#39;_&#39;表示方法内忽略使用结构体、字段及其他方法
+func (_ A) echo_A() {
+    println(&quot;(_ A)&quot;)
+}
+
+// 同上
+func (A) echoA(s string) {
+    println(&quot;(A)&quot;, s)
+}
+
+// 定义结构体指针的方法，&#39;_&#39;表示方法内忽略使用结构体指针、字段及其他方法
+func (_ *A) echo_жA() {
+    println(&quot;(_ *A)&quot;)
+}
+
+// 同上
+func (*A) echoжA(s string) {
+    println(&quot;(*A)&quot;, s)
+}
+
+// 定义结构体的方法，方法内可以引用结构体、字段及其他方法
+func (a A) setX(x int) {
+    a.x = x
+}
+
+// 定义结构体指针的方法，方法内可以引用结构体、结构体指针、字段及其他方法
+func (a *A) setY(y int) {
+    a.y = y
+}
+
+func main() {
+    var a A    // a = A{}
+    a.setX(3)
+    a.setY(6)
+    println(a.x, a.y) // 0  6
+    a.echo_A()    // (_ A)
+    a.echoA(&quot;a&quot;)    // (A) a
+    a.echo_жA()    // (_ *A)
+    a.echoжA(&quot;a&quot;)    // (*A) a
+
+    // 以下是定义在结构体值上的方法原型，通过调用结构体类型上定义的函数，传入结构体的值
+    A.echo_A(a)    // (_ A)
+    A.echoA(a, &quot;a&quot;)    // (A) a
+    // A.echo_жA(a)    // A.echo_жA未定义
+    // A.echoжA(a)    //  A.echoжA未定义
+    A.setX(a, 4)
+    // A.setY(a, 7)    // A.setY未定义
+    println(a.x) // 0
+
+    b := &amp;a
+    b.setX(2)
+    b.setY(5)
+    println(b.x, b.y) // 0  5
+    b.echo_A()    // (_ A)
+    b.echoA(&quot;b&quot;)    // (A) b
+    b.echo_жA()    // (_ *A)
+    b.echoжA(&quot;b&quot;)    // (*A) b
+
+    // 以下是定义在结构体指针上的方法原型，通过调用结构体类型指针上定义的函数，传入结构体的指针
+    (*A).echo_A(b)    // (_ A)
+    (*A).echoA(b, &quot;b&quot;)    // (A) b
+    (*A).echo_жA(b)    // (_ *A)
+    (*A).echoжA(b, &quot;b&quot;)    // (*A) b
+    (*A).setX(b, 1)
+    (*A).setY(b, 8)
+    println(b.x, b.y)    // 0   8
+
+    // 调用结构体空指针上的方法，以下注释掉的代码都是空指针错误
+    var c *A    // c = nil
+    // c.setX(2)
+    // c.setY(5)
+    // println(c.x, c.y)
+    // c.echo_A()
+    // c.echoA()
+    c.echo_жA()    // (_ *A)
+    c.echoжA(&quot;c&quot;)    // (*A) c
+
+    // (*A).echo_A(c)
+    // (*A).echoA(c)
+    (*A).echo_жA(c)    // (_ *A)
+    (*A).echoжA(c, &quot;c&quot;)    // (*A) c
+    // (*A).setX(c, 1)
+    // (*A).setY(c, 8)
+    // println(c.x, c.y)
+}
+</code></pre></li>
+<li><p>结构体中组合匿名字段时，匿名字段的方法会向外传递，其规则如下：<br>
+匿名字段为值类型时：值的方法会传递给结构体的值，指针的方法会传递给结构体的指针；<br>
+匿名字段为指针类型时：指针的方法会传递给值和指针；<br>
+匿名字段为接口类型时：方法会传递给值和指针； </p></li>
+<li><p>Go中有匿名函数，但是没有匿名方法</p></li>
+</ul>
+
+<h2><span id="concurrency"><strong>并发 Concurrency</strong></span></h2>
+
+<ul>
+<li><p>协程<code>goroutine</code>是由Go运行时环境管理的轻量级线程。<br>
+使用关键字<code>go</code>调用一个函数/方法，启动一个新的协程goroutine</p>
+
+<pre><code class="go">package main
+
+import (
+    &quot;time&quot;
+)
+
+func say(i int) {
+    println(&quot;goroutine:&quot;, i)
+}
+
+func main() {
+    for i := 1; i &lt;= 5; i++ {
+        go say(i)
+    }
+    say(0)
+    time.Sleep(5 * time.Second)
+}
+</code></pre>
+
+<p>主协程goroutine输出0，其他由go启动的几个子协程分别输出1～5</p>
+
+<blockquote>
+<p>goroutine: 0<br>
+goroutine: 1<br>
+goroutine: 2<br>
+goroutine: 3<br>
+goroutine: 4<br>
+goroutine: 5</p>
+</blockquote></li>
+<li><p>goroutine 在相同的地址空间中运行，因此访问共享内存必须进行同步。</p>
+
+<pre><code class="go">package main
+
+import (
+    &quot;sync&quot;
+    &quot;time&quot;
+)
+
+var mu sync.Mutex
+var i int
+
+func main() {
+    for range [5]byte{} {
+        go Add()
+    }
+    time.Sleep(5*time.Second)
+    println(i)
+}
+
+func Add() {
+    // 使用互斥锁防止多个协程goroutine同时修改共享变量
+    // 只能限制同时访问此方法修改变量，在方法外修改则限制是无效的
+    mu.Lock()
+    defer mu.Unlock()
+    i++
+}
+</code></pre>
+
+<p>使用通道channel进行同步</p>
+
+<pre><code class="go">package main
+
+import (
+    &quot;time&quot;
+)
+
+var i int
+var ch = make(chan byte, 1)
+
+func main() {
+    for range [5]byte{} {
+        go Add()
+    }
+    time.Sleep(5*time.Second)
+    println(i)
+}
+
+func Add() {
+    ch &lt;- 0
+    i++
+    &lt;-ch
+}
+</code></pre></li>
+<li><p>使用channel在不同的goroutine之间通信</p>
+
+<pre><code class="go">// 上一个例子只是将channel用作同步开关，稍做修改即可在不同goroutine间通信
+package main
+
+import (
+    &quot;time&quot;
+)
+
+var i int
+var ch = make(chan int, 1)
+
+func main() {
+    for range [5]byte{} {
+        go Add()
+    }
+    ch &lt;- i
+    time.Sleep(5*time.Second)
+    i = &lt;-ch
+    println(i)
+}
+
+func Add() {
+    // 从channel中接收的值是来自其他goroutine发送的
+    x := &lt;-ch
+    x++
+    ch &lt;- x
+}
+</code></pre></li>
+</ul>
+
+<h2><span id="testing"><strong>测试 Testing</strong></span></h2>
+
+<ul>
+<li>Go中自带轻量级的测试框架testing和自带的go test命令来实现单元测试和基准测试</li>
+</ul>
+
+<h3><span id="unit"><strong>单元测试 Unit</strong></span></h3>
+
+<ul>
+<li><p>有如下待测试testgo包，一段简单的求和代码</p>
+
+<pre><code class="go">package testgo
+
+import &quot;math&quot;
+
+func Sum(min, max int) (sum int) {
+    if min &lt; 0 || max &lt; 0 || max &gt; math.MaxInt32 || min &gt; max {
+        return 0
+    }
+
+    for ; min &lt;= max; min++ {
+        sum += min
+    }
+    return
+}
+</code></pre></li>
+<li><p>测试源文件名必须是<code>_test.go</code>结尾的，go test的时候才会执行到相应的代码<br>
+必须import testing包<br>
+所有的测试用例函数必须以<code>Test</code>开头<br>
+测试用例按照源码中编写的顺序依次执行<br>
+测试函数TestXxx()的参数是<code>*testing.T</code>，可以使用该类型来记录错误或者是测试状态<br>
+测试格式：<code>func TestXxx (t *testing.T)</code>，Xxx部分可以为任意的字母数字的组合，首字母不能是小写字母[a-z]，例如Testsum是错误的函数名。<br>
+函数中通过调用*testing.T的Error，Errorf，FailNow，Fatal，FatalIf方法标注测试不通过，调用Log方法用来记录测试的信息。</p>
+
+<pre><code class="go">package testgo
+
+import &quot;testing&quot;
+
+func TestSum(t *testing.T) {
+    s := Sum(1, 0)
+    t.Log(&quot;Sum 1 to 0:&quot;, s)
+    if 0 != s {
+        t.Error(&quot;not equal.&quot;)
+    }
+    s = Sum(1, 10)
+    t.Log(&quot;Sum 1 to 10:&quot;, s)
+    if 55 != s {
+        t.Error(&quot;not equal.&quot;)
+    }
+}
+</code></pre>
+
+<p>在当前包中执行测试：<code>go test -v</code></p>
+
+<blockquote>
+<p>=== RUN TestSum<br>
+--- PASS: TestSum (0.00s)<br>
+    t0_test.go:7: Sum 1 to 0: 0<br>
+    t0_test.go:12: Sum 1 to 10: 55<br>
+PASS<br>
+ok      /home/cxy/go/src/testgo        0.004s</p>
+</blockquote></li>
+</ul>
+
+<h3><span id="benchmark"><strong>基准测试 Benchmark</strong></span></h3>
+
+<ul>
+<li><p>基准测试 Benchmark用来检测函数/方法的性能<br>
+基准测试用例函数必须以<code>Benchmark</code>开头<br>
+go test默认不会执行基准测试的函数，需要加上参数-test.bench，语法:-test.bench=&quot;test_name_regex&quot;，例如go test -test.bench=&quot;.*&quot;表示测试全部的基准测试函数<br>
+在基准测试用例中，在循环体内使用testing.B.N，使测试可以正常的运行</p>
+
+<pre><code class="go">package testgo
+
+import &quot;testing&quot;
+
+func BenchmarkSum(b *testing.B) {
+    b.Logf(&quot;Sum 1 to %d: %d\n&quot;, b.N, Sum(1, b.N))
+}
+</code></pre>
+
+<p>在当前包中执行测试：<code>go test -v -bench .</code></p>
+
+<blockquote>
+<p>BenchmarkSum    2000000000               0.91 ns/op<br>
+--- BENCH: BenchmarkSum<br>
+    t0_test.go:19: Sum 1 to 1: 1<br>
+    t0_test.go:19: Sum 1 to 100: 5050<br>
+    t0_test.go:19: Sum 1 to 10000: 50005000<br>
+    t0_test.go:19: Sum 1 to 1000000: 500000500000<br>
+    t0_test.go:19: Sum 1 to 100000000: 5000000050000000<br>
+    t0_test.go:19: Sum 1 to 2000000000: 2000000001000000000<br>
+ok      /home/cxy/go/src/testgo        1.922s</p>
+</blockquote></li>
+</ul>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'yougg';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</body>
+</html>
