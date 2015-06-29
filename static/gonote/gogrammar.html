@@ -849,14 +849,34 @@ fmt.Printf(&quot;%T\t%#v\t%d\t%d\n&quot;, c, c, len(c), cap(c))    // []int    [
 var a = new([]int)
 fmt.Printf(&quot;%T\t%#v\t%d\t%d\n&quot;, a, a, len(*a), cap(*a))  // *[]int    &amp;[]int(nil)    0    0
 </code></pre></li>
-<li><p>基于slice或数组重新切片，创建一个新的 slice 值指向相同的数组</p>
+<li><p>基于slice或数组重新切片，创建一个新的 slice 值指向相同的数组<br>
+重新切片支持两种格式：  </p>
+
+<p>2个参数 <code>slice[beginIndex:endIndex]</code><br>
+需要满足条件：0 &lt;= beginIndex &lt;= endIndex &lt;= cap(slice)<br>
+截取从开始索引到结束索引-1 之间的片段<br>
+新slice的长度：<code>length=(endIndex - beginIndex)</code><br>
+新slice的容量：<code>capacity=(cap(slice) - beginIndex)</code><br>
+beginIndex的值可省略，默认为0<br>
+endIndex 的值可省略，默认为len(slice)</p>
 
 <pre><code class="go">s := []int{0, 1, 2, 3, 4}
-a := s[1:3]            // [1 2]    (截取从开始索引到结束索引-1 之间的片段)
-b := s[:4]             // [0 1 2 3]
-c := s[1:]             // [1 2 3 4]
-d := s[1:1]            // []
-e := s[1:2:3]          // 新切片包含原slice第1个元素，容量为3
+a := s[1:3]            // a: [1 2],  len: 2,  cap:  4
+b := s[:4]             // b: [0 1 2 3],  len: 4,  cap:  5
+c := s[1:]             // c: [1 2 3 4],  len: 4,  cap:  4
+d := s[1:1]            // d: [],  len: 0,  cap:  4
+e := s[:]              // e: [0 1 2 3 4],  len: 5,  cap:  5
+</code></pre>
+
+<p>3个参数 <code>slice[beginIndex:endIndex:capIndex]</code><br>
+需要满足条件：0 &lt;= beginIndex &lt;= endIndex &lt;= capIndex &lt;= cap(slice)<br>
+新slice的长度：<code>length=(endIndex - beginIndex)</code><br>
+新slice的容量：<code>capacity=(capIndex - beginIndex)</code><br>
+beginIndex的值可省略，默认为0  </p>
+
+<pre><code class="go">s := make([]int, 5, 10)
+a := s[9:10:10]        // a: [0],  len: 1,  cap:  1
+b := s[:3:5]           // b: [0 0 0],  len: 3,  cap:  5
 </code></pre></li>
 <li><p>向slice中增加/修改元素</p>
 
