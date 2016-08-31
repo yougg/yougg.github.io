@@ -1,69 +1,82 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
-<!--This file has been created with freemind2html.xsl-->
 <head>
 <title>Golang学习</title>
 </head>
 <body>
 <div style="width:96%;  padding:2%;  margin-bottom:10px;  border: 0px;  text-align:center;  vertical-align:center;">
-<img src="GolangStudy.png" style="margin-bottom:10px; &#9;border: 0px; &#9;text-align:center; &#9;vertical-align:center;" alt="Imagemap" usemap="#fm_imagemap" />
+<img src="Go学习New.html_files/image.png" style="margin-bottom:10px; &#9;border: 0px; &#9;text-align:center; &#9;vertical-align:center;" alt="Imagemap" usemap="#fm_imagemap" />
 </div>
 <map id="fm_imagemap" name="fm_imagemap">
-<area shape="rect" href="#" alt="Golang学习" title="Golang学习" coords="431,214,594,286" />
-<area shape="rect" href="#" alt="语言基础" title="语言基础" coords="289,127,409,160" />
-<area shape="rect" target="_blank" href="http://yougg.github.io/static/gonote/gogrammar.html"  alt="语法详解" title="语法详解" coords="161,7,267,37" />
-<area shape="rect" target="_blank" href="https://go-zh.org/doc/effective_go.html"  alt="Effective Go" title="Effective Go" coords="18,7,139,33" />
-<area shape="rect" href="#" alt="语言规范" title="语言规范" coords="178,52,267,82" />
-<area shape="rect" target="_blank" href="https://golang.org/ref/spec"  alt="English" title="English" coords="69,40,156,66" />
-<area shape="rect" target="_blank" href="https://go-zh.org/ref/spec.old"  alt="中文" title="中文" coords="89,69,156,95" />
-<area shape="rect" href="#" alt="标准库" title="标准库" coords="196,125,267,155" />
-<area shape="rect" target="_blank" href="https://golang.org/pkg/"  alt="English Doc" title="English Doc" coords="55,98,174,124" />
-<area shape="rect" target="_blank" href="http://godoc.ml/"  alt="中文文档1" title="中文文档1" coords="68,127,174,153" />
-<area shape="rect" target="_blank" href="http://studygolang.com/pkgdoc"  alt="中文文档2" title="中文文档2" coords="68,156,174,182" />
-<area shape="rect" target="_blank" href="https://github.com/astaxie/build-web-application-with-golang/blob/master/zh/preface.md"  alt="Web开发" title="Web开发" coords="159,185,267,215" />
-<area shape="rect" href="#" alt="编程规范" title="编程规范" coords="178,218,267,248" />
-<area shape="rect" target="_blank" href="https://code.google.com/p/go-wiki/wiki/CodeReviewComments"  alt="代码审查" title="代码审查" coords="58,218,156,244" />
-<area shape="rect" target="_blank" href="http://awesome-go.com/"  alt="框架" title="框架" coords="196,251,267,281" />
-<area shape="rect" target="_blank" href="http://beego.me/"  alt="beego" title="beego" coords="94,251,174,277" />
-<area shape="rect" href="#" alt="源代码组织" title="源代码组织" coords="616,118,755,151" />
-<area shape="rect" href="#" alt="GOROOT" title="GOROOT" coords="777,27,870,57" />
-<area shape="rect" href="#" alt="Linux:  /usr/local/go" title="Linux:  /usr/local/go" coords="892,0,1045,26" />
-<area shape="rect" href="#" alt="Windows:  C:\Go" title="Windows:  C:\Go" coords="892,29,1026,55" />
-<area shape="rect" href="#" alt="自定义安装路径" title="自定义安装路径" coords="892,58,1018,84" />
-<area shape="rect" href="#" alt="GOPATH" title="GOPATH" coords="777,114,868,144" />
-<area shape="rect" href="#" alt="bin" title="bin" coords="890,87,929,113" />
-<area shape="rect" href="#" alt="pkg" title="pkg" coords="890,116,934,142" />
-<area shape="rect" href="#" alt="src" title="src" coords="890,145,929,171" />
-<area shape="rect" href="#" alt="内部包" title="内部包" coords="777,174,848,204" />
-<area shape="rect" href="#" alt="外部包" title="外部包" coords="777,207,848,237" />
-<area shape="rect" href="#" alt="三方包" title="三方包" coords="777,240,848,270" />
-<area shape="rect" href="#" alt="命令使用" title="命令使用" coords="616,370,736,403" />
-<area shape="rect" href="#" alt="下载" title="下载" coords="758,273,812,303" />
-<area shape="rect" target="_blank" href="https://github.com/hyper-carrot/go_command_tutorial/blob/master/0.3.md"  alt="go get" title="go get" coords="834,273,914,299" />
-<area shape="rect" href="#" alt="格式化" title="格式化" coords="758,306,829,336" />
-<area shape="rect" target="_blank" href="https://github.com/hyper-carrot/go_command_tutorial/blob/master/0.10.md"  alt="gofmt" title="gofmt" coords="851,306,926,332" />
-<area shape="rect" href="#" alt="编译" title="编译" coords="758,339,812,369" />
-<area shape="rect" target="_blank" href="https://github.com/hyper-carrot/go_command_tutorial/blob/master/0.1.md"  alt="go build" title="go build" coords="834,339,925,365" />
-<area shape="rect" href="#" alt="安装" title="安装" coords="758,372,812,402" />
-<area shape="rect" target="_blank" href="https://github.com/hyper-carrot/go_command_tutorial/blob/master/0.2.md"  alt="go install" title="go install" coords="834,372,932,398" />
-<area shape="rect" href="#" alt="运行" title="运行" coords="758,405,812,435" />
-<area shape="rect" target="_blank" href="https://github.com/hyper-carrot/go_command_tutorial/blob/master/0.6.md"  alt="go run" title="go run" coords="834,405,915,431" />
-<area shape="rect" href="#" alt="测试" title="测试" coords="758,438,812,468" />
-<area shape="rect" target="_blank" href="https://github.com/hyper-carrot/go_command_tutorial/blob/master/0.7.md"  alt="go test" title="go test" coords="834,438,917,464" />
-<area shape="rect" href="#" alt="文档" title="文档" coords="758,471,812,501" />
-<area shape="rect" target="_blank" href="https://github.com/hyper-carrot/go_command_tutorial/blob/master/0.5.md"  alt="godoc" title="godoc" coords="834,471,913,497" />
-<area shape="rect" target="_blank" href="https://github.com/golang/go/wiki/IDEsAndTextEditorPlugins"  alt="集成开发环境" title="集成开发环境" coords="237,372,409,405" />
-<area shape="rect" target="_blank" href="https://github.com/visualfc/liteide"  alt="LiteIDE" title="LiteIDE" coords="122,284,215,314" />
-<area shape="rect" target="_blank" href="https://www.jetbrains.com/idea/"  alt="IDEA" title="IDEA" coords="138,329,215,359" />
-<area shape="rect" target="_blank" href="https://github.com/go-lang-plugin-org/go-lang-idea-plugin"  alt="Go插件" title="Go插件" coords="28,317,116,343" />
-<area shape="rect" target="_blank" href="http://yougg.github.io/static/gonote/IDEA_Shortcut.svg" alt="快捷键" title="快捷键" coords="34,346,116,372" />
-<area shape="rect" target="_blank" href="http://www.eclipse.org/"  alt="Eclipse" title="Eclipse" coords="122,375,215,405" />
-<area shape="rect" target="_blank" href="https://github.com/GoClipse/goclipse"  alt="GoClipse" title="GoClipse" coords="0,375,100,401" />
-<area shape="rect" target="_blank" href="https://github.com/astaxie/build-web-application-with-golang/blob/master/zh/01.4.md"  alt="Others" title="Others" coords="128,408,215,438" />
-<area shape="rect" href="#" alt="Playground" title="Playground" coords="111,453,215,483" />
-<area shape="rect" target="_blank" href="https://wide.b3log.org/playground"  alt="wide" title="wide" coords="22,441,89,467" />
-<area shape="rect" target="_blank" href="http://play.golang.org/"  alt="play" title="play" coords="24,470,89,496" />
+<area shape="rect" target="_blank" href="javascript:" alt="Golang学习" title="Golang学习" coords="414,263,577,335" />
+<area shape="rect" target="_blank" href="javascript:" alt="语言基础" title="语言基础" coords="294,176,392,209" />
+<area shape="rect" target="_blank" href="http://yougg.github.io/static/gonote/gogrammar.html" alt="语法详解" title="语法详解" coords="166,0,272,30" />
+<area shape="rect" target="_blank" href="https://go-zh.org/doc/effective_go.html" alt="Effective Go" title="Effective Go" coords="23,0,144,26" />
+<area shape="rect" target="_blank" href="javascript:" alt="语言规范" title="语言规范" coords="183,45,272,75" />
+<area shape="rect" target="_blank" href="https://golang.org/ref/spec" alt="English" title="English" coords="74,33,161,59" />
+<area shape="rect" target="_blank" href="https://go-zh.org/ref/spec.old" alt="中文" title="中文" coords="94,62,161,88" />
+<area shape="rect" target="_blank" href="javascript:" alt="标准库" title="标准库" coords="201,118,272,148" />
+<area shape="rect" target="_blank" href="https://golang.org/pkg/" alt="English Doc" title="English Doc" coords="60,91,179,117" />
+<area shape="rect" target="_blank" href="http://godoc.ml/" alt="中文文档1" title="中文文档1" coords="73,120,179,146" />
+<area shape="rect" target="_blank" href="http://studygolang.com/pkgdoc" alt="中文文档2" title="中文文档2" coords="73,149,179,175" />
+<area shape="rect" target="_blank" href="https://github.com/astaxie/build-web-application-with-golang/blob/master/zh/preface.md" alt="Web开发" title="Web开发" coords="164,178,272,208" />
+<area shape="rect" target="_blank" href="javascript:" alt="编程规范" title="编程规范" coords="183,211,272,241" />
+<area shape="rect" target="_blank" href="https://code.google.com/p/go-wiki/wiki/CodeReviewComments" alt="代码审查" title="代码审查" coords="63,211,161,237" />
+<area shape="rect" target="_blank" href="https://golanglibs.com/" alt="类库" title="类库" coords="201,300,272,330" />
+<area shape="rect" target="_blank" href="http://awesome-go.com/#web-frameworks" alt="Web" title="Web" coords="111,244,179,270" />
+<area shape="rect" target="_blank" href="http://awesome-go.com/#orm" alt="ORM" title="ORM" coords="108,273,179,299" />
+<area shape="rect" target="_blank" href="http://awesome-go.com/#logging" alt="Logging" title="Logging" coords="87,302,179,328" />
+<area shape="rect" target="_blank" href="http://awesome-go.com/#gui" alt="GUI" title="GUI" coords="118,331,179,357" />
+<area shape="rect" target="_blank" href="http://awesome-go.com/" alt="更多..." title="更多..." coords="99,360,179,386" />
+<area shape="rect" target="_blank" href="javascript:" alt="源代码组织" title="源代码组织" coords="599,106,716,139" />
+<area shape="rect" target="_blank" href="javascript:" alt="GOROOT" title="GOROOT" coords="738,31,831,61" />
+<area shape="rect" target="_blank" href="javascript:" alt="Linux:  /usr/local/go" title="Linux:  /usr/local/go" coords="853,4,1006,30" />
+<area shape="rect" target="_blank" href="javascript:" alt="Windows:  C:\Go" title="Windows:  C:\Go" coords="853,33,987,59" />
+<area shape="rect" target="_blank" href="javascript:" alt="自定义安装路径" title="自定义安装路径" coords="853,62,979,88" />
+<area shape="rect" target="_blank" href="https://blog.golang.org/organizing-go-code" alt="GOPATH" title="GOPATH" coords="738,118,847,148" />
+<area shape="rect" target="_blank" href="javascript:" alt="bin" title="bin" coords="869,91,908,117" />
+<area shape="rect" target="_blank" href="javascript:" alt="pkg" title="pkg" coords="869,120,913,146" />
+<area shape="rect" target="_blank" href="javascript:" alt="src" title="src" coords="869,149,908,175" />
+<area shape="rect" target="_blank" href="javascript:" alt="内部包" title="内部包" coords="738,178,809,208" />
+<area shape="rect" target="_blank" href="https://golang.org/doc/go1.4#internalpackages" alt="internal" title="internal" coords="831,178,919,204" />
+<area shape="rect" target="_blank" href="javascript:" alt="外部包" title="外部包" coords="738,211,809,241" />
+<area shape="rect" target="_blank" href="https://golang.org/s/go15vendor" alt="vendor" title="vendor" coords="831,211,915,237" />
+<area shape="rect" target="_blank" href="javascript:" alt="命令使用" title="命令使用" coords="599,402,697,435" />
+<area shape="rect" target="_blank" href="javascript:" alt="静态分析" title="静态分析" coords="719,305,808,335" />
+<area shape="rect" target="_blank" href="javascript:" alt="格式检查" title="格式检查" coords="830,245,910,271" />
+<area shape="rect" target="_blank" href="https://godoc.org/golang.org/x/tools/cmd/goimports" alt="goimports" title="goimports" coords="932,244,1030,268" />
+<area shape="rect" target="_blank" href="javascript:" alt="圈复杂度 " title="圈复杂度 " coords="830,275,914,301" />
+<area shape="rect" target="_blank" href="https://github.com/fzipp/gocyclo" alt="gocyclo" title="gocyclo" coords="936,274,1017,298" />
+<area shape="rect" target="_blank" href="javascript:" alt="编码样式" title="编码样式" coords="830,305,910,331" />
+<area shape="rect" target="_blank" href="https://github.com/golang/lint" alt="golint" title="golint" coords="932,304,1001,328" />
+<area shape="rect" target="_blank" href="javascript:" alt="逻辑缺陷" title="逻辑缺陷" coords="830,335,910,361" />
+<area shape="rect" target="_blank" href="https://github.com/hyper-carrot/go_command_tutorial/blob/master/0.11.md" alt="go vet" title="go vet" coords="932,334,1003,358" />
+<area shape="rect" target="_blank" href="javascript:" alt="语法语义" title="语法语义" coords="830,365,910,391" />
+<area shape="rect" target="_blank" href="https://godoc.org/golang.org/x/tools/cmd/gotype" alt="gotype" title="gotype" coords="932,364,1008,388" />
+<area shape="rect" target="_blank" href="javascript:" alt="下载" title="下载" coords="719,394,773,424" />
+<area shape="rect" target="_blank" href="https://github.com/hyper-carrot/go_command_tutorial/blob/master/0.3.md" alt="go get" title="go get" coords="795,394,875,420" />
+<area shape="rect" target="_blank" href="javascript:" alt="编译" title="编译" coords="719,427,773,457" />
+<area shape="rect" target="_blank" href="https://github.com/hyper-carrot/go_command_tutorial/blob/master/0.1.md" alt="go build" title="go build" coords="795,427,886,453" />
+<area shape="rect" target="_blank" href="javascript:" alt="安装" title="安装" coords="719,460,773,490" />
+<area shape="rect" target="_blank" href="https://github.com/hyper-carrot/go_command_tutorial/blob/master/0.2.md" alt="go install" title="go install" coords="795,460,893,486" />
+<area shape="rect" target="_blank" href="javascript:" alt="运行" title="运行" coords="719,493,773,523" />
+<area shape="rect" target="_blank" href="https://github.com/hyper-carrot/go_command_tutorial/blob/master/0.6.md" alt="go run" title="go run" coords="795,493,876,519" />
+<area shape="rect" target="_blank" href="javascript:" alt="测试" title="测试" coords="719,526,773,556" />
+<area shape="rect" target="_blank" href="https://github.com/hyper-carrot/go_command_tutorial/blob/master/0.7.md" alt="go test" title="go test" coords="795,526,878,552" />
+<area shape="rect" target="_blank" href="javascript:" alt="文档" title="文档" coords="719,559,773,589" />
+<area shape="rect" target="_blank" href="https://github.com/hyper-carrot/go_command_tutorial/blob/master/0.5.md" alt="godoc" title="godoc" coords="795,559,874,585" />
+<area shape="rect" target="_blank" href="https://github.com/golang/go/wiki/IDEsAndTextEditorPlugins" alt="集成开发环境" title="集成开发环境" coords="237,477,392,510" />
+<area shape="rect" target="_blank" href="https://github.com/visualfc/liteide" alt="LiteIDE" title="LiteIDE" coords="122,389,215,419" />
+<area shape="rect" target="_blank" href="https://www.jetbrains.com/idea/" alt="IDEA" title="IDEA" coords="138,434,215,464" />
+<area shape="rect" target="_blank" href="https://github.com/go-lang-plugin-org/go-lang-idea-plugin" alt="Go插件" title="Go插件" coords="28,422,116,448" />
+<area shape="rect" target="_blank" href="http://yougg.github.io/static/gonote/IDEA_Shortcut.svg" alt="快捷键" title="快捷键" coords="34,451,116,477" />
+<area shape="rect" target="_blank" href="http://www.eclipse.org/" alt="Eclipse" title="Eclipse" coords="122,480,215,510" />
+<area shape="rect" target="_blank" href="https://github.com/GoClipse/goclipse" alt="GoClipse" title="GoClipse" coords="0,480,100,506" />
+<area shape="rect" target="_blank" href="https://github.com/astaxie/build-web-application-with-golang/blob/master/zh/01.4.md" alt="Others" title="Others" coords="128,513,215,543" />
+<area shape="rect" target="_blank" href="javascript:" alt="Playground" title="Playground" coords="111,558,215,588" />
+<area shape="rect" target="_blank" href="https://wide.b3log.org/playground" alt="wide" title="wide" coords="22,546,89,572" />
+<area shape="rect" target="_blank" href="http://play.golang.org/" alt="play" title="play" coords="24,575,89,601" />
 </map>
 
 <div id="disqus_thread" style="margin: 0 auto; max-width: 800px;"></div>
