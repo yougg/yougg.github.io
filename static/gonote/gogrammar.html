@@ -38,7 +38,7 @@ audio:not([controls]){ display:none; height:0px; }
 html{ font-family:sans-serif; }
 a:focus{ outline:thin dotted; }
 a:active, a:hover{ outline:0px none; }
-h1{ font-size:2em; margin:0.67em 0px; }
+h1{ font-size:2em; margin:0.67em 0px; text-align: center; }
 abbr[title]{ border-bottom:1px dotted; }
 b, strong{ font-weight:bold; }
 dfn{ font-style:italic; }
@@ -63,7 +63,7 @@ input[type="checkbox"], input[type="radio"]{ padding:0px; }
 input[type="search"]{ -moz-box-sizing:content-box; }
 button::-moz-focus-inner, input::-moz-focus-inner{ border:0px none; padding:0px; }
 textarea{ overflow:auto; vertical-align:top; }
-table{ border-collapse:collapse; border-spacing:0px; }
+table{ border-collapse:collapse; border-spacing:0px; font-family:serif; }
 h1, h2, h3, h4, h5, h6{ line-height:1.1; margin-bottom:15px; margin-top:15px; }
 h1{ font-size:30px; }
 h2{ font-size:21px; }
@@ -307,7 +307,7 @@ pre .typename {
 <em>Date</em>：2015-06-26<br>
 <em>Version</em>：1.0<br>
 <em>Source</em>：<a href="https://github.com/yougg/gonote">Fork me on GitHub</a><br>
-<em>Blog</em>：<a href="http://yougg.github.io/static/gonote/gogrammar.html">yougg.github.io/static/gonote/gogrammar.html</a><br>
+<em>Blog</em>：<a href="http://yougg.github.io/static/gonote/gogrammar">yougg.github.io/static/gonote/gogrammar</a><br>
 <em>Description</em>：学习Go语言过程中记录下来的语法详解笔记，可以帮助新接触的朋友快速熟悉理解Golang，也可以作为查询手册翻阅。其中若有错误的地方还请指正，或者在GitHub直接fork修改。<br>
 本文使用LiteIDE的Markdown编辑器编写，博客为LiteIDE导出的单页html，可以直接保存离线使用。</p>
 
@@ -375,7 +375,7 @@ pre .typename {
 <li><p>使用<code>package</code>关键字声明当前源文件所在的包<br>
 包声明语句是所有源文件的第一行非注释语句<br>
 包名称中不能包含空白字符<br>
-包名必须与源文件所在的目录名称保持一致<br>
+包名推荐与源文件所在的目录名称保持一致<br>
 每个目录中只能定义一个package</p>
 
 <pre><code class="go">package cxy     // 声明一个名为“cxy”的包
@@ -398,7 +398,7 @@ pakcage a.b.c   // 错误
 <h3><span id="包的导入-import"><strong>包的导入 Import</strong></span></h3>
 
 <ul>
-<li><p>导入路径是对应包在<code>$GOROOT/pkg/$GOOS_$GOARCH/</code>、<code>$GOPATH/pkg/$GOOS_$GOARCH/</code>或<code>当前路径</code>中的相对路径</p>
+<li><p>导入包路径是对应包在<code>$GOROOT/pkg/$GOOS_$GOARCH/</code>、<code>$GOPATH/pkg/$GOOS_$GOARCH/</code>或<code>当前路径</code>中的相对路径</p>
 
 <pre><code class="go">// 导入$GOROOT/$GOOS_$GOARCH/中的相对路径包(官方标准库)
 import &quot;fmt&quot;
@@ -425,13 +425,13 @@ import &quot;../y0/z0&quot;   // y1包中导入子包 z0包
 import &quot;x0/y1/z1&quot;   // y2包中导入 z1包
 </code></pre>
 
-<p>错误的导入路径</p>
+<p>错误的导入包路径</p>
 
 <pre><code class="go">import a/b/c        // 错误
 import &quot;a.b.c&quot;      // 错误
 import a.b.c        // 错误
 </code></pre></li>
-<li><p>用圆括号组合导入包</p>
+<li><p>用圆括号组合导入包路径</p>
 
 <pre><code class="go">import (&quot;fmt&quot;; &quot;math&quot;)
 
@@ -451,17 +451,31 @@ import (
 
     m &quot;math&quot;       // 将导入的包math定义别名为 m
 )
-</code></pre>
-
-<p>引用包名与导入路径的最后一个包目录名称一致</p>
+</code></pre></li>
+<li><p>引用包名是导入包路径的最后一个目录中定义的唯一包的名称<br>
+定义的包名与目录同名时，直接引用即可</p>
 
 <pre><code class="go">// 引用普通名称的导入包
 c.hello()
 
 // 引用定义别名的包
 格式化.Println(m.Pi)
+</code></pre>
+
+<p>定义的包名与所在目录名称不同时，导入包路径仍为目录所在路径，引用包名为定义的包名称</p>
+
+<pre><code class="go">// 源文件路径: $GOPATH/src/proj/my-util/util.go
+// 定义包名: util
+package util
+</code></pre>
+
+<pre><code class="go">// 导入util包路径
+import &quot;proj/my-util&quot;
+
+// 引用util包
+util.doSomething()
 </code></pre></li>
-<li><p>静态导入，在导入的包名之前增加一个小数点<code>.</code></p>
+<li><p>静态导入，在导入的包路径之前增加一个小数点<code>.</code></p>
 
 <pre><code class="go">// 类似C中的include 或Java中的import static
 import . &quot;fmt&quot;
@@ -469,7 +483,7 @@ import . &quot;fmt&quot;
 // 然后像使用本包元素一样使用fmt包中可见的元素，不需要通过包名引用
 Println(&quot;no need package name&quot;)
 </code></pre></li>
-<li><p>导入包但不直接使用该包，在导入的包名之前增加一个下划线<code>_</code></p>
+<li><p>导入包但不直接使用该包，在导入的包路径之前增加一个下划线<code>_</code></p>
 
 <pre><code class="go">// 如果当前go源文件中未引用过log包，将会导致编译错误
 import &quot;log&quot;    // 错误
@@ -513,7 +527,7 @@ $GOPATH/src<br>
 
 <p>x0，y0，z1包中可以访问internal，z0包中的可见元素<br>
 x1，y1包中不能导入internal，z0包</p></li>
-<li><p>规范导入路径Canonical import paths<code>Go 1.4</code><br>
+<li><p>规范导入包路径Canonical import paths<code>Go 1.4</code><br>
 包声明语句后面添加标记注释，用于标识这个包的规范导入路径。</p>
 
 <pre><code class="go">package pdf // import &quot;rsc.io/pdf&quot;
@@ -1821,8 +1835,9 @@ func main() {
 <h3><span id="通道选择-select"><strong>通道选择 select</strong></span></h3>
 
 <ul>
-<li><p><code>select</code>用于当前goroutine从一组可能的通讯中选择一个进一步处理。<br>
-如果任意一个通讯都可以进一步处理，则从中随机选择一个，执行对应的语句。否则在没有默认分支(default case)时，select语句则会阻塞，直到其中一个通讯完成。<br>
+<li><p><code>select</code>用于当前goroutine从一组可能的通讯中选择一个进一步处理，<br>
+如果任意一个通讯都可以进一步处理，则从中随机选择一个，执行对应的语句，<br>
+否则在没有默认分支(default case)时，select语句则会阻塞，直到其中一个通讯完成。<br>
 select 的 case 里的操作语句只能是IO操作</p>
 
 <pre><code class="go">ch1, ch2 := make(chan int), make(chan int)
@@ -2717,7 +2732,7 @@ ok      /home/cxy/go/src/testgo        1.922s</p>
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = 'yougg';
-    
+
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
