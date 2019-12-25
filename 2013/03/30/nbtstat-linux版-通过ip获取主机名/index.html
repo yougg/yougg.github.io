@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="yougg">
+<meta name="keywords" content="">
+<meta name="description" content="/* NETBIOS name lookup tool - by eSDee of Netric (www.netric.org) * yeh.. i was really bored :-) * * [esdee@pant0ffel] gcc -o nbtstat nbtstat.c &amp;&amp; ./nbtstat 10.0.0.4 * Request sent, waiting for reply... [ctrl-c to abort] * Name Type * ---------------------------------- * HOEPELKO-ESPU0B &lt;00&gt; UNIQUE Workstation Service * HOEPELKO-ESPU0B &lt;20&gt; UNIQUE File Server Service * WORKGROUP &lt;00&gt; GROUP Domain Name * WORKGROUP &lt;1e&gt; GROUP Browser Service Elections * HOEPELKO-ESPU0B">
+
+
+<meta property="og:description" content="/* NETBIOS name lookup tool - by eSDee of Netric (www.netric.org) * yeh.. i was really bored :-) * * [esdee@pant0ffel] gcc -o nbtstat nbtstat.c &amp;&amp; ./nbtstat 10.0.0.4 * Request sent, waiting for reply... [ctrl-c to abort] * Name Type * ---------------------------------- * HOEPELKO-ESPU0B &lt;00&gt; UNIQUE Workstation Service * HOEPELKO-ESPU0B &lt;20&gt; UNIQUE File Server Service * WORKGROUP &lt;00&gt; GROUP Domain Name * WORKGROUP &lt;1e&gt; GROUP Browser Service Elections * HOEPELKO-ESPU0B">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nbtstat Linux版, 通过IP获取主机名">
+<meta name="twitter:title" content="nbtstat Linux版, 通过IP获取主机名">
+<meta property="og:url" content="https://yougg.github.io/2013/03/30/nbtstat-linux%E7%89%88-%E9%80%9A%E8%BF%87ip%E8%8E%B7%E5%8F%96%E4%B8%BB%E6%9C%BA%E5%90%8D/">
+<meta property="twitter:url" content="https://yougg.github.io/2013/03/30/nbtstat-linux%E7%89%88-%E9%80%9A%E8%BF%87ip%E8%8E%B7%E5%8F%96%E4%B8%BB%E6%9C%BA%E5%90%8D/">
+<meta property="og:site_name" content="Yougg&#39;s Blog">
+<meta property="og:description" content="/* NETBIOS name lookup tool - by eSDee of Netric (www.netric.org) * yeh.. i was really bored :-) * * [esdee@pant0ffel] gcc -o nbtstat nbtstat.c &amp;&amp; ./nbtstat 10.0.0.4 * Request sent, waiting for reply... [ctrl-c to abort] * Name Type * ---------------------------------- * HOEPELKO-ESPU0B &lt;00&gt; UNIQUE Workstation Service * HOEPELKO-ESPU0B &lt;20&gt; UNIQUE File Server Service * WORKGROUP &lt;00&gt; GROUP Domain Name * WORKGROUP &lt;1e&gt; GROUP Browser Service Elections * HOEPELKO-ESPU0B">
+<meta name="twitter:description" content="/* NETBIOS name lookup tool - by eSDee of Netric (www.netric.org) * yeh.. i was really bored :-) * * [esdee@pant0ffel] gcc -o nbtstat nbtstat.c &amp;&amp; ./nbtstat 10.0.0.4 * Request sent, waiting for reply... [ctrl-c to abort] * Name Type * ---------------------------------- * HOEPELKO-ESPU0B &lt;00&gt; UNIQUE Workstation Service * HOEPELKO-ESPU0B &lt;20&gt; UNIQUE File Server Service * WORKGROUP &lt;00&gt; GROUP Domain Name * WORKGROUP &lt;1e&gt; GROUP Browser Service Elections * HOEPELKO-ESPU0B">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2013-03-30T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2013-03-30T00:00:00">
+  
+  
+  
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png">
+  <meta property="twitter:image" content="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png">
+
+
+    <title>nbtstat Linux版, 通过IP获取主机名</title>
+
+    <link rel="icon" href="https://yougg.github.io/favicon.png">
+    
+
+    
+      <link rel="publisher" href="https://plus.google.com/&#43;caixiang">
+    
+
+    <link rel="canonical" href="https://yougg.github.io/2013/03/30/nbtstat-linux%E7%89%88-%E9%80%9A%E8%BF%87ip%E8%8E%B7%E5%8F%96%E4%B8%BB%E6%9C%BA%E5%90%8D/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://yougg.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  href="https://yougg.github.io/css/fruity.css">
+      
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://yougg.github.io/">Yougg&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://yougg.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://yougg.github.io/#about">
+          <img class="sidebar-profile-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">yougg</h4>
+        
+          <h5 class="sidebar-profile-bio">和咸鱼没有什么区别的偶尔写<del><em>不想写</em></del>博客的码农</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/yougg" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/9087310/yougg" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      nbtstat Linux版, 通过IP获取主机名
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2013-03-30T00:00:00&#43;08:00">
+        
+  
+  
+  
+  
+    2013年3月30日 00时00分00秒
+  
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cm">/* NETBIOS name lookup tool - by eSDee of Netric (www.netric.org)
+</span><span class="cm"> * yeh.. i was really bored :-)
+</span><span class="cm"> *
+</span><span class="cm"> * [esdee@pant0ffel] gcc -o nbtstat nbtstat.c &amp;&amp; ./nbtstat 10.0.0.4
+</span><span class="cm"> * Request sent, waiting for reply... [ctrl-c to abort]
+</span><span class="cm"> * Name                Type
+</span><span class="cm"> * ----------------------------------
+</span><span class="cm"> * HOEPELKO-ESPU0B &lt;00&gt; UNIQUE Workstation Service
+</span><span class="cm"> * HOEPELKO-ESPU0B &lt;20&gt; UNIQUE File Server Service
+</span><span class="cm"> * WORKGROUP       &lt;00&gt; GROUP  Domain Name
+</span><span class="cm"> * WORKGROUP       &lt;1e&gt; GROUP  Browser Service Elections
+</span><span class="cm"> * HOEPELKO-ESPU0B &lt;03&gt; UNIQUE Messenger Service
+</span><span class="cm"> * ADMINISTRATOR   &lt;03&gt; UNIQUE Messenger Service
+</span><span class="cm"> * WORKGROUP       &lt;1d&gt; UNIQUE Master Browser
+</span><span class="cm"> * ..__MSBROWSE__. &lt;01&gt; GROUP  Master Browser
+</span><span class="cm"> * MAC-addres = 00-02-a5-e1-fd-b7
+</span><span class="cm"> * [/home/esdee/nbtstat] */</span>
+
+<span class="cp">#include</span>  <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span>  <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span>  <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span>  <span class="cpf">&lt;sys/socket.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span>  <span class="cpf">&lt;netinet/in.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span>  <span class="cpf">&lt;netdb.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span>  <span class="cpf">&lt;unistd.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">char</span> <span class="n">nbtname</span><span class="p">[]</span><span class="o">=</span> <span class="cm">/* netbios name packet */</span>
+<span class="p">{</span>
+	<span class="mh">0x80</span><span class="p">,</span><span class="mh">0xf0</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x10</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x01</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span>
+	<span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x20</span><span class="p">,</span><span class="mh">0x43</span><span class="p">,</span><span class="mh">0x4b</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span>
+	<span class="mh">0x41</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span>
+	<span class="mh">0x41</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span>
+	<span class="mh">0x41</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span>
+	<span class="mh">0x41</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x21</span><span class="p">,</span>
+	<span class="mh">0x00</span><span class="p">,</span><span class="mh">0x01</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">display</span><span class="p">();</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+	<span class="kt">char</span> <span class="n">temp</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
+
+	<span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">recv</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+	<span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">ptr</span><span class="p">;</span>
+
+	<span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">server</span><span class="p">;</span>
+	<span class="k">struct</span> <span class="n">hostent</span> <span class="o">*</span><span class="n">hp</span><span class="p">;</span>
+
+	<span class="kt">int</span> <span class="n">s</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">total</span><span class="p">;</span>
+
+	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">nb_num</span><span class="p">;</span>
+	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">nb_type</span><span class="p">;</span>
+
+	<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+	<span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&#34;Usage: %s &lt;hostname&gt;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+		<span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="k">if</span> <span class="p">((</span><span class="n">hp</span> <span class="o">=</span> <span class="n">gethostbyname</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>  <span class="p">{</span>
+		<span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="s">&#34;Error: Unable to resolve %s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+		<span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="k">if</span> <span class="p">((</span><span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">PF_INET</span><span class="p">,</span> <span class="n">SOCK_DGRAM</span><span class="p">,</span> <span class="mi">17</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>  <span class="p">{</span> <span class="cm">/* 17 = UDP */</span>
+		<span class="n">perror</span><span class="p">(</span><span class="s">&#34;socket&#34;</span><span class="p">);</span>
+		<span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="n">memset</span><span class="p">(</span><span class="n">recv</span><span class="p">,</span><span class="mh">0x0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">recv</span><span class="p">));</span>
+
+	<span class="n">bzero</span><span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">server</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">server</span><span class="p">));</span>
+	<span class="n">bcopy</span><span class="p">(</span><span class="n">hp</span><span class="o">-&gt;</span><span class="n">h_addr</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">server</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">,</span> <span class="n">hp</span><span class="o">-&gt;</span><span class="n">h_length</span><span class="p">);</span>
+
+	<span class="n">server</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">hp</span><span class="o">-&gt;</span><span class="n">h_addrtype</span><span class="p">;</span>
+	<span class="n">server</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="mi">137</span><span class="p">);</span> <span class="cm">/* netbios-ns */</span>
+
+	<span class="k">if</span> <span class="p">(</span><span class="n">sendto</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">nbtname</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">nbtname</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">server</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">server</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>  <span class="p">{</span>
+		<span class="n">perror</span><span class="p">(</span><span class="s">&#34;sendto&#34;</span><span class="p">);</span>
+		<span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+		<span class="n">fprintf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="s">&#34;Request sent, waiting for reply... [ctrl-c to abort]</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+		<span class="n">read</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">recv</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">recv</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+
+		<span class="n">fprintf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span><span class="s">&#34;Name                Type</span><span class="se">\n</span><span class="s">&#34;</span>
+					   <span class="s">&#34;----------------------------------</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+		<span class="n">ptr</span><span class="o">=</span><span class="n">recv</span><span class="o">+</span><span class="mi">57</span><span class="p">;</span>
+		 <span class="n">total</span><span class="o">=*</span><span class="p">(</span><span class="n">ptr</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span> <span class="cm">/* max names */</span>
+
+		<span class="k">while</span><span class="p">(</span><span class="n">ptr</span> <span class="o">&lt;</span> <span class="n">recv</span> <span class="o">+</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">recv</span><span class="p">))</span> <span class="p">{</span>
+			<span class="n">memset</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span><span class="mh">0x0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">temp</span><span class="p">));</span>
+			<span class="n">strncpy</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span> <span class="n">ptr</span><span class="p">,</span> <span class="mi">15</span><span class="p">);</span>         <span class="cm">/* copies the name into temp */</span>
+
+			<span class="n">ptr</span><span class="o">+=</span><span class="mi">15</span><span class="p">;</span>
+			<span class="n">nb_num</span>  <span class="o">=</span> <span class="o">*</span><span class="n">ptr</span><span class="p">;</span>
+			<span class="n">nb_type</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">ptr</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="n">ptr</span><span class="o">+=</span><span class="mi">3</span><span class="p">;</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="n">total</span><span class="p">)</span> <span class="p">{</span>          <span class="cm">/* max names reached */</span>
+				<span class="n">ptr</span><span class="o">-=</span><span class="mi">19</span><span class="p">;</span>         <span class="cm">/* sets the pointer to the mac_addres field */</span>
+				<span class="n">fprintf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">MAC-addres = %02x-%02x-%02x-%02x-%02x-%02x</span><span class="se">\n\n</span><span class="s">&#34;</span><span class="p">,</span>
+						   <span class="o">*</span><span class="p">(</span><span class="n">ptr</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="o">*</span><span class="p">(</span><span class="n">ptr</span> <span class="o">+</span> <span class="mi">2</span><span class="p">),</span> <span class="o">*</span><span class="p">(</span><span class="n">ptr</span> <span class="o">+</span> <span class="mi">3</span><span class="p">),</span>
+						   <span class="o">*</span><span class="p">(</span><span class="n">ptr</span> <span class="o">+</span> <span class="mi">4</span><span class="p">),</span> <span class="o">*</span><span class="p">(</span><span class="n">ptr</span> <span class="o">+</span> <span class="mi">5</span><span class="p">),</span> <span class="o">*</span><span class="p">(</span><span class="n">ptr</span> <span class="o">+</span> <span class="mi">6</span><span class="p">));</span>
+				<span class="k">break</span><span class="p">;</span>
+			<span class="p">}</span>
+
+			<span class="n">display</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span><span class="n">nb_num</span><span class="p">,</span><span class="n">nb_type</span><span class="p">);</span>
+			<span class="n">i</span><span class="o">++</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="n">close</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+	<span class="k">return</span>  <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">display</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">name</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">number</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">type</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="kt">char</span> <span class="n">description</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+
+	<span class="n">memset</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="mh">0x0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">));</span>
+
+	<span class="cm">/* list taken from http://support.microsoft.com/default.aspx?scid=KB;EN-US;q163409&amp; */</span>
+	<span class="cm">/* 0x04 - UNIQUE */</span>
+	<span class="cm">/* 0x80 - GROUP */</span>
+
+	<span class="k">switch</span><span class="p">(</span><span class="n">number</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">case</span> <span class="mh">0x00</span><span class="o">:</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">type</span> <span class="o">&lt;=</span> <span class="mh">0x80</span><span class="p">)</span> <span class="p">{</span>
+					<span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;UNIQUE Workstation Service&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+					<span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;GROUP  Domain Name&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="p">}</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="k">case</span> <span class="mh">0x01</span><span class="o">:</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">type</span> <span class="o">&lt;=</span> <span class="mh">0x80</span><span class="p">)</span> <span class="p">{</span>
+					<span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;UNIQUE Messenger Service&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+					<span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;GROUP  Master Browser&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="p">}</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="k">case</span> <span class="mh">0x03</span><span class="o">:</span>
+			<span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;UNIQUE Messenger Service&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="k">case</span> <span class="mh">0x06</span><span class="o">:</span>
+			<span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;UNIQUE RAS Server Service&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="k">case</span> <span class="mh">0x1b</span><span class="o">:</span>
+			<span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;UNIQUE Domain Master Browser&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="k">case</span> <span class="mh">0x1c</span><span class="o">:</span>
+			<span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;GROUP  Domain Controllers&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="k">case</span> <span class="mh">0x1d</span><span class="o">:</span>
+			<span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;UNIQUE Master Browser&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="k">case</span> <span class="mh">0x1e</span><span class="o">:</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">type</span> <span class="o">&gt;=</span> <span class="mh">0x80</span><span class="p">)</span> <span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;GROUP  Browser Service Elections&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="k">case</span> <span class="mh">0x1F</span><span class="o">:</span>
+			<span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;UNIQUE NetDDE Service&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="k">case</span> <span class="mh">0x20</span><span class="o">:</span>
+			<span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;UNIQUE File Server Service&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="k">case</span> <span class="mh">0x21</span><span class="o">:</span>
+			<span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;UNIQUE RAS Client Service&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="k">case</span> <span class="mh">0x22</span><span class="o">:</span>
+			<span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;UNIQUE Microsoft Exchange Interchange(MSMail Connector)&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="k">case</span> <span class="mh">0x23</span><span class="o">:</span>
+			<span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;UNIQUE Microsoft Exchange Store&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="k">case</span> <span class="mh">0x24</span><span class="o">:</span>
+			<span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;UNIQUE Microsoft Exchange Directory&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="k">case</span> <span class="mh">0x30</span><span class="o">:</span>
+			<span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;UNIQUE Modem Sharing Server Service&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="k">case</span> <span class="mh">0x31</span><span class="o">:</span>
+			<span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;UNIQUE Modem Sharing Client Service&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="k">case</span> <span class="mh">0x42</span><span class="o">:</span>
+			<span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;UNIQUE Mcaffee Anti-Virus&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="k">case</span> <span class="mh">0x43</span><span class="o">:</span>
+			<span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;UNIQUE SMS Clients Remote Control&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="k">case</span> <span class="mh">0x44</span><span class="o">:</span>
+			<span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;UNIQUE SMS Administrators Remote Control Tool&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="k">case</span> <span class="mh">0x45</span><span class="o">:</span>
+			<span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;UNIQUE SMS Clients Remote Chat&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="k">case</span> <span class="mh">0x46</span><span class="o">:</span>
+			<span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;UNIQUE SMS Clients Remote Transfer&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="k">case</span> <span class="mh">0x4C</span><span class="o">:</span>
+			<span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;UNIQUE DEC Pathworks TCPIP service on Windows NT&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="k">case</span> <span class="mh">0x52</span><span class="o">:</span>
+			<span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;UNIQUE DEC Pathworks TCPIP service on Windows NT&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="k">case</span> <span class="mh">0x6a</span><span class="o">:</span>
+			<span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;UNIQUE Microsoft Exchange IMC&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="k">case</span> <span class="mh">0x87</span><span class="o">:</span>
+			<span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;UNIQUE Microsoft Exchange MTA&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="k">case</span> <span class="mh">0xbe</span><span class="o">:</span>
+			<span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;UNIQUE Network Monitor Agent&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="k">case</span> <span class="mh">0xbf</span><span class="o">:</span>
+			<span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;UNIQUE Network Monitor Application&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="k">default</span><span class="o">:</span>
+			<span class="n">strncpy</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="s">&#34;UNIQUE Unknown&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">description</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">strlen</span><span class="p">(</span><span class="n">name</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="cm">/* replaces weird chars with dots */</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">31</span> <span class="o">||</span> <span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">126</span><span class="p">)</span> <span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;.&#39;</span><span class="p">;</span>
+
+	<span class="k">if</span> <span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="n">fprintf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="s">&#34;%s &lt;%02x&gt; %s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">number</span><span class="p">,</span> <span class="n">description</span><span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="p">}</span></code></pre></div>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2013/03/30/go-grammar/" data-tooltip="Go grammar">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2013/03/13/jlabel-%E6%96%87%E6%9C%AC%E5%86%85%E5%AE%B9%E8%87%AA%E5%8A%A8%E6%8D%A2%E8%A1%8C/" data-tooltip="JLabel 文本内容自动换行">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://yougg.github.io/2013/03/30/nbtstat-linux%E7%89%88-%E9%80%9A%E8%BF%87ip%E8%8E%B7%E5%8F%96%E4%B8%BB%E6%9C%BA%E5%90%8D/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://yougg.github.io/2013/03/30/nbtstat-linux%E7%89%88-%E9%80%9A%E8%BF%87ip%E8%8E%B7%E5%8F%96%E4%B8%BB%E6%9C%BA%E5%90%8D/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://yougg.github.io/2013/03/30/nbtstat-linux%E7%89%88-%E9%80%9A%E8%BF%87ip%E8%8E%B7%E5%8F%96%E4%B8%BB%E6%9C%BA%E5%90%8D/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 <a href="https://github.com/yougg">yougg</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2013/03/30/go-grammar/" data-tooltip="Go grammar">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2013/03/13/jlabel-%E6%96%87%E6%9C%AC%E5%86%85%E5%AE%B9%E8%87%AA%E5%8A%A8%E6%8D%A2%E8%A1%8C/" data-tooltip="JLabel 文本内容自动换行">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://yougg.github.io/2013/03/30/nbtstat-linux%E7%89%88-%E9%80%9A%E8%BF%87ip%E8%8E%B7%E5%8F%96%E4%B8%BB%E6%9C%BA%E5%90%8D/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://yougg.github.io/2013/03/30/nbtstat-linux%E7%89%88-%E9%80%9A%E8%BF%87ip%E8%8E%B7%E5%8F%96%E4%B8%BB%E6%9C%BA%E5%90%8D/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://yougg.github.io/2013/03/30/nbtstat-linux%E7%89%88-%E9%80%9A%E8%BF%87ip%E8%8E%B7%E5%8F%96%E4%B8%BB%E6%9C%BA%E5%90%8D/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fyougg.github.io%2F2013%2F03%2F30%2Fnbtstat-linux%25E7%2589%2588-%25E9%2580%259A%25E8%25BF%2587ip%25E8%258E%25B7%25E5%258F%2596%25E4%25B8%25BB%25E6%259C%25BA%25E5%2590%258D%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fyougg.github.io%2F2013%2F03%2F30%2Fnbtstat-linux%25E7%2589%2588-%25E9%2580%259A%25E8%25BF%2587ip%25E8%258E%25B7%25E5%258F%2596%25E4%25B8%25BB%25E6%259C%25BA%25E5%2590%258D%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fyougg.github.io%2F2013%2F03%2F30%2Fnbtstat-linux%25E7%2589%2588-%25E9%2580%259A%25E8%25BF%2587ip%25E8%258E%25B7%25E5%258F%2596%25E4%25B8%25BB%25E6%259C%25BA%25E5%2590%258D%2F">
+          <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+    
+    <h4 id="about-card-name">yougg</h4>
+    
+      <div id="about-card-bio">和咸鱼没有什么区别的偶尔写<del><em>不想写</em></del>博客的码农</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        搬砖
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        中国 深圳
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://yougg.github.io/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://yougg.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/yougg.github.io\/2013\/03\/30\/nbtstat-linux%E7%89%88-%E9%80%9A%E8%BF%87ip%E8%8E%B7%E5%8F%96%E4%B8%BB%E6%9C%BA%E5%90%8D\/';
+          
+            this.page.identifier = '\/2013\/03\/30\/nbtstat-linux%E7%89%88-%E9%80%9A%E8%BF%87ip%E8%8E%B7%E5%8F%96%E4%B8%BB%E6%9C%BA%E5%90%8D\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'yougg';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

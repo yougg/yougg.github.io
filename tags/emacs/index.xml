@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Emacs on Yougg&#39;s Blog</title>
+    <link>https://yougg.github.io/tags/emacs/</link>
+    <description>Recent content in Emacs on Yougg&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 24 Nov 2010 12:25:55 +0800</lastBuildDate>
+    
+	<atom:link href="https://yougg.github.io/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Emacs快捷键</title>
+      <link>https://yougg.github.io/2010/11/24/emacs%E5%BF%AB%E6%8D%B7%E9%94%AE/</link>
+      <pubDate>Wed, 24 Nov 2010 12:25:55 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2010/11/24/emacs%E5%BF%AB%E6%8D%B7%E9%94%AE/</guid>
+      <description>文件操作 C-x C-f 打开文件,出现提示时输入/username@host:filepath可编辑FTP文件 C-x C-v 打开一个文件，取代当前缓冲区 C-x C-s 保存文</description>
+    </item>
+    
+  </channel>
+</rss>

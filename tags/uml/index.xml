@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>UML on Yougg&#39;s Blog</title>
+    <link>https://yougg.github.io/tags/uml/</link>
+    <description>Recent content in UML on Yougg&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 25 Nov 2017 10:48:48 +0800</lastBuildDate>
+    
+	<atom:link href="https://yougg.github.io/tags/uml/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GoLand中使用PlantUML生成Go UML图</title>
+      <link>https://yougg.github.io/2017/11/25/goland%E4%B8%AD%E4%BD%BF%E7%94%A8plantuml%E7%94%9F%E6%88%90go-uml%E5%9B%BE/</link>
+      <pubDate>Sat, 25 Nov 2017 10:48:48 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/11/25/goland%E4%B8%AD%E4%BD%BF%E7%94%A8plantuml%E7%94%9F%E6%88%90go-uml%E5%9B%BE/</guid>
+      <description>确保如下软件已安装并添加到PATH中可执行 Java Golang GoLand Graphviz GoLand中安装PlantUML插件 点击菜单 File -&amp;gt; Settings -&amp;gt; Plugins -&amp;gt; Browse repositories... 搜索框输入PlantUML，</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IdleFish on Yougg&#39;s Blog</title>
+    <link>https://yougg.github.io/tags/idlefish/</link>
+    <description>Recent content in IdleFish on Yougg&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 04 Sep 2017 17:30:57 +0800</lastBuildDate>
+    
+	<atom:link href="https://yougg.github.io/tags/idlefish/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>恢复闲鱼网页版的搜索框</title>
+      <link>https://yougg.github.io/2017/09/04/%E6%81%A2%E5%A4%8D%E9%97%B2%E9%B1%BC%E7%BD%91%E9%A1%B5%E7%89%88%E7%9A%84%E6%90%9C%E7%B4%A2%E6%A1%86/</link>
+      <pubDate>Mon, 04 Sep 2017 17:30:57 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/09/04/%E6%81%A2%E5%A4%8D%E9%97%B2%E9%B1%BC%E7%BD%91%E9%A1%B5%E7%89%88%E7%9A%84%E6%90%9C%E7%B4%A2%E6%A1%86/</guid>
+      <description>参考链接： 闲鱼搜索框</description>
+    </item>
+    
+  </channel>
+</rss>

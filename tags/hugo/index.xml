@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on Yougg&#39;s Blog</title>
+    <link>https://yougg.github.io/tags/hugo/</link>
+    <description>Recent content in Hugo on Yougg&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 27 Jun 2017 14:36:16 +0800</lastBuildDate>
+    
+	<atom:link href="https://yougg.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>我的静态博客搭建流程</title>
+      <link>https://yougg.github.io/2017/06/27/%E6%88%91%E7%9A%84%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/</link>
+      <pubDate>Tue, 27 Jun 2017 14:36:16 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/06/27/%E6%88%91%E7%9A%84%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/</guid>
+      <description>根据GitHub静态博客向导: https://pages.github.com/ 在GitHub创建名为 username.github.io 的空仓库 username 为自己的GitHub账号，此处我的账号为yougg 如果之前已经创建过个人博</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="yougg">
+<meta name="keywords" content="">
+<meta name="description" content="环境Ubuntu 14.04 # 安装docker sudo apt-get install docker.io # 获取golang的Android开发环境镜像 sudo docker pull golang/mobile # 查看下载完成的镜像 sudo docker images # REPOSITORY TAG IMAGE ID CREATED VIRTUAL SIZE">
+
+
+<meta property="og:description" content="环境Ubuntu 14.04 # 安装docker sudo apt-get install docker.io # 获取golang的Android开发环境镜像 sudo docker pull golang/mobile # 查看下载完成的镜像 sudo docker images # REPOSITORY TAG IMAGE ID CREATED VIRTUAL SIZE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通过golang官方的docker镜像构建历史, 查看Android开发环境的搭建流程">
+<meta name="twitter:title" content="通过golang官方的docker镜像构建历史, 查看Android开发环境的搭建流程">
+<meta property="og:url" content="https://yougg.github.io/2014/12/31/%E9%80%9A%E8%BF%87golang%E5%AE%98%E6%96%B9%E7%9A%84docker%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA%E5%8E%86%E5%8F%B2-%E6%9F%A5%E7%9C%8Bandroid%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/">
+<meta property="twitter:url" content="https://yougg.github.io/2014/12/31/%E9%80%9A%E8%BF%87golang%E5%AE%98%E6%96%B9%E7%9A%84docker%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA%E5%8E%86%E5%8F%B2-%E6%9F%A5%E7%9C%8Bandroid%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/">
+<meta property="og:site_name" content="Yougg&#39;s Blog">
+<meta property="og:description" content="环境Ubuntu 14.04 # 安装docker sudo apt-get install docker.io # 获取golang的Android开发环境镜像 sudo docker pull golang/mobile # 查看下载完成的镜像 sudo docker images # REPOSITORY TAG IMAGE ID CREATED VIRTUAL SIZE">
+<meta name="twitter:description" content="环境Ubuntu 14.04 # 安装docker sudo apt-get install docker.io # 获取golang的Android开发环境镜像 sudo docker pull golang/mobile # 查看下载完成的镜像 sudo docker images # REPOSITORY TAG IMAGE ID CREATED VIRTUAL SIZE">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2014-12-31T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2014-12-31T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Document">
+    
+  
+  
+    
+      <meta property="article:tag" content="Golang">
+    
+      <meta property="article:tag" content="Docker">
+    
+      <meta property="article:tag" content="Android">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png">
+  <meta property="twitter:image" content="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png">
+
+
+    <title>通过golang官方的docker镜像构建历史, 查看Android开发环境的搭建流程</title>
+
+    <link rel="icon" href="https://yougg.github.io/favicon.png">
+    
+
+    
+      <link rel="publisher" href="https://plus.google.com/&#43;caixiang">
+    
+
+    <link rel="canonical" href="https://yougg.github.io/2014/12/31/%E9%80%9A%E8%BF%87golang%E5%AE%98%E6%96%B9%E7%9A%84docker%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA%E5%8E%86%E5%8F%B2-%E6%9F%A5%E7%9C%8Bandroid%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://yougg.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  href="https://yougg.github.io/css/fruity.css">
+      
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://yougg.github.io/">Yougg&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://yougg.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://yougg.github.io/#about">
+          <img class="sidebar-profile-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">yougg</h4>
+        
+          <h5 class="sidebar-profile-bio">和咸鱼没有什么区别的偶尔写<del><em>不想写</em></del>博客的码农</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/yougg" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/9087310/yougg" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      通过golang官方的docker镜像构建历史, 查看Android开发环境的搭建流程
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2014-12-31T00:00:00&#43;08:00">
+        
+  
+  
+  
+  
+    2014年12月31日 00时00分00秒
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://yougg.github.io/categories/document">Document</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>环境Ubuntu 14.04</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 安装docker</span>
+sudo apt-get install docker.io
+<span class="c1"># 获取golang的Android开发环境镜像</span>
+sudo docker pull golang/mobile
+<span class="c1"># 查看下载完成的镜像</span>
+sudo docker images
+<span class="c1"># REPOSITORY    TAG     IMAGE ID       CREATED        VIRTUAL SIZE</span>
+<span class="c1"># golang/mobile latest  c0c94ec4d34c   32 hours ago   3.013 GB</span>
+<span class="c1"># 查看镜像的构建历史</span>
+sudo docker <span class="nb">history</span> golang/mobile
+<span class="c1"># IMAGE         CREATED       CREATED BY                                      SIZE</span>
+<span class="c1"># c0c94ec4d34c  32 hours ago  /bin/sh -c #(nop) WORKDIR //src/golang.org/x/   0 B</span>
+<span class="c1"># 93037fa1b597  32 hours ago  /bin/sh -c curl -L https://github.com/golang/   259.6 MB</span>
+<span class="c1"># d3fed9f193ad  32 hours ago  /bin/sh -c #(nop) ENV PATH=/usr/local/sbin:/u   0 B</span>
+<span class="c1"># 8d8c5b65f466  32 hours ago  /bin/sh -c #(nop) ENV GOPATH=/                  0 B</span>
+<span class="c1"># 75829fddcc8b  32 hours ago  /bin/sh -c #(nop) ENV GOROOT=/go                0 B</span>
+<span class="c1"># 9e1c49be1897  32 hours ago  /bin/sh -c #(nop) ENV PATH=/usr/local/sbin:/u   0 B</span>
+<span class="c1"># 330740a9a042  32 hours ago  /bin/sh -c #(nop) ENV PATH=/usr/local/sbin:/u   0 B</span>
+<span class="c1"># 99f28ebd5d62  32 hours ago  /bin/sh -c #(nop) ENV PATH=/usr/local/sbin:/u   0 B</span>
+<span class="c1"># c8fa9da6de19  32 hours ago  /bin/sh -c #(nop) ENV PATH=/usr/local/sbin:/u   0 B</span>
+<span class="c1"># 0aada3038943  32 hours ago  /bin/sh -c #(nop) ENV PATH=/usr/local/sbin:/u   0 B</span>
+<span class="c1"># 6b0bfb5796dc  32 hours ago  /bin/sh -c #(nop) ENV GRADLE_HOME=/usr/local/   0 B</span>
+<span class="c1"># 9b9022338587  32 hours ago  /bin/sh -c curl -L http://services.gradle.org   107.5 MB</span>
+<span class="c1"># 2bcf53b685f3  32 hours ago  /bin/sh -c $NDK_ROOT/build/tools/make-standal   188.8 MB</span>
+<span class="c1"># f98fe0ace224  32 hours ago  /bin/sh -c #(nop) ENV NDK_ROOT=/usr/local/and   0 B</span>
+<span class="c1"># 96ab7a337f22  32 hours ago  /bin/sh -c curl -L http://dl.google.com/andro   1.406 GB</span>
+<span class="c1"># 8c68e736ac03  32 hours ago  /bin/sh -c echo y | $ANDROID_HOME/tools/andro   163.4 MB</span>
+<span class="c1"># d9e2e589091b  32 hours ago  /bin/sh -c #(nop) ENV ANDROID_HOME=/usr/local   0 B</span>
+<span class="c1"># 2b4ebd5efc54  32 hours ago  /bin/sh -c curl -L http://dl.google.com/andro   172.5 MB</span>
+<span class="c1"># 381c941bf47d  32 hours ago  /bin/sh -c #(nop) ENV ANT_HOME=/usr/local/apa   0 B</span>
+<span class="c1"># 59e7896200ed  32 hours ago  /bin/sh -c curl -L http://archive.apache.org/   37.33 MB</span>
+<span class="c1"># 5da1211d89a9  32 hours ago  /bin/sh -c apt-get update &amp;&amp; apt-get -y inst    547 MB</span>
+<span class="c1"># f8c83e954cfd  32 hours ago  /bin/sh -c echo &#34;debconf shared/accepted-orac   910.8 kB</span>
+<span class="c1"># 773df40de9cf  32 hours ago  /bin/sh -c #(nop) ENV DEBIAN_FRONTEND=noninte   0 B</span>
+<span class="c1"># 28a945b4333c  4 days ago    /bin/sh -c #(nop) CMD [/bin/bash]               0 B</span>
+<span class="c1"># 14500324c585  4 days ago    /bin/sh -c sed -i &#39;s/^#\s*\(deb.*universe\)$/   1.911 kB</span>
+<span class="c1"># db7c9bd0e843  4 days ago    /bin/sh -c echo &#39;#!/bin/sh&#39; &gt; /usr/sbin/polic   156.2 kB</span>
+<span class="c1"># a0ab785b06af  4 days ago    /bin/sh -c #(nop) ADD file:f1e0583674d1ae07ea   130 MB</span>
+<span class="c1"># 511136ea3c5a  18 months ago                                                 0 B</span></code></pre></div>
+<p>按照顺序整理完成如下, golang的Android开发环境搭建流程:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 最开始两步是对docker镜像环境的初始化与设置, 正式系统环境中不需要,省略掉</span>
+
+sed -i <span class="s1">&#39;s/^#\s*\(deb.*universe\)$/\1/g&#39;</span> /etc/apt/sources.list
+
+<span class="nb">export</span> <span class="nv">DEBIAN_FRONTEND</span><span class="o">=</span>noninteractive
+
+<span class="nb">echo</span> <span class="s2">&#34;debconf shared/accepted-oracle-license-v1-1 select true&#34;</span> <span class="p">|</span> debconf-set-selections
+<span class="nb">echo</span> <span class="s2">&#34;debconf shared/accepted-oracle-license-v1-1 seen true&#34;</span> <span class="p">|</span> debconf-set-selections
+
+<span class="c1"># 安装环境依赖工具包 547 MB</span>
+apt-get update
+apt-get -y install build-essential python-software-properties bzip2 unzip curl git subversion mercurial bzr libncurses5:i386 libstdc++6:i386 zlib1g:i386
+add-apt-repository ppa:webupd8team/java
+apt-get update
+apt-get -y install oracle-java6-installer
+
+<span class="c1"># 安装ant 37.33 MB</span>
+curl -L http://archive.apache.org/dist/ant/binaries/apache-ant-1.9.2-bin.tar.gz <span class="p">|</span> tar xz -C /usr/local
+<span class="nb">export</span> <span class="nv">ANT_HOME</span><span class="o">=</span>/usr/local/apache-ant-1.9.2
+
+<span class="c1"># 安装Android SDK 172.5 MB</span>
+curl -L http://dl.google.com/android/android-sdk_r23.0.2-linux.tgz <span class="p">|</span> tar xz -C /usr/local
+<span class="nb">export</span> <span class="nv">ANDROID_HOME</span><span class="o">=</span>/usr/local/android-sdk-linux
+
+<span class="c1"># 安装Android SDK工具 163.4 MB</span>
+<span class="nb">echo</span> y <span class="p">|</span> <span class="nv">$ANDROID_HOME</span>/tools/android update sdk --no-ui --all --filter build-tools-19.1.0
+<span class="nb">echo</span> y <span class="p">|</span> <span class="nv">$ANDROID_HOME</span>/tools/android update sdk --no-ui --all --filter platform-tools
+<span class="nb">echo</span> y <span class="p">|</span> <span class="nv">$ANDROID_HOME</span>/tools/android update sdk --no-ui --all --filter android-19
+
+<span class="c1"># 安装Android NDK 1.406 GB</span>
+curl -L http://dl.google.com/android/ndk/android-ndk-r9d-linux-x86_64.tar.bz2 <span class="p">|</span> tar xj -C /usr/local
+<span class="nb">export</span> <span class="nv">NDK_ROOT</span><span class="o">=</span>/usr/local/android-ndk-r9d
+
+<span class="c1"># 安装Android NDK编译平台环境 188.8 MB</span>
+<span class="nv">$NDK_ROOT</span>/build/tools/make-standalone-toolchain.sh --platform<span class="o">=</span>android-9 --install-dir<span class="o">=</span><span class="nv">$NDK_ROOT</span> --system<span class="o">=</span>linux-x86_64
+
+<span class="c1"># 安装Gradle 107.5 MB</span>
+curl -L http://services.gradle.org/distributions/gradle-2.1-all.zip -o /tmp/gradle-2.1-all.zip
+unzip /tmp/gradle-2.1-all.zip -d /usr/local
+rm /tmp/gradle-2.1-all.zip
+<span class="nb">export</span> <span class="nv">GRADLE_HOME</span><span class="o">=</span>/usr/local/gradle-2.1
+
+<span class="nb">export</span> <span class="nv">GOPATH</span><span class="o">=</span>/  
+<span class="nb">export</span> <span class="nv">GOROOT</span><span class="o">=</span>/go
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">PATH</span><span class="si">}</span>:<span class="si">${</span><span class="nv">ANDROID_HOME</span><span class="si">}</span>/tools:<span class="si">${</span><span class="nv">ANDROID_HOME</span><span class="si">}</span>/platform-tools:<span class="si">${</span><span class="nv">NDK_ROOT</span><span class="si">}</span>:<span class="si">${</span><span class="nv">ANT_HOME</span><span class="si">}</span>/bin:<span class="si">${</span><span class="nv">GRADLE_HOME</span><span class="si">}</span>/bin:<span class="si">${</span><span class="nv">GOROOT</span><span class="si">}</span>/bin
+
+<span class="c1"># 安装Go开发版 259.6 MB</span>
+curl -L https://github.com/golang/go/archive/master.zip -o /tmp/go.zip
+unzip /tmp/go.zip
+rm /tmp/go.zip
+mv /go-master <span class="nv">$GOROOT</span>
+<span class="nb">echo</span> devel &gt; <span class="nv">$GOROOT</span>/VERSION
+<span class="nb">cd</span> <span class="nv">$GOROOT</span>/src
+./all.bash
+<span class="nv">CC_FOR_TARGET</span><span class="o">=</span><span class="nv">$NDK_ROOT</span>/bin/arm-linux-androideabi-gcc <span class="nv">GOOS</span><span class="o">=</span>android <span class="nv">GOARCH</span><span class="o">=</span>arm <span class="nv">GOARM</span><span class="o">=</span><span class="m">7</span> ./make.bash</code></pre></div>
+<hr />
+
+<p><em><strong>参考链接：</strong></em></p>
+
+<ul>
+<li><a href="https://hub.docker.com/r/golang/mobile/">golang/mobile</a></li>
+</ul>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://yougg.github.io/tags/golang/">Golang</a>
+
+  <a class="tag tag--primary tag--small" href="https://yougg.github.io/tags/docker/">Docker</a>
+
+  <a class="tag tag--primary tag--small" href="https://yougg.github.io/tags/android/">Android</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2015/01/07/%E5%9F%BA%E4%BA%8Edocker%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7xxoo%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%AE%9E%E8%B7%B5/" data-tooltip="基于Docker的轻量级XXOO系统环境搭建实践">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2014/12/23/2014-12-23-%E6%B7%B1%E5%9C%B3%E5%AE%BD%E5%B8%A6%E5%A5%97%E9%A4%90%E8%B5%84%E8%B4%B9%E5%AF%B9%E6%AF%94/" data-tooltip="2014-12-23 深圳宽带套餐资费对比">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://yougg.github.io/2014/12/31/%E9%80%9A%E8%BF%87golang%E5%AE%98%E6%96%B9%E7%9A%84docker%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA%E5%8E%86%E5%8F%B2-%E6%9F%A5%E7%9C%8Bandroid%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://yougg.github.io/2014/12/31/%E9%80%9A%E8%BF%87golang%E5%AE%98%E6%96%B9%E7%9A%84docker%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA%E5%8E%86%E5%8F%B2-%E6%9F%A5%E7%9C%8Bandroid%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://yougg.github.io/2014/12/31/%E9%80%9A%E8%BF%87golang%E5%AE%98%E6%96%B9%E7%9A%84docker%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA%E5%8E%86%E5%8F%B2-%E6%9F%A5%E7%9C%8Bandroid%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 <a href="https://github.com/yougg">yougg</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2015/01/07/%E5%9F%BA%E4%BA%8Edocker%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7xxoo%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%AE%9E%E8%B7%B5/" data-tooltip="基于Docker的轻量级XXOO系统环境搭建实践">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2014/12/23/2014-12-23-%E6%B7%B1%E5%9C%B3%E5%AE%BD%E5%B8%A6%E5%A5%97%E9%A4%90%E8%B5%84%E8%B4%B9%E5%AF%B9%E6%AF%94/" data-tooltip="2014-12-23 深圳宽带套餐资费对比">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://yougg.github.io/2014/12/31/%E9%80%9A%E8%BF%87golang%E5%AE%98%E6%96%B9%E7%9A%84docker%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA%E5%8E%86%E5%8F%B2-%E6%9F%A5%E7%9C%8Bandroid%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://yougg.github.io/2014/12/31/%E9%80%9A%E8%BF%87golang%E5%AE%98%E6%96%B9%E7%9A%84docker%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA%E5%8E%86%E5%8F%B2-%E6%9F%A5%E7%9C%8Bandroid%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://yougg.github.io/2014/12/31/%E9%80%9A%E8%BF%87golang%E5%AE%98%E6%96%B9%E7%9A%84docker%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA%E5%8E%86%E5%8F%B2-%E6%9F%A5%E7%9C%8Bandroid%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fyougg.github.io%2F2014%2F12%2F31%2F%25E9%2580%259A%25E8%25BF%2587golang%25E5%25AE%2598%25E6%2596%25B9%25E7%259A%2584docker%25E9%2595%259C%25E5%2583%258F%25E6%259E%2584%25E5%25BB%25BA%25E5%258E%2586%25E5%258F%25B2-%25E6%259F%25A5%25E7%259C%258Bandroid%25E5%25BC%2580%25E5%258F%2591%25E7%258E%25AF%25E5%25A2%2583%25E7%259A%2584%25E6%2590%25AD%25E5%25BB%25BA%25E6%25B5%2581%25E7%25A8%258B%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fyougg.github.io%2F2014%2F12%2F31%2F%25E9%2580%259A%25E8%25BF%2587golang%25E5%25AE%2598%25E6%2596%25B9%25E7%259A%2584docker%25E9%2595%259C%25E5%2583%258F%25E6%259E%2584%25E5%25BB%25BA%25E5%258E%2586%25E5%258F%25B2-%25E6%259F%25A5%25E7%259C%258Bandroid%25E5%25BC%2580%25E5%258F%2591%25E7%258E%25AF%25E5%25A2%2583%25E7%259A%2584%25E6%2590%25AD%25E5%25BB%25BA%25E6%25B5%2581%25E7%25A8%258B%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fyougg.github.io%2F2014%2F12%2F31%2F%25E9%2580%259A%25E8%25BF%2587golang%25E5%25AE%2598%25E6%2596%25B9%25E7%259A%2584docker%25E9%2595%259C%25E5%2583%258F%25E6%259E%2584%25E5%25BB%25BA%25E5%258E%2586%25E5%258F%25B2-%25E6%259F%25A5%25E7%259C%258Bandroid%25E5%25BC%2580%25E5%258F%2591%25E7%258E%25AF%25E5%25A2%2583%25E7%259A%2584%25E6%2590%25AD%25E5%25BB%25BA%25E6%25B5%2581%25E7%25A8%258B%2F">
+          <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+    
+    <h4 id="about-card-name">yougg</h4>
+    
+      <div id="about-card-bio">和咸鱼没有什么区别的偶尔写<del><em>不想写</em></del>博客的码农</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        搬砖
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        中国 深圳
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://yougg.github.io/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://yougg.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/yougg.github.io\/2014\/12\/31\/%E9%80%9A%E8%BF%87golang%E5%AE%98%E6%96%B9%E7%9A%84docker%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA%E5%8E%86%E5%8F%B2-%E6%9F%A5%E7%9C%8Bandroid%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B\/';
+          
+            this.page.identifier = '\/2014\/12\/31\/%E9%80%9A%E8%BF%87golang%E5%AE%98%E6%96%B9%E7%9A%84docker%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA%E5%8E%86%E5%8F%B2-%E6%9F%A5%E7%9C%8Bandroid%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'yougg';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="yougg">
+<meta name="keywords" content="">
+<meta name="description" content="Shell基础一：文件安全与权限 http://bbs.chinaunix.net/thread-434579-1-1.html 附：Linux的用户和用户组管理 http://bbs.chinaunix.net/thread-438660-1-1.html Shell基础二：查找技巧,find及xargs的使用 http://bbs.chinaunix.net/thread-441883-1-1.html Shell基础三">
+
+
+<meta property="og:description" content="Shell基础一：文件安全与权限 http://bbs.chinaunix.net/thread-434579-1-1.html 附：Linux的用户和用户组管理 http://bbs.chinaunix.net/thread-438660-1-1.html Shell基础二：查找技巧,find及xargs的使用 http://bbs.chinaunix.net/thread-441883-1-1.html Shell基础三">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shell基础二十篇">
+<meta name="twitter:title" content="Shell基础二十篇">
+<meta property="og:url" content="https://yougg.github.io/2014/09/30/shell%E5%9F%BA%E7%A1%80%E4%BA%8C%E5%8D%81%E7%AF%87/">
+<meta property="twitter:url" content="https://yougg.github.io/2014/09/30/shell%E5%9F%BA%E7%A1%80%E4%BA%8C%E5%8D%81%E7%AF%87/">
+<meta property="og:site_name" content="Yougg&#39;s Blog">
+<meta property="og:description" content="Shell基础一：文件安全与权限 http://bbs.chinaunix.net/thread-434579-1-1.html 附：Linux的用户和用户组管理 http://bbs.chinaunix.net/thread-438660-1-1.html Shell基础二：查找技巧,find及xargs的使用 http://bbs.chinaunix.net/thread-441883-1-1.html Shell基础三">
+<meta name="twitter:description" content="Shell基础一：文件安全与权限 http://bbs.chinaunix.net/thread-434579-1-1.html 附：Linux的用户和用户组管理 http://bbs.chinaunix.net/thread-438660-1-1.html Shell基础二：查找技巧,find及xargs的使用 http://bbs.chinaunix.net/thread-441883-1-1.html Shell基础三">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2014-09-30T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2014-09-30T00:00:00">
+  
+  
+  
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png">
+  <meta property="twitter:image" content="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png">
+
+
+    <title>Shell基础二十篇</title>
+
+    <link rel="icon" href="https://yougg.github.io/favicon.png">
+    
+
+    
+      <link rel="publisher" href="https://plus.google.com/&#43;caixiang">
+    
+
+    <link rel="canonical" href="https://yougg.github.io/2014/09/30/shell%E5%9F%BA%E7%A1%80%E4%BA%8C%E5%8D%81%E7%AF%87/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://yougg.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  href="https://yougg.github.io/css/fruity.css">
+      
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://yougg.github.io/">Yougg&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://yougg.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://yougg.github.io/#about">
+          <img class="sidebar-profile-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">yougg</h4>
+        
+          <h5 class="sidebar-profile-bio">和咸鱼没有什么区别的偶尔写<del><em>不想写</em></del>博客的码农</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/yougg" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/9087310/yougg" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Shell基础二十篇
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2014-09-30T00:00:00&#43;08:00">
+        
+  
+  
+  
+  
+    2014年9月30日 00时00分00秒
+  
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>Shell基础一：文件安全与权限<br />
+<a href="http://bbs.chinaunix.net/thread-434579-1-1.html">http://bbs.chinaunix.net/thread-434579-1-1.html</a></p>
+
+<p>附：Linux的用户和用户组管理<br />
+<a href="http://bbs.chinaunix.net/thread-438660-1-1.html">http://bbs.chinaunix.net/thread-438660-1-1.html</a></p>
+
+<p>Shell基础二：查找技巧,<code>find</code>及<code>xargs</code>的使用<br />
+<a href="http://bbs.chinaunix.net/thread-441883-1-1.html">http://bbs.chinaunix.net/thread-441883-1-1.html</a></p>
+
+<p>Shell基础三/四：后台<code>crontab</code>,<code>at</code>,<code>&amp;</code>,<code>nohup</code>及<code>*</code>,<code>?</code>,<code>[]</code>等<br />
+<a href="http://bbs.chinaunix.net/thread-442596-1-1.html">http://bbs.chinaunix.net/thread-442596-1-1.html</a></p>
+
+<p>Shell基础五：输入和输出<code>echo</code>,<code>read</code>,<code>cat</code>,<code>tee</code>,管道,重定向等<br />
+<a href="http://bbs.chinaunix.net/thread-444209-1-1.html">http://bbs.chinaunix.net/thread-444209-1-1.html</a></p>
+
+<p>Shell基础六/七：命令执行顺序<code>||</code>及<code>&amp;&amp;</code>，<code>{}</code>及<code>()</code>和正则表达式<br />
+<a href="http://bbs.chinaunix.net/thread-445229-1-1.html">http://bbs.chinaunix.net/thread-445229-1-1.html</a></p>
+
+<p>Shell基础八：文本过滤工具<code>grep</code><br />
+<a href="http://bbs.chinaunix.net/thread-446683-1-1.html">http://bbs.chinaunix.net/thread-446683-1-1.html</a></p>
+
+<p>Shell基础九：<code>awk</code><br />
+<a href="http://bbs.chinaunix.net/thread-448687-1-1.html">http://bbs.chinaunix.net/thread-448687-1-1.html</a></p>
+
+<p>Shell基础十：<code>sed</code><br />
+<a href="http://bbs.chinaunix.net/thread-452942-1-1.html">http://bbs.chinaunix.net/thread-452942-1-1.html</a></p>
+
+<p>Shell基础十一：文件分类、合并和分割<code>sort</code>,<code>uniq</code>,<code>join</code>,<code>cut</code>,<code>paste</code>,<code>split</code><br />
+<a href="http://bbs.chinaunix.net/thread-457730-1-1.html">http://bbs.chinaunix.net/thread-457730-1-1.html</a></p>
+
+<p>Shell基础十二：<code>tr</code><br />
+<a href="http://bbs.chinaunix.net/thread-459099-1-1.html">http://bbs.chinaunix.net/thread-459099-1-1.html</a></p>
+
+<p>Shell基础第十三篇：登录环境<br />
+<a href="http://bbs.chinaunix.net/thread-1820174-1-1.html">http://bbs.chinaunix.net/thread-1820174-1-1.html</a></p>
+
+<p>Shell基础第十四篇：环境和Shell变量<br />
+<a href="http://bbs.chinaunix.net/thread-1820194-1-1.html">http://bbs.chinaunix.net/thread-1820194-1-1.html</a></p>
+
+<p>Shell基础第十五篇：引号<br />
+<a href="http://bbs.chinaunix.net/thread-1820220-1-1.html">http://bbs.chinaunix.net/thread-1820220-1-1.html</a></p>
+
+<p>Shell基础第十六篇：Shell脚本介绍<br />
+<a href="http://bbs.chinaunix.net/thread-1820301-1-1.html">http://bbs.chinaunix.net/thread-1820301-1-1.html</a></p>
+
+<p>Shell基础第十七篇：条件测试<br />
+<a href="http://bbs.chinaunix.net/thread-1820304-1-1.html">http://bbs.chinaunix.net/thread-1820304-1-1.html</a></p>
+
+<p>Shell基础第十八篇：控制流结构<br />
+<a href="http://bbs.chinaunix.net/thread-1820329-1-1.html">http://bbs.chinaunix.net/thread-1820329-1-1.html</a></p>
+
+<p>Shell基础第十九篇：Shell函数<br />
+<a href="http://bbs.chinaunix.net/thread-1820454-1-1.html">http://bbs.chinaunix.net/thread-1820454-1-1.html</a></p>
+
+<p>Shell基础第二十篇：向脚本传递参数<br />
+<a href="http://bbs.chinaunix.net/thread-1823335-1-1.html">http://bbs.chinaunix.net/thread-1823335-1-1.html</a></p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2014/10/12/web%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/" data-tooltip="Web开发工程师知识体系">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2014/09/30/%E4%BB%8Elinux%E5%88%B0solaris/" data-tooltip="从Linux到Solaris">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://yougg.github.io/2014/09/30/shell%E5%9F%BA%E7%A1%80%E4%BA%8C%E5%8D%81%E7%AF%87/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://yougg.github.io/2014/09/30/shell%E5%9F%BA%E7%A1%80%E4%BA%8C%E5%8D%81%E7%AF%87/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://yougg.github.io/2014/09/30/shell%E5%9F%BA%E7%A1%80%E4%BA%8C%E5%8D%81%E7%AF%87/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 <a href="https://github.com/yougg">yougg</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2014/10/12/web%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/" data-tooltip="Web开发工程师知识体系">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2014/09/30/%E4%BB%8Elinux%E5%88%B0solaris/" data-tooltip="从Linux到Solaris">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://yougg.github.io/2014/09/30/shell%E5%9F%BA%E7%A1%80%E4%BA%8C%E5%8D%81%E7%AF%87/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://yougg.github.io/2014/09/30/shell%E5%9F%BA%E7%A1%80%E4%BA%8C%E5%8D%81%E7%AF%87/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://yougg.github.io/2014/09/30/shell%E5%9F%BA%E7%A1%80%E4%BA%8C%E5%8D%81%E7%AF%87/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fyougg.github.io%2F2014%2F09%2F30%2Fshell%25E5%259F%25BA%25E7%25A1%2580%25E4%25BA%258C%25E5%258D%2581%25E7%25AF%2587%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fyougg.github.io%2F2014%2F09%2F30%2Fshell%25E5%259F%25BA%25E7%25A1%2580%25E4%25BA%258C%25E5%258D%2581%25E7%25AF%2587%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fyougg.github.io%2F2014%2F09%2F30%2Fshell%25E5%259F%25BA%25E7%25A1%2580%25E4%25BA%258C%25E5%258D%2581%25E7%25AF%2587%2F">
+          <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+    
+    <h4 id="about-card-name">yougg</h4>
+    
+      <div id="about-card-bio">和咸鱼没有什么区别的偶尔写<del><em>不想写</em></del>博客的码农</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        搬砖
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        中国 深圳
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://yougg.github.io/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://yougg.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/yougg.github.io\/2014\/09\/30\/shell%E5%9F%BA%E7%A1%80%E4%BA%8C%E5%8D%81%E7%AF%87\/';
+          
+            this.page.identifier = '\/2014\/09\/30\/shell%E5%9F%BA%E7%A1%80%E4%BA%8C%E5%8D%81%E7%AF%87\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'yougg';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

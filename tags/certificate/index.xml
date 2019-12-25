@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Certificate on Yougg&#39;s Blog</title>
+    <link>https://yougg.github.io/tags/certificate/</link>
+    <description>Recent content in Certificate on Yougg&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 28 Aug 2017 15:50:10 +0800</lastBuildDate>
+    
+	<atom:link href="https://yougg.github.io/tags/certificate/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Public Key Infrastructure Certificate Apply Guide</title>
+      <link>https://yougg.github.io/2017/08/28/public-key-infrastructure-certificate-apply-guide/</link>
+      <pubDate>Mon, 28 Aug 2017 15:50:10 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/08/28/public-key-infrastructure-certificate-apply-guide/</guid>
+      <description>生成XXX服务组件(service DB)的私钥和证书签发请求 service服务证书签发请求和RSA私钥(PKCS#1)已废弃 # 生成servi</description>
+    </item>
+    
+  </channel>
+</rss>

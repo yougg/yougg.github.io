@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Autotest on Yougg&#39;s Blog</title>
+    <link>https://yougg.github.io/tags/autotest/</link>
+    <description>Recent content in Autotest on Yougg&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 30 Jul 2018 19:19:52 +0000</lastBuildDate>
+    
+	<atom:link href="https://yougg.github.io/tags/autotest/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ubuntu18.04安装使用RIDE</title>
+      <link>https://yougg.github.io/2018/07/30/ubuntu18.04%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8ride/</link>
+      <pubDate>Mon, 30 Jul 2018 19:19:52 +0000</pubDate>
+      
+      <guid>https://yougg.github.io/2018/07/30/ubuntu18.04%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8ride/</guid>
+      <description>Ubuntu 18.04 install Robot Framework RIDE set pip install source Linux/Unix ~/.pip/pip.conf Windows C:\Users\用户名\pip\pip.ini [global] trusted-host=rnd-mirrors.huawei.com index-url=http://rnd-mirrors.huawei.com/pypi/simple/ latest version install python pip apt install -y python3-pip install wxPython (for linux) pip install -U -f https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-18.04 wxPython install RIDE (for windows, only this step need) pip install -U</description>
+    </item>
+    
+  </channel>
+</rss>

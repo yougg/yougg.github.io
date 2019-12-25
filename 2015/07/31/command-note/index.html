@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="yougg">
+<meta name="keywords" content="">
+<meta name="description" content="查看进程环境变量 Linux tr \\0 \\n &lt; /proc/${PID}/environ ps eww -p ${PID} Solaris pargs -e ${PID} Windows PowerShell (Get-Process -id %PID%).StartInfo.EnvironmentVariables 挂载/卸载分区 Windows :: 查看分区信息 mountvol /? :: 卸载分区 mountvol D: /D :: 挂载分区 mountvol D: \\?\Volume{e316bd82-2441-11e5-9656-d6d12ffbbef0} 修改系统代理 Linux export http_proxy=&#39;http://x.proxy.com:8080&#39; export">
+
+
+<meta property="og:description" content="查看进程环境变量 Linux tr \\0 \\n &lt; /proc/${PID}/environ ps eww -p ${PID} Solaris pargs -e ${PID} Windows PowerShell (Get-Process -id %PID%).StartInfo.EnvironmentVariables 挂载/卸载分区 Windows :: 查看分区信息 mountvol /? :: 卸载分区 mountvol D: /D :: 挂载分区 mountvol D: \\?\Volume{e316bd82-2441-11e5-9656-d6d12ffbbef0} 修改系统代理 Linux export http_proxy=&#39;http://x.proxy.com:8080&#39; export">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Command Note">
+<meta name="twitter:title" content="Command Note">
+<meta property="og:url" content="https://yougg.github.io/2015/07/31/command-note/">
+<meta property="twitter:url" content="https://yougg.github.io/2015/07/31/command-note/">
+<meta property="og:site_name" content="Yougg&#39;s Blog">
+<meta property="og:description" content="查看进程环境变量 Linux tr \\0 \\n &lt; /proc/${PID}/environ ps eww -p ${PID} Solaris pargs -e ${PID} Windows PowerShell (Get-Process -id %PID%).StartInfo.EnvironmentVariables 挂载/卸载分区 Windows :: 查看分区信息 mountvol /? :: 卸载分区 mountvol D: /D :: 挂载分区 mountvol D: \\?\Volume{e316bd82-2441-11e5-9656-d6d12ffbbef0} 修改系统代理 Linux export http_proxy=&#39;http://x.proxy.com:8080&#39; export">
+<meta name="twitter:description" content="查看进程环境变量 Linux tr \\0 \\n &lt; /proc/${PID}/environ ps eww -p ${PID} Solaris pargs -e ${PID} Windows PowerShell (Get-Process -id %PID%).StartInfo.EnvironmentVariables 挂载/卸载分区 Windows :: 查看分区信息 mountvol /? :: 卸载分区 mountvol D: /D :: 挂载分区 mountvol D: \\?\Volume{e316bd82-2441-11e5-9656-d6d12ffbbef0} 修改系统代理 Linux export http_proxy=&#39;http://x.proxy.com:8080&#39; export">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2015-07-31T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2015-07-31T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Document">
+    
+  
+  
+    
+      <meta property="article:tag" content="CMD">
+    
+      <meta property="article:tag" content="Shell">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png">
+  <meta property="twitter:image" content="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png">
+
+
+    <title>Command Note</title>
+
+    <link rel="icon" href="https://yougg.github.io/favicon.png">
+    
+
+    
+      <link rel="publisher" href="https://plus.google.com/&#43;caixiang">
+    
+
+    <link rel="canonical" href="https://yougg.github.io/2015/07/31/command-note/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://yougg.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  href="https://yougg.github.io/css/fruity.css">
+      
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://yougg.github.io/">Yougg&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://yougg.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://yougg.github.io/#about">
+          <img class="sidebar-profile-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">yougg</h4>
+        
+          <h5 class="sidebar-profile-bio">和咸鱼没有什么区别的偶尔写<del><em>不想写</em></del>博客的码农</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/yougg" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/9087310/yougg" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Command Note
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2015-07-31T00:00:00&#43;08:00">
+        
+  
+  
+  
+  
+    2015年7月31日 00时00分00秒
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://yougg.github.io/categories/document">Document</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <ul>
+<li><p>查看进程环境变量</p>
+
+<ul>
+<li><p>Linux</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">tr <span class="se">\\</span><span class="m">0</span> <span class="se">\\</span>n &lt; /proc/<span class="si">${</span><span class="nv">PID</span><span class="si">}</span>/environ
+        
+ps eww -p <span class="si">${</span><span class="nv">PID</span><span class="si">}</span></code></pre></div></li>
+
+<li><p>Solaris</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pargs -e <span class="si">${</span><span class="nv">PID</span><span class="si">}</span></code></pre></div></li>
+
+<li><p>Windows <code>PowerShell</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-ps" data-lang="ps"><span class="s">(Get-Process -id %PID%)</span><span class="err">.StartInfo.EnvironmentVariables</span></code></pre></div></li>
+</ul></li>
+
+<li><p>挂载/卸载分区</p>
+
+<ul>
+<li><p>Windows</p>
+<div class="highlight"><pre class="chroma"><code class="language-cmd" data-lang="cmd"><span class="p">:</span><span class="c1">: 查看分区信息</span>
+mountvol /?
+<span class="p">:</span><span class="c1">: 卸载分区</span>
+mountvol D: /D
+<span class="p">:</span><span class="c1">: 挂载分区</span>
+mountvol D: \\?\Volume{e316bd82-2441-11e5-9656-d6d12ffbbef0}</code></pre></div></li>
+</ul></li>
+
+<li><p>修改系统代理</p>
+
+<ul>
+<li><p>Linux</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">http_proxy</span><span class="o">=</span><span class="s1">&#39;http://x.proxy.com:8080&#39;</span>
+<span class="nb">export</span> <span class="nv">https_proxy</span><span class="o">=</span><span class="si">${</span><span class="nv">http_proxy</span><span class="si">}</span></code></pre></div></li>
+
+<li><p>Windows</p>
+<div class="highlight"><pre class="chroma"><code class="language-ps1" data-lang="ps1"><span class="nb">Set-ItemProperty</span> <span class="n">-Path</span> <span class="s1">&#39;HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings&#39;</span> <span class="n">-Name</span> <span class="n">ProxyEnable</span> <span class="n">-Value</span> <span class="n">1</span>
+<span class="nb">Set-ItemProperty</span> <span class="n">-Path</span> <span class="s1">&#39;HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings&#39;</span> <span class="n">-Name</span> <span class="n">ProxyServer</span> <span class="n">-Value</span> <span class="s1">&#39;x.proxy.com:8080&#39;</span>
+<span class="nb">Get-ItemProperty</span> <span class="n">-Path</span> <span class="s1">&#39;HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings&#39;</span> <span class="n">-Name</span> <span class="p">*</span><span class="n">Proxy</span><span class="p">*</span></code></pre></div></li>
+</ul></li>
+
+<li><p>生成随机复杂密码</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 16位密码:</span>
+&lt; /dev/urandom tr -dc <span class="s1">&#39;`~!@#$%^&amp;*()-_=+[]{}\|;:\,./&lt;&gt;?&#34;1-9a-zA-Z&#39;</span> <span class="p">|</span> head -c<span class="si">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">16</span><span class="si">}</span><span class="p">;</span> echo</code></pre></div></li>
+
+<li><p>查看进程网络连接</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">lsof -i <span class="m">4</span> -a -p <span class="si">${</span><span class="nv">PID</span><span class="si">}</span>
+lsof -i :<span class="si">${</span><span class="nv">Port</span><span class="si">}</span>
+netstat -anp <span class="p">|</span> grep <span class="si">${</span><span class="nv">PID</span><span class="si">}</span></code></pre></div></li>
+
+<li><p>生成数字序列</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">seq -f <span class="s2">&#34;%03.f&#34;</span> <span class="m">9</span> <span class="m">12</span>
+<span class="c1"># 009</span>
+<span class="c1"># 010</span>
+<span class="c1"># 011</span>
+<span class="c1"># 012</span></code></pre></div></li>
+
+<li><p>Linux强制关机</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="m">1</span> &gt; /proc/sys/kernel/sysrq
+<span class="nb">echo</span> b &gt; /proc/sysrq-trigger</code></pre></div></li>
+
+<li><p>Linux重设登陆失败重试次数</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo pam_tally2 -u root --reset<span class="o">=</span><span class="m">0</span></code></pre></div></li>
+
+<li><p>Linux设置普通用户定时任务</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 添加username编辑crontab权限</span>
+sudo <span class="nb">echo</span> username &gt;&gt; /etc/cron.allow
+<span class="c1"># 添加定时任务到username用户的任务列表</span>
+sudo crontab -u username -e
+<span class="c1"># 加入定时任务, 例如:</span>
+<span class="c1"># * * * * * /path/to/cmd</span>
+
+<span class="c1"># 查看保存在username用户下的任务</span>
+sudo crontab -u username -l
+
+<span class="c1"># 重启定时任务服务加载新的任务运行</span>
+sudo service cron restart
+
+<span class="c1"># 查看定时任务日志</span>
+sudo vi /etc/cron.log</code></pre></div></li>
+
+<li><p>Linux查看网线连接状态</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo ethtool eth0
+sudo mii-tool eth0</code></pre></div></li>
+
+<li><p>SUSE安装git</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">zypper addrepo http://download.opensuse.org/repositories/devel:/tools:/scm/SLE_11_SP3/devel:tools:scm.repo
+zypper install git-core</code></pre></div></li>
+
+<li><p>禁止ssh连接超时</p>
+
+<ul>
+<li><p>客户端修改<code>/etc/ssh/ssh_config</code>或者<code>~/.ssh/config</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ServerAliveInterval <span class="m">100</span></code></pre></div></li>
+
+<li><p>服务端修改<code>/etc/ssh/sshd_config</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ClientAliveInterval <span class="m">30</span>
+TCPKeepAlive yes
+ClientAliveCountMax <span class="m">99999</span></code></pre></div></li>
+</ul>
+
+<p>重启ssh服务</p>
+<div class="highlight"><pre class="chroma">```bash
+sudo service ssh restart
+systemctl restart ssh
+```</pre></div></li>
+
+<li><p>SSH通过http proxy连接</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ssh username@host_or_IP -o <span class="s2">&#34;ProxyCommand=ncat --proxy </span><span class="si">${</span><span class="nv">IP</span><span class="si">}</span><span class="s2">:</span><span class="si">${</span><span class="nv">Port</span><span class="si">}</span><span class="s2"> %h %p&#34;</span> -i private_key
+ssh username@host_or_IP -o <span class="s2">&#34;ProxyCommand=nc -X connect -x </span><span class="si">${</span><span class="nv">IP</span><span class="si">}</span><span class="s2">:</span><span class="si">${</span><span class="nv">Port</span><span class="si">}</span><span class="s2"> %h %p&#34;</span></code></pre></div></li>
+
+<li><p>ssh远程端口转发</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># REMOTE_IP</span>
+<span class="c1"># REMOTE_PORT</span>
+<span class="c1"># LOCAL_SERVER</span>
+<span class="c1"># SERVER_PORT</span>
+<span class="c1"># USER</span>
+<span class="c1"># HOST</span>
+ssh -R <span class="si">${</span><span class="nv">REMOTE_IP</span><span class="si">}</span>:<span class="si">${</span><span class="nv">REMOTE_PORT</span><span class="si">}</span>:<span class="si">${</span><span class="nv">LOCAL_SERVER</span><span class="si">}</span>:<span class="si">${</span><span class="nv">SERVER_PORT</span><span class="si">}</span> <span class="si">${</span><span class="nv">USER</span><span class="si">}</span>@<span class="si">${</span><span class="nv">HOST</span><span class="si">}</span></code></pre></div></li>
+
+<li><p>重置只读变量</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">readonly</span> <span class="nv">HISTSIZE</span><span class="o">=</span><span class="m">0</span>
+
+cat <span class="s">&lt;&lt; EOF | sudo gdb
+</span><span class="s">attach $$
+</span><span class="s">call unbind_variable(&#34;HISTSIZE&#34;)
+</span><span class="s">detach
+</span><span class="s">EOF</span></code></pre></div></li>
+
+<li><p>编译Webkit版本的LietIDE</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt install qt4-qmake libqt4-dev libqtwebkit-dev
+go get github.com/visualfc/gotools
+<span class="nb">cd</span> <span class="si">${</span><span class="nv">SRC</span><span class="si">}</span>/liteide/build/
+chmod +x build_linux_qt4_webkit.sh
+./build_linux_qt4_webkit.sh
+cp -rf liteide ~/</code></pre></div></li>
+
+<li><p>git</p>
+
+<ul>
+<li><p>切换远程仓库路径</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">git remote set-url origin https://github.com/user/FORK.git</code></pre></div></li>
+
+<li><p>添加子模块</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> parent_project
+git submodule add https://github.com/username/subproject.git external/src
+git submodule update --init --recursive external/src
+<span class="nb">cd</span> external/src
+git checkout -b develop origin/develop
+<span class="nb">cd</span> ..
+git add .
+git commit -m <span class="s1">&#39;Add submodule&#39;</span>
+git push</code></pre></div></li>
+
+<li><p>同步子模块</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">git submodule update --init --force --recursive</code></pre></div></li>
+
+<li><p>删除子模块</p>
+
+<ol>
+<li><p>Delete the relevant section from the <code>.gitmodules</code> file.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">git config -f .gitmodules --remove-section submodule.src</code></pre></div></li>
+</ol>
+
+<p>Stage the <code>.gitmodules</code> changes git add <code>.gitmodules</code>
+2. Delete the relevant section from <code>.git/config</code>.</p>
+<div class="highlight"><pre class="chroma">```bash
+git config --remove-section submodule.src
+```</pre></div>
+<ol>
+<li>Run <code>git rm --cached path_to_submodule</code> (no trailing slash).
+Run <code>rm -rf .git/modules/path_to_submodule</code>
+Commit <code>git commit -m &quot;Removed submodule &lt;name&gt;&quot;</code></li>
+
+<li><p>Delete the now untracked submodule files</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">rm -rf path_to_submodule</code></pre></div></li>
+</ol></li>
+
+<li><p>git克隆保存用户/密码</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">git clone http://username:password@github.com/user/project.git</code></pre></div></li>
+
+<li><p>git指定提交时的作者和邮箱</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">GIT_AUTHOR_NAME</span><span class="o">=</span><span class="s2">&#34;some one&#34;</span> <span class="nv">GIT_AUTHOR_EMAIL</span><span class="o">=</span><span class="s2">&#34;someone@email.com&#34;</span> <span class="nv">GIT_COMMITTER_NAME</span><span class="o">=</span><span class="s2">&#34;some one&#34;</span> <span class="nv">GIT_COMMITTER_EMAIL</span><span class="o">=</span><span class="s2">&#34;someone@email.com&#34;</span> git commit -m <span class="s1">&#39;message&#39;</span>
+<span class="nv">GIT_AUTHOR_NAME</span><span class="o">=</span><span class="s2">&#34;yougg&#34;</span> <span class="nv">GIT_AUTHOR_EMAIL</span><span class="o">=</span><span class="s2">&#34;joe2qq@gmail.com&#34;</span> <span class="nv">GIT_COMMITTER_NAME</span><span class="o">=</span><span class="s2">&#34;yougg&#34;</span> <span class="nv">GIT_COMMITTER_EMAIL</span><span class="o">=</span><span class="s2">&#34;joe2qq@gmail.com&#34;</span> git commit -m <span class="s1">&#39;&#39;</span>
+git push -f --set-upstream origin master</code></pre></div></li>
+
+<li><p>配置git diff使用vimdiff</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">git config --global diff.tool vimdiff
+git config --global difftool.prompt <span class="nb">false</span>
+git config --global alias.d difftool</code></pre></div></li>
+</ul>
+
+<p>使用方式</p>
+<div class="highlight"><pre class="chroma">```bash
+git difftool
+git d
+```</pre></div>
+<p>如果执行报错<code>Can't locate Error.pm in @INC ......</code><br />
+  则执行如下方式后再操作</p>
+<div class="highlight"><pre class="chroma">```bash
+cpan Error.pm
+```</pre></div>
+<p>或者</p>
+<div class="highlight"><pre class="chroma">```bash
+sudo perl -MCPAN -e &#39;install Error&#39;
+```</pre></div>
+<ul>
+<li><p>修改仓库中文件权限</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">git update-index --chmod<span class="o">=</span>+x /path/to/file
+git ls-tree HEAD /path/to/file
+git add /path/to/file
+git commit -m <span class="s1">&#39;commit message&#39;</span></code></pre></div></li>
+
+<li><p>一键设置git用户名为域帐户和工号</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">gituser</span><span class="o">=</span><span class="s2">&#34;</span><span class="k">$(</span>chcp.com <span class="m">65001</span> <span class="p">&amp;</span>&gt; /dev/null<span class="p">;</span>net user //domain <span class="k">$(</span>id -un<span class="k">)</span> <span class="p">|</span> awk -F <span class="s1">&#39;[ ][(]&#39;</span> <span class="s1">&#39;/Full Name/{print $1}&#39;</span> <span class="p">|</span> awk -F <span class="s1">&#39;Full Name[ ]+&#39;</span> <span class="s1">&#39;{print $2}&#39;</span><span class="k">)</span><span class="s2"> </span><span class="k">$(</span>id -un <span class="p">|</span> cut -c <span class="m">2</span>-<span class="k">)</span><span class="s2">&#34;</span>
+git config --global user.name <span class="si">${</span><span class="nv">gituser</span><span class="si">}</span></code></pre></div></li>
+</ul></li>
+
+<li><p>openssl转换密钥格式pkcs8为pkcs1</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">openssl pkcs8 -in ca0.key -passin pass:xxxx -outform PEM -out ca1.key
+openssl rsa -in ca1.key -out ca2.key -aes256 -passout pass:xxxx</code></pre></div></li>
+
+<li><p>查看终端颜色</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="k">for</span> i in <span class="o">{</span><span class="m">0</span>..8<span class="o">}</span><span class="p">;</span> <span class="k">do</span>
+    <span class="k">for</span> j in <span class="o">{</span><span class="m">0</span>..8<span class="o">}</span><span class="p">;</span> <span class="k">do</span>
+        <span class="nb">echo</span> -en <span class="s2">&#34;\e[3</span><span class="si">${</span><span class="nv">i</span><span class="si">}</span><span class="s2">;4</span><span class="si">${</span><span class="nv">j</span><span class="si">}</span><span class="s2">m3</span><span class="si">${</span><span class="nv">i</span><span class="si">}</span><span class="s2"> 4</span><span class="si">${</span><span class="nv">j</span><span class="si">}</span><span class="s2">\e[0m&#34;</span>
+    <span class="k">done</span>
+    <span class="nb">echo</span>
+<span class="k">done</span></code></pre></div></li>
+
+<li><p>Linux升级/安装openssl编译依赖库</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /usr/local/src/
+tar xzf openssl-1.1.0f.tar.gz
+<span class="nb">cd</span> /usr/local/src/openssl-1.1.0f/
+
+./config --prefix<span class="o">=</span>/usr/local --openssldir<span class="o">=</span>/usr/local/openssl
+make
+make <span class="nb">test</span>
+make install
+
+<span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/usr/local/lib64
+<span class="nb">echo</span> <span class="s2">&#34;export LD_LIBRARY_PATH=/usr/local/lib64&#34;</span> &gt; /etc/profile.d/ld_library_path.sh
+chmod a+x /etc/profile.d/ld_library_path.sh
+
+openssl version
+
+<span class="c1">#reboot</span>
+
+sudo apt install libssl-dev
+sudo yum install openssl-devel</code></pre></div></li>
+
+<li><p>Ubuntu systemd-shim error after upgrading fixed</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># dpkg-maintscript-helper: error: old-conffile &#39;debian/systemd-shim/etc/dbus-1/system.d/org.freedesktop.systemd1.conf&#39; is not an absolute path</span>
+mv /var/lib/dpkg/info/systemd-shim.* /tmp/
+dpkg --remove --force-remove-reinstreq systemd-shim
+apt purge systemd-shim
+apt clean<span class="p">;</span> apt autoclean<span class="p">;</span> apt autoremove<span class="p">;</span> apt update<span class="p">;</span> apt upgrade -y<span class="p">;</span> apt dist-upgrade -y
+apt -f install systemd
+reboot -f</code></pre></div></li>
+
+<li><p>Linux非root用户启动服务绑定到小于1024的端口<a href="http://rk700.github.io/2016/10/26/linux-capabilities/">参考</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 使用root权限执行下面命令</span>
+setcap <span class="nv">cap_net_bind_service</span><span class="o">=</span>+eip /path/to/file
+getcap /path/to/file</code></pre></div></li>
+
+<li><p>MingW环境变量与快捷命令别名设置 <code>/etc/profile</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">PS1</span><span class="o">=</span><span class="s1">&#39;\e[35;40m[\w]\e[0m\$ &#39;</span>
+
+<span class="nb">alias</span> <span class="nv">clear</span><span class="o">=</span>clsb
+<span class="nb">alias</span> <span class="nv">reset</span><span class="o">=</span>clsb
+<span class="nb">alias</span> <span class="nv">ls</span><span class="o">=</span><span class="s1">&#39;/bin/ls --color=auto&#39;</span>
+<span class="nb">alias</span> <span class="nv">l</span><span class="o">=</span><span class="s1">&#39;ls -AlF&#39;</span>
+<span class="nb">alias</span> <span class="nv">vi</span><span class="o">=</span>vim</code></pre></div></li>
+
+<li><p>Windows从命令行下载文件<a href="https://superuser.com/questions/59465/is-it-possible-to-download-using-the-windows-command-line">参考</a></p></li>
+
+<li><p>使用inode删除特殊名称的文件，如：<code>''$'\270\016'</code> <code>'x'$'\016'</code> <a href="http://blog.51cto.com/lovvvve/871747">参考</a> <a href="https://stackoverflow.com/questions/3925337/find-without-recursion">find</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ls -i .
+find . -maxdepth <span class="m">1</span> -inum <span class="m">2988</span> -exec rm -i <span class="o">{}</span> <span class="se">\;</span></code></pre></div></li>
+
+<li><p>SLES 11 SP4设置自启动服务</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cat /etc/init.d/rc.local</code></pre></div><div class="highlight"><pre class="chroma"><span class="cp">#! /bin/sh
+</span><span class="cp"></span><span class="c1">### BEGIN INIT INFO</span>
+<span class="c1"># Provides:          rc.local</span>
+<span class="c1"># Required-Start:    $all</span>
+<span class="c1"># Required-Stop:</span>
+<span class="c1"># Default-Start:     2 3 4 5</span>
+<span class="c1"># Default-Stop:</span>
+<span class="c1"># Short-Description: Run /etc/rc.local if it exist</span>
+<span class="c1">### END INIT INFO</span>
+
+<span class="o">[</span> -z <span class="s2">&#34;`pidof vatch`&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="nb">cd</span> /usr/local/bin<span class="p">;</span> nohup vatch -C <span class="m">1</span> <span class="p">&amp;</span>&gt; /dev/null <span class="p">&amp;</span><span class="o">)</span>
+<span class="o">[</span> -z <span class="s2">&#34;`pidof gohttpserver`&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">(</span>gohttpserver -r /data/data12/file -a <span class="s1">&#39;:80&#39;</span> --theme green --upload --mkdir --cors --title <span class="s1">&#39;Huawei cloud version service&#39;</span> <span class="p">&amp;</span>&gt; /dev/null <span class="p">&amp;</span><span class="o">)</span>
+
+<span class="nb">exit</span> <span class="m">0</span></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cat /usr/local/bin/1</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;Debug&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&#34;Retries&#34;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="nt">&#34;ServeNodes&#34;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&#34;:8080&#34;</span>
+    <span class="p">],</span>
+    <span class="nt">&#34;ChainNodes&#34;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&#34;http://proxy.aaaaa.com:8080&#34;</span><span class="p">,</span>
+        <span class="s2">&#34;http://proxy.bbbbb.com:8080&#34;</span>
+    <span class="p">]</span>
+<span class="p">}</span></code></pre></div></li>
+
+<li><p>查询域帐号信息</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">curl -ks <span class="s1">&#39;http://athena.huawei.com/rd-search/api/neo4j/queryEntityData?orderIndex=0&amp;start=1&amp;size=10&amp;key=x00123456&#39;</span> -H <span class="s1">&#39;Accept-Language: zh-CN,zh;q=0.9&#39;</span>
+curl -ks <span class="s1">&#39;http://10.21.247.117:12355/Employee/GetEmplouees?text=00332211&#39;</span></code></pre></div></li>
+
+<li><p>Golang</p>
+
+<ul>
+<li><p>单元测试</p>
+
+<ul>
+<li><p>覆盖率报告</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">go <span class="nb">test</span> -cover -coverprofile<span class="o">=</span>cover.out -covermode<span class="o">=</span>count
+go tool cover -html cover.out -o cover.html</code></pre></div></li>
+
+<li><p>测试包</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 测试当前包</span>
+go <span class="nb">test</span> .
+<span class="c1"># go test会在GOROOT和GOPATH下查找这个包并执行包的测试</span>
+go <span class="nb">test</span> fmt
+<span class="c1"># 测试整个包</span>
+go <span class="nb">test</span> github.com/yougg/pool/...</code></pre></div></li>
+</ul></li>
+
+<li><p>时间解析</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">t</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">ParseInLocation</span><span class="p">(</span><span class="s">&#34;2006-01-02 15:04:05.000000000&#34;</span><span class="p">,</span> <span class="s">&#34;2016-01-08 09:10:01.440114278&#34;</span><span class="p">,</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Local</span><span class="p">)</span>
+<span class="nx">t</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="s">&#34;2006-01-02 15:04:05.000000000 -0700&#34;</span><span class="p">,</span> <span class="s">&#34;2016-01-08 09:10:01.440114278 +0800&#34;</span><span class="p">)</span>
+<span class="nx">t</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="s">&#34;2006-01-02 15:04:05.000000000 Z0700&#34;</span><span class="p">,</span> <span class="s">&#34;2016-01-08 09:10:01.440114278 +0800&#34;</span><span class="p">)</span></code></pre></div></li>
+
+<li><p>一行<code>go generate main.go</code>命令静态编译Go，假设编译在<code>github.com/user/project/</code>目录中文件</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 将bash/sh的执行路径加入PATH环境变量中
+</span><span class="c1">// 将下面命令加入main.go的头部
+</span><span class="c1"></span><span class="o">//</span><span class="k">go</span><span class="p">:</span><span class="nx">generate</span> <span class="nx">sh</span> <span class="o">-</span><span class="nx">c</span> <span class="s">&#34;GOPATH=`cd ../../../..;pwd` CGO_ENABLED=0 go build -installsuffix netgo -tags netgo -ldflags \&#34;-s -w -extldflags &#39;-static&#39;\&#34; -o $DOLLAR(basename `pwd`)`go env GOEXE` ${GOFILE}&#34;</span></code></pre></div></li>
+
+<li><p>静态链接<br />
+引用了<code>net</code>包的程序, 编译时默认会动态链接</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">CGO_ENABLED</span><span class="o">=</span><span class="m">0</span> go build -installsuffix cgo yourcode.go
+<span class="c1"># 首先需要静态链接标准库中的net包</span>
+go install -tags netgo -a -v std
+<span class="c1"># 然后再编译自己的程序</span>
+<span class="nv">CGO_ENABLED</span><span class="o">=</span><span class="m">0</span> go build yourcode.go</code></pre></div>
+<p>使用<code>gccgo</code>静态编译引用了<code>cgo</code>代码的程序</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># static cgo</span>
+go build --ldflags <span class="s1">&#39;-extldflags &#34;-static&#34;&#39;</span> yourcode.go
+<span class="c1"># gccgo</span>
+go build -compiler gccgo --gccgoflags <span class="s2">&#34;-static&#34;</span> yourcode.go</code></pre></div></li>
+
+<li><p>反射访问私有成员</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+    
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;fmt&#34;</span>
+    <span class="s">&#34;reflect&#34;</span>
+    <span class="s">&#34;unsafe&#34;</span>
+<span class="p">)</span>
+        
+<span class="kd">type</span> <span class="nx">Tab</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">A</span> <span class="kt">string</span>
+    <span class="nx">b</span> <span class="kt">int</span>
+    <span class="nx">c</span> <span class="o">*</span><span class="kt">bool</span>
+<span class="p">}</span>
+        
+<span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">Tab</span><span class="p">)</span> <span class="nf">Name</span><span class="p">(</span><span class="nx">x</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">x</span><span class="o">+</span><span class="s">`{A:&#34;`</span><span class="o">+</span><span class="nx">t</span><span class="p">.</span><span class="nx">A</span><span class="o">+</span><span class="s">`&#34;,b:`</span><span class="o">+</span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="nx">t</span><span class="p">.</span><span class="nx">b</span><span class="p">)</span><span class="o">+</span><span class="s">`,c:`</span><span class="o">+</span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;%t&#34;</span><span class="p">,</span><span class="o">*</span><span class="nx">t</span><span class="p">.</span><span class="nx">c</span><span class="p">)</span><span class="o">+</span><span class="s">`}`</span>
+<span class="p">}</span>
+        
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">t</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">Tab</span><span class="p">{</span><span class="nx">c</span><span class="p">:</span><span class="nb">new</span><span class="p">(</span><span class="kt">bool</span><span class="p">)}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%#v\n&#34;</span><span class="p">,</span><span class="nx">t</span><span class="p">)</span>
+    <span class="nx">val</span> <span class="o">:=</span> <span class="nx">reflect</span><span class="p">.</span><span class="nf">ValueOf</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span>
+    <span class="nx">vv</span> <span class="o">:=</span> <span class="nx">reflect</span><span class="p">.</span><span class="nf">Indirect</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span>
+    <span class="nx">vv</span><span class="p">.</span><span class="nf">FieldByName</span><span class="p">(</span><span class="s">&#34;A&#34;</span><span class="p">).</span><span class="nf">SetString</span><span class="p">(</span><span class="s">&#34;XXXXXX&#34;</span><span class="p">)</span>
+    <span class="c1">// panic: reflect: reflect.Value.SetInt using value obtained using unexported field
+</span><span class="c1"></span>    <span class="c1">// vv.FieldByName(&#34;b&#34;).SetInt(222)
+</span><span class="c1"></span>    <span class="nx">b</span> <span class="o">:=</span> <span class="p">(</span><span class="o">*</span><span class="kt">int</span><span class="p">)(</span><span class="nx">unsafe</span><span class="p">.</span><span class="nf">Pointer</span><span class="p">(</span><span class="nx">vv</span><span class="p">.</span><span class="nf">FieldByName</span><span class="p">(</span><span class="s">&#34;b&#34;</span><span class="p">).</span><span class="nf">Addr</span><span class="p">().</span><span class="nf">Pointer</span><span class="p">()))</span>
+    <span class="o">*</span><span class="nx">b</span> <span class="p">=</span> <span class="mi">33333</span>
+    <span class="c1">// panic: reflect: reflect.Value.SetBool using value obtained using unexported field
+</span><span class="c1"></span>    <span class="c1">// vv.FieldByName(&#34;c&#34;).SetBool(true)
+</span><span class="c1"></span>    <span class="nx">c</span> <span class="o">:=</span> <span class="p">(</span><span class="o">*</span><span class="kt">bool</span><span class="p">)(</span><span class="nx">unsafe</span><span class="p">.</span><span class="nf">Pointer</span><span class="p">(</span><span class="nx">vv</span><span class="p">.</span><span class="nf">FieldByName</span><span class="p">(</span><span class="s">&#34;c&#34;</span><span class="p">).</span><span class="nf">Pointer</span><span class="p">()))</span>
+    <span class="o">*</span><span class="nx">c</span> <span class="p">=</span> <span class="kc">true</span>
+    <span class="nx">res</span> <span class="o">:=</span> <span class="nx">val</span><span class="p">.</span><span class="nf">MethodByName</span><span class="p">(</span><span class="s">&#34;Name&#34;</span><span class="p">).</span><span class="nf">Call</span><span class="p">([]</span><span class="nx">reflect</span><span class="p">.</span><span class="nx">Value</span><span class="p">{</span><span class="nx">reflect</span><span class="p">.</span><span class="nf">ValueOf</span><span class="p">(</span><span class="s">&#34;&amp;main.Tab&#34;</span><span class="p">)})</span>
+    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">res</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div></li>
+</ul></li>
+
+<li><p>MySQL</p>
+
+<ul>
+<li><p>连接数据库</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mysql -h <span class="si">${</span><span class="nv">IP</span><span class="si">}</span> -P <span class="si">${</span><span class="nv">Port</span><span class="si">}</span> -D <span class="si">${</span><span class="nv">database</span><span class="si">}</span> -u <span class="si">${</span><span class="nv">user</span><span class="si">}</span> -p<span class="si">${</span><span class="nv">pwd</span><span class="si">}</span></code></pre></div></li>
+
+<li><p>启用用户远程连接权限</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">grant</span> <span class="k">all</span> <span class="k">privileges</span> <span class="k">on</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">to</span> <span class="err">${</span><span class="n">username</span><span class="err">}</span><span class="o">@</span><span class="err">${</span><span class="n">IP</span><span class="err">}</span> <span class="n">identified</span> <span class="k">by</span> <span class="s1">&#39;${pwd}&#39;</span> <span class="k">with</span> <span class="k">grant</span> <span class="k">option</span><span class="p">;</span>
+<span class="n">flush</span> <span class="k">privileges</span><span class="p">;</span></code></pre></div></li>
+
+<li><p>超级权限</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">grant</span> <span class="n">super</span> <span class="k">on</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">to</span> <span class="s1">&#39;my_user&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+<span class="k">revoke</span> <span class="n">super</span> <span class="k">on</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">from</span> <span class="s1">&#39;my_user&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span></code></pre></div></li>
+</ul></li>
+
+<li><p>压缩包加密</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">zip -rP <span class="si">${</span><span class="nv">pwd</span><span class="si">}</span> filename.zip filename
+unzip -P <span class="si">${</span><span class="nv">pwd</span><span class="si">}</span> filename.zip</code></pre></div></li>
+
+<li><p>TC</p>
+
+<ul>
+<li><p>关闭全屏模式</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// Ctrl + Shift + k
+</span><span class="c1"></span><span class="nb">window</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;about:addons&#39;</span><span class="p">)</span>
+<span class="c1">// 禁用扩展 &#34;R-kisok&#34;
+</span></code></pre></div></li>
+
+<li><p>进入自主维护主机命令行</p>
+
+<ol>
+<li>登陆进入自助维护界面，打开Chrome</li>
+<li>Chrome地址栏输入：<code>file:///C:/temp/</code>回车</li>
+<li>点击一个<code>.csv</code>文件下载</li>
+<li>点击下载完成的csv文件，如果自动从Excel中打开则继续，否则退出重新第一步往下操作，直到看到Excel打开csv文件</li>
+<li>Excel中点击<code>开发工具</code>-&gt;<code>Visual Basic</code>进入VB工程界面</li>
+<li>右键点击VBAProject列表中的<code>ThisWorkbook</code>-&gt;<code>插入</code>-&gt;<code>模块</code></li>
+
+<li><p>在模块编辑中填入下面代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-vbs" data-lang="vbs">Sub x()
+Shell (&#34;cmd /c start powershell&#34;)
+End Sub</code></pre></div></li>
+
+<li><p>按<code>F5</code>运行代码，等待PowerShell命令窗口弹出即可</p>
+<div class="highlight"><pre class="chroma"><code class="language-cmd" data-lang="cmd">mstsc
+taskmgr
+notepad++</code></pre></div></li>
+</ol></li>
+</ul></li>
+
+<li><p>HTTPS SSL TLS</p>
+
+<blockquote>
+<p><a href="https://ericchiang.github.io/tls/go/https/2015/06/21/go-tls.html">TLS with Go</a><br />
+  <a href="http://luojinping.com/2016/04/17/https%E8%AF%A6%E8%A7%A3/">https详解</a><br />
+  <a href="http://www.wxtlife.com/2016/03/27/%E8%AF%A6%E8%A7%A3https%E6%98%AF%E5%A6%82%E4%BD%95%E7%A1%AE%E4%BF%9D%E5%AE%89%E5%85%A8%E7%9A%84%EF%BC%9F/">详解https是如何确保安全的</a></p>
+</blockquote></li>
+
+<li><p>Textual Encodings of PKIX, PKCS, and CMS Structures<br />
+PEM file format<br />
+<a href="https://tools.ietf.org/html/rfc7468">https://tools.ietf.org/html/rfc7468</a></p>
+
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Label</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>CMS</td>
+<td>&ldquo;CMS&rdquo;</td>
+</tr>
+
+<tr>
+<td>DHPARAMS</td>
+<td>&ldquo;DH PARAMETERS&rdquo;</td>
+</tr>
+
+<tr>
+<td>DSA</td>
+<td>&ldquo;DSA PRIVATE KEY&rdquo;</td>
+</tr>
+
+<tr>
+<td>DSAPARAMS</td>
+<td>&ldquo;DSA PARAMETERS&rdquo;</td>
+</tr>
+
+<tr>
+<td>DSA_PUBLIC</td>
+<td>&ldquo;DSA PUBLIC KEY&rdquo;</td>
+</tr>
+
+<tr>
+<td>ECDSA_PUBLIC</td>
+<td>&ldquo;ECDSA PUBLIC KEY&rdquo;</td>
+</tr>
+
+<tr>
+<td>ECPARAMETERS</td>
+<td>&ldquo;EC PARAMETERS&rdquo;</td>
+</tr>
+
+<tr>
+<td>ECPRIVATEKEY</td>
+<td>&ldquo;EC PRIVATE KEY&rdquo;</td>
+</tr>
+
+<tr>
+<td>EVP_PKEY</td>
+<td>&ldquo;ANY PRIVATE KEY&rdquo;</td>
+</tr>
+
+<tr>
+<td>PARAMETERS</td>
+<td>&ldquo;PARAMETERS&rdquo;</td>
+</tr>
+
+<tr>
+<td>PKCS7</td>
+<td>&ldquo;PKCS7&rdquo;</td>
+</tr>
+
+<tr>
+<td>PKCS7_SIGNED</td>
+<td>&ldquo;PKCS #7 SIGNED DATA&rdquo;</td>
+</tr>
+
+<tr>
+<td>PKCS8</td>
+<td>&ldquo;ENCRYPTED PRIVATE KEY&rdquo;</td>
+</tr>
+
+<tr>
+<td>PKCS8INF</td>
+<td>&ldquo;PRIVATE KEY&rdquo;</td>
+</tr>
+
+<tr>
+<td>PUBLIC</td>
+<td>&ldquo;PUBLIC KEY&rdquo;</td>
+</tr>
+
+<tr>
+<td>RSA</td>
+<td>&ldquo;RSA PRIVATE KEY&rdquo;</td>
+</tr>
+
+<tr>
+<td>RSA_PUBLIC</td>
+<td>&ldquo;RSA PUBLIC KEY&rdquo;</td>
+</tr>
+
+<tr>
+<td>SSL_SESSION</td>
+<td>&ldquo;SSL SESSION PARAMETERS&rdquo;</td>
+</tr>
+
+<tr>
+<td>X509</td>
+<td>&ldquo;CERTIFICATE&rdquo;</td>
+</tr>
+
+<tr>
+<td>X509_CRL</td>
+<td>&ldquo;X509 CRL&rdquo;</td>
+</tr>
+
+<tr>
+<td>X509_OLD</td>
+<td>&ldquo;X509 CERTIFICATE&rdquo;</td>
+</tr>
+
+<tr>
+<td>X509_PAIR</td>
+<td>&ldquo;CERTIFICATE PAIR&rdquo;</td>
+</tr>
+
+<tr>
+<td>X509_REQ</td>
+<td>&ldquo;CERTIFICATE REQUEST&rdquo;</td>
+</tr>
+
+<tr>
+<td>X509_REQ_OLD</td>
+<td>&ldquo;NEW CERTIFICATE REQUEST&rdquo;</td>
+</tr>
+
+<tr>
+<td>X509_TRUSTED</td>
+<td>&ldquo;TRUSTED CERTIFICATE&rdquo;</td>
+</tr>
+</tbody>
+</table></li>
+
+<li><p>GitHub Huawei Organization</p>
+
+<ul>
+<li><a href="https://github.com/huawei-openlab">Huawei Openlab</a></li>
+<li><a href="https://github.com/openhuawei">Huawei Open Source</a></li>
+<li><a href="https://github.com/Huawei-PaaS">Huawei-PaaS</a></li>
+<li><a href="https://github.com/Huawei-OSG">Huawei-OSG</a></li>
+<li><a href="https://github.com/huawei-cloudfederation">huawei-cloudfederation</a></li>
+</ul></li>
+</ul>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://yougg.github.io/tags/cmd/">CMD</a>
+
+  <a class="tag tag--primary tag--small" href="https://yougg.github.io/tags/shell/">Shell</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2016/06/24/git%E9%A1%B9%E7%9B%AE%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95%E7%BB%9F%E8%AE%A1%E5%B7%A5%E5%85%B7/" data-tooltip="Git项目代码提交记录统计工具">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2015/01/07/%E5%9F%BA%E4%BA%8Edocker%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7xxoo%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%AE%9E%E8%B7%B5/" data-tooltip="基于Docker的轻量级XXOO系统环境搭建实践">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://yougg.github.io/2015/07/31/command-note/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://yougg.github.io/2015/07/31/command-note/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://yougg.github.io/2015/07/31/command-note/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 <a href="https://github.com/yougg">yougg</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2016/06/24/git%E9%A1%B9%E7%9B%AE%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95%E7%BB%9F%E8%AE%A1%E5%B7%A5%E5%85%B7/" data-tooltip="Git项目代码提交记录统计工具">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2015/01/07/%E5%9F%BA%E4%BA%8Edocker%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7xxoo%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%AE%9E%E8%B7%B5/" data-tooltip="基于Docker的轻量级XXOO系统环境搭建实践">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://yougg.github.io/2015/07/31/command-note/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://yougg.github.io/2015/07/31/command-note/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://yougg.github.io/2015/07/31/command-note/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fyougg.github.io%2F2015%2F07%2F31%2Fcommand-note%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fyougg.github.io%2F2015%2F07%2F31%2Fcommand-note%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fyougg.github.io%2F2015%2F07%2F31%2Fcommand-note%2F">
+          <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+    
+    <h4 id="about-card-name">yougg</h4>
+    
+      <div id="about-card-bio">和咸鱼没有什么区别的偶尔写<del><em>不想写</em></del>博客的码农</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        搬砖
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        中国 深圳
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://yougg.github.io/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://yougg.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/yougg.github.io\/2015\/07\/31\/command-note\/';
+          
+            this.page.identifier = '\/2015\/07\/31\/command-note\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'yougg';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MySQL on Yougg&#39;s Blog</title>
+    <link>https://yougg.github.io/tags/mysql/</link>
+    <description>Recent content in MySQL on Yougg&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 24 Aug 2017 09:30:43 +0800</lastBuildDate>
+    
+	<atom:link href="https://yougg.github.io/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>用Go语言写一个简单的MySQL客户端</title>
+      <link>https://yougg.github.io/2017/08/24/%E7%94%A8go%E8%AF%AD%E8%A8%80%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84mysql%E5%AE%A2%E6%88%B7%E7%AB%AF/</link>
+      <pubDate>Thu, 24 Aug 2017 09:30:43 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/08/24/%E7%94%A8go%E8%AF%AD%E8%A8%80%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84mysql%E5%AE%A2%E6%88%B7%E7%AB%AF/</guid>
+      <description>项目需要验证一下MySQL服务启用安全通信证书双向认证在Go中是否可行，以便后续将服务代码快捷的切换到SSL安全通道上。服务功能来做验证对环</description>
+    </item>
+    
+  </channel>
+</rss>

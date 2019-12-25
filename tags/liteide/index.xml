@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LiteIDE on Yougg&#39;s Blog</title>
+    <link>https://yougg.github.io/tags/liteide/</link>
+    <description>Recent content in LiteIDE on Yougg&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 23 Aug 2016 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://yougg.github.io/tags/liteide/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>LiteIDE 导出PDF定制Markdown转换的CSS</title>
+      <link>https://yougg.github.io/2016/08/23/liteide-%E5%AF%BC%E5%87%BApdf%E5%AE%9A%E5%88%B6markdown%E8%BD%AC%E6%8D%A2%E7%9A%84css/</link>
+      <pubDate>Tue, 23 Aug 2016 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2016/08/23/liteide-%E5%AF%BC%E5%87%BApdf%E5%AE%9A%E5%88%B6markdown%E8%BD%AC%E6%8D%A2%E7%9A%84css/</guid>
+      <description>Fork from GitHub_Style.css Line 13 body{ background-color:#FFFFFF; color:#333333; background-color:#FFFFFF; padding:0 30px 30px; font-size:15px; line-height:1.7; margin:20px auto; max-width:722px;margin-left: auto; border-radius:3px 3px 3px 3px; } Line 37 h1{ font-size:2em; margin:0.67em 0px; text-align: center; } Line 62 table{ border-collapse:collapse; border-spacing:0px; font-family:serif; } Line 92 hr{ background-color:#DDDDDD; border:0px none; color:#CCCCCC; height:1px; margin:2em 0px 15px; padding:0px; } Line 126 pre{ max-width:700px;background-color:#F8F8F8; border-radius:3px 3px 3px 3px; border:1px solid #DDDDDD; font-size:13px; line-height:19px; overflow:auto; padding:6px 10px; } Line</description>
+    </item>
+    
+  </channel>
+</rss>

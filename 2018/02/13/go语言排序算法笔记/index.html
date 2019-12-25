@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="yougg">
+<meta name="keywords" content="">
+<meta name="description" content="冒泡排序 排序实现 给定一个N个元素的数组 比较相邻的一对元素(a,b) 如果元素乱序，交换元素(当前情况是a&gt;b) 重复步骤1和2，直到到达数">
+
+
+<meta property="og:description" content="冒泡排序 排序实现 给定一个N个元素的数组 比较相邻的一对元素(a,b) 如果元素乱序，交换元素(当前情况是a&gt;b) 重复步骤1和2，直到到达数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go语言排序算法笔记">
+<meta name="twitter:title" content="Go语言排序算法笔记">
+<meta property="og:url" content="https://yougg.github.io/2018/02/13/go%E8%AF%AD%E8%A8%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/">
+<meta property="twitter:url" content="https://yougg.github.io/2018/02/13/go%E8%AF%AD%E8%A8%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/">
+<meta property="og:site_name" content="Yougg&#39;s Blog">
+<meta property="og:description" content="冒泡排序 排序实现 给定一个N个元素的数组 比较相邻的一对元素(a,b) 如果元素乱序，交换元素(当前情况是a&gt;b) 重复步骤1和2，直到到达数">
+<meta name="twitter:description" content="冒泡排序 排序实现 给定一个N个元素的数组 比较相邻的一对元素(a,b) 如果元素乱序，交换元素(当前情况是a&gt;b) 重复步骤1和2，直到到达数">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2018-02-13T10:50:47">
+  
+  
+    <meta property="article:modified_time" content="2018-02-13T10:50:47">
+  
+  
+  
+    
+      <meta property="article:section" content="Document">
+    
+  
+  
+    
+      <meta property="article:tag" content="Golang">
+    
+      <meta property="article:tag" content="Algorithm">
+    
+      <meta property="article:tag" content="Sort">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png">
+  <meta property="twitter:image" content="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png">
+
+
+    <title>Go语言排序算法笔记</title>
+
+    <link rel="icon" href="https://yougg.github.io/favicon.png">
+    
+
+    
+      <link rel="publisher" href="https://plus.google.com/&#43;caixiang">
+    
+
+    <link rel="canonical" href="https://yougg.github.io/2018/02/13/go%E8%AF%AD%E8%A8%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://yougg.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  href="https://yougg.github.io/css/fruity.css">
+      
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://yougg.github.io/">Yougg&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://yougg.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://yougg.github.io/#about">
+          <img class="sidebar-profile-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">yougg</h4>
+        
+          <h5 class="sidebar-profile-bio">和咸鱼没有什么区别的偶尔写<del><em>不想写</em></del>博客的码农</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/yougg" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/9087310/yougg" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Go语言排序算法笔记
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-02-13T10:50:47Z">
+        
+  
+  
+  
+  
+    2018年2月13日 10时50分47秒
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://yougg.github.io/categories/document">Document</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<h3 id="冒泡排序">冒泡排序</h3>
+
+<ul>
+<li><p>排序实现</p>
+
+<p>给定一个N个元素的数组</p>
+
+<ol>
+<li>比较相邻的一对元素(a,b)</li>
+<li>如果元素乱序，交换元素(当前情况是a&gt;b)</li>
+<li>重复步骤1和2，直到到达数组的末尾(使用基于0的索引时，最后一对元素是第(N-2)和第(N-1)项)</li>
+<li>至此，最大的元素将处于最后的位置</li>
+<li>然后将N减1，并重复以上步骤直到N=1</li>
+</ol></li>
+
+<li><p>复杂度计算</p>
+
+<p>比较和交换需要一个常数时间，称之为<code>c</code><br />
+标准冒泡排序中有两个嵌套循环<br />
+外层循环运行N次迭代<br />
+内层循环运行迭代次数逐渐变少：<br />
+    当i=0，迭代(N-1)次(比较和可能交换)，<br />
+    当i=1，迭代(N-2)次，<br />
+    &hellip;<br />
+    当i=(N-2)时，迭代1次，<br />
+    当i=(N-1)，迭代0次。<br />
+<code>总迭代次数</code> = (N-1)+(N-2)+&hellip;+1+0 = N*(N-1)/2<br />
+<code>总时间</code> = c<em>N</em>(N-1)/2 = O(N^2)</p></li>
+
+<li><p>代码</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;math/rand&#34;</span>
+    <span class="s">&#34;testing&#34;</span>
+    <span class="s">&#34;time&#34;</span>
+<span class="p">)</span>
+    
+<span class="kd">func</span> <span class="nf">initArray</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">array</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="p">(</span>
+        <span class="nx">n</span> <span class="kt">int</span>
+        <span class="nx">b</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">B</span>
+    <span class="p">)</span>
+    <span class="k">switch</span> <span class="nx">a</span><span class="p">.(</span><span class="kd">type</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="kt">int</span><span class="p">:</span>
+        <span class="nx">n</span> <span class="p">=</span> <span class="nx">a</span><span class="p">.(</span><span class="kt">int</span><span class="p">)</span>
+    <span class="k">case</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">B</span><span class="p">:</span>
+        <span class="nx">b</span> <span class="p">=</span> <span class="nx">a</span><span class="p">.(</span><span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">B</span><span class="p">)</span>
+        <span class="nx">n</span> <span class="p">=</span> <span class="nx">b</span><span class="p">.</span><span class="nx">N</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="nx">n</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="p">{</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+    <span class="nx">array</span> <span class="p">=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">array</span> <span class="p">{</span>
+        <span class="nx">array</span><span class="p">[</span><span class="nx">n</span><span class="o">-</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="p">=</span> <span class="nx">rand</span><span class="p">.</span><span class="nf">Intn</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="kc">nil</span> <span class="o">!=</span> <span class="nx">b</span> <span class="p">{</span>
+        <span class="nx">b</span><span class="p">.</span><span class="nf">ResetTimer</span><span class="p">()</span>
+    <span class="p">}</span>
+    <span class="k">return</span>
+<span class="p">}</span>
+    
+<span class="kd">func</span> <span class="nf">bubbleSort</span><span class="p">(</span><span class="nx">array</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">lena</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">lena</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="nx">j</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="p">&lt;</span> <span class="nx">lena</span><span class="o">-</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="nx">array</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="p">&gt;</span> <span class="nx">array</span><span class="p">[</span><span class="nx">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="p">{</span>
+                <span class="nx">array</span><span class="p">[</span><span class="nx">j</span><span class="p">],</span> <span class="nx">array</span><span class="p">[</span><span class="nx">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="p">=</span> <span class="nx">array</span><span class="p">[</span><span class="nx">j</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="nx">array</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+    
+<span class="kd">func</span> <span class="nf">bubbleSort1</span><span class="p">(</span><span class="nx">array</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">la</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span>
+    <span class="k">for</span> <span class="nx">swap</span> <span class="o">:=</span> <span class="kc">true</span><span class="p">;</span> <span class="nx">swap</span><span class="p">;</span> <span class="p">{</span>
+        <span class="nx">swap</span> <span class="p">=</span> <span class="kc">false</span>
+        <span class="k">for</span> <span class="nx">j</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="p">&lt;</span> <span class="nx">la</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="nx">array</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="p">&gt;</span> <span class="nx">array</span><span class="p">[</span><span class="nx">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="p">{</span>
+                <span class="nx">array</span><span class="p">[</span><span class="nx">j</span><span class="p">],</span> <span class="nx">array</span><span class="p">[</span><span class="nx">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="p">=</span> <span class="nx">array</span><span class="p">[</span><span class="nx">j</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="nx">array</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span>
+                <span class="nx">swap</span> <span class="p">=</span> <span class="kc">true</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+    
+<span class="kd">func</span> <span class="nf">bubbleSort2</span><span class="p">(</span><span class="nx">array</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">lena</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="nx">lena</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="nx">j</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="p">&lt;</span> <span class="nx">i</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="nx">array</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="p">&gt;</span> <span class="nx">array</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">{</span>
+                <span class="nx">array</span><span class="p">[</span><span class="nx">j</span><span class="p">],</span> <span class="nx">array</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nx">array</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">array</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">bubbleSort3</span><span class="p">(</span><span class="nx">array</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">lena</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="nx">lena</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">head</span> <span class="p">=</span> <span class="nx">lena</span> <span class="o">-</span> <span class="nx">i</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="nx">head</span> <span class="o">&gt;=</span> <span class="nx">i</span> <span class="p">{</span>
+            <span class="k">break</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="nx">j</span> <span class="o">:=</span> <span class="nx">head</span><span class="p">;</span> <span class="nx">j</span> <span class="p">&lt;</span> <span class="nx">i</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="nx">array</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="p">&lt;</span> <span class="nx">array</span><span class="p">[</span><span class="nx">head</span><span class="p">]</span> <span class="p">{</span>
+                <span class="nx">array</span><span class="p">[</span><span class="nx">head</span><span class="p">],</span> <span class="nx">array</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="p">=</span> <span class="nx">array</span><span class="p">[</span><span class="nx">j</span><span class="p">],</span> <span class="nx">array</span><span class="p">[</span><span class="nx">head</span><span class="p">]</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="nx">array</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="p">&gt;</span> <span class="nx">array</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">{</span>
+                <span class="nx">array</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">array</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="p">=</span> <span class="nx">array</span><span class="p">[</span><span class="nx">j</span><span class="p">],</span> <span class="nx">array</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+    
+<span class="kd">func</span> <span class="nf">TestBubbleSort</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">length</span> <span class="p">=</span> <span class="mi">20</span>
+    <span class="nx">array</span> <span class="o">:=</span> <span class="nf">initArray</span><span class="p">(</span><span class="nx">length</span><span class="p">)</span>
+    <span class="nf">bubbleSort</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span>
+    <span class="nx">t</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">&#34;bubble sort0:&#34;</span><span class="p">,</span> <span class="nx">array</span><span class="p">)</span>
+    
+    <span class="nx">init</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">().</span><span class="nf">UnixNano</span><span class="p">()</span>
+    <span class="nx">length</span> <span class="p">=</span> <span class="mi">20000</span>
+    <span class="nx">array</span> <span class="p">=</span> <span class="nf">initArray</span><span class="p">(</span><span class="nx">length</span><span class="p">)</span>
+    <span class="nx">before</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">().</span><span class="nf">UnixNano</span><span class="p">()</span>
+    <span class="nx">t</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">&#34;bubble sort0 init:&#34;</span><span class="p">,</span> <span class="nx">before</span><span class="o">-</span><span class="nx">init</span><span class="p">)</span>
+    <span class="nf">bubbleSort</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span>
+    <span class="nx">after</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">().</span><span class="nf">UnixNano</span><span class="p">()</span>
+    <span class="nx">t</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">&#34;bubble sort0 time:&#34;</span><span class="p">,</span> <span class="nx">after</span><span class="o">-</span><span class="nx">before</span><span class="p">)</span>
+<span class="p">}</span>
+    
+<span class="kd">func</span> <span class="nf">TestBubbleSort1</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">length</span> <span class="p">=</span> <span class="mi">20</span>
+    <span class="nx">array</span> <span class="o">:=</span> <span class="nf">initArray</span><span class="p">(</span><span class="nx">length</span><span class="p">)</span>
+    <span class="nf">bubbleSort1</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span>
+    <span class="nx">t</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">&#34;bubble sort1:&#34;</span><span class="p">,</span> <span class="nx">array</span><span class="p">)</span>
+    
+    <span class="nx">init</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">().</span><span class="nf">UnixNano</span><span class="p">()</span>
+    <span class="nx">length</span> <span class="p">=</span> <span class="mi">20000</span>
+    <span class="nx">array</span> <span class="p">=</span> <span class="nf">initArray</span><span class="p">(</span><span class="nx">length</span><span class="p">)</span>
+    <span class="nx">before</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">().</span><span class="nf">UnixNano</span><span class="p">()</span>
+    <span class="nx">t</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">&#34;bubble sort1 init:&#34;</span><span class="p">,</span> <span class="nx">before</span><span class="o">-</span><span class="nx">init</span><span class="p">)</span>
+    <span class="nf">bubbleSort1</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span>
+    <span class="nx">after</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">().</span><span class="nf">UnixNano</span><span class="p">()</span>
+    <span class="nx">t</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">&#34;bubble sort1 time:&#34;</span><span class="p">,</span> <span class="nx">after</span><span class="o">-</span><span class="nx">before</span><span class="p">)</span>
+<span class="p">}</span>
+    
+<span class="kd">func</span> <span class="nf">TestBubbleSort2</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">length</span> <span class="p">=</span> <span class="mi">20</span>
+    <span class="nx">array</span> <span class="o">:=</span> <span class="nf">initArray</span><span class="p">(</span><span class="nx">length</span><span class="p">)</span>
+    <span class="nf">bubbleSort2</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span>
+    <span class="nx">t</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">&#34;bubble sort2:&#34;</span><span class="p">,</span> <span class="nx">array</span><span class="p">)</span>
+    
+    <span class="nx">init</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">().</span><span class="nf">UnixNano</span><span class="p">()</span>
+    <span class="nx">length</span> <span class="p">=</span> <span class="mi">20000</span>
+    <span class="nx">array</span> <span class="p">=</span> <span class="nf">initArray</span><span class="p">(</span><span class="nx">length</span><span class="p">)</span>
+    <span class="nx">before</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">().</span><span class="nf">UnixNano</span><span class="p">()</span>
+    <span class="nx">t</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">&#34;bubble sort2 init:&#34;</span><span class="p">,</span> <span class="nx">before</span><span class="o">-</span><span class="nx">init</span><span class="p">)</span>
+    <span class="nf">bubbleSort2</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span>
+    <span class="nx">after</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">().</span><span class="nf">UnixNano</span><span class="p">()</span>
+    <span class="nx">t</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">&#34;bubble sort2 time:&#34;</span><span class="p">,</span> <span class="nx">after</span><span class="o">-</span><span class="nx">before</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">TestBubbleSort3</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">length</span> <span class="p">=</span> <span class="mi">20</span>
+    <span class="nx">array</span> <span class="o">:=</span> <span class="nf">initArray</span><span class="p">(</span><span class="nx">length</span><span class="p">)</span>
+    <span class="nx">t</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">&#34;bubble sort3:&#34;</span><span class="p">,</span> <span class="nx">array</span><span class="p">)</span>
+    <span class="nf">bubbleSort3</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span>
+    <span class="nx">t</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">&#34;bubble sort3:&#34;</span><span class="p">,</span> <span class="nx">array</span><span class="p">)</span>
+    
+    <span class="nx">init</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">().</span><span class="nf">UnixNano</span><span class="p">()</span>
+    <span class="nx">length</span> <span class="p">=</span> <span class="mi">20000</span>
+    <span class="nx">array</span> <span class="p">=</span> <span class="nf">initArray</span><span class="p">(</span><span class="nx">length</span><span class="p">)</span>
+    <span class="nx">before</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">().</span><span class="nf">UnixNano</span><span class="p">()</span>
+    <span class="nx">t</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">&#34;bubble sort3 init:&#34;</span><span class="p">,</span> <span class="nx">before</span><span class="o">-</span><span class="nx">init</span><span class="p">)</span>
+    <span class="nf">bubbleSort3</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span>
+    <span class="nx">after</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">().</span><span class="nf">UnixNano</span><span class="p">()</span>
+    <span class="nx">t</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">&#34;bubble sort3 time:&#34;</span><span class="p">,</span> <span class="nx">after</span><span class="o">-</span><span class="nx">before</span><span class="p">)</span>
+<span class="p">}</span>
+    
+<span class="kd">func</span> <span class="nf">BenchmarkBubbleSort</span><span class="p">(</span><span class="nx">b</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">B</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="nx">b</span><span class="p">.</span><span class="nx">N</span> <span class="o">&lt;=</span> <span class="mi">1</span> <span class="p">{</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+    <span class="nf">bubbleSort</span><span class="p">(</span><span class="nf">initArray</span><span class="p">(</span><span class="nx">b</span><span class="p">))</span>
+<span class="p">}</span>
+    
+<span class="kd">func</span> <span class="nf">BenchmarkBubbleSort1</span><span class="p">(</span><span class="nx">b</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">B</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="nx">b</span><span class="p">.</span><span class="nx">N</span> <span class="o">&lt;=</span> <span class="mi">1</span> <span class="p">{</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+    <span class="nf">bubbleSort1</span><span class="p">(</span><span class="nf">initArray</span><span class="p">(</span><span class="nx">b</span><span class="p">))</span>
+<span class="p">}</span>
+    
+<span class="kd">func</span> <span class="nf">BenchmarkBubbleSort2</span><span class="p">(</span><span class="nx">b</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">B</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="nx">b</span><span class="p">.</span><span class="nx">N</span> <span class="o">&lt;=</span> <span class="mi">1</span> <span class="p">{</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+    <span class="nf">bubbleSort1</span><span class="p">(</span><span class="nf">initArray</span><span class="p">(</span><span class="nx">b</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">BenchmarkBubbleSort3</span><span class="p">(</span><span class="nx">b</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">B</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="nx">b</span><span class="p">.</span><span class="nx">N</span> <span class="o">&lt;=</span> <span class="mi">1</span> <span class="p">{</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+    <span class="nf">bubbleSort3</span><span class="p">(</span><span class="nf">initArray</span><span class="p">(</span><span class="nx">b</span><span class="p">))</span>
+<span class="p">}</span></code></pre></div></li>
+
+<li><p>测试</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 单独执行Test</span>
+go <span class="nb">test</span> -v bubblesort_test.go
+<span class="c1"># 执行Test和Benchmark</span>
+go <span class="nb">test</span> -v -bench . bubblesort_test.go
+<span class="c1"># 单独执行Benchmark</span>
+go <span class="nb">test</span> -v -run ^$ -bench . bubblesort_test.go</code></pre></div></li>
+</ul>
+
+<hr />
+
+<p><em><strong>参考链接：</strong></em></p>
+
+<ul>
+<li><a href="https://zh.wikipedia.org/wiki/%E5%A4%A7O%E7%AC%A6%E5%8F%B7">大O符号</a></li>
+<li><a href="https://www.guokr.com/blog/473832/">【数学基础】如何看懂算法中的各种求和公式的含义？</a></li>
+<li><a href="https://visualgo.net">visualising data structures and algorithms through animation</a></li>
+<li><a href="https://royalbluewa3.cc/posts/67d771c4">常见排序算法总结</a></li>
+</ul>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://yougg.github.io/tags/golang/">Golang</a>
+
+  <a class="tag tag--primary tag--small" href="https://yougg.github.io/tags/algorithm/">Algorithm</a>
+
+  <a class="tag tag--primary tag--small" href="https://yougg.github.io/tags/sort/">Sort</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2018/07/06/go%E8%AF%AD%E8%A8%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" data-tooltip="Go语言排序算法笔记">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2017/12/19/go%E8%AF%AD%E8%A8%80%E9%9D%A2%E8%AF%95%E9%A2%98%E6%B1%87%E9%9B%86/" data-tooltip="Go语言面试题汇集">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://yougg.github.io/2018/02/13/go%E8%AF%AD%E8%A8%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://yougg.github.io/2018/02/13/go%E8%AF%AD%E8%A8%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://yougg.github.io/2018/02/13/go%E8%AF%AD%E8%A8%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 <a href="https://github.com/yougg">yougg</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2018/07/06/go%E8%AF%AD%E8%A8%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" data-tooltip="Go语言排序算法笔记">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2017/12/19/go%E8%AF%AD%E8%A8%80%E9%9D%A2%E8%AF%95%E9%A2%98%E6%B1%87%E9%9B%86/" data-tooltip="Go语言面试题汇集">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://yougg.github.io/2018/02/13/go%E8%AF%AD%E8%A8%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://yougg.github.io/2018/02/13/go%E8%AF%AD%E8%A8%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://yougg.github.io/2018/02/13/go%E8%AF%AD%E8%A8%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fyougg.github.io%2F2018%2F02%2F13%2Fgo%25E8%25AF%25AD%25E8%25A8%2580%25E6%258E%2592%25E5%25BA%258F%25E7%25AE%2597%25E6%25B3%2595%25E7%25AC%2594%25E8%25AE%25B0%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fyougg.github.io%2F2018%2F02%2F13%2Fgo%25E8%25AF%25AD%25E8%25A8%2580%25E6%258E%2592%25E5%25BA%258F%25E7%25AE%2597%25E6%25B3%2595%25E7%25AC%2594%25E8%25AE%25B0%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fyougg.github.io%2F2018%2F02%2F13%2Fgo%25E8%25AF%25AD%25E8%25A8%2580%25E6%258E%2592%25E5%25BA%258F%25E7%25AE%2597%25E6%25B3%2595%25E7%25AC%2594%25E8%25AE%25B0%2F">
+          <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+    
+    <h4 id="about-card-name">yougg</h4>
+    
+      <div id="about-card-bio">和咸鱼没有什么区别的偶尔写<del><em>不想写</em></del>博客的码农</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        搬砖
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        中国 深圳
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://yougg.github.io/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://yougg.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/yougg.github.io\/2018\/02\/13\/go%E8%AF%AD%E8%A8%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0\/';
+          
+            this.page.identifier = '\/2018\/02\/13\/go%E8%AF%AD%E8%A8%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'yougg';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

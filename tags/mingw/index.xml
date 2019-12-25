@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mingw on Yougg&#39;s Blog</title>
+    <link>https://yougg.github.io/tags/mingw/</link>
+    <description>Recent content in Mingw on Yougg&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 01 Dec 2010 11:50:40 +0800</lastBuildDate>
+    
+	<atom:link href="https://yougg.github.io/tags/mingw/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>MinGW 中文显示乱码 的解决办法</title>
+      <link>https://yougg.github.io/2010/12/01/mingw-%E4%B8%AD%E6%96%87%E6%98%BE%E7%A4%BA%E4%B9%B1%E7%A0%81-%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</link>
+      <pubDate>Wed, 01 Dec 2010 11:50:40 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2010/12/01/mingw-%E4%B8%AD%E6%96%87%E6%98%BE%E7%A4%BA%E4%B9%B1%E7%A0%81-%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</guid>
+      <description>MinGW msys Cygwin的精简功能版 在MinGW中想切换到中文目录,却提示不支持.中文全部显示????? 这个是解决办法: 给ls命令加上参数 --show-control-chars ls --show-control-chars 如此</description>
+    </item>
+    
+  </channel>
+</rss>

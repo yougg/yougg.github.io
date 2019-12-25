@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Interview on Yougg&#39;s Blog</title>
+    <link>https://yougg.github.io/tags/interview/</link>
+    <description>Recent content in Interview on Yougg&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 19 Dec 2017 10:59:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://yougg.github.io/tags/interview/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Go语言面试题汇集</title>
+      <link>https://yougg.github.io/2017/12/19/go%E8%AF%AD%E8%A8%80%E9%9D%A2%E8%AF%95%E9%A2%98%E6%B1%87%E9%9B%86/</link>
+      <pubDate>Tue, 19 Dec 2017 10:59:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/12/19/go%E8%AF%AD%E8%A8%80%E9%9D%A2%E8%AF%95%E9%A2%98%E6%B1%87%E9%9B%86/</guid>
+      <description>goroutine 的调度顺序是随机的 package main import ( &amp;#34;fmt&amp;#34; &amp;#34;sync&amp;#34; ) func main() { //runtime.GOMAXPROCS(1) //runtime.GOMAXPROCS(runtime.NumCPU()) n := 10 wg := new(sync.WaitGroup) wg.Add(n) for i := 0; i &amp;lt; n; i++ { i := i go func() { fmt.Printf(&amp;#34;%d &amp;#34;, i) wg.Done() }() } wg.Wait() fmt.Println() } 以下4种执行方式的输出差别 GOMAXPROCS=1 go run main.go</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Document on Yougg&#39;s Blog</title>
+    <link>https://yougg.github.io/categories/document/</link>
+    <description>Recent content in Document on Yougg&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 30 Jul 2018 19:19:52 +0000</lastBuildDate>
+    
+	<atom:link href="https://yougg.github.io/categories/document/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ubuntu18.04安装使用RIDE</title>
+      <link>https://yougg.github.io/2018/07/30/ubuntu18.04%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8ride/</link>
+      <pubDate>Mon, 30 Jul 2018 19:19:52 +0000</pubDate>
+      
+      <guid>https://yougg.github.io/2018/07/30/ubuntu18.04%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8ride/</guid>
+      <description>Ubuntu 18.04 install Robot Framework RIDE set pip install source Linux/Unix ~/.pip/pip.conf Windows C:\Users\用户名\pip\pip.ini [global] trusted-host=rnd-mirrors.huawei.com index-url=http://rnd-mirrors.huawei.com/pypi/simple/ latest version install python pip apt install -y python3-pip install wxPython (for linux) pip install -U -f https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-18.04 wxPython install RIDE (for windows, only this step need) pip install -U</description>
+    </item>
+    
+    <item>
+      <title>rkt容器简单试用</title>
+      <link>https://yougg.github.io/2018/07/27/rkt%E5%AE%B9%E5%99%A8%E7%AE%80%E5%8D%95%E8%AF%95%E7%94%A8/</link>
+      <pubDate>Fri, 27 Jul 2018 16:41:47 +0000</pubDate>
+      
+      <guid>https://yougg.github.io/2018/07/27/rkt%E5%AE%B9%E5%99%A8%E7%AE%80%E5%8D%95%E8%AF%95%E7%94%A8/</guid>
+      <description>设置代理 export http_proxy=&amp;#39;http://127.0.0.1:8080&amp;#39; export {https,ftp,rsync,all}_proxy=$http_proxy 下载安装rkt cd ~/Download/ wget --no-check-certificate https://github.com/rkt/rkt/releases/download/v1.30.0/rkt-1.30.0-1.x86_64.rpm sudo rpm -ivh rkt-1.30.0-1.x86_64.rpm 下载安装镜像 切换到root重新, 重新设置一遍http proxy, 然后再下载镜像 sudo su - export http_proxy=&amp;#39;http://127.0.0.1:8080&amp;#39; export {https,ftp,rsync,all}_proxy=$http_proxy #sudo rkt --insecure-options=image --debug fetch</description>
+    </item>
+    
+    <item>
+      <title>Go语言排序算法笔记</title>
+      <link>https://yougg.github.io/2018/07/06/go%E8%AF%AD%E8%A8%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Fri, 06 Jul 2018 14:25:22 +0000</pubDate>
+      
+      <guid>https://yougg.github.io/2018/07/06/go%E8%AF%AD%E8%A8%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/</guid>
+      <description>Install Flutter on Ubuntu Desktop set apt proxy and http(s) proxy echo &amp;#39;Acquire::http::Proxy &amp;#34;http://127.0.0.1:8080&amp;#34;&amp;#39; &amp;gt;&amp;gt; /etc/apt/apt.conf export http_proxy=&amp;#39;http://127.0.0.1:8080&amp;#39; export {https,ftp,rsync,all}_proxy=$http_proxy install git sudo apt install git git config --global http.sslVerify false clone flutter mkdir -p ~/Flutter cd ~/Flutter git clone -b master https://github.com/flutter/flutter.git ./flutter/bin/flutter --version export PATH=${PATH}:~/Flutter/flutter/bin echo &amp;#39;export PATH=${PATH}:~/Flutter/flutter/bin&amp;#39; &amp;gt;&amp;gt; ~/.profile flutter doctor sudo apt install lib32stdc++6 set proxy forward for virtual device download latest frp release package https://github.com/fatedier/frp/releases</description>
+    </item>
+    
+    <item>
+      <title>Go语言排序算法笔记</title>
+      <link>https://yougg.github.io/2018/02/13/go%E8%AF%AD%E8%A8%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Tue, 13 Feb 2018 10:50:47 +0000</pubDate>
+      
+      <guid>https://yougg.github.io/2018/02/13/go%E8%AF%AD%E8%A8%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/</guid>
+      <description>冒泡排序 排序实现 给定一个N个元素的数组 比较相邻的一对元素(a,b) 如果元素乱序，交换元素(当前情况是a&amp;gt;b) 重复步骤1和2，直到到达数</description>
+    </item>
+    
+    <item>
+      <title>Go语言面试题汇集</title>
+      <link>https://yougg.github.io/2017/12/19/go%E8%AF%AD%E8%A8%80%E9%9D%A2%E8%AF%95%E9%A2%98%E6%B1%87%E9%9B%86/</link>
+      <pubDate>Tue, 19 Dec 2017 10:59:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/12/19/go%E8%AF%AD%E8%A8%80%E9%9D%A2%E8%AF%95%E9%A2%98%E6%B1%87%E9%9B%86/</guid>
+      <description>goroutine 的调度顺序是随机的 package main import ( &amp;#34;fmt&amp;#34; &amp;#34;sync&amp;#34; ) func main() { //runtime.GOMAXPROCS(1) //runtime.GOMAXPROCS(runtime.NumCPU()) n := 10 wg := new(sync.WaitGroup) wg.Add(n) for i := 0; i &amp;lt; n; i++ { i := i go func() { fmt.Printf(&amp;#34;%d &amp;#34;, i) wg.Done() }() } wg.Wait() fmt.Println() } 以下4种执行方式的输出差别 GOMAXPROCS=1 go run main.go</description>
+    </item>
+    
+    <item>
+      <title>使用Cassandra</title>
+      <link>https://yougg.github.io/2017/12/11/%E4%BD%BF%E7%94%A8cassandra/</link>
+      <pubDate>Mon, 11 Dec 2017 20:28:59 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/12/11/%E4%BD%BF%E7%94%A8cassandra/</guid>
+      <description>Golang访问Cassandra的客户端gocql 事务支持 INSERT INTO tablex (column_a, column_b, column_c) VALUES (&amp;#39;a&amp;#39;,&amp;#39;b&amp;#39;,&amp;#39;c&amp;#39;) IF NOT EXISTS; UPDATE tablex SET column_a = &amp;#39;x&amp;#39;, column_b = &amp;#39;y&amp;#39;, column_c = &amp;#39;z&amp;#39; WHERE column_a = &amp;#39;a&amp;#39; IF column_a = &amp;#39;a&amp;#39;; SQL语句转义 var replacer</description>
+    </item>
+    
+    <item>
+      <title>配置GoLand集成开发环境</title>
+      <link>https://yougg.github.io/2017/11/30/%E9%85%8D%E7%BD%AEgoland%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</link>
+      <pubDate>Thu, 30 Nov 2017 16:38:52 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/11/30/%E9%85%8D%E7%BD%AEgoland%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</guid>
+      <description>安装必备工具 下载安装以下软件，确保执行命令的路径都已添加到系统环境变量PATH中 Golang 安装向导 使用默认安装路径 Notepad++ 安装向导 使用默认安装路径 勾选默认</description>
+    </item>
+    
+    <item>
+      <title>GoLand中使用PlantUML生成Go UML图</title>
+      <link>https://yougg.github.io/2017/11/25/goland%E4%B8%AD%E4%BD%BF%E7%94%A8plantuml%E7%94%9F%E6%88%90go-uml%E5%9B%BE/</link>
+      <pubDate>Sat, 25 Nov 2017 10:48:48 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/11/25/goland%E4%B8%AD%E4%BD%BF%E7%94%A8plantuml%E7%94%9F%E6%88%90go-uml%E5%9B%BE/</guid>
+      <description>确保如下软件已安装并添加到PATH中可执行 Java Golang GoLand Graphviz GoLand中安装PlantUML插件 点击菜单 File -&amp;gt; Settings -&amp;gt; Plugins -&amp;gt; Browse repositories... 搜索框输入PlantUML，</description>
+    </item>
+    
+    <item>
+      <title>Go net/http 超时机制完全手册</title>
+      <link>https://yougg.github.io/2017/10/23/go-net/http-%E8%B6%85%E6%97%B6%E6%9C%BA%E5%88%B6%E5%AE%8C%E5%85%A8%E6%89%8B%E5%86%8C/</link>
+      <pubDate>Mon, 23 Oct 2017 14:57:01 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/10/23/go-net/http-%E8%B6%85%E6%97%B6%E6%9C%BA%E5%88%B6%E5%AE%8C%E5%85%A8%E6%89%8B%E5%86%8C/</guid>
+      <description>Go net/http 超时机制完全手册</description>
+    </item>
+    
+    <item>
+      <title>Public Key Infrastructure Certificate Apply Guide</title>
+      <link>https://yougg.github.io/2017/08/28/public-key-infrastructure-certificate-apply-guide/</link>
+      <pubDate>Mon, 28 Aug 2017 15:50:10 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/08/28/public-key-infrastructure-certificate-apply-guide/</guid>
+      <description>生成XXX服务组件(service DB)的私钥和证书签发请求 service服务证书签发请求和RSA私钥(PKCS#1)已废弃 # 生成servi</description>
+    </item>
+    
+    <item>
+      <title>我的静态博客搭建流程</title>
+      <link>https://yougg.github.io/2017/06/27/%E6%88%91%E7%9A%84%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/</link>
+      <pubDate>Tue, 27 Jun 2017 14:36:16 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/06/27/%E6%88%91%E7%9A%84%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/</guid>
+      <description>根据GitHub静态博客向导: https://pages.github.com/ 在GitHub创建名为 username.github.io 的空仓库 username 为自己的GitHub账号，此处我的账号为yougg 如果之前已经创建过个人博</description>
+    </item>
+    
+    <item>
+      <title>《Go语言安全编程规范》</title>
+      <link>https://yougg.github.io/2017/06/12/go%E8%AF%AD%E8%A8%80%E5%AE%89%E5%85%A8%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/</link>
+      <pubDate>Mon, 12 Jun 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/06/12/go%E8%AF%AD%E8%A8%80%E5%AE%89%E5%85%A8%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/</guid>
+      <description>0 前言 背景 《Go语言安全编程规范》针对Go语言编程中的整数安全、输入校验、内存管理、异常行为、敏感数据、I/O操作、序列化等方面，描述可能导</description>
+    </item>
+    
+    <item>
+      <title>理解Go语言模型(1)：interface底层详解</title>
+      <link>https://yougg.github.io/2017/03/27/%E7%90%86%E8%A7%A3go%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B1interface%E5%BA%95%E5%B1%82%E8%AF%A6%E8%A7%A3/</link>
+      <pubDate>Mon, 27 Mar 2017 10:59:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/03/27/%E7%90%86%E8%A7%A3go%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B1interface%E5%BA%95%E5%B1%82%E8%AF%A6%E8%A7%A3/</guid>
+      <description>前言 Go语言从语法上面来说，是相对简单的，所以基本的语法特性是没有什么特别要讲的，这里将从Go语言的一些核心的设计，包括interface，</description>
+    </item>
+    
+    <item>
+      <title>Command Note</title>
+      <link>https://yougg.github.io/2015/07/31/command-note/</link>
+      <pubDate>Fri, 31 Jul 2015 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2015/07/31/command-note/</guid>
+      <description>查看进程环境变量 Linux tr \\0 \\n &amp;lt; /proc/${PID}/environ ps eww -p ${PID} Solaris pargs -e ${PID} Windows PowerShell (Get-Process -id %PID%).StartInfo.EnvironmentVariables 挂载/卸载分区 Windows :: 查看分区信息 mountvol /? :: 卸载分区 mountvol D: /D :: 挂载分区 mountvol D: \\?\Volume{e316bd82-2441-11e5-9656-d6d12ffbbef0} 修改系统代理 Linux export http_proxy=&amp;#39;http://x.proxy.com:8080&amp;#39; export</description>
+    </item>
+    
+    <item>
+      <title>基于Docker的轻量级XXOO系统环境搭建实践</title>
+      <link>https://yougg.github.io/2015/01/07/%E5%9F%BA%E4%BA%8Edocker%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7xxoo%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%AE%9E%E8%B7%B5/</link>
+      <pubDate>Wed, 07 Jan 2015 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2015/01/07/%E5%9F%BA%E4%BA%8Edocker%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7xxoo%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%AE%9E%E8%B7%B5/</guid>
+      <description>作者 [cxy](mailto:joecc@126.com) 发布于 2015年1月 -- Docker简介 Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到</description>
+    </item>
+    
+    <item>
+      <title>通过golang官方的docker镜像构建历史, 查看Android开发环境的搭建流程</title>
+      <link>https://yougg.github.io/2014/12/31/%E9%80%9A%E8%BF%87golang%E5%AE%98%E6%96%B9%E7%9A%84docker%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA%E5%8E%86%E5%8F%B2-%E6%9F%A5%E7%9C%8Bandroid%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/</link>
+      <pubDate>Wed, 31 Dec 2014 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2014/12/31/%E9%80%9A%E8%BF%87golang%E5%AE%98%E6%96%B9%E7%9A%84docker%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA%E5%8E%86%E5%8F%B2-%E6%9F%A5%E7%9C%8Bandroid%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/</guid>
+      <description>环境Ubuntu 14.04 # 安装docker sudo apt-get install docker.io # 获取golang的Android开发环境镜像 sudo docker pull golang/mobile # 查看下载完成的镜像 sudo docker images # REPOSITORY TAG IMAGE ID CREATED VIRTUAL SIZE</description>
+    </item>
+    
+    <item>
+      <title>自制DOCKER镜像和私有仓库</title>
+      <link>https://yougg.github.io/2014/11/11/%E8%87%AA%E5%88%B6docker%E9%95%9C%E5%83%8F%E5%92%8C%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93/</link>
+      <pubDate>Tue, 11 Nov 2014 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2014/11/11/%E8%87%AA%E5%88%B6docker%E9%95%9C%E5%83%8F%E5%92%8C%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93/</guid>
+      <description>参考链接： 如何从docker将image镜像到私有的registry 美味小鱼CSDN Docker博客</description>
+    </item>
+    
+    <item>
+      <title>ssh登录慢的原因分析及解决方法</title>
+      <link>https://yougg.github.io/2013/11/14/ssh%E7%99%BB%E5%BD%95%E6%85%A2%E7%9A%84%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</link>
+      <pubDate>Thu, 14 Nov 2013 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2013/11/14/ssh%E7%99%BB%E5%BD%95%E6%85%A2%E7%9A%84%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</guid>
+      <description>DNS解析问题导致的登录时明显的停顿，有两个阶段： 输入用户名敲回车之后，提示输入密码前； 原因sshd默认UseDNS选项是打开的，失败的DN</description>
+    </item>
+    
+    <item>
+      <title>Windows系统中查找命令的路径</title>
+      <link>https://yougg.github.io/2013/10/12/windows%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4%E7%9A%84%E8%B7%AF%E5%BE%84/</link>
+      <pubDate>Sat, 12 Oct 2013 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2013/10/12/windows%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4%E7%9A%84%E8%B7%AF%E5%BE%84/</guid>
+      <description>实现类似Linux中的which/type命令的效果 In CMD: where cmd for %x in (powershell.exe) do @echo %~$PATH:x In PowerShell: Get-Command where</description>
+    </item>
+    
+    <item>
+      <title>MinGW 中文显示乱码 的解决办法</title>
+      <link>https://yougg.github.io/2010/12/01/mingw-%E4%B8%AD%E6%96%87%E6%98%BE%E7%A4%BA%E4%B9%B1%E7%A0%81-%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</link>
+      <pubDate>Wed, 01 Dec 2010 11:50:40 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2010/12/01/mingw-%E4%B8%AD%E6%96%87%E6%98%BE%E7%A4%BA%E4%B9%B1%E7%A0%81-%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</guid>
+      <description>MinGW msys Cygwin的精简功能版 在MinGW中想切换到中文目录,却提示不支持.中文全部显示????? 这个是解决办法: 给ls命令加上参数 --show-control-chars ls --show-control-chars 如此</description>
+    </item>
+    
+    <item>
+      <title>Emacs快捷键</title>
+      <link>https://yougg.github.io/2010/11/24/emacs%E5%BF%AB%E6%8D%B7%E9%94%AE/</link>
+      <pubDate>Wed, 24 Nov 2010 12:25:55 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2010/11/24/emacs%E5%BF%AB%E6%8D%B7%E9%94%AE/</guid>
+      <description>文件操作 C-x C-f 打开文件,出现提示时输入/username@host:filepath可编辑FTP文件 C-x C-v 打开一个文件，取代当前缓冲区 C-x C-s 保存文</description>
+    </item>
+    
+    <item>
+      <title>DIY Eclipse打开文件所在位置文件夹</title>
+      <link>https://yougg.github.io/2010/11/19/diy-eclipse%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6%E6%89%80%E5%9C%A8%E4%BD%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%A4%B9/</link>
+      <pubDate>Fri, 19 Nov 2010 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2010/11/19/diy-eclipse%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6%E6%89%80%E5%9C%A8%E4%BD%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%A4%B9/</guid>
+      <description>MyEclipse里面带了类似的一个插件，点一下就可以打开当前编辑文件所在的文件夹，这样就可以直接到文件夹里面去做操作了。 MyEclipse 里面的插件名叫：</description>
+    </item>
+    
+    <item>
+      <title>adb工具使用</title>
+      <link>https://yougg.github.io/2010/11/09/adb%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Tue, 09 Nov 2010 11:38:39 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2010/11/09/adb%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/</guid>
+      <description>adb(Android Debug Bridge)是Android 提供的一个通用的调试工具，可以管理设备或手机 模拟器 的状态 。还可以进行以下的操作： 快速更新设备或手机模拟器中</description>
+    </item>
+    
+  </channel>
+</rss>

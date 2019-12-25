@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Telecom on Yougg&#39;s Blog</title>
+    <link>https://yougg.github.io/tags/telecom/</link>
+    <description>Recent content in Telecom on Yougg&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 23 Dec 2014 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://yougg.github.io/tags/telecom/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>2014-12-23 深圳宽带套餐资费对比</title>
+      <link>https://yougg.github.io/2014/12/23/2014-12-23-%E6%B7%B1%E5%9C%B3%E5%AE%BD%E5%B8%A6%E5%A5%97%E9%A4%90%E8%B5%84%E8%B4%B9%E5%AF%B9%E6%AF%94/</link>
+      <pubDate>Tue, 23 Dec 2014 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2014/12/23/2014-12-23-%E6%B7%B1%E5%9C%B3%E5%AE%BD%E5%B8%A6%E5%A5%97%E9%A4%90%E8%B5%84%E8%B4%B9%E5%AF%B9%E6%AF%94/</guid>
+      <description>&amp;ndash; 套餐 预付 年限 月付 副卡 总额 月均 赠送 电信 12Mbps,700min,3GB 1590 1 149 10 3498 291.5 600 电信 12Mbps,700min,3GB 1790 2 166 10 6006 250.5 600 联通 6Mbps,240min,300MB 0 1 96 0 1152 96 0 - 电信 电信 联通 年限 1 2 1 套餐 12Mbps,700min,3GB 12Mbps,700min,3GB 6Mbps,240min,300MB 预付 1590 1790 0 月</description>
+    </item>
+    
+  </channel>
+</rss>

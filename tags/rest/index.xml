@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>REST on Yougg&#39;s Blog</title>
+    <link>https://yougg.github.io/tags/rest/</link>
+    <description>Recent content in REST on Yougg&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 17 Aug 2017 15:56:31 +0800</lastBuildDate>
+    
+	<atom:link href="https://yougg.github.io/tags/rest/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>REST工具</title>
+      <link>https://yougg.github.io/2017/08/17/rest%E5%B7%A5%E5%85%B7/</link>
+      <pubDate>Thu, 17 Aug 2017 15:56:31 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/08/17/rest%E5%B7%A5%E5%85%B7/</guid>
+      <description>package main import ( &amp;#34;crypto/tls&amp;#34; &amp;#34;encoding/json&amp;#34; &amp;#34;flag&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;io/ioutil&amp;#34; &amp;#34;log&amp;#34; &amp;#34;net&amp;#34; &amp;#34;net/http&amp;#34; &amp;#34;os&amp;#34; &amp;#34;time&amp;#34; ) type content struct { Title string Desc string Scheme string Host string Port int Request struct { IP string Url string Method string Cert struct { RootCAs []string Certificates []string } Header map[string]string Body string } Response struct { Status int Cert map[string]string Header map[string]string Body string } } type handler struct{} // tcpKeepAliveListener sets</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Android on Yougg&#39;s Blog</title>
+    <link>https://yougg.github.io/tags/android/</link>
+    <description>Recent content in Android on Yougg&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 31 Dec 2014 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://yougg.github.io/tags/android/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>通过golang官方的docker镜像构建历史, 查看Android开发环境的搭建流程</title>
+      <link>https://yougg.github.io/2014/12/31/%E9%80%9A%E8%BF%87golang%E5%AE%98%E6%96%B9%E7%9A%84docker%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA%E5%8E%86%E5%8F%B2-%E6%9F%A5%E7%9C%8Bandroid%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/</link>
+      <pubDate>Wed, 31 Dec 2014 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2014/12/31/%E9%80%9A%E8%BF%87golang%E5%AE%98%E6%96%B9%E7%9A%84docker%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA%E5%8E%86%E5%8F%B2-%E6%9F%A5%E7%9C%8Bandroid%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/</guid>
+      <description>环境Ubuntu 14.04 # 安装docker sudo apt-get install docker.io # 获取golang的Android开发环境镜像 sudo docker pull golang/mobile # 查看下载完成的镜像 sudo docker images # REPOSITORY TAG IMAGE ID CREATED VIRTUAL SIZE</description>
+    </item>
+    
+    <item>
+      <title>adb工具使用</title>
+      <link>https://yougg.github.io/2010/11/09/adb%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Tue, 09 Nov 2010 11:38:39 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2010/11/09/adb%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/</guid>
+      <description>adb(Android Debug Bridge)是Android 提供的一个通用的调试工具，可以管理设备或手机 模拟器 的状态 。还可以进行以下的操作： 快速更新设备或手机模拟器中</description>
+    </item>
+    
+  </channel>
+</rss>

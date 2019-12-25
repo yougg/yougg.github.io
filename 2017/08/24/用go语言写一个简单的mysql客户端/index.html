@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="yougg">
+<meta name="keywords" content="">
+<meta name="description" content="项目需要验证一下MySQL服务启用安全通信证书双向认证在Go中是否可行，以便后续将服务代码快捷的切换到SSL安全通道上。服务功能来做验证对环">
+
+
+<meta property="og:description" content="项目需要验证一下MySQL服务启用安全通信证书双向认证在Go中是否可行，以便后续将服务代码快捷的切换到SSL安全通道上。服务功能来做验证对环">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用Go语言写一个简单的MySQL客户端">
+<meta name="twitter:title" content="用Go语言写一个简单的MySQL客户端">
+<meta property="og:url" content="https://yougg.github.io/2017/08/24/%E7%94%A8go%E8%AF%AD%E8%A8%80%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84mysql%E5%AE%A2%E6%88%B7%E7%AB%AF/">
+<meta property="twitter:url" content="https://yougg.github.io/2017/08/24/%E7%94%A8go%E8%AF%AD%E8%A8%80%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84mysql%E5%AE%A2%E6%88%B7%E7%AB%AF/">
+<meta property="og:site_name" content="Yougg&#39;s Blog">
+<meta property="og:description" content="项目需要验证一下MySQL服务启用安全通信证书双向认证在Go中是否可行，以便后续将服务代码快捷的切换到SSL安全通道上。服务功能来做验证对环">
+<meta name="twitter:description" content="项目需要验证一下MySQL服务启用安全通信证书双向认证在Go中是否可行，以便后续将服务代码快捷的切换到SSL安全通道上。服务功能来做验证对环">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2017-08-24T09:30:43">
+  
+  
+    <meta property="article:modified_time" content="2017-08-24T09:30:43">
+  
+  
+  
+    
+      <meta property="article:section" content="Programing">
+    
+  
+  
+    
+      <meta property="article:tag" content="Golang">
+    
+      <meta property="article:tag" content="MySQL">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png">
+  <meta property="twitter:image" content="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png">
+
+
+    <title>用Go语言写一个简单的MySQL客户端</title>
+
+    <link rel="icon" href="https://yougg.github.io/favicon.png">
+    
+
+    
+      <link rel="publisher" href="https://plus.google.com/&#43;caixiang">
+    
+
+    <link rel="canonical" href="https://yougg.github.io/2017/08/24/%E7%94%A8go%E8%AF%AD%E8%A8%80%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84mysql%E5%AE%A2%E6%88%B7%E7%AB%AF/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://yougg.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  href="https://yougg.github.io/css/fruity.css">
+      
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://yougg.github.io/">Yougg&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://yougg.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://yougg.github.io/#about">
+          <img class="sidebar-profile-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">yougg</h4>
+        
+          <h5 class="sidebar-profile-bio">和咸鱼没有什么区别的偶尔写<del><em>不想写</em></del>博客的码农</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/yougg" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/9087310/yougg" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      用Go语言写一个简单的MySQL客户端
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2017-08-24T09:30:43&#43;08:00">
+        
+  
+  
+  
+  
+    2017年8月24日 09时30分43秒
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://yougg.github.io/categories/programing">Programing</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>项目需要验证一下MySQL服务启用安全通信证书双向认证在Go中是否可行，以便后续将服务代码快捷的切换到SSL安全通道上。服务功能来做验证对环境依赖比较麻烦，那么就写一个简单的客户端先验证一下吧。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//go:generate GOOS=windows go build -ldflags &#39;-s -w&#39; -o gosql.exe sql.go
+</span><span class="c1">//go:generate GOOS=linux go build -ldflags &#39;-s -w&#39; -o gosql sql.go
+</span><span class="c1"></span>
+<span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;crypto/tls&#34;</span>
+	<span class="s">&#34;crypto/x509&#34;</span>
+	<span class="s">&#34;database/sql&#34;</span>
+	<span class="s">&#34;flag&#34;</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;io/ioutil&#34;</span>
+	<span class="s">&#34;log&#34;</span>
+	<span class="s">&#34;os&#34;</span>
+	<span class="s">&#34;reflect&#34;</span>
+	<span class="s">&#34;regexp&#34;</span>
+	<span class="s">&#34;strconv&#34;</span>
+	<span class="s">&#34;strings&#34;</span>
+	<span class="s">&#34;time&#34;</span>
+	<span class="s">&#34;unicode/utf8&#34;</span>
+
+	<span class="s">&#34;github.com/go-sql-driver/mysql&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">var</span> <span class="p">(</span>
+	<span class="nx">host</span> <span class="p">=</span> <span class="nx">flag</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="s">&#34;h&#34;</span><span class="p">,</span> <span class="s">&#34;127.0.0.1&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+	<span class="nx">port</span> <span class="p">=</span> <span class="nx">flag</span><span class="p">.</span><span class="nf">Int</span><span class="p">(</span><span class="s">&#34;P&#34;</span><span class="p">,</span> <span class="mi">3306</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+	<span class="nx">user</span> <span class="p">=</span> <span class="nx">flag</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="s">&#34;u&#34;</span><span class="p">,</span> <span class="s">&#34;myuser&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+	<span class="nx">pwd</span>  <span class="p">=</span> <span class="nx">flag</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="s">&#34;p&#34;</span><span class="p">,</span> <span class="s">&#34;mypwd&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+	<span class="nx">dbn</span>  <span class="p">=</span> <span class="nx">flag</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="s">&#34;D&#34;</span><span class="p">,</span> <span class="s">&#34;myuser&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+	<span class="nx">exec</span> <span class="p">=</span> <span class="nx">flag</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="s">&#34;e&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+
+	<span class="nx">sslMode</span> <span class="p">=</span> <span class="nx">flag</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="s">&#34;ssl-mode&#34;</span><span class="p">,</span> <span class="s">&#34;DISABLED&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+	<span class="nx">sslCA</span>   <span class="p">=</span> <span class="nx">flag</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="s">&#34;ssl-ca&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+	<span class="nx">sslCert</span> <span class="p">=</span> <span class="nx">flag</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="s">&#34;ssl-cert&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+	<span class="nx">sslKey</span>  <span class="p">=</span> <span class="nx">flag</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="s">&#34;ssl-key&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+	<span class="c1">// TODO read app.conf for default value
+</span><span class="c1"></span>	<span class="nx">flag</span><span class="p">.</span><span class="nf">StringVar</span><span class="p">(</span><span class="nx">host</span><span class="p">,</span> <span class="s">&#34;host&#34;</span><span class="p">,</span> <span class="s">&#34;127.0.0.1&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+	<span class="nx">flag</span><span class="p">.</span><span class="nf">IntVar</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span> <span class="s">&#34;port&#34;</span><span class="p">,</span> <span class="mi">3306</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+	<span class="nx">flag</span><span class="p">.</span><span class="nf">StringVar</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="s">&#34;user&#34;</span><span class="p">,</span> <span class="s">&#34;myuser&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+	<span class="nx">flag</span><span class="p">.</span><span class="nf">StringVar</span><span class="p">(</span><span class="nx">pwd</span><span class="p">,</span> <span class="s">&#34;password&#34;</span><span class="p">,</span> <span class="s">&#34;mypwd&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+	<span class="nx">flag</span><span class="p">.</span><span class="nf">StringVar</span><span class="p">(</span><span class="nx">exec</span><span class="p">,</span> <span class="s">&#34;execute&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+	<span class="nx">flag</span><span class="p">.</span><span class="nf">StringVar</span><span class="p">(</span><span class="nx">dbn</span><span class="p">,</span> <span class="s">&#34;database&#34;</span><span class="p">,</span> <span class="s">&#34;myuser&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+
+	<span class="nx">flag</span><span class="p">.</span><span class="nx">Usage</span> <span class="p">=</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintln</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stderr</span><span class="p">,</span> <span class="s">`gosql Ver 1.0, A mysql command line client write in Golang for DataSight MRS
+</span><span class="s">Copyright (c) 2017, yougg. All rights reserved.
+</span><span class="s">
+</span><span class="s">Usage: gosql [OPTIONS] [database]
+</span><span class="s">All followed flags are compatible with mysql command
+</span><span class="s">  -h, --host      Connect to host. (default &#34;127.0.0.1&#34;)
+</span><span class="s">  -P, --port      Port number to use for connection or 0 for default to. (default 3306)
+</span><span class="s">  -u, --user      User for login if not current user. (default &#34;myuser&#34;)
+</span><span class="s">  -p, --password  Password to use when connecting to server. (default &#34;mypwd&#34;)
+</span><span class="s">  -D, --database  Database to use. (default &#34;myuser&#34;)
+</span><span class="s">      --ssl-mode  SSL connection mode. (default &#34;DISABLED&#34;)
+</span><span class="s">                  PREFERRED:       Use ssl connection if server supports encrypted connections, else connect without ssl.
+</span><span class="s">                  REQUIRED:        Use ssl connection if server supports encrypted connections, else connection attempt fails.
+</span><span class="s">                  VERIFY_CA:       As REQUIRED, additionally verify server certificate against the configured CA certificates.
+</span><span class="s">                  VERIFY_IDENTITY: As VERIFY_CA, additionally verify server certificate matches the host.
+</span><span class="s">                  DISABLED:        Establish an unencrypted connection.
+</span><span class="s">      --ssl-ca    CA file in PEM format.
+</span><span class="s">      --ssl-cert  X509 cert in PEM format.
+</span><span class="s">      --ssl-key   X509 key in PEM format.
+</span><span class="s">  -e, --execute   Execute command and quit.
+</span><span class="s">
+</span><span class="s">CAUTION: No interactive mode support.
+</span><span class="s">
+</span><span class="s">Example:
+</span><span class="s">    gosql -h 12.34.56.78 -P 3306 -u myuser -pmypwd -D myuser -e &#34;show variables like &#39;ssl%&#39;&#34;
+</span><span class="s">    gosql -h 12.34.56.78 -P 3306 -u myuser --password=&#34;mypwd&#34; -D myuser --ssl-mode REQUIRED --ssl-ca ./ca.crt --ssl-cert ./client.crt --ssl-key ./client.key -e &#34;CREATE TABLE test (v INTEGER)&#34;`</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="c1">// compatible with mysql when flag contact with value without = or space
+</span><span class="c1"></span>	<span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">a</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span> <span class="p">{</span>
+		<span class="c1">// go regexp unsupported Perl syntax: `(?!`
+</span><span class="c1"></span>		<span class="k">if</span> <span class="nx">regexp</span><span class="p">.</span><span class="nf">MustCompile</span><span class="p">(</span><span class="s">`^-[hPupDe].+`</span><span class="p">).</span><span class="nf">MatchString</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+			<span class="p">!</span><span class="nx">regexp</span><span class="p">.</span><span class="nf">MustCompile</span><span class="p">(</span><span class="s">`[=]`</span><span class="p">).</span><span class="nf">MatchString</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nx">a</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="s">`=`</span> <span class="o">+</span> <span class="nx">a</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+
+	<span class="nx">flag</span><span class="p">.</span><span class="nf">Parse</span><span class="p">()</span>
+	<span class="k">if</span> <span class="nx">flag</span><span class="p">.</span><span class="nf">NFlag</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="s">``</span> <span class="o">==</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">TrimSpace</span><span class="p">(</span><span class="o">*</span><span class="nx">exec</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">flag</span><span class="p">.</span><span class="nf">Usage</span><span class="p">()</span>
+		<span class="nx">os</span><span class="p">.</span><span class="nf">Exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="c1">// TODO interactive mode support
+</span><span class="c1"></span>
+	<span class="kd">var</span> <span class="nx">tlsKey</span> <span class="kt">string</span>
+	<span class="k">switch</span> <span class="o">*</span><span class="nx">sslMode</span> <span class="p">{</span>
+	<span class="k">case</span> <span class="s">&#34;PREFERRED&#34;</span><span class="p">:</span>
+		<span class="nx">tlsKey</span> <span class="p">=</span> <span class="s">&#34;true&#34;</span>
+		<span class="c1">// TODO reconnect without ssl
+</span><span class="c1"></span>	<span class="k">case</span> <span class="s">&#34;REQUIRED&#34;</span><span class="p">:</span>
+		<span class="nx">tlsKey</span> <span class="p">=</span> <span class="s">&#34;skip-verify&#34;</span>
+	<span class="k">case</span> <span class="s">&#34;VERIFY_CA&#34;</span><span class="p">:</span>
+		<span class="nx">tlsKey</span> <span class="p">=</span> <span class="s">&#34;custom&#34;</span>
+		<span class="nf">loadCert</span><span class="p">()</span>
+		<span class="c1">// TODO reconnect without match Common Name of server certificate
+</span><span class="c1"></span>	<span class="k">case</span> <span class="s">&#34;VERIFY_IDENTITY&#34;</span><span class="p">:</span>
+		<span class="nx">tlsKey</span> <span class="p">=</span> <span class="s">&#34;custom&#34;</span>
+		<span class="nf">loadCert</span><span class="p">()</span>
+	<span class="k">case</span> <span class="s">&#34;DISABLED&#34;</span><span class="p">:</span>
+		<span class="nx">tlsKey</span> <span class="p">=</span> <span class="s">&#34;false&#34;</span>
+	<span class="p">}</span>
+
+	<span class="nx">cfg</span> <span class="o">:=</span> <span class="nx">mysql</span><span class="p">.</span><span class="nx">Config</span><span class="p">{</span>
+		<span class="nx">User</span><span class="p">:</span>            <span class="o">*</span><span class="nx">user</span><span class="p">,</span>
+		<span class="nx">Passwd</span><span class="p">:</span>          <span class="o">*</span><span class="nx">pwd</span><span class="p">,</span>
+		<span class="nx">Net</span><span class="p">:</span>             <span class="s">&#34;tcp&#34;</span><span class="p">,</span>
+		<span class="nx">Addr</span><span class="p">:</span>            <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;%s:%d&#34;</span><span class="p">,</span> <span class="o">*</span><span class="nx">host</span><span class="p">,</span> <span class="o">*</span><span class="nx">port</span><span class="p">),</span>
+		<span class="nx">DBName</span><span class="p">:</span>          <span class="o">*</span><span class="nx">dbn</span><span class="p">,</span>
+		<span class="nx">Loc</span><span class="p">:</span>             <span class="nx">time</span><span class="p">.</span><span class="nx">Local</span><span class="p">,</span>
+		<span class="nx">TLSConfig</span><span class="p">:</span>       <span class="nx">tlsKey</span><span class="p">,</span>
+		<span class="nx">AllowAllFiles</span><span class="p">:</span>   <span class="kc">true</span><span class="p">,</span>
+		<span class="nx">MultiStatements</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+	<span class="p">}</span>
+	<span class="c1">//fmt.Println(cfg.FormatDSN())
+</span><span class="c1"></span>	<span class="c1">//src := fmt.Sprintf(&#34;%s:%s@tcp(%s:%d)/%s?tls=custom&#34;, *user, *pwd, *host, *port, *dbn)
+</span><span class="c1"></span>	<span class="nx">db</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">sql</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="s">&#34;mysql&#34;</span><span class="p">,</span> <span class="nx">cfg</span><span class="p">.</span><span class="nf">FormatDSN</span><span class="p">())</span>
+	<span class="k">if</span> <span class="kc">nil</span> <span class="o">!=</span> <span class="nx">err</span> <span class="o">||</span> <span class="kc">nil</span> <span class="o">==</span> <span class="nx">db</span> <span class="p">{</span>
+		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalln</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="kd">var</span> <span class="nx">key</span> <span class="kt">string</span>
+	<span class="nx">statement</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Fields</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">TrimSpace</span><span class="p">(</span><span class="o">*</span><span class="nx">exec</span><span class="p">))</span>
+	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">statement</span><span class="p">)</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+		<span class="nx">key</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">ToUpper</span><span class="p">(</span><span class="nx">statement</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+	<span class="p">}</span>
+	<span class="k">switch</span> <span class="nx">key</span> <span class="p">{</span>
+	<span class="k">case</span> <span class="s">&#34;INSERT&#34;</span><span class="p">,</span> <span class="s">&#34;UPDATE&#34;</span><span class="p">,</span> <span class="s">&#34;DELETE&#34;</span><span class="p">,</span> <span class="s">&#34;CREATE&#34;</span><span class="p">,</span> <span class="s">&#34;DROP&#34;</span><span class="p">,</span> <span class="s">&#34;SET&#34;</span><span class="p">,</span> <span class="s">&#34;BEGIN&#34;</span><span class="p">,</span> <span class="s">&#34;TRUNCATE&#34;</span><span class="p">,</span> <span class="s">&#34;LOAD&#34;</span><span class="p">:</span>
+		<span class="nf">execute</span><span class="p">(</span><span class="nx">db</span><span class="p">)</span>
+	<span class="k">case</span> <span class="s">&#34;SELECT&#34;</span><span class="p">,</span> <span class="s">&#34;SHOW&#34;</span><span class="p">,</span> <span class="s">&#34;DESC&#34;</span><span class="p">,</span> <span class="s">&#34;EXPLAIN&#34;</span><span class="p">:</span>
+		<span class="nf">query</span><span class="p">(</span><span class="nx">db</span><span class="p">)</span>
+	<span class="k">default</span><span class="p">:</span>
+		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalln</span><span class="p">(</span><span class="s">&#34;Execute command or sql statement was not support:&#34;</span><span class="p">,</span> <span class="o">*</span><span class="nx">exec</span><span class="p">)</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">loadCert</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">rootCertPool</span> <span class="o">:=</span> <span class="nx">x509</span><span class="p">.</span><span class="nf">NewCertPool</span><span class="p">()</span>
+	<span class="nx">ca</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ioutil</span><span class="p">.</span><span class="nf">ReadFile</span><span class="p">(</span><span class="o">*</span><span class="nx">sslCA</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalln</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="o">*</span><span class="nx">sslCA</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="k">if</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">rootCertPool</span><span class="p">.</span><span class="nf">AppendCertsFromPEM</span><span class="p">(</span><span class="nx">ca</span><span class="p">);</span> <span class="p">!</span><span class="nx">ok</span> <span class="p">{</span>
+		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalln</span><span class="p">(</span><span class="s">&#34;Failed to append CA certificate PEM data.&#34;</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="nx">clientCert</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="nx">tls</span><span class="p">.</span><span class="nx">Certificate</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+	<span class="nx">certs</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">tls</span><span class="p">.</span><span class="nf">LoadX509KeyPair</span><span class="p">(</span><span class="o">*</span><span class="nx">sslCert</span><span class="p">,</span> <span class="o">*</span><span class="nx">sslKey</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalln</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="o">*</span><span class="nx">sslCert</span><span class="p">,</span> <span class="o">*</span><span class="nx">sslKey</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="nx">clientCert</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">clientCert</span><span class="p">,</span> <span class="nx">certs</span><span class="p">)</span>
+	<span class="nx">tlsKey</span> <span class="o">:=</span> <span class="s">&#34;custom&#34;</span>
+	<span class="nx">mysql</span><span class="p">.</span><span class="nf">RegisterTLSConfig</span><span class="p">(</span><span class="nx">tlsKey</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">tls</span><span class="p">.</span><span class="nx">Config</span><span class="p">{</span>
+		<span class="nx">RootCAs</span><span class="p">:</span>      <span class="nx">rootCertPool</span><span class="p">,</span>
+		<span class="nx">Certificates</span><span class="p">:</span> <span class="nx">clientCert</span><span class="p">,</span>
+	<span class="p">})</span>
+<span class="p">}</span>
+
+<span class="c1">// CASE INSERT/UPDATE/DELETE/CREATE/DROP/SET/BEGIN/TRUNCATE/LOAD statement
+</span><span class="c1">//  Ex: &#34;update tableX set cloumnX = &#39;x&#39; where cloumnY = &#39;y&#39;&#34;
+</span><span class="c1">//      &#34;delete from tableX&#34;
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">execute</span><span class="p">(</span><span class="nx">db</span> <span class="o">*</span><span class="nx">sql</span><span class="p">.</span><span class="nx">DB</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">res</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">db</span><span class="p">.</span><span class="nf">Exec</span><span class="p">(</span><span class="o">*</span><span class="nx">exec</span><span class="p">)</span>
+	<span class="k">if</span> <span class="kc">nil</span> <span class="o">!=</span> <span class="nx">err</span> <span class="p">{</span>
+		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalln</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="nx">v</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">res</span><span class="p">.</span><span class="nf">RowsAffected</span><span class="p">()</span>
+	<span class="k">if</span> <span class="kc">nil</span> <span class="o">!=</span> <span class="nx">err</span> <span class="p">{</span>
+		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalln</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Processed %d row(s)\n&#34;</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">HasPrefix</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">ToUpper</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">TrimSpace</span><span class="p">(</span><span class="o">*</span><span class="nx">exec</span><span class="p">)),</span> <span class="s">&#34;INSERT&#34;</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">v</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">res</span><span class="p">.</span><span class="nf">LastInsertId</span><span class="p">()</span>
+		<span class="k">if</span> <span class="kc">nil</span> <span class="o">!=</span> <span class="nx">err</span> <span class="p">{</span>
+			<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalln</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+		<span class="p">}</span>
+		<span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Last insert ID:&#34;</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// CASE QUERY/SHOW/DESC/EXPLAIN statement
+</span><span class="c1">//  Ex: &#34;select * from tableX limit 1&#34;
+</span><span class="c1">//      &#34;show tables&#34;
+</span><span class="c1">//      &#34;show variables like &#39;ssl%&#39;&#34;
+</span><span class="c1">//      &#34;desc tableX&#34;
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">query</span><span class="p">(</span><span class="nx">db</span> <span class="o">*</span><span class="nx">sql</span><span class="p">.</span><span class="nx">DB</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">rows</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">db</span><span class="p">.</span><span class="nf">Query</span><span class="p">(</span><span class="o">*</span><span class="nx">exec</span><span class="p">)</span>
+	<span class="k">if</span> <span class="kc">nil</span> <span class="o">!=</span> <span class="nx">err</span> <span class="p">{</span>
+		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalln</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="kd">var</span> <span class="nx">showCloumnName</span> <span class="kt">bool</span>
+	<span class="kd">var</span> <span class="nx">data</span> <span class="p">[][]</span><span class="kt">string</span>
+	<span class="k">for</span> <span class="nx">rows</span><span class="p">.</span><span class="nf">Next</span><span class="p">()</span> <span class="p">{</span>
+		<span class="nx">columns</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">rows</span><span class="p">.</span><span class="nf">Columns</span><span class="p">()</span>
+		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalln</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+		<span class="p">}</span>
+		<span class="k">if</span> <span class="p">!</span><span class="nx">showCloumnName</span> <span class="p">{</span>
+			<span class="nx">showCloumnName</span> <span class="p">=</span> <span class="kc">true</span>
+			<span class="nx">data</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">columns</span><span class="p">)</span>
+		<span class="p">}</span>
+
+		<span class="nx">refs</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kd">interface</span><span class="p">{},</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">columns</span><span class="p">))</span>
+		<span class="k">for</span> <span class="k">range</span> <span class="nx">columns</span> <span class="p">{</span>
+			<span class="nx">refs</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">refs</span><span class="p">,</span> <span class="nb">new</span><span class="p">(</span><span class="kd">interface</span><span class="p">{}))</span>
+		<span class="p">}</span>
+
+		<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">rows</span><span class="p">.</span><span class="nf">Scan</span><span class="p">(</span><span class="nx">refs</span><span class="o">...</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="nx">log</span><span class="p">.</span><span class="nf">Fatalln</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+		<span class="p">}</span>
+		<span class="nx">line</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">string</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">columns</span><span class="p">))</span>
+		<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">refs</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="nx">reflect</span><span class="p">.</span><span class="nf">TypeOf</span><span class="p">(</span><span class="nx">v</span><span class="p">).</span><span class="nf">Kind</span><span class="p">()</span> <span class="o">==</span> <span class="nx">reflect</span><span class="p">.</span><span class="nx">Ptr</span> <span class="p">{</span>
+				<span class="nx">i</span> <span class="o">:=</span> <span class="nx">reflect</span><span class="p">.</span><span class="nf">ValueOf</span><span class="p">(</span><span class="nx">v</span><span class="p">).</span><span class="nf">Elem</span><span class="p">().</span><span class="nf">Interface</span><span class="p">()</span>
+				<span class="k">switch</span> <span class="nx">i</span><span class="p">.(</span><span class="kd">type</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">case</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int8</span><span class="p">,</span> <span class="kt">int16</span><span class="p">,</span> <span class="kt">int32</span><span class="p">,</span> <span class="kt">int64</span><span class="p">,</span>
+					<span class="kt">uint</span><span class="p">,</span> <span class="kt">uint8</span><span class="p">,</span> <span class="kt">uint16</span><span class="p">,</span> <span class="kt">uint32</span><span class="p">,</span> <span class="kt">uint64</span><span class="p">,</span>
+					<span class="kt">float32</span><span class="p">,</span> <span class="kt">float64</span><span class="p">:</span>
+					<span class="nx">line</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">line</span><span class="p">,</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;%v&#34;</span><span class="p">,</span> <span class="nx">i</span><span class="p">))</span>
+				<span class="k">case</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">:</span>
+					<span class="nx">line</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">line</span><span class="p">,</span> <span class="nb">string</span><span class="p">(</span><span class="nx">i</span><span class="p">.([]</span><span class="kt">byte</span><span class="p">)))</span>
+				<span class="k">case</span> <span class="kt">string</span><span class="p">:</span>
+					<span class="nx">line</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">line</span><span class="p">,</span> <span class="nx">i</span><span class="p">.(</span><span class="kt">string</span><span class="p">))</span>
+				<span class="k">default</span><span class="p">:</span>
+					<span class="nx">line</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">line</span><span class="p">,</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;%v&#34;</span><span class="p">,</span> <span class="nx">i</span><span class="p">))</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="nx">data</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">line</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="nf">formatPrint</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// TODO output column mode
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">formatPrint</span><span class="p">(</span><span class="nx">data</span> <span class="p">[][]</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span> <span class="p">{</span>
+		<span class="c1">// first row is column name
+</span><span class="c1"></span>		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;No row found&#34;</span><span class="p">)</span>
+		<span class="k">return</span>
+	<span class="p">}</span>
+	<span class="nx">columnName</span> <span class="o">:=</span> <span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+	<span class="nx">columnWidth</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">columnName</span><span class="p">))</span>
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">line</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">data</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">c</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">line</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="nx">l</span> <span class="o">:=</span> <span class="nx">utf8</span><span class="p">.</span><span class="nf">RuneCountInString</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span> <span class="o">+</span> <span class="nf">countFullWidthChars</span><span class="p">(</span><span class="nx">c</span><span class="p">);</span> <span class="nx">l</span> <span class="p">&gt;</span> <span class="nx">columnWidth</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">{</span>
+				<span class="nx">columnWidth</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nx">l</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="nx">splitLine</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">string</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">columnName</span><span class="p">))</span>
+	<span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">columnName</span> <span class="p">{</span>
+		<span class="nx">columnName</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;%-&#34;</span><span class="o">+</span><span class="nx">strconv</span><span class="p">.</span><span class="nf">Itoa</span><span class="p">(</span><span class="nx">columnWidth</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span><span class="o">+</span><span class="s">&#34;s&#34;</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
+		<span class="nx">splitLine</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">splitLine</span><span class="p">,</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Repeat</span><span class="p">(</span><span class="s">&#34;-&#34;</span><span class="p">,</span> <span class="nx">columnWidth</span><span class="p">[</span><span class="nx">i</span><span class="p">]))</span>
+	<span class="p">}</span>
+	<span class="nx">spl</span> <span class="o">:=</span> <span class="s">&#34;+-&#34;</span> <span class="o">+</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">splitLine</span><span class="p">,</span> <span class="s">&#34;-+-&#34;</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#34;-+&#34;</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">spl</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;| &#34;</span> <span class="o">+</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">columnName</span><span class="p">,</span> <span class="s">&#34; | &#34;</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#34; |&#34;</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">spl</span><span class="p">)</span>
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">line</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">data</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="s">&#34;| &#34;</span><span class="p">)</span>
+		<span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">c</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">line</span> <span class="p">{</span>
+			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%-&#34;</span><span class="o">+</span><span class="nx">strconv</span><span class="p">.</span><span class="nf">Itoa</span><span class="p">(</span><span class="nx">columnWidth</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="o">-</span><span class="nf">countFullWidthChars</span><span class="p">(</span><span class="nx">c</span><span class="p">))</span><span class="o">+</span><span class="s">&#34;s | &#34;</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span>
+		<span class="p">}</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">()</span>
+	<span class="p">}</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">spl</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">countFullWidthChars</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">count</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">c</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">s</span> <span class="p">{</span>
+		<span class="c1">// Unicode range of Chinese/Japanese/Korean characters
+</span><span class="c1"></span>		<span class="c1">// https://zh.wikipedia.org/wiki/%E4%B8%AD%E6%97%A5%E9%9F%93%E7%B5%B1%E4%B8%80%E8%A1%A8%E6%84%8F%E6%96%87%E5%AD%97
+</span><span class="c1"></span>		<span class="k">if</span> <span class="nx">c</span> <span class="o">&gt;=</span> <span class="mh">0x4E00</span> <span class="o">&amp;&amp;</span> <span class="nx">c</span> <span class="o">&lt;=</span> <span class="mh">0x9FFF</span> <span class="o">||</span> <span class="c1">// 中日韩统一表意文字
+</span><span class="c1"></span>			<span class="nx">c</span> <span class="o">&gt;=</span> <span class="mh">0x3400</span> <span class="o">&amp;&amp;</span> <span class="nx">c</span> <span class="o">&lt;=</span> <span class="mh">0x4DFF</span> <span class="o">||</span> <span class="c1">// 中日韩统一表意文字扩展区A
+</span><span class="c1"></span>			<span class="nx">c</span> <span class="o">&gt;=</span> <span class="mh">0x20000</span> <span class="o">&amp;&amp;</span> <span class="nx">c</span> <span class="o">&lt;=</span> <span class="mh">0x2EBEF</span> <span class="p">{</span> <span class="c1">// 扩展区B (20000~2A6DF), 扩展区C (2A700~2B73F), 扩展区D (2B740~2B81F), 扩展区E (2B820~2CEAF), 扩展区F (2CEB0~2EBEF)
+</span><span class="c1"></span>			<span class="nx">count</span><span class="o">++</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+			<span class="c1">// Unicode range of full width symbols
+</span><span class="c1"></span>			<span class="c1">// https://zh.wikipedia.org/wiki/%E5%85%A8%E5%BD%A2%E5%92%8C%E5%8D%8A%E5%BD%A2
+</span><span class="c1"></span>			<span class="k">switch</span> <span class="nx">c</span> <span class="p">{</span>
+			<span class="k">case</span> <span class="mh">0x2190</span><span class="p">,</span> <span class="mh">0x2191</span><span class="p">,</span> <span class="mh">0x2192</span><span class="p">,</span> <span class="mh">0x2193</span><span class="p">,</span> <span class="mh">0x2502</span><span class="p">,</span> <span class="mh">0x25A0</span><span class="p">,</span> <span class="mh">0x25CB</span><span class="p">,</span> <span class="mh">0x3000</span><span class="p">,</span> <span class="mh">0x3001</span><span class="p">,</span> <span class="mh">0x3002</span><span class="p">,</span> <span class="mh">0x300C</span><span class="p">,</span>
+				<span class="mh">0x300D</span><span class="p">,</span> <span class="mh">0x309B</span><span class="p">,</span> <span class="mh">0x309C</span><span class="p">,</span> <span class="mh">0x30A1</span><span class="p">,</span> <span class="mh">0x30A2</span><span class="p">,</span> <span class="mh">0x30A3</span><span class="p">,</span> <span class="mh">0x30A4</span><span class="p">,</span> <span class="mh">0x30A5</span><span class="p">,</span> <span class="mh">0x30A6</span><span class="p">,</span> <span class="mh">0x30A7</span><span class="p">,</span> <span class="mh">0x30A8</span><span class="p">,</span>
+				<span class="mh">0x30A9</span><span class="p">,</span> <span class="mh">0x30AA</span><span class="p">,</span> <span class="mh">0x30AB</span><span class="p">,</span> <span class="mh">0x30AD</span><span class="p">,</span> <span class="mh">0x30AF</span><span class="p">,</span> <span class="mh">0x30B1</span><span class="p">,</span> <span class="mh">0x30B3</span><span class="p">,</span> <span class="mh">0x30B5</span><span class="p">,</span> <span class="mh">0x30B7</span><span class="p">,</span> <span class="mh">0x30B9</span><span class="p">,</span> <span class="mh">0x30BB</span><span class="p">,</span>
+				<span class="mh">0x30BD</span><span class="p">,</span> <span class="mh">0x30BF</span><span class="p">,</span> <span class="mh">0x30C1</span><span class="p">,</span> <span class="mh">0x30C3</span><span class="p">,</span> <span class="mh">0x30C4</span><span class="p">,</span> <span class="mh">0x30C6</span><span class="p">,</span> <span class="mh">0x30C8</span><span class="p">,</span> <span class="mh">0x30CA</span><span class="p">,</span> <span class="mh">0x30CB</span><span class="p">,</span> <span class="mh">0x30CC</span><span class="p">,</span> <span class="mh">0x30CD</span><span class="p">,</span>
+				<span class="mh">0x30CE</span><span class="p">,</span> <span class="mh">0x30CF</span><span class="p">,</span> <span class="mh">0x30D2</span><span class="p">,</span> <span class="mh">0x30D5</span><span class="p">,</span> <span class="mh">0x30D8</span><span class="p">,</span> <span class="mh">0x30DB</span><span class="p">,</span> <span class="mh">0x30DE</span><span class="p">,</span> <span class="mh">0x30DF</span><span class="p">,</span> <span class="mh">0x30E0</span><span class="p">,</span> <span class="mh">0x30E1</span><span class="p">,</span> <span class="mh">0x30E2</span><span class="p">,</span>
+				<span class="mh">0x30E3</span><span class="p">,</span> <span class="mh">0x30E4</span><span class="p">,</span> <span class="mh">0x30E5</span><span class="p">,</span> <span class="mh">0x30E6</span><span class="p">,</span> <span class="mh">0x30E7</span><span class="p">,</span> <span class="mh">0x30E8</span><span class="p">,</span> <span class="mh">0x30E9</span><span class="p">,</span> <span class="mh">0x30EA</span><span class="p">,</span> <span class="mh">0x30EB</span><span class="p">,</span> <span class="mh">0x30EC</span><span class="p">,</span> <span class="mh">0x30ED</span><span class="p">,</span>
+				<span class="mh">0x30EF</span><span class="p">,</span> <span class="mh">0x30F2</span><span class="p">,</span> <span class="mh">0x30F3</span><span class="p">,</span> <span class="mh">0x30FB</span><span class="p">,</span> <span class="mh">0x30FC</span><span class="p">,</span> <span class="mh">0x3131</span><span class="p">,</span> <span class="mh">0x3132</span><span class="p">,</span> <span class="mh">0x3133</span><span class="p">,</span> <span class="mh">0x3134</span><span class="p">,</span> <span class="mh">0x3135</span><span class="p">,</span> <span class="mh">0x3136</span><span class="p">,</span>
+				<span class="mh">0x3137</span><span class="p">,</span> <span class="mh">0x3138</span><span class="p">,</span> <span class="mh">0x3139</span><span class="p">,</span> <span class="mh">0x313A</span><span class="p">,</span> <span class="mh">0x313B</span><span class="p">,</span> <span class="mh">0x313C</span><span class="p">,</span> <span class="mh">0x313D</span><span class="p">,</span> <span class="mh">0x313E</span><span class="p">,</span> <span class="mh">0x313F</span><span class="p">,</span> <span class="mh">0x3140</span><span class="p">,</span> <span class="mh">0x3141</span><span class="p">,</span>
+				<span class="mh">0x3142</span><span class="p">,</span> <span class="mh">0x3143</span><span class="p">,</span> <span class="mh">0x3144</span><span class="p">,</span> <span class="mh">0x3145</span><span class="p">,</span> <span class="mh">0x3146</span><span class="p">,</span> <span class="mh">0x3147</span><span class="p">,</span> <span class="mh">0x3148</span><span class="p">,</span> <span class="mh">0x3149</span><span class="p">,</span> <span class="mh">0x314A</span><span class="p">,</span> <span class="mh">0x314B</span><span class="p">,</span> <span class="mh">0x314C</span><span class="p">,</span>
+				<span class="mh">0x314D</span><span class="p">,</span> <span class="mh">0x314E</span><span class="p">,</span> <span class="mh">0x314F</span><span class="p">,</span> <span class="mh">0x3150</span><span class="p">,</span> <span class="mh">0x3151</span><span class="p">,</span> <span class="mh">0x3152</span><span class="p">,</span> <span class="mh">0x3153</span><span class="p">,</span> <span class="mh">0x3154</span><span class="p">,</span> <span class="mh">0x3155</span><span class="p">,</span> <span class="mh">0x3156</span><span class="p">,</span> <span class="mh">0x3157</span><span class="p">,</span>
+				<span class="mh">0x3158</span><span class="p">,</span> <span class="mh">0x3159</span><span class="p">,</span> <span class="mh">0x315A</span><span class="p">,</span> <span class="mh">0x315B</span><span class="p">,</span> <span class="mh">0x315C</span><span class="p">,</span> <span class="mh">0x315D</span><span class="p">,</span> <span class="mh">0x315E</span><span class="p">,</span> <span class="mh">0x315F</span><span class="p">,</span> <span class="mh">0x3160</span><span class="p">,</span> <span class="mh">0x3161</span><span class="p">,</span> <span class="mh">0x3162</span><span class="p">,</span>
+				<span class="mh">0x3163</span><span class="p">,</span> <span class="mh">0x3164</span><span class="p">,</span> <span class="mh">0xFF01</span><span class="p">,</span> <span class="mh">0xFF02</span><span class="p">,</span> <span class="mh">0xFF03</span><span class="p">,</span> <span class="mh">0xFF04</span><span class="p">,</span> <span class="mh">0xFF05</span><span class="p">,</span> <span class="mh">0xFF06</span><span class="p">,</span> <span class="mh">0xFF07</span><span class="p">,</span> <span class="mh">0xFF08</span><span class="p">,</span> <span class="mh">0xFF09</span><span class="p">,</span>
+				<span class="mh">0xFF0A</span><span class="p">,</span> <span class="mh">0xFF0B</span><span class="p">,</span> <span class="mh">0xFF0C</span><span class="p">,</span> <span class="mh">0xFF0D</span><span class="p">,</span> <span class="mh">0xFF0E</span><span class="p">,</span> <span class="mh">0xFF0F</span><span class="p">,</span> <span class="mh">0xFF10</span><span class="p">,</span> <span class="mh">0xFF11</span><span class="p">,</span> <span class="mh">0xFF12</span><span class="p">,</span> <span class="mh">0xFF13</span><span class="p">,</span> <span class="mh">0xFF14</span><span class="p">,</span>
+				<span class="mh">0xFF15</span><span class="p">,</span> <span class="mh">0xFF16</span><span class="p">,</span> <span class="mh">0xFF17</span><span class="p">,</span> <span class="mh">0xFF18</span><span class="p">,</span> <span class="mh">0xFF19</span><span class="p">,</span> <span class="mh">0xFF1A</span><span class="p">,</span> <span class="mh">0xFF1B</span><span class="p">,</span> <span class="mh">0xFF1C</span><span class="p">,</span> <span class="mh">0xFF1D</span><span class="p">,</span> <span class="mh">0xFF1E</span><span class="p">,</span> <span class="mh">0xFF1F</span><span class="p">,</span>
+				<span class="mh">0xFF20</span><span class="p">,</span> <span class="mh">0xFF21</span><span class="p">,</span> <span class="mh">0xFF22</span><span class="p">,</span> <span class="mh">0xFF23</span><span class="p">,</span> <span class="mh">0xFF24</span><span class="p">,</span> <span class="mh">0xFF25</span><span class="p">,</span> <span class="mh">0xFF26</span><span class="p">,</span> <span class="mh">0xFF27</span><span class="p">,</span> <span class="mh">0xFF28</span><span class="p">,</span> <span class="mh">0xFF29</span><span class="p">,</span> <span class="mh">0xFF2A</span><span class="p">,</span>
+				<span class="mh">0xFF2B</span><span class="p">,</span> <span class="mh">0xFF2C</span><span class="p">,</span> <span class="mh">0xFF2D</span><span class="p">,</span> <span class="mh">0xFF2E</span><span class="p">,</span> <span class="mh">0xFF2F</span><span class="p">,</span> <span class="mh">0xFF30</span><span class="p">,</span> <span class="mh">0xFF31</span><span class="p">,</span> <span class="mh">0xFF32</span><span class="p">,</span> <span class="mh">0xFF33</span><span class="p">,</span> <span class="mh">0xFF34</span><span class="p">,</span> <span class="mh">0xFF35</span><span class="p">,</span>
+				<span class="mh">0xFF36</span><span class="p">,</span> <span class="mh">0xFF37</span><span class="p">,</span> <span class="mh">0xFF38</span><span class="p">,</span> <span class="mh">0xFF39</span><span class="p">,</span> <span class="mh">0xFF3A</span><span class="p">,</span> <span class="mh">0xFF3B</span><span class="p">,</span> <span class="mh">0xFF3C</span><span class="p">,</span> <span class="mh">0xFF3D</span><span class="p">,</span> <span class="mh">0xFF3E</span><span class="p">,</span> <span class="mh">0xFF3F</span><span class="p">,</span> <span class="mh">0xFF40</span><span class="p">,</span>
+				<span class="mh">0xFF41</span><span class="p">,</span> <span class="mh">0xFF42</span><span class="p">,</span> <span class="mh">0xFF43</span><span class="p">,</span> <span class="mh">0xFF44</span><span class="p">,</span> <span class="mh">0xFF45</span><span class="p">,</span> <span class="mh">0xFF46</span><span class="p">,</span> <span class="mh">0xFF47</span><span class="p">,</span> <span class="mh">0xFF48</span><span class="p">,</span> <span class="mh">0xFF49</span><span class="p">,</span> <span class="mh">0xFF4A</span><span class="p">,</span> <span class="mh">0xFF4B</span><span class="p">,</span>
+				<span class="mh">0xFF4C</span><span class="p">,</span> <span class="mh">0xFF4D</span><span class="p">,</span> <span class="mh">0xFF4E</span><span class="p">,</span> <span class="mh">0xFF4F</span><span class="p">,</span> <span class="mh">0xFF50</span><span class="p">,</span> <span class="mh">0xFF51</span><span class="p">,</span> <span class="mh">0xFF52</span><span class="p">,</span> <span class="mh">0xFF53</span><span class="p">,</span> <span class="mh">0xFF54</span><span class="p">,</span> <span class="mh">0xFF55</span><span class="p">,</span> <span class="mh">0xFF56</span><span class="p">,</span>
+				<span class="mh">0xFF57</span><span class="p">,</span> <span class="mh">0xFF58</span><span class="p">,</span> <span class="mh">0xFF59</span><span class="p">,</span> <span class="mh">0xFF5A</span><span class="p">,</span> <span class="mh">0xFF5B</span><span class="p">,</span> <span class="mh">0xFF5C</span><span class="p">,</span> <span class="mh">0xFF5D</span><span class="p">,</span> <span class="mh">0xFF5E</span><span class="p">,</span> <span class="mh">0xFF5F</span><span class="p">,</span> <span class="mh">0xFF60</span><span class="p">,</span> <span class="mh">0xFFE0</span><span class="p">,</span>
+				<span class="mh">0xFFE1</span><span class="p">,</span> <span class="mh">0xFFE2</span><span class="p">,</span> <span class="mh">0xFFE3</span><span class="p">,</span> <span class="mh">0xFFE4</span><span class="p">,</span> <span class="mh">0xFFE5</span><span class="p">,</span> <span class="mh">0xFFE6</span><span class="p">:</span>
+				<span class="nx">count</span><span class="o">++</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span>
+<span class="p">}</span></code></pre></div>
+<hr />
+
+<p><em><strong>参考链接：</strong></em></p>
+
+<ul>
+<li><a href="https://zh.wikipedia.org/wiki/%E4%B8%AD%E6%97%A5%E9%9F%93%E7%B5%B1%E4%B8%80%E8%A1%A8%E6%84%8F%E6%96%87%E5%AD%97">Unicode range of Chinese/Japanese/Korean characters</a></li>
+<li><a href="https://zh.wikipedia.org/wiki/%E5%85%A8%E5%BD%A2%E5%92%8C%E5%8D%8A%E5%BD%A2">Unicode range of full width symbols</a></li>
+</ul>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://yougg.github.io/tags/golang/">Golang</a>
+
+  <a class="tag tag--primary tag--small" href="https://yougg.github.io/tags/mysql/">MySQL</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2017/08/28/public-key-infrastructure-certificate-apply-guide/" data-tooltip="Public Key Infrastructure Certificate Apply Guide">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2017/08/23/emoji-list-support-by-hugo/" data-tooltip="Emoji list support by hugo">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://yougg.github.io/2017/08/24/%E7%94%A8go%E8%AF%AD%E8%A8%80%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84mysql%E5%AE%A2%E6%88%B7%E7%AB%AF/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://yougg.github.io/2017/08/24/%E7%94%A8go%E8%AF%AD%E8%A8%80%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84mysql%E5%AE%A2%E6%88%B7%E7%AB%AF/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://yougg.github.io/2017/08/24/%E7%94%A8go%E8%AF%AD%E8%A8%80%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84mysql%E5%AE%A2%E6%88%B7%E7%AB%AF/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 <a href="https://github.com/yougg">yougg</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2017/08/28/public-key-infrastructure-certificate-apply-guide/" data-tooltip="Public Key Infrastructure Certificate Apply Guide">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2017/08/23/emoji-list-support-by-hugo/" data-tooltip="Emoji list support by hugo">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://yougg.github.io/2017/08/24/%E7%94%A8go%E8%AF%AD%E8%A8%80%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84mysql%E5%AE%A2%E6%88%B7%E7%AB%AF/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://yougg.github.io/2017/08/24/%E7%94%A8go%E8%AF%AD%E8%A8%80%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84mysql%E5%AE%A2%E6%88%B7%E7%AB%AF/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://yougg.github.io/2017/08/24/%E7%94%A8go%E8%AF%AD%E8%A8%80%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84mysql%E5%AE%A2%E6%88%B7%E7%AB%AF/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fyougg.github.io%2F2017%2F08%2F24%2F%25E7%2594%25A8go%25E8%25AF%25AD%25E8%25A8%2580%25E5%2586%2599%25E4%25B8%2580%25E4%25B8%25AA%25E7%25AE%2580%25E5%258D%2595%25E7%259A%2584mysql%25E5%25AE%25A2%25E6%2588%25B7%25E7%25AB%25AF%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fyougg.github.io%2F2017%2F08%2F24%2F%25E7%2594%25A8go%25E8%25AF%25AD%25E8%25A8%2580%25E5%2586%2599%25E4%25B8%2580%25E4%25B8%25AA%25E7%25AE%2580%25E5%258D%2595%25E7%259A%2584mysql%25E5%25AE%25A2%25E6%2588%25B7%25E7%25AB%25AF%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fyougg.github.io%2F2017%2F08%2F24%2F%25E7%2594%25A8go%25E8%25AF%25AD%25E8%25A8%2580%25E5%2586%2599%25E4%25B8%2580%25E4%25B8%25AA%25E7%25AE%2580%25E5%258D%2595%25E7%259A%2584mysql%25E5%25AE%25A2%25E6%2588%25B7%25E7%25AB%25AF%2F">
+          <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+    
+    <h4 id="about-card-name">yougg</h4>
+    
+      <div id="about-card-bio">和咸鱼没有什么区别的偶尔写<del><em>不想写</em></del>博客的码农</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        搬砖
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        中国 深圳
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://yougg.github.io/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://yougg.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/yougg.github.io\/2017\/08\/24\/%E7%94%A8go%E8%AF%AD%E8%A8%80%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84mysql%E5%AE%A2%E6%88%B7%E7%AB%AF\/';
+          
+            this.page.identifier = '\/2017\/08\/24\/%E7%94%A8go%E8%AF%AD%E8%A8%80%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84mysql%E5%AE%A2%E6%88%B7%E7%AB%AF\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'yougg';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

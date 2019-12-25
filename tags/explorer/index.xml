@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Explorer on Yougg&#39;s Blog</title>
+    <link>https://yougg.github.io/tags/explorer/</link>
+    <description>Recent content in Explorer on Yougg&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 19 Nov 2010 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://yougg.github.io/tags/explorer/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>DIY Eclipse打开文件所在位置文件夹</title>
+      <link>https://yougg.github.io/2010/11/19/diy-eclipse%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6%E6%89%80%E5%9C%A8%E4%BD%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%A4%B9/</link>
+      <pubDate>Fri, 19 Nov 2010 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2010/11/19/diy-eclipse%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6%E6%89%80%E5%9C%A8%E4%BD%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%A4%B9/</guid>
+      <description>MyEclipse里面带了类似的一个插件，点一下就可以打开当前编辑文件所在的文件夹，这样就可以直接到文件夹里面去做操作了。 MyEclipse 里面的插件名叫：</description>
+    </item>
+    
+  </channel>
+</rss>

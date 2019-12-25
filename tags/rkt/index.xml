@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>rkt on Yougg&#39;s Blog</title>
+    <link>https://yougg.github.io/tags/rkt/</link>
+    <description>Recent content in rkt on Yougg&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 27 Jul 2018 16:41:47 +0000</lastBuildDate>
+    
+	<atom:link href="https://yougg.github.io/tags/rkt/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>rkt容器简单试用</title>
+      <link>https://yougg.github.io/2018/07/27/rkt%E5%AE%B9%E5%99%A8%E7%AE%80%E5%8D%95%E8%AF%95%E7%94%A8/</link>
+      <pubDate>Fri, 27 Jul 2018 16:41:47 +0000</pubDate>
+      
+      <guid>https://yougg.github.io/2018/07/27/rkt%E5%AE%B9%E5%99%A8%E7%AE%80%E5%8D%95%E8%AF%95%E7%94%A8/</guid>
+      <description>设置代理 export http_proxy=&amp;#39;http://127.0.0.1:8080&amp;#39; export {https,ftp,rsync,all}_proxy=$http_proxy 下载安装rkt cd ~/Download/ wget --no-check-certificate https://github.com/rkt/rkt/releases/download/v1.30.0/rkt-1.30.0-1.x86_64.rpm sudo rpm -ivh rkt-1.30.0-1.x86_64.rpm 下载安装镜像 切换到root重新, 重新设置一遍http proxy, 然后再下载镜像 sudo su - export http_proxy=&amp;#39;http://127.0.0.1:8080&amp;#39; export {https,ftp,rsync,all}_proxy=$http_proxy #sudo rkt --insecure-options=image --debug fetch</description>
+    </item>
+    
+  </channel>
+</rss>

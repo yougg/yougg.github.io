@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Secure on Yougg&#39;s Blog</title>
+    <link>https://yougg.github.io/tags/secure/</link>
+    <description>Recent content in Secure on Yougg&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 12 Jun 2017 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://yougg.github.io/tags/secure/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>《Go语言安全编程规范》</title>
+      <link>https://yougg.github.io/2017/06/12/go%E8%AF%AD%E8%A8%80%E5%AE%89%E5%85%A8%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/</link>
+      <pubDate>Mon, 12 Jun 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/06/12/go%E8%AF%AD%E8%A8%80%E5%AE%89%E5%85%A8%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/</guid>
+      <description>0 前言 背景 《Go语言安全编程规范》针对Go语言编程中的整数安全、输入校验、内存管理、异常行为、敏感数据、I/O操作、序列化等方面，描述可能导</description>
+    </item>
+    
+  </channel>
+</rss>

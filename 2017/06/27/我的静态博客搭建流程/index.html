@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="yougg">
+<meta name="keywords" content="">
+<meta name="description" content="根据GitHub静态博客向导: https://pages.github.com/ 在GitHub创建名为 username.github.io 的空仓库 username 为自己的GitHub账号，此处我的账号为yougg 如果之前已经创建过个人博">
+
+
+<meta property="og:description" content="根据GitHub静态博客向导: https://pages.github.com/ 在GitHub创建名为 username.github.io 的空仓库 username 为自己的GitHub账号，此处我的账号为yougg 如果之前已经创建过个人博">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我的静态博客搭建流程">
+<meta name="twitter:title" content="我的静态博客搭建流程">
+<meta property="og:url" content="https://yougg.github.io/2017/06/27/%E6%88%91%E7%9A%84%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/">
+<meta property="twitter:url" content="https://yougg.github.io/2017/06/27/%E6%88%91%E7%9A%84%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/">
+<meta property="og:site_name" content="Yougg&#39;s Blog">
+<meta property="og:description" content="根据GitHub静态博客向导: https://pages.github.com/ 在GitHub创建名为 username.github.io 的空仓库 username 为自己的GitHub账号，此处我的账号为yougg 如果之前已经创建过个人博">
+<meta name="twitter:description" content="根据GitHub静态博客向导: https://pages.github.com/ 在GitHub创建名为 username.github.io 的空仓库 username 为自己的GitHub账号，此处我的账号为yougg 如果之前已经创建过个人博">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2017-06-27T14:36:16">
+  
+  
+    <meta property="article:modified_time" content="2017-06-27T14:36:16">
+  
+  
+  
+    
+      <meta property="article:section" content="Document">
+    
+  
+  
+    
+      <meta property="article:tag" content="Blog">
+    
+      <meta property="article:tag" content="Hugo">
+    
+      <meta property="article:tag" content="GitHub">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png">
+  <meta property="twitter:image" content="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png">
+
+
+    <title>我的静态博客搭建流程</title>
+
+    <link rel="icon" href="https://yougg.github.io/favicon.png">
+    
+
+    
+      <link rel="publisher" href="https://plus.google.com/&#43;caixiang">
+    
+
+    <link rel="canonical" href="https://yougg.github.io/2017/06/27/%E6%88%91%E7%9A%84%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://yougg.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  href="https://yougg.github.io/css/fruity.css">
+      
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://yougg.github.io/">Yougg&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://yougg.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://yougg.github.io/#about">
+          <img class="sidebar-profile-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">yougg</h4>
+        
+          <h5 class="sidebar-profile-bio">和咸鱼没有什么区别的偶尔写<del><em>不想写</em></del>博客的码农</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/yougg" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/9087310/yougg" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      我的静态博客搭建流程
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2017-06-27T14:36:16&#43;08:00">
+        
+  
+  
+  
+  
+    2017年6月27日 14时36分16秒
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://yougg.github.io/categories/document">Document</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <ol>
+<li><p>根据GitHub静态博客向导: <a href="https://pages.github.com/">https://pages.github.com/</a><br />
+在GitHub创建名为 <strong>username</strong>.github.io 的空仓库<br />
+<strong>username</strong> 为自己的GitHub账号，此处我的账号为<code>yougg</code><br />
+如果之前已经创建过个人博客仓库，先备份一下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/yougg/yougg.github.io.git
+<span class="nb">cd</span> yougg.github.io
+git branch -m master old_master
+git push origin :master old_master</code></pre></div></li>
+
+<li><p>下载安装静态博客工具<a href="https://gohugo.io/">hugo</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 创建hugo工具目录</span>
+mkdir -p ~/Downloads/hugo/
+<span class="nb">cd</span> <span class="nv">$_</span>
+<span class="c1"># 获取Hugo Linux 64bit最新版本安装包的URL, Windows需要更改包名Windows-64bit.zip</span>
+<span class="nv">hgpkg</span><span class="o">=</span><span class="k">$(</span>curl -ks -L<span class="s1">&#39;#&#39;</span> https://github.com/gohugoio/hugo/releases/latest <span class="p">|</span> awk -F <span class="s1">&#39;&#34;&#39;</span> <span class="s1">&#39;/Linux-64bit.tar.gz/{print &#34;https://github.com&#34;$2;exit}&#39;</span><span class="k">)</span>
+<span class="c1"># 使用curl命令下载最新版本安装包到本地</span>
+curl -k -o <span class="k">$(</span>basename <span class="si">${</span><span class="nv">hgpkg</span><span class="si">}</span><span class="k">)</span> -L<span class="s1">&#39;#&#39;</span> <span class="si">${</span><span class="nv">hgpkg</span><span class="si">}</span>
+<span class="c1"># 或者使用wget命令下载</span>
+wget --no-check-certificate <span class="si">${</span><span class="nv">hgpkg</span><span class="si">}</span></code></pre></div>
+<p>解压安装到本地，配置执行命令到PATH中</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">tar xzf <span class="k">$(</span>basename <span class="si">${</span><span class="nv">hgpkg</span><span class="si">}</span><span class="k">)</span>
+<span class="c1"># 建立执行文件软链接到PATH的一个路径中</span>
+sudo unlink /usr/local/bin/hugo <span class="p">&amp;</span>&gt; /dev/null
+sudo ln -s ~/Downloads/hugo/hugo /usr/local/bin/hugo</code></pre></div>
+<p>执行hugo命令查看版本，确认是否安装成功</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">hugo version</code></pre></div>
+<p>Debian/Ubuntu官方仓库已包含hugo(但是版本较旧)<br />
+使用下面一行命令安装hugo替代上面的流程</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt install hugo</code></pre></div></li>
+
+<li><p>创建与配置博客工程</p>
+
+<p>创建博客站点，我的本地博客目录存放在<code>~/Documents/myblog/</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> ~/Documents/
+hugo new site myblog
+<span class="nb">cd</span> myblog
+
+<span class="c1"># 添加博客主题</span>
+git clone https://github.com/kakawait/hugo-tranquilpeak-theme.git themes/hugo-tranquilpeak-theme
+
+<span class="c1"># 复制主题中的配置模板文件</span>
+cp -f themes/hugo-tranquilpeak-theme/exampleSite/config.toml config.toml
+
+mkdir -p static/css static/js
+<span class="c1"># 导出一份语法高亮主题，参考：https://help.farbox.com/pygments.html</span>
+hugo gen chromastyles --style<span class="o">=</span>fruity &gt; static/css/fruity.css
+sed -i <span class="s1">&#39;s/; background-color: #0f140f;//g&#39;</span> static/css/fruity.css</code></pre></div>
+<p>使用文本编辑器打开编辑配置文件</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">vi config.toml</code></pre></div>
+<p>设置站点url根路径</p>
+<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="na">baseurl</span> <span class="o">=</span> <span class="s">&#34;yougg.github.io&#34;</span></code></pre></div>
+<p>修改博客默认语言</p>
+<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="na">languageCode</span> <span class="o">=</span> <span class="s">&#34;zh-cn&#34;</span>
+<span class="na">defaultContentLanguage</span> <span class="o">=</span> <span class="s">&#34;zh-cn&#34;</span></code></pre></div>
+<p>添加设置文章内容包含汉字</p>
+<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="na">hasCJKLanguage</span> <span class="o">=</span> <span class="s">true</span></code></pre></div>
+<p>设置博客标题</p>
+<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="na">title</span> <span class="o">=</span> <span class="s">&#34;Yougg Blog&#34;</span></code></pre></div>
+<p>设置博客主题风格</p>
+<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="na">theme</span> <span class="o">=</span> <span class="s">&#34;hugo-tranquilpeak-theme&#34;</span></code></pre></div>
+<p>设置disqus评论系统用户名</p>
+<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="na">disqusShortname</span> <span class="o">=</span> <span class="s">&#34;yougg&#34;</span></code></pre></div>
+<p>设置文章分页数量</p>
+<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="na">paginate</span> <span class="o">=</span> <span class="s">10</span></code></pre></div>
+<p>启用emoji😄表情设置</p>
+<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="na">enableEmoji</span> <span class="o">=</span> <span class="s">true</span></code></pre></div>
+<p>设置语法高亮</p>
+<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="na">pygmentsCodeFences</span> <span class="o">=</span> <span class="s">true</span>
+<span class="na">pygmentsCodeFencesGuessSyntax</span> <span class="o">=</span> <span class="s">true</span>
+<span class="na">pygmentsUseClasses</span> <span class="o">=</span> <span class="s">true</span>
+<span class="na">pygmentsStyle</span> <span class="o">=</span> <span class="s">&#34;fruity&#34;</span></code></pre></div>
+<p>设置博客文章链接格式</p>
+<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="k">[permalinks]</span>
+  <span class="na">post</span> <span class="o">=</span> <span class="s">&#34;/:year/:month/:day/:slug/&#34;</span>
+<span class="c1"># 比默认的多添加了一个:day</span></code></pre></div>
+<p>设置作者相关信息</p>
+<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="k">[author]</span>
+  <span class="na">name</span> <span class="o">=</span> <span class="s">&#34;yougg&#34;</span>
+
+  <span class="na">bio</span> <span class="o">=</span> <span class="s">&#34;和咸鱼没有什么区别的偶尔写~~_不想写_~~博客的码农&#34;</span>
+
+  <span class="na">job</span> <span class="o">=</span> <span class="s">&#34;搬砖&#34;</span>
+
+  <span class="na">location</span> <span class="o">=</span> <span class="s">&#34;中国 深圳&#34;</span>
+
+  <span class="na">gravatarEmail</span> <span class="o">=</span> <span class="s">&#34;joe2qq@gmail.com&#34;</span>
+
+  <span class="na">picture</span> <span class="o">=</span> <span class="s">&#34;https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png&#34;</span>
+
+  <span class="c1"># twitter = &#34;&#34;</span></code></pre></div>
+<p>修改日期格式</p>
+<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="k">[params]</span>
+  <span class="na">dateFormat</span> <span class="o">=</span> <span class="s">&#34;2006年1月2日 15时04分05秒&#34;</span>
+<span class="c1"># 必须满足Golang的日期格式：零纳秒 一月二日三点四分五秒六年七区八星九零</span></code></pre></div>
+<p>修改侧边导航栏默认行为</p>
+<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="na">sidebarBehavior</span> <span class="o">=</span> <span class="s">2</span></code></pre></div>
+<!--添加github的语法高亮主题  
+下载[github.css](https://raw.githubusercontent.com/isagalaev/highlight.js/master/src/styles/github.css)、[highlight.min.js](http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js)和[go.min.js](http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/go.min.js)分别存放到工程的`static/css/`和`static/js/`目录中，然后将路径配置到自定义的选项中-->
+
+<p>引用语法高亮主题CSS文件</p>
+<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="na">customCSS</span> <span class="o">=</span> <span class="s">[&#34;css/fruity.css&#34;]</span></code></pre></div>
+<p>以上配置项修改完成保存后退出</p>
+
+<!--
+```bash
+# 修改博客的默认设置：根路径、语言、标题
+cat themes/hugo-tranquilpeak-theme/exampleSite/config.toml > config.toml
+sed -i 's/baseurl = ""/baseurl = "yougg.github.io"/;
+s/en-us/zh-cn/g;
+s/title = "Hugo tranquilpeak theme"/title = "Yougg Blog"/;
+s/disqusShortname = "hugo-tranquilpeak-theme"/disqusShortname = "yougg"/;
+s/post = "\/:year\/:month\/:slug\/"/post = "\/:year\/:month\/:day\/:slug\/"/;
+s/name = "Firstname Lastname"/name = "yougg"/;
+s/job = "Your job title"/job = "Software Developer"/;
+s/location = "France"/location = "China"/;
+s/gravatarEmail = "thibaud.lepretre@gmail.com"/gravatarEmail = "joe2qq@gmail.com"/;
+s/url = "https:\/\/github.com\/kakawait"/url = "https:\/\/github.com\/yougg"/;
+s/sidebarBehavior = 1/sidebarBehavior = 2/' config.toml
+```
+--></li>
+
+<li><p>编写和配置文章</p>
+
+<ul>
+<li><p>编辑默认的文档模板<code>archetypes/default.md</code></p>
+
+<pre>
+<code class="language-markdown codeblock hljs" data-lang="markdown"><span class="header">---</span>
+Categories: []
+Description: ""
+Tags: []
+title: "{{ replace .TranslationBaseName "-" " " | title }}"
+date: {{ .Date }}
+draft: false
+<span class="header">---</span>
+
+# Title
+
+Content
+
+<span class="header">---</span>
+
+_**参考链接：**_
+
+<span class="deletion">- [name](link)</span>
+</code>
+</pre></li>
+
+<li><p>新建一篇文章，并添加一些内容到文章</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">hugo new post/first.md
+<span class="nb">echo</span> <span class="s2">&#34;This is my first post&#34;</span> &gt;&gt; content/post/first.md</code></pre></div></li>
+
+<li><p>启动hugo服务</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 本地启动服务：指定监听地址、端口，访问根路径和主题，包含草稿内容</span>
+<span class="c1">#hugo server --bind 127.0.0.1 -p 1313 -b http://127.0.0.1:1313/ --buildDrafts -v</span>
+hugo server --buildDrafts</code></pre></div></li>
+
+<li><p>通过浏览器中访问主页 <a href="http://127.0.0.1:1313/">http://127.0.0.1:1313/</a><br />
+访问 <a href="http://127.0.0.1:1313/post/first">http://127.0.0.1:1313/post/first</a> 查看文章内容<br />
+按Ctrl+C停止hugo服务<br />
+根据浏览器中查看的效果，按自己喜好修改博客的默认字体</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sed -i <span class="s1">&#39;s/Merriweather,serif/youyuan,Merriweather,serif/g;
+</span><span class="s1">s/&#34;Open Sans&#34;,sans-serif/youyuan,&#34;Open Sans&#34;,sans-serif/g;
+</span><span class="s1">s/font-size:3.7rem/font-size:3.7rem;text-align:center;/g;
+</span><span class="s1">s/.main-content-wrap{display:block;max-width:750px;/.main-content-wrap{display:block;max-width:1000px;/g&#39;</span> themes/hugo-tranquilpeak-theme/static/css/*.css</code></pre></div></li>
+</ul></li>
+
+<li><p>发布静态博客到GitHub Pages</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 初始化本地git仓库</span>
+<span class="nb">cd</span> ~/Documents/myblog/
+git init
+<span class="nb">echo</span> <span class="s2">&#34;/public/&#34;</span> &gt;&gt; .gitignore
+<span class="nb">echo</span> <span class="s2">&#34;/themes/&#34;</span> &gt;&gt; .gitignore
+git add --all
+git commit -m <span class="s2">&#34;Initial commit&#34;</span>
+git branch -m master <span class="nb">source</span>
+
+<span class="c1"># 本地仓库关联GitHub上面的个人博客仓库</span>
+git remote add origin https://github.com/yougg/yougg.github.io.git
+<span class="c1"># 将本地博客的源码推送到GitHub仓库的source分支</span>
+git push -u origin <span class="nb">source</span>
+git push origin refs/heads/source:source
+
+<span class="c1"># 更新草稿状态</span>
+hugo undraft content/post/first.md
+<span class="c1"># 生成静态网站内容</span>
+hugo
+
+<span class="c1"># 将生成的静态页面推送到master分支</span>
+<span class="nb">cd</span> public
+git init
+git remote add origin https://github.com/yougg/yougg.github.io.git
+git add --all
+git commit -m <span class="s2">&#34;first post added&#34;</span>
+git push -f origin master</code></pre></div></li>
+</ol>
+
+<hr />
+
+<p><em><strong>参考链接：</strong></em></p>
+
+<ul>
+<li><a href="http://tonybai.com/2015/09/23/intro-of-gohugo/">使用Hugo搭建静态站点</a></li>
+<li><a href="https://github.com/kakawait/hugo-tranquilpeak-theme/blob/master/docs/user.md">Tranquilpeak User documentation</a></li>
+<li><a href="https://gohugo.io/getting-started/">Hugo document</a></li>
+</ul>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://yougg.github.io/tags/blog/">Blog</a>
+
+  <a class="tag tag--primary tag--small" href="https://yougg.github.io/tags/hugo/">Hugo</a>
+
+  <a class="tag tag--primary tag--small" href="https://yougg.github.io/tags/github/">GitHub</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2017/08/17/rest%E5%B7%A5%E5%85%B7/" data-tooltip="REST工具">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2017/06/12/go%E8%AF%AD%E8%A8%80%E5%AE%89%E5%85%A8%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/" data-tooltip="《Go语言安全编程规范》">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://yougg.github.io/2017/06/27/%E6%88%91%E7%9A%84%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://yougg.github.io/2017/06/27/%E6%88%91%E7%9A%84%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://yougg.github.io/2017/06/27/%E6%88%91%E7%9A%84%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 <a href="https://github.com/yougg">yougg</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2017/08/17/rest%E5%B7%A5%E5%85%B7/" data-tooltip="REST工具">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2017/06/12/go%E8%AF%AD%E8%A8%80%E5%AE%89%E5%85%A8%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/" data-tooltip="《Go语言安全编程规范》">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://yougg.github.io/2017/06/27/%E6%88%91%E7%9A%84%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://yougg.github.io/2017/06/27/%E6%88%91%E7%9A%84%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://yougg.github.io/2017/06/27/%E6%88%91%E7%9A%84%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fyougg.github.io%2F2017%2F06%2F27%2F%25E6%2588%2591%25E7%259A%2584%25E9%259D%2599%25E6%2580%2581%25E5%258D%259A%25E5%25AE%25A2%25E6%2590%25AD%25E5%25BB%25BA%25E6%25B5%2581%25E7%25A8%258B%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fyougg.github.io%2F2017%2F06%2F27%2F%25E6%2588%2591%25E7%259A%2584%25E9%259D%2599%25E6%2580%2581%25E5%258D%259A%25E5%25AE%25A2%25E6%2590%25AD%25E5%25BB%25BA%25E6%25B5%2581%25E7%25A8%258B%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fyougg.github.io%2F2017%2F06%2F27%2F%25E6%2588%2591%25E7%259A%2584%25E9%259D%2599%25E6%2580%2581%25E5%258D%259A%25E5%25AE%25A2%25E6%2590%25AD%25E5%25BB%25BA%25E6%25B5%2581%25E7%25A8%258B%2F">
+          <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+    
+    <h4 id="about-card-name">yougg</h4>
+    
+      <div id="about-card-bio">和咸鱼没有什么区别的偶尔写<del><em>不想写</em></del>博客的码农</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        搬砖
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        中国 深圳
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://yougg.github.io/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://yougg.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/yougg.github.io\/2017\/06\/27\/%E6%88%91%E7%9A%84%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B\/';
+          
+            this.page.identifier = '\/2017\/06\/27\/%E6%88%91%E7%9A%84%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'yougg';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

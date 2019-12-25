@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Programing on Yougg&#39;s Blog</title>
+    <link>https://yougg.github.io/categories/programing/</link>
+    <description>Recent content in Programing on Yougg&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 24 Aug 2017 09:30:43 +0800</lastBuildDate>
+    
+	<atom:link href="https://yougg.github.io/categories/programing/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>用Go语言写一个简单的MySQL客户端</title>
+      <link>https://yougg.github.io/2017/08/24/%E7%94%A8go%E8%AF%AD%E8%A8%80%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84mysql%E5%AE%A2%E6%88%B7%E7%AB%AF/</link>
+      <pubDate>Thu, 24 Aug 2017 09:30:43 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/08/24/%E7%94%A8go%E8%AF%AD%E8%A8%80%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84mysql%E5%AE%A2%E6%88%B7%E7%AB%AF/</guid>
+      <description>项目需要验证一下MySQL服务启用安全通信证书双向认证在Go中是否可行，以便后续将服务代码快捷的切换到SSL安全通道上。服务功能来做验证对环</description>
+    </item>
+    
+    <item>
+      <title>REST工具</title>
+      <link>https://yougg.github.io/2017/08/17/rest%E5%B7%A5%E5%85%B7/</link>
+      <pubDate>Thu, 17 Aug 2017 15:56:31 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/08/17/rest%E5%B7%A5%E5%85%B7/</guid>
+      <description>package main import ( &amp;#34;crypto/tls&amp;#34; &amp;#34;encoding/json&amp;#34; &amp;#34;flag&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;io/ioutil&amp;#34; &amp;#34;log&amp;#34; &amp;#34;net&amp;#34; &amp;#34;net/http&amp;#34; &amp;#34;os&amp;#34; &amp;#34;time&amp;#34; ) type content struct { Title string Desc string Scheme string Host string Port int Request struct { IP string Url string Method string Cert struct { RootCAs []string Certificates []string } Header map[string]string Body string } Response struct { Status int Cert map[string]string Header map[string]string Body string } } type handler struct{} // tcpKeepAliveListener sets</description>
+    </item>
+    
+    <item>
+      <title>Git项目代码提交记录统计工具</title>
+      <link>https://yougg.github.io/2016/06/24/git%E9%A1%B9%E7%9B%AE%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95%E7%BB%9F%E8%AE%A1%E5%B7%A5%E5%85%B7/</link>
+      <pubDate>Fri, 24 Jun 2016 15:02:12 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2016/06/24/git%E9%A1%B9%E7%9B%AE%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95%E7%BB%9F%E8%AE%A1%E5%B7%A5%E5%85%B7/</guid>
+      <description>使用说明 本机下载安装Git版本管理工具 Clone项目代码仓库到本地 下载Git项目代码提交记录统计工具保存到本地 打开Git Bash, 执行gitstat</description>
+    </item>
+    
+  </channel>
+</rss>

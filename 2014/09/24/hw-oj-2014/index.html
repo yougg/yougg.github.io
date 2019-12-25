@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="yougg">
+<meta name="keywords" content="">
+<meta name="description" content="一、选择题： 1.线程使用sleep()方法休眠后，可以用notify()方法唤醒。(初级题1分) B.错误 2.抽象方法必须在抽象类中，所以抽象">
+
+
+<meta property="og:description" content="一、选择题： 1.线程使用sleep()方法休眠后，可以用notify()方法唤醒。(初级题1分) B.错误 2.抽象方法必须在抽象类中，所以抽象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HW OJ 2014">
+<meta name="twitter:title" content="HW OJ 2014">
+<meta property="og:url" content="https://yougg.github.io/2014/09/24/hw-oj-2014/">
+<meta property="twitter:url" content="https://yougg.github.io/2014/09/24/hw-oj-2014/">
+<meta property="og:site_name" content="Yougg&#39;s Blog">
+<meta property="og:description" content="一、选择题： 1.线程使用sleep()方法休眠后，可以用notify()方法唤醒。(初级题1分) B.错误 2.抽象方法必须在抽象类中，所以抽象">
+<meta name="twitter:description" content="一、选择题： 1.线程使用sleep()方法休眠后，可以用notify()方法唤醒。(初级题1分) B.错误 2.抽象方法必须在抽象类中，所以抽象">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2014-09-24T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2014-09-24T00:00:00">
+  
+  
+  
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png">
+  <meta property="twitter:image" content="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png">
+
+
+    <title>HW OJ 2014</title>
+
+    <link rel="icon" href="https://yougg.github.io/favicon.png">
+    
+
+    
+      <link rel="publisher" href="https://plus.google.com/&#43;caixiang">
+    
+
+    <link rel="canonical" href="https://yougg.github.io/2014/09/24/hw-oj-2014/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://yougg.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  href="https://yougg.github.io/css/fruity.css">
+      
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://yougg.github.io/">Yougg&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://yougg.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://yougg.github.io/#about">
+          <img class="sidebar-profile-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">yougg</h4>
+        
+          <h5 class="sidebar-profile-bio">和咸鱼没有什么区别的偶尔写<del><em>不想写</em></del>博客的码农</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/yougg" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/9087310/yougg" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      HW OJ 2014
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2014-09-24T00:00:00&#43;08:00">
+        
+  
+  
+  
+  
+    2014年9月24日 00时00分00秒
+  
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>一、选择题：
+1.线程使用sleep()方法休眠后，可以用notify()方法唤醒。(初级题1分)</p>
+<div class="highlight"><pre class="chroma">B.错误</pre></div>
+<p>2.抽象方法必须在抽象类中，所以抽象类中的方法都必须是抽象方法。(初级题1分)</p>
+<div class="highlight"><pre class="chroma">B.错误</pre></div>
+<p>3.类可以同时使用 final和abstract进行修饰。(初级题1分)</p>
+<div class="highlight"><pre class="chroma">B.错误</pre></div>
+<p>4.当一个方法在运行过程中产生一个异常，则这个方法会终止，但是整个程序不一定终止运行。(初级题1分)</p>
+<div class="highlight"><pre class="chroma">A.正确</pre></div>
+<p>5.continue 只能出现在在循环语句中(while, do, for)。(初级题1分)</p>
+<div class="highlight"><pre class="chroma">A.正确</pre></div>
+<p>6.对于对象类型，也就是Object的子类，如果你在方法中修改了它的成员的值，那个修改是生效的，方法调用结束后，它的成员是新的值，但是如果你把它指向一个其它的对象，方法调用结束后，它的引用指向了新的对象。(初级题1分)</p>
+<div class="highlight"><pre class="chroma">B.错误</pre></div>
+<p>7.Java小程序（Applet）的主类的父类必须是类Applet。(初级题1分)</p>
+<div class="highlight"><pre class="chroma">A.正确</pre></div>
+<p>8.当一个方法在运行过程中产生一个异常，则这个方法会终止，但是整个程序不一定终止运行。(初级题1分)</p>
+<div class="highlight"><pre class="chroma">A.正确</pre></div>
+<p>9.我有些下班时间的业余研究成果或个人经验类内容想对外发表，只要自己保证未涉及公司保密信息，就可以不用申请而直接从公司发送出去。（ ）(初级题1分)</p>
+<div class="highlight"><pre class="chroma">B.错误</pre></div>
+<p>10.小明因研发工作需要，未经申请，可以在办公计算机中再安装一个SUSE 10操作系统（Linux操作系统）用于测试。(初级题1分)</p>
+<div class="highlight"><pre class="chroma">B.错误</pre></div>
+<p>11.以下代码中, 可用在case中的变量有哪些？ (初级题2分)</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="nf">int</span> <span class="n">a1</span><span class="p">;</span>
+<span class="kd">protected</span> <span class="nf">final</span> <span class="kt">int</span> <span class="nf">a2</span> <span class="o">=</span> <span class="n">1</span><span class="p">;</span>
+<span class="kd">public</span> <span class="nf">void</span> <span class="n">test</span><span class="p">(</span><span class="kt">int</span> <span class="nf">i1</span><span class="p">,</span> <span class="kd">final</span> <span class="nf">int</span> <span class="n">i2</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kd">final</span> <span class="nf">int</span> <span class="n">i3</span> <span class="o">=</span> <span class="n">100</span><span class="p">;</span> <span class="c1">//...
+</span><span class="c1"></span><span class="p">}</span></code></pre></div><div class="highlight"><pre class="chroma">C.a2, i3</pre></div>
+<p>12.以下程序输出结果是什么？ (初级题2分)</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="nf">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="nf">i1</span> <span class="o">=</span> <span class="n">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="nf">i2</span> <span class="o">=</span> <span class="n">0</span><span class="p">;</span>
+    <span class="n">modifyInt</span><span class="p">(</span><span class="n">i1</span><span class="p">,</span> <span class="n">i2</span><span class="p">);</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;[&#34;</span> <span class="o">+</span> <span class="n">i1</span> <span class="o">+</span> <span class="s">&#34;], [&#34;</span> <span class="o">+</span> <span class="n">i2</span> <span class="o">+</span> <span class="s">&#34;]&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">private</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">modifyInt</span><span class="p">(</span><span class="kt">int</span> <span class="nf">i1</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">i2</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">i1</span> <span class="o">=</span> <span class="n">10</span><span class="p">;</span>
+    <span class="n">i2</span> <span class="o">=</span> <span class="n">20</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div><div class="highlight"><pre class="chroma">A.[0], [0]</pre></div>
+<p>13.关于垃圾收集的哪些叙述是正确的(初级题2分)</p>
+<div class="highlight"><pre class="chroma">C.垃圾收集将检查并释放不再使用的内存</pre></div>
+<p>14.以下哪个表达式是不合法的(初级题2分)</p>
+<div class="highlight"><pre class="chroma">C.String x=”Hello”; int y=9; if(x= =y) { };</pre></div>
+<p>15.下列程序输出结果为 (初级题2分)</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">class</span> <span class="n">test</span>
+<span class="p">{</span>
+    <span class="kd">public</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span> <span class="nf">args</span><span class="p">[])</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="nf">a</span><span class="o">=</span><span class="n">0</span><span class="p">;</span>
+        <span class="n">outer</span><span class="o">:</span> <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="nf">i</span><span class="o">=</span><span class="n">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">2</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="nf">j</span><span class="o">=</span><span class="n">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">2</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">j</span><span class="o">&gt;</span><span class="n">i</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="k">continue</span> <span class="n">outer</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="n">a</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div><div class="highlight"><pre class="chroma">C.3</pre></div>
+<p>16.关键字supper的作用是(初级题2分)</p>
+<div class="highlight"><pre class="chroma">D.以上都是</pre></div>
+<p>17.下列方法中可以用来创建一个新线程的是(初级题2分)</p>
+<div class="highlight"><pre class="chroma">B.实现java.lang.Runnable 接口并重写run()方法</pre></div>
+<p>18.下面哪些可以编译成功： (初级题2分)</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">1</span><span class="err">）</span> <span class="kt">float</span> <span class="nf">f</span> <span class="o">=</span> <span class="n">10f</span><span class="p">;</span>
+<span class="n">2</span><span class="err">）</span> <span class="kt">char</span> <span class="nf">c</span> <span class="o">=</span> <span class="n">10</span><span class="p">.</span><span class="na">0</span><span class="p">;</span>
+<span class="n">3</span><span class="err">）</span> <span class="kt">float</span> <span class="nf">f</span> <span class="o">=</span> <span class="n">10</span><span class="p">.</span><span class="na">1f</span><span class="p">;</span>
+<span class="n">4</span><span class="err">）</span> <span class="kt">byte</span> <span class="nf">b</span> <span class="o">=</span> <span class="n">10b</span><span class="p">;</span></code></pre></div><div class="highlight"><pre class="chroma">A.1)和3)</pre></div>
+<p>19.下面描述错误的是(初级题2分)</p>
+<div class="highlight"><pre class="chroma">C.Hashtable和HashMap都实现了Table接口</pre></div>
+<p>20.尝试编译运行以下代码时会发生什么情况(初级题2分)</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="nf">outPut</span><span class="o">=</span><span class="n">10</span><span class="p">;</span>
+<span class="kt">boolean</span> <span class="nf">b1</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<span class="k">if</span><span class="p">((</span><span class="n">b1</span><span class="o">==</span><span class="kc">true</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">((</span><span class="n">outPut</span> <span class="o">+=</span><span class="n">10</span><span class="p">)</span><span class="o">==</span><span class="n">20</span><span class="p">))</span>
+<span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;We are equal &#34;</span><span class="o">+</span> <span class="n">outPut</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">else</span>
+<span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;Not equal! &#34;</span><span class="o">+</span> <span class="n">outPut</span><span class="p">);</span>
+<span class="p">}</span></code></pre></div><div class="highlight"><pre class="chroma">D.输出&#34;Not equal! 10&#34;</pre></div>
+<p>21.下面哪些关键字能用来控制对类成员的访问(初级题3分)</p>
+<div class="highlight"><pre class="chroma">A.public
+B.protected
+C.private</pre></div>
+<p>22.哪些情况下线程会停止(初级题3分)</p>
+<div class="highlight"><pre class="chroma">B.调用该线程的 stop方法
+C.为另一个线程指定更高的优先级
+D.调用System.exit(0);</pre></div>
+<p>23.下面哪些类是抽象类(初级题3分)</p>
+<div class="highlight"><pre class="chroma">A.java.io.InputStream
+D.java.io.Reader</pre></div>
+<p>24.RandomAccessFile 实现了哪些接口(初级题3分)</p>
+<div class="highlight"><pre class="chroma"> A.DataInput
+ C.DataOutput</pre></div>
+<p>25.以下是一段不完整的方法代码，下面哪些方法能够使该方法抛出一个IOException，假定该方法返回true？ (初级题3分)</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">void</span> <span class="n">method</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">2</span><span class="p">.</span>
+    <span class="nf">3</span><span class="p">.</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">someTestFails</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="n">4</span><span class="p">.</span>
+        <span class="nf">5</span><span class="p">.</span>
+    <span class="p">}</span>
+    <span class="n">6</span><span class="p">.</span>
+    <span class="nf">7</span><span class="p">.</span>
+<span class="p">}</span></code></pre></div><div class="highlight"><pre class="chroma">C.在行4增加：throw new IOException();
+D.在行6增加：throw new IOException();</pre></div>
+<p>26.关于try-catch语句，以下说法正确的有(初级题3分)</p>
+<div class="highlight"><pre class="chroma">A.try-catch语句中try-catch关键字后的大括号需要另起一行。
+D.try-catch语句后面是否需要跟着finally语句，根据实际情况而定。</pre></div>
+<p>27.下面哪条语句符合编程规范(初级题3分)</p>
+<div class="highlight"><pre class="chroma">A.只有该类内部调用的函数使用private属性。
+B.对外公开的函数使用public属性。
+C.继承类可以使用protected属性。
+D.同包类可以调用的使用默认属性（不加属性控制符号）。</pre></div>
+<p>28.若有以下接口的定义：public interface IA extends IB ,IC, ID{…};则：(初级题3分)</p>
+<div class="highlight"><pre class="chroma">B.接口IA继承了接口IB，IC和ID
+D.关键字extends指明接口的继承关系</pre></div>
+<p>29.下面哪几个函数是public void example(){&hellip;}的重载函数：(初级题3分)</p>
+<div class="highlight"><pre class="chroma">A.public void example( int m){...}
+D.public int example ( int m, float f){...}</pre></div>
+<p>30.编译并运行下面的程序，运行结果为 (初级题3分)</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">class</span> <span class="n">T1</span>
+<span class="p">{</span>
+    <span class="kd">public</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">main</span> <span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="nf">args</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">T1</span> <span class="nf">a</span><span class="o">=</span><span class="k">new</span> <span class="n">T1</span><span class="p">();</span>
+        <span class="n">a</span><span class="p">.</span><span class="na">method</span><span class="p">(</span><span class="n">8</span><span class="p">);</span>
+        <span class="n">a</span><span class="p">.</span><span class="na">method</span><span class="p">(</span><span class="n">1</span><span class="p">.</span><span class="na">2f</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="nf">method</span><span class="p">(</span><span class="kt">float</span> <span class="nf">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;float: &#34;</span><span class="o">+</span><span class="n">i</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="nf">method</span><span class="p">(</span><span class="kt">long</span> <span class="nf">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;long: &#34;</span><span class="o">+</span><span class="n">i</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div><div class="highlight"><pre class="chroma">B.程序可以编译运行，输出结果为： long: 8f loat: 1.2
+D.程序中定义的两个参数不同的method方法称为方法重栽</pre></div>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2014/09/26/linux/unix%E6%B7%BB%E5%8A%A0%E4%BF%A1%E4%BB%BB%E5%85%B3%E7%B3%BB%E8%84%9A%E6%9C%AC/" data-tooltip="Linux/Unix添加信任关系脚本">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2014/09/22/golang-%E5%8F%91%E5%B8%83%E9%97%AD%E6%BA%90%E5%8C%85%E6%96%B9%E6%A1%88/" data-tooltip="Golang 发布闭源包方案">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://yougg.github.io/2014/09/24/hw-oj-2014/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://yougg.github.io/2014/09/24/hw-oj-2014/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://yougg.github.io/2014/09/24/hw-oj-2014/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 <a href="https://github.com/yougg">yougg</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2014/09/26/linux/unix%E6%B7%BB%E5%8A%A0%E4%BF%A1%E4%BB%BB%E5%85%B3%E7%B3%BB%E8%84%9A%E6%9C%AC/" data-tooltip="Linux/Unix添加信任关系脚本">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2014/09/22/golang-%E5%8F%91%E5%B8%83%E9%97%AD%E6%BA%90%E5%8C%85%E6%96%B9%E6%A1%88/" data-tooltip="Golang 发布闭源包方案">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://yougg.github.io/2014/09/24/hw-oj-2014/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://yougg.github.io/2014/09/24/hw-oj-2014/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://yougg.github.io/2014/09/24/hw-oj-2014/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fyougg.github.io%2F2014%2F09%2F24%2Fhw-oj-2014%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fyougg.github.io%2F2014%2F09%2F24%2Fhw-oj-2014%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fyougg.github.io%2F2014%2F09%2F24%2Fhw-oj-2014%2F">
+          <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+    
+    <h4 id="about-card-name">yougg</h4>
+    
+      <div id="about-card-bio">和咸鱼没有什么区别的偶尔写<del><em>不想写</em></del>博客的码农</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        搬砖
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        中国 深圳
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://yougg.github.io/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://yougg.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/yougg.github.io\/2014\/09\/24\/hw-oj-2014\/';
+          
+            this.page.identifier = '\/2014\/09\/24\/hw-oj-2014\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'yougg';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

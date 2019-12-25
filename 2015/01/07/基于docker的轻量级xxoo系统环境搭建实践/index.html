@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="yougg">
+<meta name="keywords" content="">
+<meta name="description" content="作者 [cxy](mailto:joecc@126.com) 发布于 2015年1月 -- Docker简介 Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到">
+
+
+<meta property="og:description" content="作者 [cxy](mailto:joecc@126.com) 发布于 2015年1月 -- Docker简介 Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于Docker的轻量级XXOO系统环境搭建实践">
+<meta name="twitter:title" content="基于Docker的轻量级XXOO系统环境搭建实践">
+<meta property="og:url" content="https://yougg.github.io/2015/01/07/%E5%9F%BA%E4%BA%8Edocker%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7xxoo%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%AE%9E%E8%B7%B5/">
+<meta property="twitter:url" content="https://yougg.github.io/2015/01/07/%E5%9F%BA%E4%BA%8Edocker%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7xxoo%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%AE%9E%E8%B7%B5/">
+<meta property="og:site_name" content="Yougg&#39;s Blog">
+<meta property="og:description" content="作者 [cxy](mailto:joecc@126.com) 发布于 2015年1月 -- Docker简介 Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到">
+<meta name="twitter:description" content="作者 [cxy](mailto:joecc@126.com) 发布于 2015年1月 -- Docker简介 Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2015-01-07T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2015-01-07T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Document">
+    
+  
+  
+    
+      <meta property="article:tag" content="Docker">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png">
+  <meta property="twitter:image" content="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png">
+
+
+    <title>基于Docker的轻量级XXOO系统环境搭建实践</title>
+
+    <link rel="icon" href="https://yougg.github.io/favicon.png">
+    
+
+    
+      <link rel="publisher" href="https://plus.google.com/&#43;caixiang">
+    
+
+    <link rel="canonical" href="https://yougg.github.io/2015/01/07/%E5%9F%BA%E4%BA%8Edocker%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7xxoo%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%AE%9E%E8%B7%B5/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://yougg.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  href="https://yougg.github.io/css/fruity.css">
+      
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://yougg.github.io/">Yougg&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://yougg.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://yougg.github.io/#about">
+          <img class="sidebar-profile-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">yougg</h4>
+        
+          <h5 class="sidebar-profile-bio">和咸鱼没有什么区别的偶尔写<del><em>不想写</em></del>博客的码农</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/yougg" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/9087310/yougg" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      基于Docker的轻量级XXOO系统环境搭建实践
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2015-01-07T00:00:00&#43;08:00">
+        
+  
+  
+  
+  
+    2015年1月7日 00时00分00秒
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://yougg.github.io/categories/document">Document</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<!-- <center>作者 [cxy](mailto:joecc@126.com)　　发布于 2015年1月</center> -->
+
+<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#docker简介">Docker简介</a>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#本文目标">本文目标</a>
+<ul>
+<li><a href="#提示">提示</a></li>
+</ul></li>
+<li><a href="#span-id-installhost-安装主机系统-span"><span id="installhost">安装主机系统</span></a></li>
+<li><a href="#span-id-installdocker-安装docker-span"><span id="installdocker">安装Docker</span></a></li>
+<li><a href="#span-id-installvm-安装配置虚拟系统-span"><span id="installvm">安装配置虚拟系统</span></a></li>
+<li><a href="#span-id-installoss-搭建xxoo工程监控网管环境-span"><span id="installoss">搭建XXOO工程监控网管环境</span></a></li>
+<li><a href="#span-id-dockermaintenance-维护配置-span"><span id="dockermaintenance">维护配置</span></a></li>
+<li><a href="#span-id-others-延伸阅读-span"><span id="others">延伸阅读</span></a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+<hr />
+
+<h1 id="docker简介">Docker简介</h1>
+
+<blockquote>
+<p>　　<a href="https://www.docker.com">Docker</a> 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。容器是完全使用沙箱机制，相互之间不会有任何接口。几乎没有性能开销,可以很容易地在机器和数据中心中运行。最重要的是,他们不依赖于任何语言、框架或包括系统。</p>
+
+<p>　　Docker 源于<a href="https://www.dotcloud.com">dotcloud</a>公司的一个开源项目；随着编写者不断挖掘它的潜力，它迅速变成了一个炙手可热的项目。它由<a href="http://golang.org/">Go</a>语言编写的，并且只支持 Linux。它基于Linux容器（LxC）来创建一个虚拟环境。<br />
+     注意：虚拟环境 VE ( Virtual Environment ) 和 虚拟机（ VM ）很不一样。<br />
+  　　虚拟机是由虚拟工具或者模拟器（ HyperV 、 VMWare 等）创建的，是一个全镜像的主机源，其中包括操作系统、硬盘调整、网络和虚拟进程。过于臃肿的结构吃掉了大量的硬盘空间同时拖慢了运行和开机速度。<br />
+  　　Docker 则通过自己与操作系统内核相分离的特点很好的解决了这个问题。它会首先创建一个与机器内核相分离的 “等级0” 包裹。任何之后的改变都被保存为 namespace 的快照，并且像虚拟系统那样在单独的容器内运行。“快照”只捕捉“基本模版”的改动，而不是整个机器上面的设置（不像是VM的快照功能）</p>
+</blockquote>
+
+<hr />
+
+<h4 id="本文目标">本文目标</h4>
+
+<blockquote>
+<p>现状：<br />
+  XXOO的N节点方案在开发测试中需要使用大量的系统环境进程测试与验证，在当前的的硬件资源中通过Vmware搭建的虚拟机数量非常有限。
+项目小组内能够分配使用的系统环境也就十几二十套左右，很难协调到大量的环境进行大型并发功能性能测试验证，采购的服务器硬件资源远远达不到开发与测试的需求。在现有少量节点的分布式系统中很难暴露出一些功能与性能问题。<br />
+  　<br />
+  方案：<br />
+  采用轻量级Linux容器引擎Docker实现虚拟化方案，高效利用硬件资源，轻松解决系统环境紧缺的问题。
+  当前使用Vmware搭建的虚拟机，CPU: 8核 2GHz，Mem: 16GB，单机轻松运行100虚拟容器节点，资源消耗还没达到50%</p>
+</blockquote>
+
+<p>本文介绍通过Docker容器引擎实现以下目标：</p>
+
+<ul>
+<li>简化系统环境配置</li>
+<li>快速搭建测试验证环境</li>
+<li>快速批量部署多套应用</li>
+<li>轻松解决系统环境紧缺的问题</li>
+<li>共享基础容器、数据容器、开发工具容器、不同环境的测试容器、构建容器、安装容器等使开发测试生产化</li>
+</ul>
+
+<hr />
+
+<!--
+
+#### 向导目录
+
+- [主机系统：Ubuntu Server 14.04.1 LTS](#installhost)
+- [容器引擎：Docker 1.4.1](#installdocker)
+- [虚拟系统：SUSE Linux Enterprise Server 11 SP3](#installvm)
+- [搭建XXOO网管系统环境](#installoss)
+- [Docker维护配置](#dockermaintenance)
+- [延伸阅读](#others)
+
+-----
+-->
+
+<h5 id="提示">提示</h5>
+
+<p><em>将全文先通读一两遍，完全了解整个操作流程后，再按照向导一步一步操作，能购避免很多疏忽的问题，尽可能保证一次性完成。</em></p>
+
+<p><em>Docker支持直接从官方或第三方在线镜像仓库中直接拉取/推送镜像，但是由于内网代理限制本文将不涉及此部分内容，详细内容可以查看<code>docker &lt;pull|push&gt;</code>命令帮助。</em></p>
+
+<hr />
+
+<h4 id="span-id-installhost-安装主机系统-span"><span id="installhost">安装主机系统</span></h4>
+
+<blockquote>
+<p>Docker官方支持的系统平台包括：
+  <a href="http://docs.docker.com/installation/mac/">Mac OS X</a>,
+  <a href="http://docs.docker.com/installation/ubuntulinux/">Ubuntu</a>,
+  <a href="http://docs.docker.com/installation/rhel/">Red Hat Enterprise Linux</a>,
+  <a href="http://docs.docker.com/installation/oracle/">Oracle Linux</a>,
+  <a href="http://docs.docker.com/installation/centos/">CentOS</a>,
+  <a href="http://docs.docker.com/installation/debian/">Debian</a>,
+  <a href="http://docs.docker.com/installation/gentoolinux/">Gentoo</a>,
+  <a href="http://docs.docker.com/installation/google/">Google Cloud Platform</a>,
+  <a href="http://docs.docker.com/installation/rackspace/">Rackspace Cloud</a>,
+  <a href="http://docs.docker.com/installation/amazon/">Amazon EC2</a>,
+  <a href="http://docs.docker.com/installation/softlayer/">IBM Softlayer</a>,
+  <a href="http://docs.docker.com/installation/archlinux/">Arch Linux</a>,
+  <a href="http://docs.docker.com/installation/frugalware/">FrugalWare</a>,
+  <a href="http://docs.docker.com/installation/fedora/">Fedora</a>,
+  <a href="http://docs.docker.com/installation/cruxlinux/">CRUX Linux</a>,
+  <a href="http://docs.docker.com/installation/SUSE/">SUSE</a><br />
+  支持SUSE Linux Enterprise 12及以上版本，需要从<a href="https://build.opensuse.org/">OBS</a>的<a href="https://build.opensuse.org/project/show/Virtualization">虚拟化仓库</a>安装docker<br />
+  Docker是基于Ubuntu开发的，本文以官方推荐使用Ubuntu Server操作系统。</p>
+</blockquote>
+
+<ol>
+<li><p>准备物理环境, 可以使用真实物理主机, 也可以使用Vmware架设的虚拟主机</p></li>
+
+<li><p>获取主机系统安装镜像<br />
+<a href="http://localhost:8000/docker/files/ubuntu-14.04.1-server-amd64.iso">[Download] 本地下载</a><br />
+<a href="http://releases.ubuntu.com/14.04.1/ubuntu-14.04.1-server-amd64.iso">[Download] Ubuntu Server 14.04.1 Release</a><br />
+<a href="http://cdimage.ubuntu.com/ubuntu-server/trusty/daily/current/trusty-server-amd64.iso"> </a></p></li>
+
+<li><p>进入主机控制器(USM、vCenter、实体机等)，挂载镜像文件，启动系统安装</p></li>
+
+<li><p>安装流程向导<br />
+<a href="http://localhost:8000/docker/static/UbuntuServer14.04LTSGuide_zh.html">[中文向导]</a><br />
+<a href="http://localhost:8000/docker/static/UbuntuServer14.04LTSInstallGuide.html">[English Guide]</a></p></li>
+
+<li><p>安装完成后从光驱中移除挂载的镜像后再重启, 使用安装时设置的用户登录系统</p></li>
+
+<li><p>初始化root密码</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo passwd root
+    
+<span class="c1"># 然后切换到root用户</span>
+su - root</code></pre></div></li>
+
+<li><p>配置网络</p>
+
+<ol>
+<li><p>配置root用户ssh登录：</p>
+
+<blockquote>
+<p>修改/etc/ssh/sshd_config文件的如下选项</p>
+</blockquote>
+<div class="highlight"><pre class="chroma">PermitRootLogin yes</pre></div>
+<blockquote>
+<p>修改保存后重启sshd服务</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">service ssh restart</code></pre></div></li>
+
+<li><p>编辑 /etc/network/interfaces 文件, 修改eth0配置如下：</p>
+<div class="highlight"><pre class="chroma">auto eth0
+iface eth0 inet static
+address 10.1.2.3
+netmask 255.255.254.0
+gateway 10.1.2.1</pre></div>
+<blockquote>
+<p>配置完成后重启网络</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">service networking restart
+<span class="c1"># 或者</span>
+/etc/init.d/networking restart
+<span class="c1"># 或者</span>
+ifdown eth0
+ifup eth0
+<span class="c1"># 如果网络重启失败,则直接重启系统</span>
+shutdown -r now</code></pre></div></li>
+
+<li><p>配置默认路由：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 首先ping自己的IP,确认当前网络是否连通</span>
+ping <span class="m">10</span>.1.2.2
+
+<span class="c1"># 如果不能连通,查看当前路由与其他同网段系统路由是否相同</span>
+route -n
+
+<span class="c1"># 如果显示路由不同,则先删除错误的路由</span>
+route del default gw <span class="m">10</span>.1.2.1
+route del -net <span class="m">10</span>.1.2.0 netmask <span class="m">255</span>.255.255.0
+
+<span class="c1"># 再添加正确的默认路由</span>
+route add -net <span class="m">10</span>.1.2.0 netmask <span class="m">255</span>.255.254.0 dev eth0
+route add default gw <span class="m">10</span>.1.2.1
+<span class="c1"># 再次ping自己的IP,确认连通后可以远程终端工具登录</span></code></pre></div></li>
+</ol></li>
+</ol>
+
+<hr />
+
+<h4 id="span-id-installdocker-安装docker-span"><span id="installdocker">安装Docker</span></h4>
+
+<ol>
+<li><p>通过Putty、XShell、SecureCRT等终端工具登录到主机系统的root用户</p></li>
+
+<li><p>安装docker软件</p>
+
+<ul>
+<li><p>使用docker官方最新版本 <code>docker 1.4.1</code></p>
+
+<ol>
+<li>获取安装包<br />
+<a href="http://localhost:8000/docker/files/docker1.4.1.tar.gz">[Download] docker1.4.1</a><br />
+<a href="https://get.docker.com/builds/Linux/x86_64/docker-latest">[Download] docker-latest</a></li>
+
+<li><p>下载解压安装</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">wget http://localhost:8000/docker/files/docker1.4.1.tar.gz
+tar xzf docker1.4.1.tar.gz
+<span class="nb">cd</span> docker1.4.1/
+./install.sh</code></pre></div></li>
+</ol></li>
+
+<li><p>使用Ubuntu官方源安装 <del><code>docker 1.0.1</code></del></p>
+
+<ol>
+<li><p>配置主机系统安装源</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 备份当前安装源文件</span>
+<span class="nb">cd</span> /etc/apt
+cp sources.list sources.list_bak
+
+<span class="c1"># 添加Ubuntu中国源</span>
+cat &gt; sources.list <span class="s">&lt;&lt;-EOF
+</span><span class="s">deb http://cn.archive.ubuntu.com/ubuntu/ trusty main restricted universe multiverse
+</span><span class="s">deb http://cn.archive.ubuntu.com/ubuntu/ trusty-security main restricted universe multiverse
+</span><span class="s">deb http://cn.archive.ubuntu.com/ubuntu/ trusty-updates main restricted universe multiverse
+</span><span class="s">deb http://cn.archive.ubuntu.com/ubuntu/ trusty-proposed main restricted universe multiverse
+</span><span class="s">deb http://cn.archive.ubuntu.com/ubuntu/ trusty-backports main restricted universe multiverse
+</span><span class="s">EOF</span></code></pre></div></li>
+
+<li><p>设置主机系统内网代理</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 将对应的用户名与密码替换为自己的代理账号和密码</span>
+<span class="c1"># 因为没有配置DNS，所以不能直接解析域名的IP地址</span>
+<span class="nb">export</span> <span class="nv">http_proxy</span><span class="o">=</span><span class="s1">&#39;http://用户名:密码@12.34.56.78:8080&#39;</span>
+<span class="nb">export</span> <span class="nv">https_proxy</span><span class="o">=</span><span class="s1">&#39;http://用户名:密码@12.34.56.78:8080&#39;</span></code></pre></div></li>
+
+<li><p>安装docker</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 更新本地软件库</span>
+apt-get update <span class="o">&amp;&amp;</span> apt-get upgrade -y
+            
+<span class="c1"># 从官方源安装docker</span>
+apt-get install -y docker.io</code></pre></div></li>
+</ol></li>
+</ul></li>
+
+<li><p>启动docker服务</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 使用docker官方版本安装服务名称是 docker</span>
+<span class="c1"># 使用Ubuntu官方源安装服务名称是 docker.io</span>
+service docker start
+
+<span class="c1"># 执行docker命令, 显示docker帮助信息确认安装成功</span>
+docker</code></pre></div></li>
+</ol>
+
+<hr />
+
+<h4 id="span-id-installvm-安装配置虚拟系统-span"><span id="installvm">安装配置虚拟系统</span></h4>
+
+<ol>
+<li><p>获取虚拟系统需要的镜像文件到主机系统的目录中</p>
+
+<ul>
+<li><p>使用<code>rtools</code>仓库中的Suse原厂完整系统镜像</p>
+
+<blockquote>
+<p>原厂镜像分为两碟,碟1为主系统安装包, 大小: 3.13GB, 碟2是扩展软件包, 大小: 4.94GB<br />
+<a href="SLES-11-SP3-DVD-x86_64-GM-DVD1.iso">[Download] SLES-11-SP3-DVD-x86_64-GM-DVD1</a><br />
+<a href="SLES-11-SP3-DVD-x86_64-GM-DVD2.iso">[Download] SLES-11-SP3-DVD-x86_64-GM-DVD2</a></p>
+</blockquote></li>
+
+<li><p>使用基于OSS发布的安装盘简化版镜像</p>
+
+<blockquote>
+<p>此镜像是基于Suse11SP3 x86_64标准版本制作, 大小: 541MB<br />
+  裁剪了X Window图形界面以及部分无用软件包<br />
+  默认root密码为：<code>XXOO</code><br />
+  <a href="suse11sp3_simplify_oss.tar.gz">[Download] suse11sp3_simplify_oss</a></p>
+</blockquote></li>
+
+<li><p>使用docker官方仓库提供的精简版镜像</p>
+
+<blockquote>
+<p>此镜像只提供了最基础的系统环境, 大小: 58MB<br />
+<a href="sles11sp3_min.tar.gz">[Download] sles11sp3_min</a></p>
+</blockquote></li>
+</ul></li>
+
+<li><p>导入镜像到docker本地仓库中</p>
+
+<ul>
+<li><p>导入基于容器<code>container</code>导出的镜像或者原厂光盘ISO镜像</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 本文使用OSS简化版镜像, 其他镜像操作方式类似</span>
+wget http://localhost:8000/docker/files/suse11sp3_simplify_oss.tar.gz
+
+cat suse11sp3_simplify_oss.tar.gz <span class="p">|</span> docker import - suse11sp3:simplify_oss</code></pre></div></li>
+
+<li><p>载入基于docker仓库<code>image</code>保存的镜像</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker load -i xxx.tar</code></pre></div></li>
+</ul></li>
+
+<li><p>查看docker本地仓库中的镜像</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker images
+<span class="c1">#REPOSITORY  TAG           IMAGE ID      CREATED     VIRTUAL SIZE</span>
+<span class="c1">#suse11sp3   simplify_oss  14017be7faaa  1 days ago  1.621 GB</span>
+
+<span class="c1"># 查看所有镜像</span>
+docker images -a</code></pre></div></li>
+
+<li><p>使用导入的镜像启动测试一个docker容器</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 查看docker启动容器帮助命令</span>
+docker <span class="nb">help</span> run
+    
+<span class="c1"># 启动一个测试容器</span>
+docker run -it suse11sp3:simplify_oss /bin/bash</code></pre></div>
+<blockquote>
+<p>此时启动的容器就是一个完整的suse11sp3系统环境<br />
+  可以像普通系统一样执行网管安装等操作<br />
+  容器默认的网络配置可以访问主机相同的网络<br />
+  但是外部不能连接容器的网络, 此时只有主机可以连接容器</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 退出容器的虚拟系统, docker将会自动停止此容器</span>
+exit</code></pre></div></li>
+
+<li><p>查看/操作容器状态</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 查看所有容器</span>
+docker ps -a
+<span class="c1">#CONTAINER ID  IMAGE                   COMMAND      CREATED     STATUS                 PORTS  NAMES</span>
+<span class="c1">#704aa21b7879  suse11sp3:simplify_oss  &#34;/bin/bash&#34;  1 days ago  Exited (0) 1 days ago         asdfa</span>
+
+<span class="c1"># 可以看到刚才退出的容器状态是Exited</span>
+<span class="c1"># 再次启动容器</span>
+docker start 704aa21b7879
+
+<span class="c1"># 再连接到容器的标准IO</span>
+docker attach 704aa21b7879
+
+<span class="c1"># 或者启动容器时直接连接到容器的标准IO</span>
+docker start -ai 704aa21b7879
+
+<span class="c1"># 暂停容器中所有进程</span>
+docker pause 704aa21b7879
+
+<span class="c1"># 还原暂停的容器</span>
+docker unpause 704aa21b7879
+
+<span class="c1"># 重新启动容器</span>
+docker restart 704aa21b7879
+
+<span class="c1"># 停止容器内进程并等待退出</span>
+docker stop 704aa21b7879
+
+<span class="c1"># 直接结束容器内进程退出</span>
+docker <span class="nb">kill</span> 704aa21b7879
+
+<span class="c1"># 删除容器</span>
+docker rm 704aa21b7879</code></pre></div></li>
+</ol>
+
+<hr />
+
+<h4 id="span-id-installoss-搭建xxoo工程监控网管环境-span"><span id="installoss">搭建XXOO工程监控网管环境</span></h4>
+
+<blockquote>
+<p>说明：<br />
+  第1,2步配置管理/业务节点模板，主要是为了建立业务节点对管理节点的root用户ssh信任关系模板，以及数据库初始化对共享内存的依赖。如果不需要ssh信任则可以直接使用基础镜像启动容器使用。<br />
+  1,2两步主要作为自定义镜像模板操作步骤的参考。</p>
+</blockquote>
+
+<ol>
+<li><p>配置管理节点镜像模板</p>
+
+<ol>
+<li><p>基于基础镜像启动一个带有<code>sshd</code>服务的后台运行的容器</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 启动一个后台运行的容器,打印出容器的ID</span>
+docker run -d --privileged suse11sp3:simplify_oss /usr/sbin/sshd -D</code></pre></div></li>
+
+<li><p>登录容器环境</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 首先获取运行容器的IP地址</span>
+docker inspect -f <span class="s1">&#39;{{.NetworkSettings.IPAddress}}&#39;</span> <span class="si">${</span><span class="nv">容器ID</span><span class="si">}</span>
+<span class="c1"># 172.17.0.3</span>
+
+<span class="c1"># ssh登录容器, 默认root密码： XXOO</span>
+ssh root@172.17.0.3</code></pre></div></li>
+
+<li><p>创建管理节点root用户的ssh密钥</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 创建密钥, 使用默认路径与空密码</span>
+ssh-keygen -q -t rsa -P <span class="s1">&#39;&#39;</span> -f /root/.ssh/id_rsa
+        
+<span class="c1"># 添加信任key</span>
+<span class="nb">cd</span> /root/.ssh/
+cat id_rsa.pub &gt; authorized_keys
+&gt; known_hosts</code></pre></div></li>
+
+<li><p>设置共享内存</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 默认共享内存大小是32MB, 会导致GaussDB等数据库初始化失败, 现在修改为实际物理内存的90%</span>
+free -bo <span class="p">|</span> awk <span class="s1">&#39;/Mem:/{printf(&#34;\nkernel.shmmax = %d\n&#34;, $2 * 0.9)}&#39;</span> &gt;&gt; /etc/sysctl.conf
+sysctl -p</code></pre></div></li>
+
+<li><p>将容器的修改内容保存到镜像仓库中作为管理模板使用</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 提示：先从容器中退出，回到主机进行操作</span>
+<span class="nb">exit</span>
+
+<span class="c1"># -a Author, -m Commit message</span>
+docker commit -a yougg -m <span class="s1">&#39;init manager node template&#39;</span> <span class="si">${</span><span class="nv">容器ID</span><span class="si">}</span> suse11sp3:mgrnode</code></pre></div></li>
+</ol></li>
+
+<li><p>配置业务节点镜像模板</p>
+
+<ol>
+<li><p>再次ssh登录上一步启动的容器环境</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ssh root@172.17.0.3</code></pre></div></li>
+
+<li><p>创建业务节点的动态生成ssh密钥及启动sshd服务的脚本</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 先删除之前的管理模板的ssh密钥</span>
+<span class="nb">cd</span> /root/.ssh/
+rm -f id_rsa*
+
+<span class="c1"># 创建脚本</span>
+cat &gt; init.sh <span class="s">&lt;&lt;-EOF
+</span><span class="s">#!/bin/bash
+</span><span class="s">ssh-keygen -q -t rsa -P &#39;&#39; -f /root/.ssh/id_rsa
+</span><span class="s">/usr/sbin/sshd -D
+</span><span class="s">EOF</span>
+
+<span class="c1"># 添加脚本执行权限</span>
+chmod +x init.sh
+
+<span class="c1"># 然后退出ssh连接</span>
+exit</code></pre></div></li>
+
+<li><p>将容器的修改内容保存到镜像仓库中作为业务模板使用</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker commit -a yougg -m <span class="s1">&#39;init app node template&#39;</span> <span class="si">${</span><span class="nv">容器ID</span><span class="si">}</span> suse11sp3:appnode</code></pre></div></li>
+</ol></li>
+
+<li><p>基于镜像模板启动容器</p>
+
+<ol>
+<li><p>清理无用容器释放资源</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 删除所有容器</span>
+docker rm -f <span class="sb">`</span>docker ps -qa<span class="sb">`</span></code></pre></div>
+<blockquote>
+<p>注意：<br />
+  如果有其他需要继续使用的容器运行, 请勿使用此方式<br />
+  请自行过滤可删除的容器执行操作</p>
+</blockquote></li>
+
+<li><p>重启docker服务，重新分配IP地址</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 重启docker服务后，基于docker0网桥的内网IP会从头开始重新分配</span>
+service docker restart</code></pre></div></li>
+
+<li><p>查看当前已有的本地镜像仓库</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker images
+<span class="c1"># REPOSITORY  TAG           IMAGE ID      CREATED        VIRTUAL SIZE</span>
+<span class="c1"># suse11sp3   appnode       d821b2e59bd0  1 minutes ago  1.621 GB</span>
+<span class="c1"># suse11sp3   mgrnode       5494a75f213c  2 minutes ago  1.621 GB</span>
+<span class="c1"># suse11sp3   simplify_oss  14017be7faaa  1 days ago     1.621 GB</span></code></pre></div></li>
+
+<li><p>启动管理节点容器</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker run -d --privileged -h node0 --name node0 -p<span class="o">={</span><span class="m">22000</span>:22,23456:23456<span class="o">}</span> suse11sp3:mgrnode /usr/sbin/sshd -D</code></pre></div>
+<blockquote>
+<p>参数说明：<br />
+  后台运行，特权模式<br />
+  容器系统主机名: node0，容器名: node0<br />
+  映射容器sshd服务端口22到主机22000，23456到23456，外部网络可以通过主机映射端口访问容器服务<br />
+  使用 ip:port:port 方式映射容器端口到主机指定IP的端口，默认无IP就等于 0.0.0.0:port:port</p>
+</blockquote></li>
+
+<li><p>批量启动业务节点容器<br />
+需要根据主机系统的资源性能配置, 逐步增加容器的数量<br />
+本文举例启动10容器虚拟业务节点</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 容器虚拟节点名从node01到node10</span>
+<span class="c1"># 映射各业务节点sshd服务的22端口到主机系统的 22001~22010</span>
+<span class="c1"># 如果节点上需要映射多个端口, 可参考上一步</span>
+<span class="c1"># 如果不需要外部对业务节点的ssh连接，可以去除-p端口映射选项</span>
+<span class="k">for</span> i in <span class="o">{</span><span class="m">101</span>..110<span class="o">}</span><span class="p">;</span> <span class="k">do</span>
+    <span class="nv">n</span><span class="o">=</span><span class="s2">&#34;node</span><span class="si">${</span><span class="nv">i</span><span class="p">:</span><span class="nv">1</span><span class="si">}</span><span class="s2">&#34;</span>
+    docker run -d --privileged -h <span class="si">${</span><span class="nv">n</span><span class="si">}</span> --name <span class="si">${</span><span class="nv">n</span><span class="si">}</span> -p <span class="m">220</span><span class="si">${</span><span class="nv">i</span><span class="p">:</span><span class="nv">1</span><span class="si">}</span>:22 suse11sp3:appnode /root/.ssh/init.sh
+<span class="k">done</span>
+
+<span class="c1"># 已启动的容器系统环境列表</span>
+docker ps
+<span class="c1"># CONTAINER ID  IMAGE              COMMAND               CREATED        STATUS        PORTS                 NAMES</span>
+<span class="c1"># 36261553c6d4  suse11sp3:appnode  &#34;/root/.ssh/init.sh&#34;  4 seconds ago  Up 4 seconds  0.0.0.0:22010-&gt;22/tcp  node10</span>
+<span class="c1"># 5467d591761f  suse11sp3:appnode  &#34;/root/.ssh/init.sh&#34;  5 seconds ago  Up 4 seconds  0.0.0.0:22009-&gt;22/tcp  node09</span>
+<span class="c1"># 76ff92d33f69  suse11sp3:appnode  &#34;/root/.ssh/init.sh&#34;  5 seconds ago  Up 5 seconds  0.0.0.0:22008-&gt;22/tcp  node08</span>
+<span class="c1"># 6418274f2996  suse11sp3:appnode  &#34;/root/.ssh/init.sh&#34;  5 seconds ago  Up 5 seconds  0.0.0.0:22007-&gt;22/tcp  node07</span>
+<span class="c1"># 5777164bba26  suse11sp3:appnode  &#34;/root/.ssh/init.sh&#34;  5 seconds ago  Up 5 seconds  0.0.0.0:22006-&gt;22/tcp  node06</span>
+<span class="c1"># ad8297f926e4  suse11sp3:appnode  &#34;/root/.ssh/init.sh&#34;  6 seconds ago  Up 5 seconds  0.0.0.0:22005-&gt;22/tcp  node05</span>
+<span class="c1"># 633276f35435  suse11sp3:appnode  &#34;/root/.ssh/init.sh&#34;  6 seconds ago  Up 6 seconds  0.0.0.0:22004-&gt;22/tcp  node04</span>
+<span class="c1"># 383ef72d65e3  suse11sp3:appnode  &#34;/root/.ssh/init.sh&#34;  6 seconds ago  Up 6 seconds  0.0.0.0:22003-&gt;22/tcp  node03</span>
+<span class="c1"># 85f519094b9c  suse11sp3:appnode  &#34;/root/.ssh/init.sh&#34;  6 seconds ago  Up 6 seconds  0.0.0.0:22002-&gt;22/tcp  node02</span>
+<span class="c1"># 4ad1fd1fd69e  suse11sp3:appnode  &#34;/root/.ssh/init.sh&#34;  7 seconds ago  Up 6 seconds  0.0.0.0:22001-&gt;22/tcp  node01</span>
+<span class="c1"># 6bb88cbfcd4d  suse11sp3:mgrnode  &#34;/usr/sbin/sshd -D&#34;   1 minutes ago  Up 1 minutes  0.0.0.0:22000-&gt;22/tcp, 0.0.0.0:23456-&gt;23456/tcp  node0</span></code></pre></div></li>
+</ol></li>
+
+<li><p>基于容器搭建XXOO工程监控网管环境</p>
+
+<ol>
+<li><p>获取所有容器的主机名与IP地址</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker inspect -f <span class="s1">&#39;{{.Config.Hostname}} {{.NetworkSettings.IPAddress}}&#39;</span> <span class="sb">`</span>docker ps -qa<span class="sb">`</span> <span class="p">|</span> sort
+<span class="c1"># node0  172.17.0.13</span>
+<span class="c1"># node01 172.17.0.14</span>
+<span class="c1"># node02 172.17.0.15</span>
+<span class="c1"># node03 172.17.0.16</span>
+<span class="c1"># node04 172.17.0.17</span>
+<span class="c1"># node05 172.17.0.18</span>
+<span class="c1"># node06 172.17.0.19</span>
+<span class="c1"># node07 172.17.0.20</span>
+<span class="c1"># node08 172.17.0.21</span>
+<span class="c1"># node09 172.17.0.22</span>
+<span class="c1"># node10 172.17.0.23</span></code></pre></div></li>
+
+<li><p>通过Putty、XShell、SecureCRT等终端工具登录到管理容器虚拟节点</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 使用主机系统IP以及映射到管理容器sshd服务的端口</span>
+ssh -p <span class="m">22000</span> root@10.10.11.23
+<span class="c1"># 注意: 不同终端工具ssh命令登录参数格式可能不一致,请参考具体的命令或终端工具界面输入</span>
+<span class="c1"># 如XShell:</span>
+ssh root@10.10.11.23 <span class="m">22000</span></code></pre></div></li>
+
+<li><p>按照普通系统方式安装网管环境</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 创建并进入 /opt/software 目录</span>
+mkdir -p /opt/software
+<span class="nb">cd</span> /opt/software
+<span class="c1"># 获取业务安装包</span>
+wget -crL -np -nH http://localhost:8000/2015-1-15/
+<span class="c1"># 解压执行安装等操作本文省略...</span></code></pre></div></li>
+
+<li><p>使用主机IP地址及映射的管理面端口登录</p>
+
+<blockquote>
+<p>客户系统使用浏览器访问：<a href="https://10.10.11.23:23456/">https://10.10.11.23:23456/</a><br />
+  登录系统后使用上面第一步的节点名称和IP地址添加节点安装应用</p>
+</blockquote></li>
+
+<li><p><strong>主机</strong>中查看容器资源的使用</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 容器中进程信息</span>
+docker top <span class="si">${</span><span class="nv">容器ID</span><span class="si">}</span>
+
+<span class="c1"># 主机中docker容器的进程树</span>
+pstree <span class="sb">`</span>pidof docker<span class="sb">`</span>
+
+<span class="c1"># 查看资源占用实时监控</span>
+top</code></pre></div></li>
+
+<li><p>资源性能极限尝试<br />
+本文测试使用的主机环境是使用Vmware搭建的虚拟机<br />
+CPU: 8核 2GHz，Mem: 16GB<br />
+单机运行100虚拟容器节点 <strong>get√</strong><br />
+<img src="http://localhost:8000/docker/static/100nodes.png" alt="100nodes" /></p>
+
+<blockquote>
+<p><code>top</code>性能监控：<br />
+top - 18:54:27 up 11 days,  1:22,  4 users,  load average: 9.20, 15.15, 18.42<br />
+Tasks: 780 total,   3 running, 777 sleeping,   0 stopped,   0 zombie<br />
+%Cpu(s): 55.4 us, 20.4 sy,  0.0 ni, 22.7 id,  0.2 wa,  1.3 hi,  0.0 si,  0.0 st<br />
+KiB Mem:  16433824 total, 16187924 used,   245900 free,    55844 buffers<br />
+KiB Swap: 16775164 total,   671504 used, 16103660 free.  2388892 cached Mem<br />
+　<br />
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND<br />
+ 7638 dbuser      20   0 2611928 723504 249904 S  91.2  4.4  11:40.05 Postmaster<br />
+ 7816 ossadm      20   0  936952 394532   6216 S  87.3  2.4  12:55.25 java<br />
+ 8205 ossadm      20   0   90496  30580   2088 R  25.6  0.2   2:19.73 nginx<br />
+ 8047 ossadm      20   0  953840 160512  46164 S  19.7  1.0   9:35.73 python<br />
+ 8206 ossadm      20   0   90260  33828   2080 R  18.0  0.2   2:04.38 nginx<br />
+ &hellip;&hellip;<br />
+ &hellip;&hellip;</p>
+</blockquote></li>
+</ol></li>
+</ol>
+
+<hr />
+
+<h4 id="span-id-dockermaintenance-维护配置-span"><span id="dockermaintenance">维护配置</span></h4>
+
+<ul>
+<li><p>查看docker命令列表及命令帮助</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 列出docker的所有子命令及功能说明</span>
+docker <span class="o">[</span>help<span class="o">]</span>
+
+<span class="c1"># 查看子命令的帮助信息</span>
+docker <span class="nb">help</span> &lt;cmd&gt;
+<span class="c1"># 例如:</span>
+docker <span class="nb">help</span> run</code></pre></div>
+<blockquote>
+<p><code>docker run</code>选项参数说明:
+<table>
+    <tr style="text-align:center; font-weight:bold;">
+        <td>短格式</td><td>长格式</td><td>功能</td><td>描述</td>
+    </tr>
+    <tr>
+        <td>-d</td><td>&ndash;detach=false</td><td>后台运行容器</td><td>默认无此选项时前台运行</td>
+    </tr>
+    <tr>
+        <td></td><td>&ndash;privileged=false</td><td>特权模式</td><td>容器访问所有主机设备的权限</td>
+    </tr>
+    <tr>
+        <td>-h</td><td>&ndash;hostname=&ldquo;&rdquo;</td><td>容器系统主机名</td><td>自动设置容器内系统的主机名</td>
+    </tr>
+    <tr>
+        <td></td><td>&ndash;name=&ldquo;&rdquo;</td><td>容器名</td><td>不设置时docker会随机生成容器名</td>
+    </tr>
+    <tr>
+        <td>-p</td><td>&ndash;publish=[ ]</td><td>映射端口</td><td>将容器内的端口映射到主机系统中从而使外部网络能够访问</td>
+    </tr>
+    <tr>
+        <td>-i</td><td>&ndash;interactive=false</td><td>开启标准输入</td><td>保持标准输入打开即使没有连接</td>
+    </tr>
+    <tr>
+        <td>-t</td><td>&ndash;tty=false</td><td>分配虚拟终端</td><td>与-i一起使用连接到容器的虚拟终端</td>
+    </tr>
+</table></p>
+</blockquote></li>
+
+<li><p>从主机中查看启动的容器</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 查看运行中的容器，已停止/退出的容器不会显示</span>
+docker ps
+    
+<span class="c1"># 查看所有的容器</span>
+docker ps -a</code></pre></div></li>
+
+<li><p>删除容器</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 删除单个容器, -f Force即使容器在运行也强制删除</span>
+docker rm -f <span class="si">${</span><span class="nv">容器ID</span><span class="si">}</span>
+    
+<span class="c1"># 批量删除所有容器</span>
+docker rm -f <span class="sb">`</span>docker ps -qa<span class="sb">`</span>
+<span class="c1"># 或者循环确认删除</span>
+<span class="k">for</span> ID in <span class="sb">`</span>docker ps -qa<span class="sb">`</span><span class="p">;</span> <span class="k">do</span>
+    <span class="nb">echo</span> -n <span class="s2">&#34;delete container: &#34;</span>
+    docker rm -f <span class="nv">$ID</span>
+<span class="k">done</span></code></pre></div></li>
+
+<li><p>删除镜像</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 删除单个镜像, -f Force强制删除</span>
+docker rmi -f <span class="si">${</span><span class="nv">镜像ID</span><span class="si">}</span>
+    
+<span class="c1"># 批量删除所有镜像</span>
+docker rmi -f <span class="sb">`</span>docker images -qa<span class="sb">`</span>
+<span class="c1"># 或者循环确认删除</span>
+<span class="k">for</span> ID in <span class="sb">`</span>docker images -qa<span class="sb">`</span><span class="p">;</span> <span class="k">do</span>
+    <span class="nb">echo</span> -n <span class="s2">&#34;delete image: &#34;</span>
+    docker rmi -f <span class="nv">$ID</span>
+<span class="k">done</span></code></pre></div></li>
+
+<li><p>从主机获取镜像/容器的信息</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 查看完整的镜像/容器配置</span>
+docker inspect <span class="si">${</span><span class="nv">镜像</span><span class="p">/容器ID</span><span class="si">}</span>
+<span class="c1"># 实际上是读取下面两个配置文件：</span>
+<span class="c1"># /var/lib/docker/graph/${镜像ID}/json</span>
+<span class="c1"># /var/lib/docker/containers/${容器ID}/config.json</span>
+    
+<span class="c1"># inspect -f 读取配置信息中指定的属性值</span>  
+<span class="c1"># 查看容器启动初始化的IP地址</span>
+docker inspect -f <span class="s1">&#39;{{.NetworkSettings.IPAddress}}&#39;</span> <span class="si">${</span><span class="nv">容器ID</span><span class="si">}</span></code></pre></div></li>
+
+<li><p>提交保存容器中的修改内容到镜像仓库中</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker commit -a yougg -m <span class="s1">&#39;simplify the base oss image&#39;</span> <span class="si">${</span><span class="nv">容器ID</span><span class="si">}</span> suse11sp3:simplify_oss</code></pre></div></li>
+
+<li><p>保存/导出镜像</p>
+
+<ul>
+<li><p>基于容器导出镜像</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker <span class="nb">export</span> <span class="si">${</span><span class="nv">容器ID</span><span class="si">}</span> &gt; xxx.tar
+
+<span class="c1"># 导出时压缩镜像包</span>
+docker <span class="nb">export</span> <span class="si">${</span><span class="nv">容器ID</span><span class="si">}</span> <span class="p">|</span> gzip &gt; xxx.tar.gz</code></pre></div></li>
+
+<li><p>基于镜像仓库保存镜像</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker save -o xxx.tar <span class="si">${</span><span class="nv">镜像ID</span><span class="si">}</span>
+
+<span class="c1"># 保存时压缩镜像包</span>
+docker save <span class="si">${</span><span class="nv">镜像ID</span><span class="si">}</span> <span class="p">|</span> gzip &gt; xxx.tar.gz</code></pre></div></li>
+</ul></li>
+
+<li><p>docker服务 启动/停止/状态/重启<br />
+docker服务重启后，原有运行的容器不会自动拉起，需要手工启动<code>docker start ${容器ID}</code><br />
+新启动容器的IP地址会从头开始分配</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">service docker &lt;start<span class="p">|</span>stop<span class="p">|</span>status<span class="p">|</span>restart&gt;</code></pre></div></li>
+
+<li><p><strong>主机</strong>中安装桌面环境及远程管理</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt-get install -y xorg lxde tightvncserver
+
+<span class="c1"># 开启vnc服务端口, 第一次启动时会要求设置当前用户的vnc登录密码</span>
+<span class="c1"># 建议使用普通系统用户启用vnc服务</span>
+vncserver :1 -geometry 1440x1000
+<span class="c1"># 结束vnc服务端口</span>
+vncserver -kill :1</code></pre></div>
+<blockquote>
+<p>客户系统使用vnc客户端(VNC Viewer，tightvnc等)连接主机系统的远程桌面</p>
+</blockquote></li>
+
+<li><p>安装Chrome浏览器<br />
+<a href="http://localhost:8000/docker/files/google-chrome-stable_current_amd64.deb">[Download] Google Chrome for Ubuntu</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 首先安装Chrome依赖库</span>
+apt-get install -y libnspr4 libnss3 libpango1.0-0 libxss1 libappindicator1 xdg-utils libdbusmenu-glib4 libdbusmenu-gtk4 libindicator7 libnss3-nssdb libpangox-1.0-0
+    
+<span class="c1"># 然后使用Chrome安装包安装</span>
+dpkg -i google-chrome-stable_current_amd64.deb</code></pre></div></li>
+</ul>
+
+<!--
+- 设置容器公开网络
+
+    ```bash
+    # 安装brctl网桥管理工具
+    apt-get install -y bridge-utils
+    # 查看当前系统中的网桥
+    brctl show
+    # 添加一个新网桥
+    brctl addbr br0
+    # 为新网桥配置一个未被使用的IP地址
+    ip addr add 10.1.2.181/24 dev br0
+    # 启用网桥网络
+    ip link set dev br0 up
+    # 查看当前系统的所有网络设备信息
+    ifconfig -a
+    ```
+-->
+
+<ul>
+<li><p>Docker容器网络拓展</p>
+
+<ul>
+<li><p>Weave</p>
+
+<blockquote>
+<p><a href="https://github.com/zettio/weave">Weave</a>是由Zett.io公司开发的，它能够创建一个虚拟网络来连接部署在多台主机上的Docker容器。<br />
+  通过Weave所有的容器就像被接入了同一个网络交换机，那些使用网络的应用程序不必去配置端口映射和链接等信息。外部设备能够访问Weave网络上的应用程序容器所提供的服务，同时已有的内部系统也能够暴露到应用程序容器上。<br />
+  Weave能够穿透防火墙并运行在部分连接的网络上。<br />
+  另外，Weave的通信支持加密，所以用户可以从一个不受信任的网络连接到主机。</p>
+</blockquote></li>
+
+<li><p>Pipework</p>
+
+<blockquote>
+<p><a href="https://github.com/jpetazzo/pipework">Pipework</a>是由Docker的工程师Jérôme Petazzoni开发的一个Docker网络配置工具，由200多行shell实现，方便易用。
+  通过封装Linux上的ip、brctl等命令，简化了在复杂场景下对容器连接的操作命令，为复杂的网络拓扑配置提供了一个强有力的工具。</p>
+</blockquote></li>
+
+<li><p><a href="http://www.infoq.com/cn/articles/docker-network-and-pipework-open-source-explanation-practice">Docker网络详解及pipework源码解读与实践</a></p></li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h4 id="span-id-others-延伸阅读-span"><span id="others">延伸阅读</span></h4>
+
+<ul>
+<li><p><a href="http://localhost:8000/docker/files/docker_practice.pdf">《Docker 技术入门与实战》</a></p>
+
+<blockquote>
+<p>此书既适用于具备基础 Linux 知识的 Docker 初学者，也希望可供理解原理和实现的高级用户参考。同时，书中给出的实践案例，可供在进行实际部署时借鉴。前六章为基础内容，供用户理解 Docker 的基本概念和操作；7 ~ 9 章介绍一些高级操作；第 10 章给出典型的应用场景和实践案例；11 ~ 13 章介绍关于 Docker 实现的相关技术。14 ~ 章介绍相关的一些开源项目。</p>
+</blockquote></li>
+
+<li><p>Docker 资料/社区</p>
+
+<blockquote>
+<p><a href="http://special.csdncms.csdn.net/BeDocker/">CSDN Docker 资料集萃</a><br />
+<a href="http://www.infoq.com/cn/dockers">深入浅出Docker</a><br />
+<a href="http://www.widuu.com/docker/index.html">docker中文教程</a><br />
+<a href="https://docker.cn/">docker.cn</a><br />
+<a href="http://dockerpool.com/">Dockerpool</a></p>
+</blockquote></li>
+
+<li><p>Docker Web 管理工具</p>
+
+<ul>
+<li><p>Shipyard</p>
+
+<blockquote>
+<p><a href="https://github.com/shipyard/shipyard">Shipyard</a> 是一个基于 Web 的 Docker 管理工具，支持多 host，可以把多个 Docker host 上的 containers 统一管理；可以查看 images，甚至 build images；并提供 RESTful API 等等。 Shipyard 要管理和控制 Docker host 的话需要先修改 Docker host 上的默认配置使其支持远程管理。</p>
+</blockquote></li>
+
+<li><p>DockerUI</p>
+
+<blockquote>
+<p><a href="https://github.com/crosbymichael/dockerui">DockerUI</a> 是一个Web界面用于与 Remote API 相交。其目的是提供一个纯客户端实现，让你能够很轻松的连接和管理docker。</p>
+</blockquote></li>
+</ul></li>
+
+<li><p>CoreOS &amp; Rocket</p>
+
+<blockquote>
+<p>　　<a href="https://coreos.com">CoreOS</a>是一个基于Linux 内核的轻量级操作系统，为了计算机集群的基础设施建设而生，专注于自动化，轻松部署，安全，可靠，规模化。作为一个操作系统，CoreOS 提供了在应用容器内部署应用所需要的基础功能环境以及一系列用于服务发现和配置共享的内建工具。<br />
+　　<a href="https://github.com/coreos/rocket">Rocket</a> 是一款容器引擎，和 Docker 类似，帮助开发者打包应用和依赖包到可移植容器中，简化搭环境等部署工作。CoreOS 的 CEO Alex Polvi 在官方博文里介绍道，Rocket 和 Docker 不同的地方在于，Rocket 没有 Docker 那些为企业用户提供的“友好功能”，比如云服务加速工具、集群系统等。反过来说，Rocket 想做的，是一个更纯粹的业界标准。</p>
+</blockquote></li>
+
+<li><p>Windows的容器引擎</p>
+
+<ul>
+<li><p>Spoon</p>
+
+<blockquote>
+<p><a href="https://spoon.net">官方文档</a>，<a href="http://www.widuu.com/archives/12/1136.html">简单使用向导</a><br />
+　　Spoon是windows上的容器解决方案，和docker一样，有spoon.net/hub共享镜像和容器，只支持windows系统，它是自建的虚拟化技术，并不依靠windows的内部虚拟化技术，对操作系统没有依赖性，到目前为止在win xp、7、8和Win 10预览版上测试都可以正常运行，让windows平台上也有这种容器的体验。Spoon能对容器进行颗粒级别的隔离。对比Docker来看，Spoon默认向网络开放容器，这样可以更容易对容器封仓，然后选择性的对网络再开放。开发者声称这样可以允许桌面应用默认运行。</p>
+</blockquote></li>
+
+<li><p>Boot2Docker</p>
+
+<blockquote>
+<p><a href="https://github.com/boot2docker/boot2docker#installation">官方文档</a>，<a href="http://www.widuu.com/archives/07/1068.html">简单使用向导</a><br />
+　　Boot2Docker是一个专为Docker设计的轻量级Linux发行版，解决Windows或者OS X用户不能安装Docker的问题。<br />
+Boot2Docker完全运行于内存中，24M大小，启动仅5-6秒。<br />
+Boot2Docker需要运行在VirtualBox中，具体的安装可以参考官方文档</p>
+</blockquote></li>
+</ul></li>
+</ul>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://yougg.github.io/tags/docker/">Docker</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2015/07/31/command-note/" data-tooltip="Command Note">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2014/12/31/%E9%80%9A%E8%BF%87golang%E5%AE%98%E6%96%B9%E7%9A%84docker%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA%E5%8E%86%E5%8F%B2-%E6%9F%A5%E7%9C%8Bandroid%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/" data-tooltip="通过golang官方的docker镜像构建历史, 查看Android开发环境的搭建流程">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://yougg.github.io/2015/01/07/%E5%9F%BA%E4%BA%8Edocker%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7xxoo%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%AE%9E%E8%B7%B5/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://yougg.github.io/2015/01/07/%E5%9F%BA%E4%BA%8Edocker%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7xxoo%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%AE%9E%E8%B7%B5/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://yougg.github.io/2015/01/07/%E5%9F%BA%E4%BA%8Edocker%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7xxoo%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%AE%9E%E8%B7%B5/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 <a href="https://github.com/yougg">yougg</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2015/07/31/command-note/" data-tooltip="Command Note">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2014/12/31/%E9%80%9A%E8%BF%87golang%E5%AE%98%E6%96%B9%E7%9A%84docker%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA%E5%8E%86%E5%8F%B2-%E6%9F%A5%E7%9C%8Bandroid%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/" data-tooltip="通过golang官方的docker镜像构建历史, 查看Android开发环境的搭建流程">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://yougg.github.io/2015/01/07/%E5%9F%BA%E4%BA%8Edocker%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7xxoo%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%AE%9E%E8%B7%B5/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://yougg.github.io/2015/01/07/%E5%9F%BA%E4%BA%8Edocker%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7xxoo%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%AE%9E%E8%B7%B5/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://yougg.github.io/2015/01/07/%E5%9F%BA%E4%BA%8Edocker%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7xxoo%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%AE%9E%E8%B7%B5/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fyougg.github.io%2F2015%2F01%2F07%2F%25E5%259F%25BA%25E4%25BA%258Edocker%25E7%259A%2584%25E8%25BD%25BB%25E9%2587%258F%25E7%25BA%25A7xxoo%25E7%25B3%25BB%25E7%25BB%259F%25E7%258E%25AF%25E5%25A2%2583%25E6%2590%25AD%25E5%25BB%25BA%25E5%25AE%259E%25E8%25B7%25B5%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fyougg.github.io%2F2015%2F01%2F07%2F%25E5%259F%25BA%25E4%25BA%258Edocker%25E7%259A%2584%25E8%25BD%25BB%25E9%2587%258F%25E7%25BA%25A7xxoo%25E7%25B3%25BB%25E7%25BB%259F%25E7%258E%25AF%25E5%25A2%2583%25E6%2590%25AD%25E5%25BB%25BA%25E5%25AE%259E%25E8%25B7%25B5%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fyougg.github.io%2F2015%2F01%2F07%2F%25E5%259F%25BA%25E4%25BA%258Edocker%25E7%259A%2584%25E8%25BD%25BB%25E9%2587%258F%25E7%25BA%25A7xxoo%25E7%25B3%25BB%25E7%25BB%259F%25E7%258E%25AF%25E5%25A2%2583%25E6%2590%25AD%25E5%25BB%25BA%25E5%25AE%259E%25E8%25B7%25B5%2F">
+          <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+    
+    <h4 id="about-card-name">yougg</h4>
+    
+      <div id="about-card-bio">和咸鱼没有什么区别的偶尔写<del><em>不想写</em></del>博客的码农</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        搬砖
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        中国 深圳
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://yougg.github.io/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://yougg.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/yougg.github.io\/2015\/01\/07\/%E5%9F%BA%E4%BA%8Edocker%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7xxoo%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%AE%9E%E8%B7%B5\/';
+          
+            this.page.identifier = '\/2015\/01\/07\/%E5%9F%BA%E4%BA%8Edocker%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7xxoo%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%AE%9E%E8%B7%B5\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'yougg';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

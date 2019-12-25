@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Yougg&#39;s Blog</title>
+    <link>https://yougg.github.io/</link>
+    <description>Recent content on Yougg&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 29 Aug 2018 19:59:56 +0800</lastBuildDate>
+    
+	<atom:link href="https://yougg.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>程序员能力矩阵</title>
+      <link>https://yougg.github.io/2018/08/29/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%83%BD%E5%8A%9B%E7%9F%A9%E9%98%B5/</link>
+      <pubDate>Wed, 29 Aug 2018 19:59:56 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2018/08/29/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%83%BD%E5%8A%9B%E7%9F%A9%E9%98%B5/</guid>
+      <description>注意:每个层次的知识都是渐增的，位于层次n，也蕴涵了你需了解所有低于层次n的知识。 计算机科学 Computer Science Working with someone who has a good topcoder ranking would be an unbelievable piece of luck! 2n (Level 0) n2 (Level 1)</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu18.04安装使用RIDE</title>
+      <link>https://yougg.github.io/2018/07/30/ubuntu18.04%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8ride/</link>
+      <pubDate>Mon, 30 Jul 2018 19:19:52 +0000</pubDate>
+      
+      <guid>https://yougg.github.io/2018/07/30/ubuntu18.04%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8ride/</guid>
+      <description>Ubuntu 18.04 install Robot Framework RIDE set pip install source Linux/Unix ~/.pip/pip.conf Windows C:\Users\用户名\pip\pip.ini [global] trusted-host=rnd-mirrors.huawei.com index-url=http://rnd-mirrors.huawei.com/pypi/simple/ latest version install python pip apt install -y python3-pip install wxPython (for linux) pip install -U -f https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-18.04 wxPython install RIDE (for windows, only this step need) pip install -U</description>
+    </item>
+    
+    <item>
+      <title>rkt容器简单试用</title>
+      <link>https://yougg.github.io/2018/07/27/rkt%E5%AE%B9%E5%99%A8%E7%AE%80%E5%8D%95%E8%AF%95%E7%94%A8/</link>
+      <pubDate>Fri, 27 Jul 2018 16:41:47 +0000</pubDate>
+      
+      <guid>https://yougg.github.io/2018/07/27/rkt%E5%AE%B9%E5%99%A8%E7%AE%80%E5%8D%95%E8%AF%95%E7%94%A8/</guid>
+      <description>设置代理 export http_proxy=&amp;#39;http://127.0.0.1:8080&amp;#39; export {https,ftp,rsync,all}_proxy=$http_proxy 下载安装rkt cd ~/Download/ wget --no-check-certificate https://github.com/rkt/rkt/releases/download/v1.30.0/rkt-1.30.0-1.x86_64.rpm sudo rpm -ivh rkt-1.30.0-1.x86_64.rpm 下载安装镜像 切换到root重新, 重新设置一遍http proxy, 然后再下载镜像 sudo su - export http_proxy=&amp;#39;http://127.0.0.1:8080&amp;#39; export {https,ftp,rsync,all}_proxy=$http_proxy #sudo rkt --insecure-options=image --debug fetch</description>
+    </item>
+    
+    <item>
+      <title>Go语言排序算法笔记</title>
+      <link>https://yougg.github.io/2018/07/06/go%E8%AF%AD%E8%A8%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Fri, 06 Jul 2018 14:25:22 +0000</pubDate>
+      
+      <guid>https://yougg.github.io/2018/07/06/go%E8%AF%AD%E8%A8%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/</guid>
+      <description>Install Flutter on Ubuntu Desktop set apt proxy and http(s) proxy echo &amp;#39;Acquire::http::Proxy &amp;#34;http://127.0.0.1:8080&amp;#34;&amp;#39; &amp;gt;&amp;gt; /etc/apt/apt.conf export http_proxy=&amp;#39;http://127.0.0.1:8080&amp;#39; export {https,ftp,rsync,all}_proxy=$http_proxy install git sudo apt install git git config --global http.sslVerify false clone flutter mkdir -p ~/Flutter cd ~/Flutter git clone -b master https://github.com/flutter/flutter.git ./flutter/bin/flutter --version export PATH=${PATH}:~/Flutter/flutter/bin echo &amp;#39;export PATH=${PATH}:~/Flutter/flutter/bin&amp;#39; &amp;gt;&amp;gt; ~/.profile flutter doctor sudo apt install lib32stdc++6 set proxy forward for virtual device download latest frp release package https://github.com/fatedier/frp/releases</description>
+    </item>
+    
+    <item>
+      <title>Go语言排序算法笔记</title>
+      <link>https://yougg.github.io/2018/02/13/go%E8%AF%AD%E8%A8%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Tue, 13 Feb 2018 10:50:47 +0000</pubDate>
+      
+      <guid>https://yougg.github.io/2018/02/13/go%E8%AF%AD%E8%A8%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/</guid>
+      <description>冒泡排序 排序实现 给定一个N个元素的数组 比较相邻的一对元素(a,b) 如果元素乱序，交换元素(当前情况是a&amp;gt;b) 重复步骤1和2，直到到达数</description>
+    </item>
+    
+    <item>
+      <title>Go语言面试题汇集</title>
+      <link>https://yougg.github.io/2017/12/19/go%E8%AF%AD%E8%A8%80%E9%9D%A2%E8%AF%95%E9%A2%98%E6%B1%87%E9%9B%86/</link>
+      <pubDate>Tue, 19 Dec 2017 10:59:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/12/19/go%E8%AF%AD%E8%A8%80%E9%9D%A2%E8%AF%95%E9%A2%98%E6%B1%87%E9%9B%86/</guid>
+      <description>goroutine 的调度顺序是随机的 package main import ( &amp;#34;fmt&amp;#34; &amp;#34;sync&amp;#34; ) func main() { //runtime.GOMAXPROCS(1) //runtime.GOMAXPROCS(runtime.NumCPU()) n := 10 wg := new(sync.WaitGroup) wg.Add(n) for i := 0; i &amp;lt; n; i++ { i := i go func() { fmt.Printf(&amp;#34;%d &amp;#34;, i) wg.Done() }() } wg.Wait() fmt.Println() } 以下4种执行方式的输出差别 GOMAXPROCS=1 go run main.go</description>
+    </item>
+    
+    <item>
+      <title>使用Cassandra</title>
+      <link>https://yougg.github.io/2017/12/11/%E4%BD%BF%E7%94%A8cassandra/</link>
+      <pubDate>Mon, 11 Dec 2017 20:28:59 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/12/11/%E4%BD%BF%E7%94%A8cassandra/</guid>
+      <description>Golang访问Cassandra的客户端gocql 事务支持 INSERT INTO tablex (column_a, column_b, column_c) VALUES (&amp;#39;a&amp;#39;,&amp;#39;b&amp;#39;,&amp;#39;c&amp;#39;) IF NOT EXISTS; UPDATE tablex SET column_a = &amp;#39;x&amp;#39;, column_b = &amp;#39;y&amp;#39;, column_c = &amp;#39;z&amp;#39; WHERE column_a = &amp;#39;a&amp;#39; IF column_a = &amp;#39;a&amp;#39;; SQL语句转义 var replacer</description>
+    </item>
+    
+    <item>
+      <title>配置GoLand集成开发环境</title>
+      <link>https://yougg.github.io/2017/11/30/%E9%85%8D%E7%BD%AEgoland%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</link>
+      <pubDate>Thu, 30 Nov 2017 16:38:52 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/11/30/%E9%85%8D%E7%BD%AEgoland%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</guid>
+      <description>安装必备工具 下载安装以下软件，确保执行命令的路径都已添加到系统环境变量PATH中 Golang 安装向导 使用默认安装路径 Notepad++ 安装向导 使用默认安装路径 勾选默认</description>
+    </item>
+    
+    <item>
+      <title>GoLand中使用PlantUML生成Go UML图</title>
+      <link>https://yougg.github.io/2017/11/25/goland%E4%B8%AD%E4%BD%BF%E7%94%A8plantuml%E7%94%9F%E6%88%90go-uml%E5%9B%BE/</link>
+      <pubDate>Sat, 25 Nov 2017 10:48:48 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/11/25/goland%E4%B8%AD%E4%BD%BF%E7%94%A8plantuml%E7%94%9F%E6%88%90go-uml%E5%9B%BE/</guid>
+      <description>确保如下软件已安装并添加到PATH中可执行 Java Golang GoLand Graphviz GoLand中安装PlantUML插件 点击菜单 File -&amp;gt; Settings -&amp;gt; Plugins -&amp;gt; Browse repositories... 搜索框输入PlantUML，</description>
+    </item>
+    
+    <item>
+      <title>Go net/http 超时机制完全手册</title>
+      <link>https://yougg.github.io/2017/10/23/go-net/http-%E8%B6%85%E6%97%B6%E6%9C%BA%E5%88%B6%E5%AE%8C%E5%85%A8%E6%89%8B%E5%86%8C/</link>
+      <pubDate>Mon, 23 Oct 2017 14:57:01 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/10/23/go-net/http-%E8%B6%85%E6%97%B6%E6%9C%BA%E5%88%B6%E5%AE%8C%E5%85%A8%E6%89%8B%E5%86%8C/</guid>
+      <description>Go net/http 超时机制完全手册</description>
+    </item>
+    
+    <item>
+      <title>恢复闲鱼网页版的搜索框</title>
+      <link>https://yougg.github.io/2017/09/04/%E6%81%A2%E5%A4%8D%E9%97%B2%E9%B1%BC%E7%BD%91%E9%A1%B5%E7%89%88%E7%9A%84%E6%90%9C%E7%B4%A2%E6%A1%86/</link>
+      <pubDate>Mon, 04 Sep 2017 17:30:57 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/09/04/%E6%81%A2%E5%A4%8D%E9%97%B2%E9%B1%BC%E7%BD%91%E9%A1%B5%E7%89%88%E7%9A%84%E6%90%9C%E7%B4%A2%E6%A1%86/</guid>
+      <description>参考链接： 闲鱼搜索框</description>
+    </item>
+    
+    <item>
+      <title>Public Key Infrastructure Certificate Apply Guide</title>
+      <link>https://yougg.github.io/2017/08/28/public-key-infrastructure-certificate-apply-guide/</link>
+      <pubDate>Mon, 28 Aug 2017 15:50:10 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/08/28/public-key-infrastructure-certificate-apply-guide/</guid>
+      <description>生成XXX服务组件(service DB)的私钥和证书签发请求 service服务证书签发请求和RSA私钥(PKCS#1)已废弃 # 生成servi</description>
+    </item>
+    
+    <item>
+      <title>用Go语言写一个简单的MySQL客户端</title>
+      <link>https://yougg.github.io/2017/08/24/%E7%94%A8go%E8%AF%AD%E8%A8%80%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84mysql%E5%AE%A2%E6%88%B7%E7%AB%AF/</link>
+      <pubDate>Thu, 24 Aug 2017 09:30:43 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/08/24/%E7%94%A8go%E8%AF%AD%E8%A8%80%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84mysql%E5%AE%A2%E6%88%B7%E7%AB%AF/</guid>
+      <description>项目需要验证一下MySQL服务启用安全通信证书双向认证在Go中是否可行，以便后续将服务代码快捷的切换到SSL安全通道上。服务功能来做验证对环</description>
+    </item>
+    
+    <item>
+      <title>Emoji list support by hugo</title>
+      <link>https://yougg.github.io/2017/08/23/emoji-list-support-by-hugo/</link>
+      <pubDate>Wed, 23 Aug 2017 19:15:26 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/08/23/emoji-list-support-by-hugo/</guid>
+      <description>😄 😆 😊 😃 ☺ 😏 😍 😘 😚 😳 😌 😆 😁 😉 😜 😅 😥 😞 😨 😣 😭 😂 😲 😱 😫 😡 😤 😪 😋 😷 😎 😵 😈 😶 👽 💛 💜 💚 💓 💕 💘 💖 ⭐ 🌟 💫 💥 💥 💢 ❗ ❓ ❔ 💨 💦 🎵 💩 💩 💩 👍 👍 👎 👎 👌 👊 👊 ✌ 👋 ✋ ✋ 👐 👇</description>
+    </item>
+    
+    <item>
+      <title>REST工具</title>
+      <link>https://yougg.github.io/2017/08/17/rest%E5%B7%A5%E5%85%B7/</link>
+      <pubDate>Thu, 17 Aug 2017 15:56:31 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/08/17/rest%E5%B7%A5%E5%85%B7/</guid>
+      <description>package main import ( &amp;#34;crypto/tls&amp;#34; &amp;#34;encoding/json&amp;#34; &amp;#34;flag&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;io/ioutil&amp;#34; &amp;#34;log&amp;#34; &amp;#34;net&amp;#34; &amp;#34;net/http&amp;#34; &amp;#34;os&amp;#34; &amp;#34;time&amp;#34; ) type content struct { Title string Desc string Scheme string Host string Port int Request struct { IP string Url string Method string Cert struct { RootCAs []string Certificates []string } Header map[string]string Body string } Response struct { Status int Cert map[string]string Header map[string]string Body string } } type handler struct{} // tcpKeepAliveListener sets</description>
+    </item>
+    
+    <item>
+      <title>我的静态博客搭建流程</title>
+      <link>https://yougg.github.io/2017/06/27/%E6%88%91%E7%9A%84%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/</link>
+      <pubDate>Tue, 27 Jun 2017 14:36:16 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/06/27/%E6%88%91%E7%9A%84%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/</guid>
+      <description>根据GitHub静态博客向导: https://pages.github.com/ 在GitHub创建名为 username.github.io 的空仓库 username 为自己的GitHub账号，此处我的账号为yougg 如果之前已经创建过个人博</description>
+    </item>
+    
+    <item>
+      <title>《Go语言安全编程规范》</title>
+      <link>https://yougg.github.io/2017/06/12/go%E8%AF%AD%E8%A8%80%E5%AE%89%E5%85%A8%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/</link>
+      <pubDate>Mon, 12 Jun 2017 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/06/12/go%E8%AF%AD%E8%A8%80%E5%AE%89%E5%85%A8%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/</guid>
+      <description>0 前言 背景 《Go语言安全编程规范》针对Go语言编程中的整数安全、输入校验、内存管理、异常行为、敏感数据、I/O操作、序列化等方面，描述可能导</description>
+    </item>
+    
+    <item>
+      <title>理解Go语言模型(1)：interface底层详解</title>
+      <link>https://yougg.github.io/2017/03/27/%E7%90%86%E8%A7%A3go%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B1interface%E5%BA%95%E5%B1%82%E8%AF%A6%E8%A7%A3/</link>
+      <pubDate>Mon, 27 Mar 2017 10:59:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/03/27/%E7%90%86%E8%A7%A3go%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B1interface%E5%BA%95%E5%B1%82%E8%AF%A6%E8%A7%A3/</guid>
+      <description>前言 Go语言从语法上面来说，是相对简单的，所以基本的语法特性是没有什么特别要讲的，这里将从Go语言的一些核心的设计，包括interface，</description>
+    </item>
+    
+    <item>
+      <title>Go语言服务端开发工程师 招聘需求</title>
+      <link>https://yougg.github.io/2016/09/29/go%E8%AF%AD%E8%A8%80%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88-%E6%8B%9B%E8%81%98%E9%9C%80%E6%B1%82/</link>
+      <pubDate>Thu, 29 Sep 2016 10:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2016/09/29/go%E8%AF%AD%E8%A8%80%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88-%E6%8B%9B%E8%81%98%E9%9C%80%E6%B1%82/</guid>
+      <description>岗位职责： 使用Go语言进行服务端的开发； 负责实现系统集成类功能系统设计和开发，大数据服务管理； 负责编写开发相关文档； 负责服务部署和维护； 负责</description>
+    </item>
+    
+    <item>
+      <title>LiteIDE 导出PDF定制Markdown转换的CSS</title>
+      <link>https://yougg.github.io/2016/08/23/liteide-%E5%AF%BC%E5%87%BApdf%E5%AE%9A%E5%88%B6markdown%E8%BD%AC%E6%8D%A2%E7%9A%84css/</link>
+      <pubDate>Tue, 23 Aug 2016 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2016/08/23/liteide-%E5%AF%BC%E5%87%BApdf%E5%AE%9A%E5%88%B6markdown%E8%BD%AC%E6%8D%A2%E7%9A%84css/</guid>
+      <description>Fork from GitHub_Style.css Line 13 body{ background-color:#FFFFFF; color:#333333; background-color:#FFFFFF; padding:0 30px 30px; font-size:15px; line-height:1.7; margin:20px auto; max-width:722px;margin-left: auto; border-radius:3px 3px 3px 3px; } Line 37 h1{ font-size:2em; margin:0.67em 0px; text-align: center; } Line 62 table{ border-collapse:collapse; border-spacing:0px; font-family:serif; } Line 92 hr{ background-color:#DDDDDD; border:0px none; color:#CCCCCC; height:1px; margin:2em 0px 15px; padding:0px; } Line 126 pre{ max-width:700px;background-color:#F8F8F8; border-radius:3px 3px 3px 3px; border:1px solid #DDDDDD; font-size:13px; line-height:19px; overflow:auto; padding:6px 10px; } Line</description>
+    </item>
+    
+    <item>
+      <title>Git项目代码提交记录统计工具</title>
+      <link>https://yougg.github.io/2016/06/24/git%E9%A1%B9%E7%9B%AE%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95%E7%BB%9F%E8%AE%A1%E5%B7%A5%E5%85%B7/</link>
+      <pubDate>Fri, 24 Jun 2016 15:02:12 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2016/06/24/git%E9%A1%B9%E7%9B%AE%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95%E7%BB%9F%E8%AE%A1%E5%B7%A5%E5%85%B7/</guid>
+      <description>使用说明 本机下载安装Git版本管理工具 Clone项目代码仓库到本地 下载Git项目代码提交记录统计工具保存到本地 打开Git Bash, 执行gitstat</description>
+    </item>
+    
+    <item>
+      <title>Command Note</title>
+      <link>https://yougg.github.io/2015/07/31/command-note/</link>
+      <pubDate>Fri, 31 Jul 2015 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2015/07/31/command-note/</guid>
+      <description>查看进程环境变量 Linux tr \\0 \\n &amp;lt; /proc/${PID}/environ ps eww -p ${PID} Solaris pargs -e ${PID} Windows PowerShell (Get-Process -id %PID%).StartInfo.EnvironmentVariables 挂载/卸载分区 Windows :: 查看分区信息 mountvol /? :: 卸载分区 mountvol D: /D :: 挂载分区 mountvol D: \\?\Volume{e316bd82-2441-11e5-9656-d6d12ffbbef0} 修改系统代理 Linux export http_proxy=&amp;#39;http://x.proxy.com:8080&amp;#39; export</description>
+    </item>
+    
+    <item>
+      <title>基于Docker的轻量级XXOO系统环境搭建实践</title>
+      <link>https://yougg.github.io/2015/01/07/%E5%9F%BA%E4%BA%8Edocker%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7xxoo%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%AE%9E%E8%B7%B5/</link>
+      <pubDate>Wed, 07 Jan 2015 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2015/01/07/%E5%9F%BA%E4%BA%8Edocker%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7xxoo%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%AE%9E%E8%B7%B5/</guid>
+      <description>作者 [cxy](mailto:joecc@126.com) 发布于 2015年1月 -- Docker简介 Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到</description>
+    </item>
+    
+    <item>
+      <title>通过golang官方的docker镜像构建历史, 查看Android开发环境的搭建流程</title>
+      <link>https://yougg.github.io/2014/12/31/%E9%80%9A%E8%BF%87golang%E5%AE%98%E6%96%B9%E7%9A%84docker%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA%E5%8E%86%E5%8F%B2-%E6%9F%A5%E7%9C%8Bandroid%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/</link>
+      <pubDate>Wed, 31 Dec 2014 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2014/12/31/%E9%80%9A%E8%BF%87golang%E5%AE%98%E6%96%B9%E7%9A%84docker%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA%E5%8E%86%E5%8F%B2-%E6%9F%A5%E7%9C%8Bandroid%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B/</guid>
+      <description>环境Ubuntu 14.04 # 安装docker sudo apt-get install docker.io # 获取golang的Android开发环境镜像 sudo docker pull golang/mobile # 查看下载完成的镜像 sudo docker images # REPOSITORY TAG IMAGE ID CREATED VIRTUAL SIZE</description>
+    </item>
+    
+    <item>
+      <title>2014-12-23 深圳宽带套餐资费对比</title>
+      <link>https://yougg.github.io/2014/12/23/2014-12-23-%E6%B7%B1%E5%9C%B3%E5%AE%BD%E5%B8%A6%E5%A5%97%E9%A4%90%E8%B5%84%E8%B4%B9%E5%AF%B9%E6%AF%94/</link>
+      <pubDate>Tue, 23 Dec 2014 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2014/12/23/2014-12-23-%E6%B7%B1%E5%9C%B3%E5%AE%BD%E5%B8%A6%E5%A5%97%E9%A4%90%E8%B5%84%E8%B4%B9%E5%AF%B9%E6%AF%94/</guid>
+      <description>&amp;ndash; 套餐 预付 年限 月付 副卡 总额 月均 赠送 电信 12Mbps,700min,3GB 1590 1 149 10 3498 291.5 600 电信 12Mbps,700min,3GB 1790 2 166 10 6006 250.5 600 联通 6Mbps,240min,300MB 0 1 96 0 1152 96 0 - 电信 电信 联通 年限 1 2 1 套餐 12Mbps,700min,3GB 12Mbps,700min,3GB 6Mbps,240min,300MB 预付 1590 1790 0 月</description>
+    </item>
+    
+    <item>
+      <title>自制DOCKER镜像和私有仓库</title>
+      <link>https://yougg.github.io/2014/11/11/%E8%87%AA%E5%88%B6docker%E9%95%9C%E5%83%8F%E5%92%8C%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93/</link>
+      <pubDate>Tue, 11 Nov 2014 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2014/11/11/%E8%87%AA%E5%88%B6docker%E9%95%9C%E5%83%8F%E5%92%8C%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93/</guid>
+      <description>参考链接： 如何从docker将image镜像到私有的registry 美味小鱼CSDN Docker博客</description>
+    </item>
+    
+    <item>
+      <title>Web开发工程师知识体系</title>
+      <link>https://yougg.github.io/2014/10/12/web%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/</link>
+      <pubDate>Sun, 12 Oct 2014 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2014/10/12/web%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/</guid>
+      <description>Linux基础 系统命令使用(ls, cd, ps, &amp;hellip;) shell编程(sh, bash, &amp;hellip;) 基本目录结构及作用(/proc, /etc, &amp;hellip;) 常用服务的使用及配置(sshd, samba, ftp, crontab,</description>
+    </item>
+    
+    <item>
+      <title>Shell基础二十篇</title>
+      <link>https://yougg.github.io/2014/09/30/shell%E5%9F%BA%E7%A1%80%E4%BA%8C%E5%8D%81%E7%AF%87/</link>
+      <pubDate>Tue, 30 Sep 2014 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2014/09/30/shell%E5%9F%BA%E7%A1%80%E4%BA%8C%E5%8D%81%E7%AF%87/</guid>
+      <description>Shell基础一：文件安全与权限 http://bbs.chinaunix.net/thread-434579-1-1.html 附：Linux的用户和用户组管理 http://bbs.chinaunix.net/thread-438660-1-1.html Shell基础二：查找技巧,find及xargs的使用 http://bbs.chinaunix.net/thread-441883-1-1.html Shell基础三</description>
+    </item>
+    
+    <item>
+      <title>从Linux到Solaris</title>
+      <link>https://yougg.github.io/2014/09/30/%E4%BB%8Elinux%E5%88%B0solaris/</link>
+      <pubDate>Tue, 30 Sep 2014 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2014/09/30/%E4%BB%8Elinux%E5%88%B0solaris/</guid>
+      <description>第一章：差别概览 1. 默认shell Linux Solaris /bin/sh -&amp;gt; /bin/bash /bin/sh 两个操作系统的默认shell虽然都是/bin/sh， 但linux默认shell是bash，/bi</description>
+    </item>
+    
+    <item>
+      <title>Android Setting Menu</title>
+      <link>https://yougg.github.io/2014/09/26/android-setting-menu/</link>
+      <pubDate>Fri, 26 Sep 2014 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2014/09/26/android-setting-menu/</guid>
+      <description>≡ 设置 界面模式设置 简单模式 标准模式 无线和网络 Wi-Fi &amp;hellip;&amp;hellip;(WI-FI网络列表) 扫描 WI-FI直连 正在搜索&amp;hellip</description>
+    </item>
+    
+    <item>
+      <title>Linux/Unix添加信任关系脚本</title>
+      <link>https://yougg.github.io/2014/09/26/linux/unix%E6%B7%BB%E5%8A%A0%E4%BF%A1%E4%BB%BB%E5%85%B3%E7%B3%BB%E8%84%9A%E6%9C%AC/</link>
+      <pubDate>Fri, 26 Sep 2014 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2014/09/26/linux/unix%E6%B7%BB%E5%8A%A0%E4%BF%A1%E4%BB%BB%E5%85%B3%E7%B3%BB%E8%84%9A%E6%9C%AC/</guid>
+      <description>#!/bin/bash ip=$1 # usr=$2 pswd=$2 if [ -z &amp;#34;$ip&amp;#34; -o -z &amp;#34;$pswd&amp;#34; ]; then echo &amp;#34;Usage: `basename $0` &amp;lt;ip&amp;gt; &amp;lt;password&amp;gt;&amp;#34; exit 1 fi [ -z &amp;#34;$usr&amp;#34; ] &amp;amp;&amp;amp; usr=root grep &amp;#34;$ip&amp;#34; known_ips &amp;amp;&amp;amp; { echo &amp;#34;$ipis already added trust.&amp;#34; exit 0 } ping -c 1 -W 3 $ip &amp;gt;&amp;amp; /dev/null || { echo &amp;#34;can not connect to $ip.&amp;#34; exit 1 } ssh $ip -o PreferredAuthentications=publickey -o StrictHostKeyChecking=no &amp;#34;:&amp;#34; &amp;amp;&amp;amp; {</description>
+    </item>
+    
+    <item>
+      <title>HW OJ 2014</title>
+      <link>https://yougg.github.io/2014/09/24/hw-oj-2014/</link>
+      <pubDate>Wed, 24 Sep 2014 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2014/09/24/hw-oj-2014/</guid>
+      <description>一、选择题： 1.线程使用sleep()方法休眠后，可以用notify()方法唤醒。(初级题1分) B.错误 2.抽象方法必须在抽象类中，所以抽象</description>
+    </item>
+    
+    <item>
+      <title>Golang 发布闭源包方案</title>
+      <link>https://yougg.github.io/2014/09/22/golang-%E5%8F%91%E5%B8%83%E9%97%AD%E6%BA%90%E5%8C%85%E6%96%B9%E6%A1%88/</link>
+      <pubDate>Mon, 22 Sep 2014 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2014/09/22/golang-%E5%8F%91%E5%B8%83%E9%97%AD%E6%BA%90%E5%8C%85%E6%96%B9%E6%A1%88/</guid>
+      <description>发布方 例如有如下say包要发布： $cd $GOPATH/src/say $cat say.go// say something package package say import &amp;#34;fmt&amp;#34; // private function func say(str string){ fmt.Println(str) } // Say hi func Hi(){ say(&amp;#34;Hi......&amp;#34;) } // Say hello to someone func Hello(me string){ say(&amp;#34;Hello&amp;#34; + me) } 编译生成say包的.a文件 (如果</description>
+    </item>
+    
+    <item>
+      <title>ssh登录慢的原因分析及解决方法</title>
+      <link>https://yougg.github.io/2013/11/14/ssh%E7%99%BB%E5%BD%95%E6%85%A2%E7%9A%84%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</link>
+      <pubDate>Thu, 14 Nov 2013 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2013/11/14/ssh%E7%99%BB%E5%BD%95%E6%85%A2%E7%9A%84%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</guid>
+      <description>DNS解析问题导致的登录时明显的停顿，有两个阶段： 输入用户名敲回车之后，提示输入密码前； 原因sshd默认UseDNS选项是打开的，失败的DN</description>
+    </item>
+    
+    <item>
+      <title>Golang 设置应用程序图标</title>
+      <link>https://yougg.github.io/2013/11/06/golang-%E8%AE%BE%E7%BD%AE%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%9B%BE%E6%A0%87/</link>
+      <pubDate>Wed, 06 Nov 2013 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2013/11/06/golang-%E8%AE%BE%E7%BD%AE%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%9B%BE%E6%A0%87/</guid>
+      <description>所有操作在Windows中的MingW环境中执行 # Go源文件 hello.go # 图标源文件 hello.ico # 创建rc文件 echo &amp;#39;IDI_ICON1 ICON &amp;#34;hello.ico&amp;#34;&amp;#39; &amp;gt; hello.rc # 生成资源目标文件 windres -o hello.syso hello.rc # windres 帮助说明</description>
+    </item>
+    
+    <item>
+      <title>获取当前操作系统所有时区对应UTC偏移量</title>
+      <link>https://yougg.github.io/2013/10/30/%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%89%80%E6%9C%89%E6%97%B6%E5%8C%BA%E5%AF%B9%E5%BA%94utc%E5%81%8F%E7%A7%BB%E9%87%8F/</link>
+      <pubDate>Wed, 30 Oct 2013 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2013/10/30/%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%89%80%E6%9C%89%E6%97%B6%E5%8C%BA%E5%AF%B9%E5%BA%94utc%E5%81%8F%E7%A7%BB%E9%87%8F/</guid>
+      <description>#!/bin/bash for tz in `awk &amp;#39;$1 !~/#/{print $3}&amp;#39; /usr/share/zoneinfo/zone.tab`; do export TZ=&amp;#34;$tz&amp;#34; echo &amp;#34;$tz`date +%:z`&amp;#34; &amp;gt;&amp;gt; tmptz done unset TZ sort -k 1 tmptz &amp;gt; tzlist rm -f tmptz</description>
+    </item>
+    
+    <item>
+      <title>Windows系统中查找命令的路径</title>
+      <link>https://yougg.github.io/2013/10/12/windows%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4%E7%9A%84%E8%B7%AF%E5%BE%84/</link>
+      <pubDate>Sat, 12 Oct 2013 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2013/10/12/windows%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4%E7%9A%84%E8%B7%AF%E5%BE%84/</guid>
+      <description>实现类似Linux中的which/type命令的效果 In CMD: where cmd for %x in (powershell.exe) do @echo %~$PATH:x In PowerShell: Get-Command where</description>
+    </item>
+    
+    <item>
+      <title>Go grammar</title>
+      <link>https://yougg.github.io/2013/03/30/go-grammar/</link>
+      <pubDate>Sat, 30 Mar 2013 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2013/03/30/go-grammar/</guid>
+      <description>http://yougg.github.io/static/gonote/GolangStudy.html
+http://yougg.github.io/static/gonote/gogrammar.html</description>
+    </item>
+    
+    <item>
+      <title>nbtstat Linux版, 通过IP获取主机名</title>
+      <link>https://yougg.github.io/2013/03/30/nbtstat-linux%E7%89%88-%E9%80%9A%E8%BF%87ip%E8%8E%B7%E5%8F%96%E4%B8%BB%E6%9C%BA%E5%90%8D/</link>
+      <pubDate>Sat, 30 Mar 2013 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2013/03/30/nbtstat-linux%E7%89%88-%E9%80%9A%E8%BF%87ip%E8%8E%B7%E5%8F%96%E4%B8%BB%E6%9C%BA%E5%90%8D/</guid>
+      <description>/* NETBIOS name lookup tool - by eSDee of Netric (www.netric.org) * yeh.. i was really bored :-) * * [esdee@pant0ffel] gcc -o nbtstat nbtstat.c &amp;amp;&amp;amp; ./nbtstat 10.0.0.4 * Request sent, waiting for reply... [ctrl-c to abort] * Name Type * ---------------------------------- * HOEPELKO-ESPU0B &amp;lt;00&amp;gt; UNIQUE Workstation Service * HOEPELKO-ESPU0B &amp;lt;20&amp;gt; UNIQUE File Server Service * WORKGROUP &amp;lt;00&amp;gt; GROUP Domain Name * WORKGROUP &amp;lt;1e&amp;gt; GROUP Browser Service Elections * HOEPELKO-ESPU0B</description>
+    </item>
+    
+    <item>
+      <title>JLabel 文本内容自动换行</title>
+      <link>https://yougg.github.io/2013/03/13/jlabel-%E6%96%87%E6%9C%AC%E5%86%85%E5%AE%B9%E8%87%AA%E5%8A%A8%E6%8D%A2%E8%A1%8C/</link>
+      <pubDate>Wed, 13 Mar 2013 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2013/03/13/jlabel-%E6%96%87%E6%9C%AC%E5%86%85%E5%AE%B9%E8%87%AA%E5%8A%A8%E6%8D%A2%E8%A1%8C/</guid>
+      <description>JLabel content = new JLabel(&amp;#34;&amp;lt;HTML&amp;gt;JLabel 文字内容自动换行测试.JLabel 文字内容自动换行测试.&amp;lt;/HTML&amp;gt;&amp;#34;); View labelView = BasicHTML.createHTMLView(content, content.getText()); int labelWidth = 200; int labelHeight = 100; labelView.setSize(labelWidth, labelHeight); // 根</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu 重启X服务的几种方法</title>
+      <link>https://yougg.github.io/2013/02/12/ubuntu-%E9%87%8D%E5%90%AFx%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/</link>
+      <pubDate>Tue, 12 Feb 2013 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2013/02/12/ubuntu-%E9%87%8D%E5%90%AFx%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/</guid>
+      <description>快捷键: Ctrl + Alt + Backspace 如果12.04以后的版本,快捷键默认是没有开启的, 需要在设置中默认开启才能生效. System Setting -&amp;gt; Keyboard Layout -&amp;gt; Options expand &amp;quot;Key Sequence to Kill X Server&amp;quot; 勾选快捷键. 快</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu下设置godoc/gotour开机自启动</title>
+      <link>https://yougg.github.io/2012/11/24/ubuntu%E4%B8%8B%E8%AE%BE%E7%BD%AEgodoc/gotour%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/</link>
+      <pubDate>Sat, 24 Nov 2012 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2012/11/24/ubuntu%E4%B8%8B%E8%AE%BE%E7%BD%AEgodoc/gotour%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/</guid>
+      <description>编写godoc启动脚本 /etc/init.d/godoc , 内容如下: #!/bin/bash set -e ### BEGIN INIT INFO # Provides: godoc # Required-Start: $local_fs $remote_fs $network $time # Required-Stop: $local_fs $remote_fs $network $time # Should-Start: $syslog # Should-Stop: $syslog # Default-Start: 2 3 4 5 # Default-Stop: 0 1 6 # Short-Description: go online documention server ### END INIT INFO # Setting environment</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu 下配置Emacs下的Go语言插件</title>
+      <link>https://yougg.github.io/2012/10/29/ubuntu-%E4%B8%8B%E9%85%8D%E7%BD%AEemacs%E4%B8%8B%E7%9A%84go%E8%AF%AD%E8%A8%80%E6%8F%92%E4%BB%B6/</link>
+      <pubDate>Mon, 29 Oct 2012 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2012/10/29/ubuntu-%E4%B8%8B%E9%85%8D%E7%BD%AEemacs%E4%B8%8B%E7%9A%84go%E8%AF%AD%E8%A8%80%E6%8F%92%E4%BB%B6/</guid>
+      <description>首先安装Emacs sudo apt-get install emacs 然后进入Emacs的插件目录,配置go语言语法插件 cd /usr/share/emacs/site-lisp ln -s $GOROOT/misc/emacs/go-mode.el go-mode.el ln -s $GOROOT/misc/emacs/go-mode-load.el go-mode-load.el 安装Emacs的自动补全插件 sudo apt-get install auto-complete-el 再在用户</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu在内网通过配置代理更新源</title>
+      <link>https://yougg.github.io/2012/10/27/ubuntu%E5%9C%A8%E5%86%85%E7%BD%91%E9%80%9A%E8%BF%87%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86%E6%9B%B4%E6%96%B0%E6%BA%90/</link>
+      <pubDate>Sat, 27 Oct 2012 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2012/10/27/ubuntu%E5%9C%A8%E5%86%85%E7%BD%91%E9%80%9A%E8%BF%87%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86%E6%9B%B4%E6%96%B0%E6%BA%90/</guid>
+      <description>在终端首先配置代理: export http_proxy=&amp;#34;http://用户名:密码@代理IP:代理端口&amp;#34; 然后在ubuntu添加apt-</description>
+    </item>
+    
+    <item>
+      <title>Wubi安装Ubuntu, 通过调试日志发现如何跳过自动下载镜像文件</title>
+      <link>https://yougg.github.io/2012/10/02/wubi%E5%AE%89%E8%A3%85ubuntu-%E9%80%9A%E8%BF%87%E8%B0%83%E8%AF%95%E6%97%A5%E5%BF%97%E5%8F%91%E7%8E%B0%E5%A6%82%E4%BD%95%E8%B7%B3%E8%BF%87%E8%87%AA%E5%8A%A8%E4%B8%8B%E8%BD%BD%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Tue, 02 Oct 2012 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2012/10/02/wubi%E5%AE%89%E8%A3%85ubuntu-%E9%80%9A%E8%BF%87%E8%B0%83%E8%AF%95%E6%97%A5%E5%BF%97%E5%8F%91%E7%8E%B0%E5%A6%82%E4%BD%95%E8%B7%B3%E8%BF%87%E8%87%AA%E5%8A%A8%E4%B8%8B%E8%BD%BD%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6/</guid>
+      <description>以下是执行一次wubi安装ubuntu的调试日志: 10-02 16:23 INFO root: === wubi 12.10 rev270 === 10-02 16:23 DEBUG root: Logfile is c:\users\用户名\appdata\local\tem</description>
+    </item>
+    
+    <item>
+      <title>Eclipse保存源码添加自动动作选项</title>
+      <link>https://yougg.github.io/2012/09/16/eclipse%E4%BF%9D%E5%AD%98%E6%BA%90%E7%A0%81%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%8A%A8%E5%8A%A8%E4%BD%9C%E9%80%89%E9%A1%B9/</link>
+      <pubDate>Sun, 16 Sep 2012 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2012/09/16/eclipse%E4%BF%9D%E5%AD%98%E6%BA%90%E7%A0%81%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%8A%A8%E5%8A%A8%E4%BD%9C%E9%80%89%E9%A1%B9/</guid>
+      <description>Eclipse提供自动源码格式选项，并且组织输入（删除未使用的代码）。可以使用下面的这些快捷键进行操作。 Ctrl + Shift + F——源代码格式 Ctrl + Shift + O—</description>
+    </item>
+    
+    <item>
+      <title>优秀代码评选</title>
+      <link>https://yougg.github.io/2012/08/06/%E4%BC%98%E7%A7%80%E4%BB%A3%E7%A0%81%E8%AF%84%E9%80%89/</link>
+      <pubDate>Mon, 06 Aug 2012 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2012/08/06/%E4%BC%98%E7%A7%80%E4%BB%A3%E7%A0%81%E8%AF%84%E9%80%89/</guid>
+      <description>代码评选原则： 入围基本条件： 一次把事情做对：代码缺陷率（含SDV和SIT）在本Line内较低。 圈复杂度：通过SourceMonitor检测最</description>
+    </item>
+    
+    <item>
+      <title>JavaScript Sleep</title>
+      <link>https://yougg.github.io/2012/07/28/javascript-sleep/</link>
+      <pubDate>Sat, 28 Jul 2012 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2012/07/28/javascript-sleep/</guid>
+      <description>function sleep(millisecond) { var now = new Date(); var outTime = now.getTime() + millisecond; while (true) { now = new Date(); if (now.getTime() &amp;gt; outTime) { return; } } } function Test() { alert(&amp;#34;sleep&amp;#34;); sleep(3000); alert(&amp;#34;continue&amp;#34;); } //sleep函数 var sleep = (function(){ var queue = [], isFree = true; return function(fn, delay){ var args = arguments, self = this; if(isFree){ isFree =</description>
+    </item>
+    
+    <item>
+      <title>最新版本Eclipse 及必装插件Update Site</title>
+      <link>https://yougg.github.io/2012/07/24/%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%ACeclipse-%E5%8F%8A%E5%BF%85%E8%A3%85%E6%8F%92%E4%BB%B6update-site/</link>
+      <pubDate>Tue, 24 Jul 2012 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2012/07/24/%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%ACeclipse-%E5%8F%8A%E5%BF%85%E8%A3%85%E6%8F%92%E4%BB%B6update-site/</guid>
+      <description>最新版本eclipse: http://www.eclipse.org/downloads 必装插件最新更新地址(update site): Plug-in Development Envrionment: http://download.eclipse.org/eclipse/pde/visualization/updates Subclipse: http://subclipse.tigris.org/update_1.8.x CheckStyle: http://eclipse-cs.sf.net/update FindBugs: http://findbugs.cs.umd.edu/eclipse PMD: http://pmd.sf.net/eclipse JAutoDoc: http://jautodoc.sf.net/update JAD: http://jadclipse.sf.net/update BeyondCVS: http://beyondcvs.sf.net/update/0.8.x</description>
+    </item>
+    
+    <item>
+      <title>自定义 Chrome 滚动条的样式</title>
+      <link>https://yougg.github.io/2012/04/30/%E8%87%AA%E5%AE%9A%E4%B9%89-chrome-%E6%BB%9A%E5%8A%A8%E6%9D%A1%E7%9A%84%E6%A0%B7%E5%BC%8F/</link>
+      <pubDate>Mon, 30 Apr 2012 11:25:26 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2012/04/30/%E8%87%AA%E5%AE%9A%E4%B9%89-chrome-%E6%BB%9A%E5%8A%A8%E6%9D%A1%E7%9A%84%E6%A0%B7%E5%BC%8F/</guid>
+      <description>有不少可以修改Chrome默认滚动条样式的扩展，Scroll Bar X就是其中的佼佼者，但是这个扩展在安装的时候提示说会存取所有的网站数据，这就让</description>
+    </item>
+    
+    <item>
+      <title>Fedora17 安装Chromium</title>
+      <link>https://yougg.github.io/2012/04/07/fedora17-%E5%AE%89%E8%A3%85chromium/</link>
+      <pubDate>Sat, 07 Apr 2012 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2012/04/07/fedora17-%E5%AE%89%E8%A3%85chromium/</guid>
+      <description>Fedora官方源中没有包含Chromium中,需要先添加安装源. Stable repo(稳定版本): http://repos.fedorapeople.org/repos/spot/chromium-stable/ http://repos.fedorapeople.org/repos/spot/chromium-stable/fedora-chromium-stable.repo Unstable repo(非稳定版本,开发测试中的构建版本,</description>
+    </item>
+    
+    <item>
+      <title>Fedora修改默认系统启动等级</title>
+      <link>https://yougg.github.io/2012/04/07/fedora%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E7%AD%89%E7%BA%A7/</link>
+      <pubDate>Sat, 07 Apr 2012 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2012/04/07/fedora%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E7%AD%89%E7%BA%A7/</guid>
+      <description>在之前是直接将 /etc/inittab 文件中id:5:initdefault 数字修改为 id:3:initdefault 就可以了. 现在再进入这个文件提示不再使用了. 需要修改 /etc/systemd/system/default.target 这个软连接文件. 这个</description>
+    </item>
+    
+    <item>
+      <title>Chrome窗口和标签页快捷键</title>
+      <link>https://yougg.github.io/2012/03/10/chrome%E7%AA%97%E5%8F%A3%E5%92%8C%E6%A0%87%E7%AD%BE%E9%A1%B5%E5%BF%AB%E6%8D%B7%E9%94%AE/</link>
+      <pubDate>Sat, 10 Mar 2012 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2012/03/10/chrome%E7%AA%97%E5%8F%A3%E5%92%8C%E6%A0%87%E7%AD%BE%E9%A1%B5%E5%BF%AB%E6%8D%B7%E9%94%AE/</guid>
+      <description>Ctrl+N 打开新窗口 Ctrl+T 打开新标签页 Ctrl+Shift+N 在隐身模式下打开新窗口 Ctrl+O，然后选择文件 在谷歌浏览器中打开计算机上的文件 按住 Ctrl 键，然后点击链接 从后台在新</description>
+    </item>
+    
+    <item>
+      <title>Eclipse下面的ClearCase插件安裝</title>
+      <link>https://yougg.github.io/2011/10/15/eclipse%E4%B8%8B%E9%9D%A2%E7%9A%84clearcase%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%9D/</link>
+      <pubDate>Sat, 15 Oct 2011 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2011/10/15/eclipse%E4%B8%8B%E9%9D%A2%E7%9A%84clearcase%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%9D/</guid>
+      <description>选择Eclipse-&amp;gt;Help-&amp;gt;Software Updates-&amp;gt;Manage Configuration 选择Manage Configuration页面右边的Add an Extention Locati</description>
+    </item>
+    
+    <item>
+      <title>Java透明窗口的例子</title>
+      <link>https://yougg.github.io/2011/08/30/java%E9%80%8F%E6%98%8E%E7%AA%97%E5%8F%A3%E7%9A%84%E4%BE%8B%E5%AD%90/</link>
+      <pubDate>Tue, 30 Aug 2011 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2011/08/30/java%E9%80%8F%E6%98%8E%E7%AA%97%E5%8F%A3%E7%9A%84%E4%BE%8B%E5%AD%90/</guid>
+      <description>public class TranslucentWindow extends JFrame { public TranslucentWindow() { super(&amp;#34;TranslucentWindow&amp;#34;); setLayout(new GridBagLayout()); setSize(300, 200); setLocationRelativeTo(null); setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); add(new JButton(&amp;#34;I am a Button&amp;#34;)); //设置窗口的透明度为 55% AWTUtilities.setWindowOpacity(this, 0.55f); } public static void main(String[] args) { //如果当前JDK不支持透明则退出 if (!AWTUtilities.isTranslucencySupported(AWTUtilities.Translucency.TRANSLUCENT)) { System.err.println(&amp;#34;Translucency is not supported&amp;#34;); System.exit(0); } TranslucentWindow tw</description>
+    </item>
+    
+    <item>
+      <title>交换两个变量的值的几种方式</title>
+      <link>https://yougg.github.io/2011/07/12/%E4%BA%A4%E6%8D%A2%E4%B8%A4%E4%B8%AA%E5%8F%98%E9%87%8F%E7%9A%84%E5%80%BC%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/</link>
+      <pubDate>Tue, 12 Jul 2011 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2011/07/12/%E4%BA%A4%E6%8D%A2%E4%B8%A4%E4%B8%AA%E5%8F%98%E9%87%8F%E7%9A%84%E5%80%BC%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/</guid>
+      <description>//精简,一行代码搞定 int x = 3, y = 7; System.out.printf(&amp;#34;x = %d, y = %d\n&amp;#34;, x, y); x = y + 0 * (y = x); System.out.printf(&amp;#34;x = %d, y = %d\n&amp;#34;, x, y); //兼容,支持Integer.MAXVALUE的+操作</description>
+    </item>
+    
+    <item>
+      <title>MinGW 中文显示乱码 的解决办法</title>
+      <link>https://yougg.github.io/2010/12/01/mingw-%E4%B8%AD%E6%96%87%E6%98%BE%E7%A4%BA%E4%B9%B1%E7%A0%81-%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</link>
+      <pubDate>Wed, 01 Dec 2010 11:50:40 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2010/12/01/mingw-%E4%B8%AD%E6%96%87%E6%98%BE%E7%A4%BA%E4%B9%B1%E7%A0%81-%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</guid>
+      <description>MinGW msys Cygwin的精简功能版 在MinGW中想切换到中文目录,却提示不支持.中文全部显示????? 这个是解决办法: 给ls命令加上参数 --show-control-chars ls --show-control-chars 如此</description>
+    </item>
+    
+    <item>
+      <title>Emacs快捷键</title>
+      <link>https://yougg.github.io/2010/11/24/emacs%E5%BF%AB%E6%8D%B7%E9%94%AE/</link>
+      <pubDate>Wed, 24 Nov 2010 12:25:55 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2010/11/24/emacs%E5%BF%AB%E6%8D%B7%E9%94%AE/</guid>
+      <description>文件操作 C-x C-f 打开文件,出现提示时输入/username@host:filepath可编辑FTP文件 C-x C-v 打开一个文件，取代当前缓冲区 C-x C-s 保存文</description>
+    </item>
+    
+    <item>
+      <title>DIY Eclipse打开文件所在位置文件夹</title>
+      <link>https://yougg.github.io/2010/11/19/diy-eclipse%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6%E6%89%80%E5%9C%A8%E4%BD%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%A4%B9/</link>
+      <pubDate>Fri, 19 Nov 2010 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2010/11/19/diy-eclipse%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6%E6%89%80%E5%9C%A8%E4%BD%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%A4%B9/</guid>
+      <description>MyEclipse里面带了类似的一个插件，点一下就可以打开当前编辑文件所在的文件夹，这样就可以直接到文件夹里面去做操作了。 MyEclipse 里面的插件名叫：</description>
+    </item>
+    
+    <item>
+      <title>adb工具使用</title>
+      <link>https://yougg.github.io/2010/11/09/adb%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Tue, 09 Nov 2010 11:38:39 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2010/11/09/adb%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/</guid>
+      <description>adb(Android Debug Bridge)是Android 提供的一个通用的调试工具，可以管理设备或手机 模拟器 的状态 。还可以进行以下的操作： 快速更新设备或手机模拟器中</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>interface on Yougg&#39;s Blog</title>
+    <link>https://yougg.github.io/tags/interface/</link>
+    <description>Recent content in interface on Yougg&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 27 Mar 2017 10:59:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://yougg.github.io/tags/interface/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>理解Go语言模型(1)：interface底层详解</title>
+      <link>https://yougg.github.io/2017/03/27/%E7%90%86%E8%A7%A3go%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B1interface%E5%BA%95%E5%B1%82%E8%AF%A6%E8%A7%A3/</link>
+      <pubDate>Mon, 27 Mar 2017 10:59:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/03/27/%E7%90%86%E8%A7%A3go%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B1interface%E5%BA%95%E5%B1%82%E8%AF%A6%E8%A7%A3/</guid>
+      <description>前言 Go语言从语法上面来说，是相对简单的，所以基本的语法特性是没有什么特别要讲的，这里将从Go语言的一些核心的设计，包括interface，</description>
+    </item>
+    
+  </channel>
+</rss>

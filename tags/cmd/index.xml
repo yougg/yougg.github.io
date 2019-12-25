@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CMD on Yougg&#39;s Blog</title>
+    <link>https://yougg.github.io/tags/cmd/</link>
+    <description>Recent content in CMD on Yougg&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 31 Jul 2015 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://yougg.github.io/tags/cmd/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Command Note</title>
+      <link>https://yougg.github.io/2015/07/31/command-note/</link>
+      <pubDate>Fri, 31 Jul 2015 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2015/07/31/command-note/</guid>
+      <description>查看进程环境变量 Linux tr \\0 \\n &amp;lt; /proc/${PID}/environ ps eww -p ${PID} Solaris pargs -e ${PID} Windows PowerShell (Get-Process -id %PID%).StartInfo.EnvironmentVariables 挂载/卸载分区 Windows :: 查看分区信息 mountvol /? :: 卸载分区 mountvol D: /D :: 挂载分区 mountvol D: \\?\Volume{e316bd82-2441-11e5-9656-d6d12ffbbef0} 修改系统代理 Linux export http_proxy=&amp;#39;http://x.proxy.com:8080&amp;#39; export</description>
+    </item>
+    
+    <item>
+      <title>Windows系统中查找命令的路径</title>
+      <link>https://yougg.github.io/2013/10/12/windows%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4%E7%9A%84%E8%B7%AF%E5%BE%84/</link>
+      <pubDate>Sat, 12 Oct 2013 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2013/10/12/windows%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4%E7%9A%84%E8%B7%AF%E5%BE%84/</guid>
+      <description>实现类似Linux中的which/type命令的效果 In CMD: where cmd for %x in (powershell.exe) do @echo %~$PATH:x In PowerShell: Get-Command where</description>
+    </item>
+    
+  </channel>
+</rss>

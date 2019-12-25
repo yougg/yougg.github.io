@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Archtecture on Yougg&#39;s Blog</title>
+    <link>https://yougg.github.io/tags/archtecture/</link>
+    <description>Recent content in Archtecture on Yougg&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 12 Oct 2014 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://yougg.github.io/tags/archtecture/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Web开发工程师知识体系</title>
+      <link>https://yougg.github.io/2014/10/12/web%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/</link>
+      <pubDate>Sun, 12 Oct 2014 00:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2014/10/12/web%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/</guid>
+      <description>Linux基础 系统命令使用(ls, cd, ps, &amp;hellip;) shell编程(sh, bash, &amp;hellip;) 基本目录结构及作用(/proc, /etc, &amp;hellip;) 常用服务的使用及配置(sshd, samba, ftp, crontab,</description>
+    </item>
+    
+  </channel>
+</rss>

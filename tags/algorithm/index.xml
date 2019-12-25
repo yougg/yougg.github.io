@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Algorithm on Yougg&#39;s Blog</title>
+    <link>https://yougg.github.io/tags/algorithm/</link>
+    <description>Recent content in Algorithm on Yougg&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 06 Jul 2018 14:25:22 +0000</lastBuildDate>
+    
+	<atom:link href="https://yougg.github.io/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Go语言排序算法笔记</title>
+      <link>https://yougg.github.io/2018/07/06/go%E8%AF%AD%E8%A8%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Fri, 06 Jul 2018 14:25:22 +0000</pubDate>
+      
+      <guid>https://yougg.github.io/2018/07/06/go%E8%AF%AD%E8%A8%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/</guid>
+      <description>Install Flutter on Ubuntu Desktop set apt proxy and http(s) proxy echo &amp;#39;Acquire::http::Proxy &amp;#34;http://127.0.0.1:8080&amp;#34;&amp;#39; &amp;gt;&amp;gt; /etc/apt/apt.conf export http_proxy=&amp;#39;http://127.0.0.1:8080&amp;#39; export {https,ftp,rsync,all}_proxy=$http_proxy install git sudo apt install git git config --global http.sslVerify false clone flutter mkdir -p ~/Flutter cd ~/Flutter git clone -b master https://github.com/flutter/flutter.git ./flutter/bin/flutter --version export PATH=${PATH}:~/Flutter/flutter/bin echo &amp;#39;export PATH=${PATH}:~/Flutter/flutter/bin&amp;#39; &amp;gt;&amp;gt; ~/.profile flutter doctor sudo apt install lib32stdc++6 set proxy forward for virtual device download latest frp release package https://github.com/fatedier/frp/releases</description>
+    </item>
+    
+    <item>
+      <title>Go语言排序算法笔记</title>
+      <link>https://yougg.github.io/2018/02/13/go%E8%AF%AD%E8%A8%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Tue, 13 Feb 2018 10:50:47 +0000</pubDate>
+      
+      <guid>https://yougg.github.io/2018/02/13/go%E8%AF%AD%E8%A8%80%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/</guid>
+      <description>冒泡排序 排序实现 给定一个N个元素的数组 比较相邻的一对元素(a,b) 如果元素乱序，交换元素(当前情况是a&amp;gt;b) 重复步骤1和2，直到到达数</description>
+    </item>
+    
+  </channel>
+</rss>

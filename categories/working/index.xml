@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Working on Yougg&#39;s Blog</title>
+    <link>https://yougg.github.io/categories/working/</link>
+    <description>Recent content in Working on Yougg&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 29 Sep 2016 10:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://yougg.github.io/categories/working/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Go语言服务端开发工程师 招聘需求</title>
+      <link>https://yougg.github.io/2016/09/29/go%E8%AF%AD%E8%A8%80%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88-%E6%8B%9B%E8%81%98%E9%9C%80%E6%B1%82/</link>
+      <pubDate>Thu, 29 Sep 2016 10:00:00 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2016/09/29/go%E8%AF%AD%E8%A8%80%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88-%E6%8B%9B%E8%81%98%E9%9C%80%E6%B1%82/</guid>
+      <description>岗位职责： 使用Go语言进行服务端的开发； 负责实现系统集成类功能系统设计和开发，大数据服务管理； 负责编写开发相关文档； 负责服务部署和维护； 负责</description>
+    </item>
+    
+  </channel>
+</rss>

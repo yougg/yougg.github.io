@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="yougg">
+<meta name="keywords" content="">
+<meta name="description" content="编写godoc启动脚本 /etc/init.d/godoc , 内容如下: #!/bin/bash set -e ### BEGIN INIT INFO # Provides: godoc # Required-Start: $local_fs $remote_fs $network $time # Required-Stop: $local_fs $remote_fs $network $time # Should-Start: $syslog # Should-Stop: $syslog # Default-Start: 2 3 4 5 # Default-Stop: 0 1 6 # Short-Description: go online documention server ### END INIT INFO # Setting environment">
+
+
+<meta property="og:description" content="编写godoc启动脚本 /etc/init.d/godoc , 内容如下: #!/bin/bash set -e ### BEGIN INIT INFO # Provides: godoc # Required-Start: $local_fs $remote_fs $network $time # Required-Stop: $local_fs $remote_fs $network $time # Should-Start: $syslog # Should-Stop: $syslog # Default-Start: 2 3 4 5 # Default-Stop: 0 1 6 # Short-Description: go online documention server ### END INIT INFO # Setting environment">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu下设置godoc/gotour开机自启动">
+<meta name="twitter:title" content="Ubuntu下设置godoc/gotour开机自启动">
+<meta property="og:url" content="https://yougg.github.io/2012/11/24/ubuntu%E4%B8%8B%E8%AE%BE%E7%BD%AEgodoc/gotour%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/">
+<meta property="twitter:url" content="https://yougg.github.io/2012/11/24/ubuntu%E4%B8%8B%E8%AE%BE%E7%BD%AEgodoc/gotour%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/">
+<meta property="og:site_name" content="Yougg&#39;s Blog">
+<meta property="og:description" content="编写godoc启动脚本 /etc/init.d/godoc , 内容如下: #!/bin/bash set -e ### BEGIN INIT INFO # Provides: godoc # Required-Start: $local_fs $remote_fs $network $time # Required-Stop: $local_fs $remote_fs $network $time # Should-Start: $syslog # Should-Stop: $syslog # Default-Start: 2 3 4 5 # Default-Stop: 0 1 6 # Short-Description: go online documention server ### END INIT INFO # Setting environment">
+<meta name="twitter:description" content="编写godoc启动脚本 /etc/init.d/godoc , 内容如下: #!/bin/bash set -e ### BEGIN INIT INFO # Provides: godoc # Required-Start: $local_fs $remote_fs $network $time # Required-Stop: $local_fs $remote_fs $network $time # Should-Start: $syslog # Should-Stop: $syslog # Default-Start: 2 3 4 5 # Default-Stop: 0 1 6 # Short-Description: go online documention server ### END INIT INFO # Setting environment">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2012-11-24T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2012-11-24T00:00:00">
+  
+  
+  
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png">
+  <meta property="twitter:image" content="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png">
+
+
+    <title>Ubuntu下设置godoc/gotour开机自启动</title>
+
+    <link rel="icon" href="https://yougg.github.io/favicon.png">
+    
+
+    
+      <link rel="publisher" href="https://plus.google.com/&#43;caixiang">
+    
+
+    <link rel="canonical" href="https://yougg.github.io/2012/11/24/ubuntu%E4%B8%8B%E8%AE%BE%E7%BD%AEgodoc/gotour%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://yougg.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  href="https://yougg.github.io/css/fruity.css">
+      
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://yougg.github.io/">Yougg&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://yougg.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://yougg.github.io/#about">
+          <img class="sidebar-profile-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">yougg</h4>
+        
+          <h5 class="sidebar-profile-bio">和咸鱼没有什么区别的偶尔写<del><em>不想写</em></del>博客的码农</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://yougg.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/yougg" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/9087310/yougg" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Ubuntu下设置godoc/gotour开机自启动
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2012-11-24T00:00:00&#43;08:00">
+        
+  
+  
+  
+  
+    2012年11月24日 00时00分00秒
+  
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>编写godoc启动脚本 /etc/init.d/godoc , 内容如下:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span><span class="nb">set</span> -e
+
+<span class="c1">### BEGIN INIT INFO</span>
+<span class="c1"># Provides:		godoc</span>
+<span class="c1"># Required-Start:	$local_fs $remote_fs $network $time</span>
+<span class="c1"># Required-Stop:	$local_fs $remote_fs $network $time</span>
+<span class="c1"># Should-Start:		$syslog</span>
+<span class="c1"># Should-Stop:		$syslog</span>
+<span class="c1"># Default-Start:	2 3 4 5</span>
+<span class="c1"># Default-Stop:		0 1 6</span>
+<span class="c1"># Short-Description:	go online documention server</span>
+<span class="c1">### END INIT INFO</span>
+
+<span class="c1"># Setting environment variables for the postmaster here does not work; please</span>
+<span class="c1"># set them in /etc/postgresql/&lt;version&gt;/&lt;cluster&gt;/environment instead.</span>
+
+<span class="o">[</span> -f /usr/local/go/bin/godoc <span class="o">]</span> <span class="o">||</span> <span class="nb">exit</span> <span class="m">0</span>
+
+
+<span class="k">case</span> <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span> in
+    start<span class="o">)</span>
+	nohup godoc -index -http<span class="o">=</span>:6060 &gt; /dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="p">&amp;</span>
+        <span class="p">;;</span>
+    stop<span class="o">)</span>
+	pkill -9 godoc <span class="m">2</span>&gt; /dev/null
+        <span class="p">;;</span>
+    status<span class="o">)</span>
+	ps aux <span class="p">|</span> head -1
+	ps aux <span class="p">|</span> grep <span class="o">[</span><span class="m">6</span><span class="o">]</span><span class="m">060</span>
+	<span class="p">;;</span>
+    *<span class="o">)</span>
+        <span class="nb">echo</span> <span class="s2">&#34;Usage: </span><span class="nv">$0</span><span class="s2"> {start|stop|status}&#34;</span>
+        <span class="nb">exit</span> <span class="m">1</span>
+        <span class="p">;;</span>
+<span class="k">esac</span>
+
+<span class="nb">exit</span> <span class="m">0</span></code></pre></div>
+<p>设置脚本开机启动:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 设置godoc在2,3,4,5系统启动等级,顺序77启动.  在0,1,6系统启动登记,顺序55停止.</span>
+update-rc.d godoc start <span class="m">77</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> . stop <span class="m">55</span> <span class="m">0</span> <span class="m">1</span> <span class="m">6</span> .</code></pre></div>
+<p>编写gotour启动脚本 /etc/init.d/gotour , 内容如下:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span><span class="nb">set</span> -e
+
+<span class="c1">### BEGIN INIT INFO</span>
+<span class="c1"># Provides:		gotour</span>
+<span class="c1"># Required-Start:	$local_fs $remote_fs $network $time</span>
+<span class="c1"># Required-Stop:	$local_fs $remote_fs $network $time</span>
+<span class="c1"># Should-Start:		$syslog</span>
+<span class="c1"># Should-Stop:		$syslog</span>
+<span class="c1"># Default-Start:	2 3 4 5</span>
+<span class="c1"># Default-Stop:		0 1 6</span>
+<span class="c1"># Short-Description:	go online tour server</span>
+<span class="c1">### END INIT INFO</span>
+
+<span class="c1"># Setting environment variables for the postmaster here does not work; please</span>
+<span class="c1"># set them in /etc/postgresql/&lt;version&gt;/&lt;cluster&gt;/environment instead.</span>
+
+<span class="o">[</span> -f /usr/local/go/bin/gotour <span class="o">]</span> <span class="o">||</span> <span class="nb">exit</span> <span class="m">0</span>
+
+
+<span class="k">case</span> <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span> in
+    start<span class="o">)</span>
+	nohup gotour &gt; /dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="p">&amp;</span>
+        <span class="p">;;</span>
+    stop<span class="o">)</span>
+	pkill -9 gotour <span class="m">2</span>&gt; /dev/null
+        <span class="p">;;</span>
+    status<span class="o">)</span>
+	ps aux <span class="p">|</span> head -1
+	ps aux <span class="p">|</span> grep <span class="o">[</span>t<span class="o">]</span>our
+	<span class="p">;;</span>
+    *<span class="o">)</span>
+        <span class="nb">echo</span> <span class="s2">&#34;Usage: </span><span class="nv">$0</span><span class="s2"> {start|stop|status}&#34;</span>
+        <span class="nb">exit</span> <span class="m">1</span>
+        <span class="p">;;</span>
+<span class="k">esac</span>
+
+<span class="nb">exit</span> <span class="m">0</span></code></pre></div>
+<p>设置脚本开机启动:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 设置gotour在2,3,4,5系统启动等级,顺序77启动.  在0,1,6系统启动登记,顺序55停止.</span>
+update-rc.d gotour start <span class="m">77</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> . stop <span class="m">55</span> <span class="m">0</span> <span class="m">1</span> <span class="m">6</span> .</code></pre></div>
+<p>以上设置完成后, godoc与gotour将会在系统启动时自动启动,系统停止时自动杀死.</p>
+
+<p>如果需要移除命令系统自启动.<br />
+执行如下命令即可</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">update-rc.d -f godoc remove <span class="o">&amp;&amp;</span> rm -f /etc/init.d/godoc
+update-rc.d -f gotour remove <span class="o">&amp;&amp;</span> rm -f /etc/init.d/gotour</code></pre></div>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2013/02/12/ubuntu-%E9%87%8D%E5%90%AFx%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/" data-tooltip="Ubuntu 重启X服务的几种方法">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2012/10/29/ubuntu-%E4%B8%8B%E9%85%8D%E7%BD%AEemacs%E4%B8%8B%E7%9A%84go%E8%AF%AD%E8%A8%80%E6%8F%92%E4%BB%B6/" data-tooltip="Ubuntu 下配置Emacs下的Go语言插件">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://yougg.github.io/2012/11/24/ubuntu%E4%B8%8B%E8%AE%BE%E7%BD%AEgodoc/gotour%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://yougg.github.io/2012/11/24/ubuntu%E4%B8%8B%E8%AE%BE%E7%BD%AEgodoc/gotour%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://yougg.github.io/2012/11/24/ubuntu%E4%B8%8B%E8%AE%BE%E7%BD%AEgodoc/gotour%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 <a href="https://github.com/yougg">yougg</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2013/02/12/ubuntu-%E9%87%8D%E5%90%AFx%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/" data-tooltip="Ubuntu 重启X服务的几种方法">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://yougg.github.io/2012/10/29/ubuntu-%E4%B8%8B%E9%85%8D%E7%BD%AEemacs%E4%B8%8B%E7%9A%84go%E8%AF%AD%E8%A8%80%E6%8F%92%E4%BB%B6/" data-tooltip="Ubuntu 下配置Emacs下的Go语言插件">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://yougg.github.io/2012/11/24/ubuntu%E4%B8%8B%E8%AE%BE%E7%BD%AEgodoc/gotour%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://yougg.github.io/2012/11/24/ubuntu%E4%B8%8B%E8%AE%BE%E7%BD%AEgodoc/gotour%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://yougg.github.io/2012/11/24/ubuntu%E4%B8%8B%E8%AE%BE%E7%BD%AEgodoc/gotour%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fyougg.github.io%2F2012%2F11%2F24%2Fubuntu%25E4%25B8%258B%25E8%25AE%25BE%25E7%25BD%25AEgodoc%2Fgotour%25E5%25BC%2580%25E6%259C%25BA%25E8%2587%25AA%25E5%2590%25AF%25E5%258A%25A8%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fyougg.github.io%2F2012%2F11%2F24%2Fubuntu%25E4%25B8%258B%25E8%25AE%25BE%25E7%25BD%25AEgodoc%2Fgotour%25E5%25BC%2580%25E6%259C%25BA%25E8%2587%25AA%25E5%2590%25AF%25E5%258A%25A8%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fyougg.github.io%2F2012%2F11%2F24%2Fubuntu%25E4%25B8%258B%25E8%25AE%25BE%25E7%25BD%25AEgodoc%2Fgotour%25E5%25BC%2580%25E6%259C%25BA%25E8%2587%25AA%25E5%2590%25AF%25E5%258A%25A8%2F">
+          <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="http://pic.k73.com/up/soft/2016/0919/172704_71255408.png" alt="作者的图片" />
+    
+    <h4 id="about-card-name">yougg</h4>
+    
+      <div id="about-card-bio">和咸鱼没有什么区别的偶尔写<del><em>不想写</em></del>博客的码农</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        搬砖
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        中国 深圳
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://yougg.github.io/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://yougg.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/yougg.github.io\/2012\/11\/24\/ubuntu%E4%B8%8B%E8%AE%BE%E7%BD%AEgodoc\/gotour%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8\/';
+          
+            this.page.identifier = '\/2012\/11\/24\/ubuntu%E4%B8%8B%E8%AE%BE%E7%BD%AEgodoc\/gotour%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'yougg';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Emoji on Yougg&#39;s Blog</title>
+    <link>https://yougg.github.io/tags/emoji/</link>
+    <description>Recent content in Emoji on Yougg&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 23 Aug 2017 19:15:26 +0800</lastBuildDate>
+    
+	<atom:link href="https://yougg.github.io/tags/emoji/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Emoji list support by hugo</title>
+      <link>https://yougg.github.io/2017/08/23/emoji-list-support-by-hugo/</link>
+      <pubDate>Wed, 23 Aug 2017 19:15:26 +0800</pubDate>
+      
+      <guid>https://yougg.github.io/2017/08/23/emoji-list-support-by-hugo/</guid>
+      <description>😄 😆 😊 😃 ☺ 😏 😍 😘 😚 😳 😌 😆 😁 😉 😜 😅 😥 😞 😨 😣 😭 😂 😲 😱 😫 😡 😤 😪 😋 😷 😎 😵 😈 😶 👽 💛 💜 💚 💓 💕 💘 💖 ⭐ 🌟 💫 💥 💥 💢 ❗ ❓ ❔ 💨 💦 🎵 💩 💩 💩 👍 👍 👎 👎 👌 👊 👊 ✌ 👋 ✋ ✋ 👐 👇</description>
+    </item>
+    
+  </channel>
+</rss>
